@@ -1,0 +1,1083 @@
+{
+    "chunks": [
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 0.0,
+            "end": 40.0,
+            "text": "So, let's start today's lecture. Today we're going to be talking about the idea of iteration, and iteration is another way we're going to add control flow to our programs. But before we do that, let's do a little bit of a recap on, sorry, let's do a little bit of a recap of what we've done so far last lecture, because last lecture we actually"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 40.0,
+            "end": 60.080000000000005,
+            "text": "introduced a different mechanism for control flow, branching. And the control flow is basically a way for us to tell Python not to go systematically through the code. Branching was a way for us to tell Python, hey, based on some condition being true or false, either evaluate some set of code, or another set of code, right?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 60.080000000000005,
+            "end": 80.04,
+            "text": "Which was not going linearly, we were actually kind of skipping around through the code. So that's what we learned at the end of the lecture, but we also learned about input and output, so a way for us to write interactive programs. And we learned about a new data type, the string. So the string was a sequence of characters, hopefully you got a chance to do a little"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 80.04,
+            "end": 101.96000000000001,
+            "text": "bit of exercises on MITX as practice for today's quizzes with strings and branching. Okay, so in branching, what did we learn? We talked about how to actually add a branching point in our program. So we did that using these particular keywords. So when you type them in your program in the file editor, you'll see that they kind of"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 101.96000000000001,
+            "end": 122.44,
+            "text": "turn a different color. That tells you it's a special word in Python. And these keywords are how we told Python to put a branching point. And the colon kind of ended the branching conditional. And then anything that was indented as part of that conditional was code that would be"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 122.44,
+            "end": 135.60000000000002,
+            "text": "executed when that condition was true. So I'm just going to quickly go over each one of these boxes. So the first one up here was the simplest way that we could add a conditional to our program. It basically said, hey, go through the program."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 135.60000000000002,
+            "end": 159.76000000000002,
+            "text": "When you reach this if condition, Python would check the condition and say, if that condition is true, execute the code that's indented as part of that block. If the condition was not true, don't do anything, just carry on with the remaining program. If we wanted to do something else, so if the condition was not true, if we wanted to do something else, we added this else clause here."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 159.76,
+            "end": 179.72,
+            "text": "And the else also has some sort of code indented as part of its code block. And that code would be executed when that condition was false. OK. So that was a really simple if or if else code structure. But sometimes we want to have code that checks for many conditions, not just one."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 179.72,
+            "end": 198.96,
+            "text": "That's where the L if structure came in. So we would have an if condition that starts our code block. If that condition was true, as usual, we execute the code that's part of that block. Else if, so L if, we could insert another condition. And Python would say, OK, well, if that one wasn't true, let me check if this next one"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 198.96,
+            "end": 216.64000000000001,
+            "text": "is true. And then we would execute the code that's part of that code block. And we can add, we can chain as many of these L ifs as we want together. And Python will evaluate the very first one that it finds true that's part of this chain. Even if more than one is true."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 216.68,
+            "end": 236.48000000000002,
+            "text": "It is possible none of those conditions were true, in which case Python would basically skip over all of them and do nothing, enter none of those code blocks. If you wanted to have a structure where if none of those conditions were true, you wanted to do something, you could put an else at the end of a whole chain of if, L if, L if, L ifs."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 236.48000000000002,
+            "end": 253.64000000000001,
+            "text": "And the else would be executed when none of those conditions are true. OK. So hopefully this is just recap. One sort of tricky thing to remember is the if starts a code block. So the if can have an else associated with it, or it can have an L if, L if, L if and"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 253.64000000000001,
+            "end": 276.0,
+            "text": "an else associated with it. But if you have if condition and then followed by another if condition, both of those code blocks could potentially be executed because the ifs are independent, right? It's not an else situation, they're just another if code block that gets started. So the way we told Python, again, just to reiterate, the way you told Python which code"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 276.0,
+            "end": 289.8,
+            "text": "to execute when the condition is true is by indentation. And indentation is something you have to do. It's not optional in Python. OK. So let's take what we've learned so far and code up a really simple game."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 289.8,
+            "end": 302.34,
+            "text": "So this is sort of a very simple variation of the Lost Woods in Zelda, sort of my version of it. Let's say it's kind of a trick level where you have your character and they enter the Lost Woods. They're presented with this screen."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 302.34,
+            "end": 318.41999999999996,
+            "text": "And the trick here is you ask the user if they want to go left or right. If they say right, you're basically going to present them with the exact same screen all over again. So it's kind of representing their loss in the woods. And as long as they say I want to keep going right, I want to keep going right, I want"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 318.41999999999996,
+            "end": 340.66,
+            "text": "to keep going right, they're basically going to see the same screen over and over again. And the trick to getting out of the woods is to say I want to go left. So no matter how far, how many times they've said right in a row, as long as they type in left, they're out of the woods. So let's try to code that up with what we know, just conditionals."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 340.66,
+            "end": 359.82,
+            "text": "We have an if else, right? The if says if the user exits right, we're going to do something. And otherwise, we're going to say that the user said left or something else or exit, and we're going to tell them that they've exited successfully. All right, now if they said exit right, what do we do?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 359.82,
+            "end": 374.02,
+            "text": "Well, we're going to show them the exact same thing again. So we're setting the background to the same woods background. And then they presented with a choice all over again. Do you want to exit right or you want to exit left? So if they say exit right, we would do something."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 374.02,
+            "end": 389.66,
+            "text": "And otherwise, we would tell them they successfully exited. Well, what if they exited right? If they exited right, then we would do something again, basically present them with the same situation. So we would set the woods background again, and"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 389.66,
+            "end": 404.90000000000003,
+            "text": "then we would ask them if they want to go right or left again. And otherwise, if they said left, they exit. So we already see a problem, right? How deep do we make this nested loop situation, right? Here we already have three, in case the user said I want to go right three times"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 404.90000000000003,
+            "end": 422.86,
+            "text": "in a row, but we don't know how persistent the user will be. So how do we know when we're writing our code how deep to make this nested loop? We don't, right? We won't be able to really code this up very well with what we know so far. So that's kind of the motivation for introducing iteration."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 422.86,
+            "end": 441.78000000000003,
+            "text": "Because the situation on the previous slide fits really well with some task we want to repeat multiple times, as long as some condition is true. In our case, the condition is the user says I want to exit right. So while the user keeps saying exit right, show them the woods background and ask them again, which way do you want to go?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 442.78000000000003,
+            "end": 462.90000000000003,
+            "text": "And so while that's true, just repeat this set of things. Check that they said exit right, show them the woods background, ask them again. Check that they said exit right, show them the background, ask them again. And if at any point they'd say I don't want to exit right, we break out of this loop. And we kind of rejoin the rest of the program."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 462.90000000000003,
+            "end": 479.62,
+            "text": "That's kind of the terminology we use with if statements, right? We set the background to the exit background and they're out of the woods. So this sets the scene for while loops. Here's another example of while loops sort of in the context of watching a show. So if we want to start a new show on Netflix and"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 479.62,
+            "end": 496.22,
+            "text": "we want to watch all episodes of the show in one shot, we're gonna tell Netflix we're starting a new show. And while there are more episodes to watch in this show, we're going to keep watching the next episode, right? So if there are no more episodes to watch, then we're done."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 496.22,
+            "end": 513.46,
+            "text": "Not Python, Netflix will suggest three more shows like this one. And while there are more episodes to watch, so yes, there are more episodes to watch, we're going to play the next episode in sequence. So that's the idea that we're trying to get at with while loops. In Python, this is how we code them."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 513.46,
+            "end": 534.38,
+            "text": "So we start a while loop with the keyword while. So this again will turn blue in Python because it's a special word. Some condition is true, okay? So this is again some expression or something that will evaluate to a boolean. Like we talked about in last lecture, okay, colon and colon tells Python"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 534.38,
+            "end": 560.38,
+            "text": "we're starting a code block that's part of the while loop being true. And as usual, the code block means we're going to indent these lines of code, right? So whatever we want to execute, when the condition is true, we'll be indented. When the indented statements are finished executing, Python automatically goes back and re-checks the condition."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 560.38,
+            "end": 575.8199999999999,
+            "text": "So it re-checks whether the condition is true or not. And this is done behind the scenes, right? When you code up a while loop, when you type in the keyword while, Python will automatically do this behavior. It'll check the condition, it'll execute the lines of code indented, and"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 575.8199999999999,
+            "end": 588.3,
+            "text": "then it'll go back and check the condition again. If it's still true, it'll execute the lines of code indented again. And then it'll check the condition again. So it's not something you have to code up, you don't have to tell it to go back. As long as you're writing this while loop,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 588.3,
+            "end": 609.7,
+            "text": "Python will automatically do that sequence of steps for you, okay? So when the condition becomes false, Python will no longer execute the stuff that's indented inside the while loop. And it'll go rejoin the rest of the program at the same indentation level as the while loop, okay?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 609.7,
+            "end": 635.1,
+            "text": "So notice that the condition is kind of something that's dependent on, or sorry, the fact that we're doing this code over and over again depends on this condition being true. So if the code inside is not ever changing anything related to our condition, then it's very likely, it's actually for sure,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 635.1,
+            "end": 651.5400000000001,
+            "text": "that this loop will execute infinite number of times. So this is kind of the pitfall of while loops. It's possible that if you're not careful, your code will execute an infinite number of times and it'll just never terminate. And I'll show you how to deal with that in a couple slides."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 653.58,
+            "end": 673.2600000000001,
+            "text": "So let's try to code up this Lost Woods program in our, just with a while loop. So here we've got our question that we asked the user, do you wanna go left or right? And we're gonna grab the user input as a string and save it in a variable called where."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 674.7400000000001,
+            "end": 696.9399999999999,
+            "text": "So whatever the user types in, it'll be saved in a variable called where. So in my computer memory, the way this looks like, if the user types in right, that particular sequence of characters, that'll be saved as the variable where. So then we finish this first line of the code here, and then we check while the value of where is equivalent to right, what are we gonna do?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 696.9399999999999,
+            "end": 720.14,
+            "text": "We're gonna ask the user again, where do you wanna go, left or right? So I'm gonna say right again, and then this memory is gonna look exactly the same. If the user keeps typing in right, I keep reassigning the variable where to have the value R-I-G-H-T. At some point, the user might type in left,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 720.14,
+            "end": 738.58,
+            "text": "in which case we're gonna lose the binding from a variable where. From the specific sequence of characters R-I-G-H-T, we're gonna bind it now to the characters L-E-F-T. So at some point, after repeating this many times, the user will type in left, and we're gonna have where is equal to left."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 739.78,
+            "end": 757.5,
+            "text": "And at that point, when the condition is being checked again, Python will say, nope, this is not equivalent. So I'm not gonna go inside this code block, I'm just gonna go down here and print you got out of the lost forest. So in code, the way this looks is this first one here."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 764.66,
+            "end": 782.78,
+            "text": "So you're in the lost forest, go left or right. So if I type in right, it just keeps asking me which way to go. And at some point, I can type in left and I'm out. Okay, so it's pretty cool, right? We just made our own level in this text adventure."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 784.1800000000001,
+            "end": 798.74,
+            "text": "Let's have you think about this question. What if the user types in capital R-I-G-H-T? What do you think will happen? Are we gonna ask the user to go left or right again? Or are we going to tell them that they got out of the forest?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 801.22,
+            "end": 815.74,
+            "text": "Yeah, they got out, do you wanna say why? Yeah, exactly, because it's not lower case. So remember when we're doing comparison, so the equal equal on strings, it has to be the same case, right? It's case sensitive."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 815.74,
+            "end": 844.0200000000001,
+            "text": "And so capital R-I-G-H-T or even some combination like just capital R, lower case R-I-G-H-T is also going to give us that we got out. So this is counterintuitive, right, to what we see as humans, because we see R-I-G-H-T no matter what to mean right. So a workaround for this would be to use sort of a command on the string to"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 844.0200000000001,
+            "end": 860.1800000000001,
+            "text": "maybe convert everything to lower case, just so it sees more easily compared or something like that. Okay, so another use of while loops is with numbers. Let's look at this example. I'm gonna ask the user for an integer."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 860.1800000000001,
+            "end": 874.7800000000001,
+            "text": "And then I'm gonna do something really simple. I'm gonna print x to the screen however many times the user told me. So if the user gives me four, I'm gonna print x four times to the screen. So what is this code doing in memory?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 874.7800000000001,
+            "end": 886.98,
+            "text": "Well, the user gives me, let's say four. What happens step by step? First, we see our while loop. So I'm gonna check whether four, the current value of n is greater than zero. Yes, that's true."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 886.98,
+            "end": 900.58,
+            "text": "I'm gonna print x to the screen. And then I'm going to do the next line of code, that's part of this indented block, which is to take n and assign it to whatever n is minus one. So I'm gonna lose the binding from the four and"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 900.58,
+            "end": 915.1400000000001,
+            "text": "I'm gonna take four minus one to be three, create a new object and bind n to the three. Okay, next Python again, it's part of a while loop. So automatically it looks at the condition again and says, well now the value of n is still greater than zero."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 915.1400000000001,
+            "end": 931.1,
+            "text": "Yeah, three is still greater than zero. So again, we're gonna lose the binding. Sorry, we're printing x to the screen first. And then we lose the binding from the current value of n, three, two, two. So we're decrementing n by one, each time through this while loop."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 932.86,
+            "end": 943.1,
+            "text": "Then again, Python checks the condition. It says two is still greater than zero. So again, we print another x to the screen. And then we decrement n by one. So we're binding n to one."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 943.1,
+            "end": 957.1,
+            "text": "Again, Python checks the condition is one still greater than zero. Yes, so we print another x to the screen. So we've printed four x's now to the screen. And then Python says, now I'm gonna make n to be zero. And then at this point, Python will do another check."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 957.1,
+            "end": 971.1400000000001,
+            "text": "Is it say, it's going to say, is zero greater than zero? And that's gonna be false. So it's not going to execute the code lock anymore. And the program will be done, right? There's no sort of code to rejoin anymore."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 971.1400000000001,
+            "end": 985.74,
+            "text": "There's just the end of the program. So we would have printed four x's to the screen. And this is in the Python file I gave you. You can feel free to run it to double check. My question is, what happens, and this is a really common mistake."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 985.74,
+            "end": 1000.1400000000001,
+            "text": "What happens if we forget this last line? We can try it. I can try it in here. Yeah, exactly. It's gonna go on forever."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1000.1400000000001,
+            "end": 1014.78,
+            "text": "I'll show you what that looks like. So this is the code when we just have it working as usual. So if I type in three, it prints three of those x's. But if I happen to forget to write this last line, I'm just gonna comment it out."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1014.78,
+            "end": 1035.5800000000002,
+            "text": "And if I run the program, I can enter any number. And it'll just keep printing stuff to the console. So this is what it's just printing a whole bunch of stuff. So you can see this is all the stuff it printed. So yeah, we don't have a program that terminates"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1035.5800000000002,
+            "end": 1050.7,
+            "text": "because the condition here is never actually being, the variable that's part of this condition is never actually being changed inside my loop, right? And so that's a big problem. When that happens, what we can do,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1050.7,
+            "end": 1063.18,
+            "text": "and what I just did here is I'm gonna, you can click the shell and hit Control C or Command C on a Mac. And that will just end the program manually. Or you can just click the red x in the corner."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1063.18,
+            "end": 1074.42,
+            "text": "So here's another example of it going infinite. And there's this little red, sorry, red box in the corner. You can click that or you can click the three lines, say Interrupt Kernel. All that will stop the program."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1075.3,
+            "end": 1085.7,
+            "text": "So in this class, we're not actually gonna write programs that take seconds to run. So if you find yourself waiting for your program for more than one or two seconds, then likely you've entered an infinite loop."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1085.7,
+            "end": 1104.82,
+            "text": "So you'll wanna stop it and try to see where your program went wrong. Okay, so give this a try if you want. Just so you get the hang of stopping an infinite program because you'll very likely run right a program"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1104.82,
+            "end": 1120.7,
+            "text": "that doesn't terminate. So while true, what's the condition here? It's just true, right? So there is no condition that's being checked. This program will run always an infinite times"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1120.7,
+            "end": 1133.46,
+            "text": "no matter what. Okay, so that's just this little you try it down here on line 44, just run it. As soon as you run it, it's just gonna print that to the screen over and over again."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1133.46,
+            "end": 1150.58,
+            "text": "Be sure to click the shell to put the focus on there and hit Control C or hit the red x. All right. So the big idea with while loops is that they can repeat the code inside them indefinitely."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1150.58,
+            "end": 1164.82,
+            "text": "So we have to be a little bit careful with what our conditions are and whether we're actually making progress towards having that condition become false at some point. And when that happens, when they run indefinitely,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1164.82,
+            "end": 1184.9199999999998,
+            "text": "you'll have to manually intervene to close the program. Okay, so now that we've seen a loop with a little bit of numerical computation inside it, so we were changing the value of n inside our loop. Let's have you work on this little program."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1184.9199999999998,
+            "end": 1201.76,
+            "text": "It's an extension of the lost woods. This is exactly the same program that I just ran a few slides ago. But what I want you to add is an extra printout. So when the user says write more than two times,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1204.04,
+            "end": 1214.2,
+            "text": "the next time you ask them whether they go left or right, I'd like you to print a sad face right before you ask them that question. It can be on a different line. It doesn't have to be on the same line."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1215.3600000000001,
+            "end": 1232.16,
+            "text": "And the way to do that is to try to create a new variable that's gonna be like your counter. That keeps track of how many times the user had, how many times this while loop has repeated. So I'll give you a couple of moments to do that,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1232.16,
+            "end": 1249.6000000000001,
+            "text": "and then we'll write it together. As usual, the U-try it is in here, so you can just uncomment the code with in spider, it's control one or command one to batch uncomment, and then you can work off of this code"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1250.52,
+            "end": 1264.04,
+            "text": "to try to improve it. Okay, so does anyone have a start for me? How can we do this? You don't have to give it to me in full. We can work our way up to the final program,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1264.04,
+            "end": 1293.2,
+            "text": "but what's kind of your first thought here? Yes, all right. Okay, so we can create a variable n at the beginning of our program, what do you wanna make it? Zero, okay, good."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1294.2,
+            "end": 1311.3200000000002,
+            "text": "Zero will keep track, or n will keep track of how many times we've gone through the loop. So inside our program, when do we want to change n? Sorry, every time we go through the loop, right? So every time we wanna go through the loop,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1311.3200000000002,
+            "end": 1325.4,
+            "text": "we want to change n to be a new value, so maybe we want to increase it by one, so n is equal to n plus one. So now this will keep track of how many times we've gone through the loop,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1325.4,
+            "end": 1346.88,
+            "text": "and we can actually double check this by printing n, right? So if we run it, and we say write, we've gone once, we've gone twice, we've got three times, right? So this means we're incrementing it correctly. Now what can I do with this variable n?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1346.88,
+            "end": 1364.2,
+            "text": "Now that I have it, and I know it's incrementing correctly. Yeah? Yep, we can set up an if statement, so we can check if that value of n is greater than two, right, according to this specification here."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1364.24,
+            "end": 1384.8,
+            "text": "What do you wanna do when if is greater than two? Print something, right, so we can print the sad face. And let's try to run it now. So if we immediately hit left, right, it still works. If we go right one time, nothing, right another time, nothing,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1384.8,
+            "end": 1400.96,
+            "text": "right a last time, sad. And from now on, it's going to keep showing me the sad face. Okay. Questions about this code? Yeah?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1400.96,
+            "end": 1418.0,
+            "text": "Is it possible to test for something that's non-equivalent? Like, is there a sign that's different than the two equals for non-equivalent? Can we check for not equivalency here? Yeah. So this particular check checks for what the user typed in."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1419.0,
+            "end": 1439.84,
+            "text": "It's possible we can add this if statement that checks for the n in here and something else, but then we would have to have maybe another. I'd have to think about it. But it is, it might be possible to try to combine them inside the while loop. Yeah."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1439.84,
+            "end": 1460.76,
+            "text": "There's a symbol that allows you to do. Oh, to do not equals, that would be the not equal sign, yeah. So another thing we can do with while loops is to iterate through numbers in a sequence. If we do this, there's a really common pattern which actually leads us to the next kind of loop we're going to see on the next slide."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1460.76,
+            "end": 1483.52,
+            "text": "But the pattern when you want to iterate through numbers in a sequence is you first set a loop variable before the while loop. Inside the condition for the loop, you do some sort of check with that variable. So n was my loop variable outside the loop, and then I test it inside the while loop. So n is less than five."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1483.52,
+            "end": 1508.3600000000001,
+            "text": "And then within the while loop, you can do whatever commands you want to do with that n, but then you have to remember to change it in some way. Because if you don't change it in some way, this while loop condition will always be true. So here, I'm incrementing n by 1 because it starts from 0. I want n to get to something, right, something above five, which will lead to my condition"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1508.3600000000001,
+            "end": 1526.44,
+            "text": "becoming false. So this pattern actually exists in a bunch of different programs. So here's a program that calculates factorial for me. And here I'm calculating four factorial. I'm not excited about the number four."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1526.44,
+            "end": 1541.32,
+            "text": "That's four factorial. How do we do this? Well, there's a lot of things I'm initializing here. But sort of the more you work with loops, you'll kind of get used to seeing, right, what is the loop variable."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1541.32,
+            "end": 1569.3600000000001,
+            "text": "So I is actually going to be my loop variable. Here it's being set to some value initially outside the loop. Inside the conditional, I'm doing some sort of condition check with it. And then inside the body of that conditional, I'm changing it in some way. That gives me some sort of, that takes me to the end of my conditional here."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1569.3600000000001,
+            "end": 1588.64,
+            "text": "So I'm setting i to 0. I'm incrementing i by 1 each time through the loop. And I'm making forward progress towards making i greater than x, at which point my conditional will become false. The rest of the code, x is equal to four, just sets the thing I want to get the factorial"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1588.64,
+            "end": 1600.52,
+            "text": "of. And this factorial variable is kind of my running product. So it's the thing that I'm going to keep multiplying to figure out what the factorial is. So here I'm initializing it to 1."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1600.52,
+            "end": 1622.48,
+            "text": "And inside the loop, I'm multiplying it by my loop variable every time. So I'm not going to do a memory diagram for this example, but I will do the Python tutor. I'm going to step through to show you exactly what this is doing. So x is 4, i is 1 originally, and factorial is 1. So x is the thing I want to get the factorial of."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1622.48,
+            "end": 1643.0,
+            "text": "i is going to be my loop variable, and factorial is my running product. So next step, i1 is less than or equal to 4. So I'm going to enter the loop. Python will calculate the factorial as whatever it is right now, multiplied by 1i. So it's still 1."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1643.0,
+            "end": 1669.16,
+            "text": "And then I'm going to increment i from whatever it is now to 1. So I just want to mention this i plus equals 1 is equivalent to saying i equals i plus 1. And this is true no matter what variable you have here. Basically if you have fact times equals 2 or something like that, that basically means"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1669.16,
+            "end": 1683.28,
+            "text": "factorial equals fact times 2. So that's kind of the pattern here. These are equivalent, and these are equivalent. This is just shorthand notation and programming. So that's what this line here means."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1683.28,
+            "end": 1701.44,
+            "text": "i plus equals 1 means i equals i plus 1. So at this line here, I'm taking whatever i is and adding 1 to it, 2. And then I do the check again. And remember, Python does this automatically, right? Because we're using a while loop, it goes back to the condition and checks it again"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1701.44,
+            "end": 1718.6399999999999,
+            "text": "using these new values for the variables. 2 is still less than or equal to 4. So again, we go inside the loop body. Factorial is whatever it is right now, 1 multiplied by i, 2. i is going to be 2 plus 1, 3."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1718.6399999999999,
+            "end": 1729.76,
+            "text": "And then again, I'm checking that 3 is less than or equal to 4. It still is. So then we're going to do factorial is whatever it is now, 2 multiplied by whatever i is 3. So now it's 6."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1729.76,
+            "end": 1748.96,
+            "text": "i is going to be 1 more than what it is right now, 4. 4 is still less than or equal to 4. We're going to go inside the body. Factorial is whatever it is right now, 6 multiplied by 4, and then 24. And then i is going to be whatever it is right now, plus 1, 5."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1748.96,
+            "end": 1773.88,
+            "text": "At this point, Python says it's 5 less than or equal to 4, no. And then it breaks the loop, and it goes to print this statement for factorial is, and then it grabs whatever the value of the factorial is. So here I'm using this F string print notation that we learned about last lecture. So I encourage you to go through it yourself, just step by step."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1773.88,
+            "end": 1797.48,
+            "text": "That's what Python Tutor is really, really useful for. OK, so let's look at a different kind of loop called a for loop. The for loop is going to allow us to rewrite that special kind of while loop that we saw where we initialize a variable, we test the variable, we do something to the variable within the code in a more efficient, more readable way."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1797.48,
+            "end": 1817.16,
+            "text": "So in terms of our Netflix example, a for loop would be equivalent to something like Netflix, if you're not interacting with it, cuts you off after four episodes to save bandwidth. And so there's a sequence of four episodes it knows it's going to go through if you're not interacting with it."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1817.16,
+            "end": 1832.68,
+            "text": "So if you've already gone through your sequence of four episodes you're allowed to watch without any interaction, it's done, right? It cuts you off. It says, are you still watching? But if there are still more episodes, if it only showed you two out of the four, then"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1832.68,
+            "end": 1860.3600000000001,
+            "text": "it's going to keep showing you more episodes until it's shown you the four. So this is the program we had with while loops a couple slides ago. And remember, we were initializing a variable, we were testing the variable some condition here and then we were incrementing the variable or doing something that gives us nice forward progress towards making this condition false."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1860.3600000000001,
+            "end": 1882.68,
+            "text": "But it's really verbose. Certainly it works and you can do it, but it's very easy to forget to do this, something like this, in which case you'll get an infinite loop. With a for loop, those four lines of code just look like this, these two lines of code. So if there's a sequence of values you ever want to iterate over, that's what for loops"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1882.68,
+            "end": 1907.64,
+            "text": "are useful for. So the syntax for a for loop looks a little bit different than a while loop. It starts with a for keyword. This is a variable that you get to name, whatever name you'd like. The keyword in tells Python I'm going to make this variable take on values in this sequence."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1907.64,
+            "end": 1930.8,
+            "text": "And again, we have a colon that tells Python we're going to start a code indentation here. And whatever lines of code you have that are indented are going to be executed, however many sequence of values you have. So the first time through the loop, Python will make this variable name take on the first value in the sequence."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1930.8,
+            "end": 1951.68,
+            "text": "And then it's going to execute this code. Automatically, Python will, after it finishes executing these codes, it will go back and set this variable, have the next value in the sequence, and execute the same lines of code. When it's done, it's going to make the variable here take on the next values in the sequence"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1951.68,
+            "end": 1976.8,
+            "text": "and execute those lines of code. And so these lines of code will effectively be executed, however many values you have in your sequence. So more practically speaking, here we have a variable, so n in this case, in some sequence of values, in this case I'm saying range five, we're going to print the value event."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 1976.8,
+            "end": 2000.0800000000002,
+            "text": "So I'm going to introduce range now. Range is a way for us to grab numerical sequence of values that have some sort of pattern. So if we just say range some number, the pattern is we start at zero and we go up to but not including that number. So range five means the sequence of values Python will iterate over are zero, one, two,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2000.0800000000002,
+            "end": 2018.3200000000002,
+            "text": "three, and four. Range ten means zero, one, two, three, four, five, six, seven, eight, nine. So we go up to but not including the value in the range starting from zero. So each time through the loop, Python will change the value of n to be every one of those values automatically."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2018.3200000000002,
+            "end": 2042.28,
+            "text": "So these two lines here for n in range five print n, the way they look like behind the scenes, and Python does this for you, is the first time it encounters the for loop, it sets n to be zero, that's the first value in my sequence, and then it prints the value of n, zero. Next time through the loop, Python will say, okay, I've done what you asked me to do inside"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2042.28,
+            "end": 2061.28,
+            "text": "the co-loop, print n, I'm going to make n have the next value in my sequence. So it loses the binding from the zero and makes it be one. Okay, I've made n one, now what do you want me to do? Well, I'm going to execute whatever is in the, in the, in the indented, print n. So I'm going to print one."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2061.28,
+            "end": 2078.4,
+            "text": "So I've already printed zero, then I've printed one. I'm finished executing the code inside the loop, so now n is going to get the next value in the sequence. Lose the binding from one, and you get two. And so on and so on, and by the end, this program will have printed zero, one, two,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2078.4,
+            "end": 2102.32,
+            "text": "three, and four, every single value in my range. So it turns out that we can actually make range have three values inside the parentheses, not just one. One is sort of shorthand notation if you ever want to start from zero and want to go up to in including, sorry, up to but not including the value in the parentheses."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2102.32,
+            "end": 2124.68,
+            "text": "But you can actually give it three values, a start, a stop, and a step. And Python will automatically generate a sequence of values that matches this pattern. So this should seem familiar to you, right? Because we've seen something like this when we were doing strings, right? Except that we weren't doing parentheses, we were doing square brackets, and we weren't"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2124.68,
+            "end": 2145.1600000000003,
+            "text": "doing commas, we were doing colonists. But it's the exact same idea. Here we're generating numbers, actual integers that we want a loop variable to take on. So if we omit start and step, start by default is zero, and step by default is one. If we omit step, by default it will be one."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2145.1600000000003,
+            "end": 2170.56,
+            "text": "So here, i in range four, the variable i will take on the values zero, one, two, and three. i in range three comma five, i will take on the values three and four. So we go up to but not including the five. Think about these three questions. What are the range of values in the first one, and what are we going to print?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2170.56,
+            "end": 2191.92,
+            "text": "So in one, four, one, what range of values are we going to have i be? So i is going to be one. One, two, three, yes, and we stop. We go up to but not including the stop, which is a four. And what are we printing?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2192.88,
+            "end": 2211.6,
+            "text": "Yeah, one, two, three, just all of them. How about the next one, j? What will the values of j be? One, three, and that's it, yep, because we're going every other value. And what are we printing here?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2211.6,
+            "end": 2225.4,
+            "text": "Yeah, exactly. So we're doing an operation with each one of these j. So we're going to print two, and then six. And how about the last one? We're stepping backward, right?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2225.4,
+            "end": 2240.48,
+            "text": "The negative one. So what's our start? Four, and then three, two, one, and that's it. We're going to down two but not including the end, right? So we're not going to include a zero."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2240.48,
+            "end": 2262.9600000000005,
+            "text": "And what are we printing here? Yes, $4 signs for the first time, and then $3 signs, and then $2 signs, and then $1 signs, exactly. So the body obviously can do operations and can manipulate that loop variable."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2262.9600000000005,
+            "end": 2283.36,
+            "text": "So each time that variable goes through, it changes, right? It changes, and then you can use that to your advantage. So here's another example of something useful. We can use four loops to keep track of how many times we're going through a loop."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2283.36,
+            "end": 2298.3199999999997,
+            "text": "And in this particular case, we're writing a program that sums all the values from zero all the way up to but not including whatever is in here. So how are we doing this? Let's do the memory diagram."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2298.3199999999997,
+            "end": 2318.6400000000003,
+            "text": "We've got my sum is equal to zero as the first line. So this will be zero in memory, bound to the name my sum. And then the for loop will generate for me the values zero through nine, including. So i, the first time through the loop,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2318.6400000000003,
+            "end": 2329.96,
+            "text": "will have a value of zero. So we're going to do the operations, or the code we're asked to do when i is zero. So my sum will be whatever it is right now, plus whatever i is, zero."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2329.96,
+            "end": 2344.88,
+            "text": "So it stays zero. Python's done with the code inside. So now it's going to take i and change it to the next value in the sequence, one. Now we're going to do, again, the stuff inside the loop"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2344.88,
+            "end": 2351.92,
+            "text": "with i being one. So we're going to take my sum whatever it is right now and add one to it. So it's one. And then we're done there."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2351.92,
+            "end": 2365.88,
+            "text": "So Python will take i to be the next value in the sequence two. And then we're going to do, again, my sum is whatever it is now one, plus whatever i is now two. So it's three. Again, I will increment to three automatically."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2365.88,
+            "end": 2378.08,
+            "text": "That's the next value in the sequence. So my sum will get a value of six. And then i will change to four, so on and so on and so on, until i becomes eight. That's sort of towards the end."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2378.08,
+            "end": 2394.2000000000003,
+            "text": "When i is eight, the value of my sum is 36. Zero plus one plus two all the way up to eight is 36. And then when i becomes nine, Python will take my sum whatever it is right now, 36. Add nine to it to give us 45."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2397.96,
+            "end": 2410.08,
+            "text": "OK. And then that's the end of the program, right? There's nothing else to do except to print my sum. So at the end of this loop, it's gone through 10 times, adding zero all the way up to nine."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2410.08,
+            "end": 2425.16,
+            "text": "We're going to print 45. Yeah? So when I tried running it, it was 45 at the top. And then just like zero, one, two, three, four, three, eight. Oh, maybe you have another print statement,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2425.16,
+            "end": 2434.56,
+            "text": "or it might be part of another program that's being run beforehand that you didn't comment out. Yeah. Next question. Is the plus equals something?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2434.56,
+            "end": 2455.7200000000003,
+            "text": "And that's maybe the same one. The plus equals what it means. Oh, it just means it would be like my sum equals my sum plus i. It's just shorthand notation because most of your variable"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2455.7200000000003,
+            "end": 2467.08,
+            "text": "names might be really long. And it's really annoying to retype them. And so that's generally why that shorthand notation exists. Yeah. But it basically means take whatever my sum is and add i"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2467.08,
+            "end": 2481.88,
+            "text": "to it and save it back into the variable my sum. OK. Let's have you try this code real quick. So here is code. It's already on the Python file to start out with."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2481.88,
+            "end": 2493.4800000000005,
+            "text": "I want you to have this code. It's pretty close to working. But there's one issue. So we have this for loop that starts at start, and ends at end."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2493.4800000000005,
+            "end": 2504.92,
+            "text": "And we're keeping a running sum. And then we're printing the sum at the end. So very similar to what we just saw. But what I want this code to do is I want it to go and sum up the start and the end."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2504.96,
+            "end": 2525.04,
+            "text": "So I want if I have start is 3 and end is 5, I want it to add 3 plus 4 plus 5. And so this code is not doing quite that. And I would like you to fix it or to tell me how to fix it. So it's down here on line 140-ish."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2530.32,
+            "end": 2542.44,
+            "text": "First thing you should do is run it and maybe see what answer it actually gives you. So I just ran it. It gave me a 7. When you're encountering an output,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2542.44,
+            "end": 2552.96,
+            "text": "that's not quite what you expect. One of the first things to do, you can obviously use the Python tutor. But another thing you can do is put print statements at various places."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2552.96,
+            "end": 2568.88,
+            "text": "Useful places would be inside the for loop. So here we can print i. That's a reasonable thing to print out. And maybe we'll see exactly what values of i we are adding. Because we know the summing works."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2568.88,
+            "end": 2586.96,
+            "text": "We just wrote the program on the previous slide. So we got 347, which is a little confusing. Let's make our print statement be a little bit better. i equals comma and then print the actual value of i. So what do you guys notice?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2586.96,
+            "end": 2599.88,
+            "text": "i is 3, i is 4, and then it prints the sum 7. What's the problem with this code? Yeah? The best value should be 5. Yeah, we're not adding 5, right?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2599.88,
+            "end": 2612.5200000000004,
+            "text": "We're just adding 0 originally, plus 3, plus 4. And we've never added 5. So how can we fix that? Yeah? We can do n plus 1."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2612.5200000000004,
+            "end": 2629.32,
+            "text": "We can do n plus 1, exactly. So the range, remember, grabs the, oh, plus 1. The range grabs these values as numbers that it's working with. So start is OK, end is OK. But we go up to but not including end, right?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2629.32,
+            "end": 2643.9,
+            "text": "So if we go to n plus 1, we're going to go up to but not including n plus 1. So if we run it now, it looks much better. So we've got i is 3, i is 4, i is 5, and the sum is 12. Perfect."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2644.9,
+            "end": 2666.6600000000003,
+            "text": "So print statements, very useful when debugging code. Questions about this one, or is this, is this, makes sense? OK. The last slide I want to do before we do a summary is just to show you that factorial code we saw using a while loop a few slides back."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2666.6600000000003,
+            "end": 2678.46,
+            "text": "So it looks really verbose, right? We kind of have to think about it for a while before we realize what it's actually doing. But it was calculating the factorial. Obviously, good variable names helped us figure that out."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2678.46,
+            "end": 2702.86,
+            "text": "That same code in a for loop looks like this, where the for loop looks like this. So we still have the initialization of x to 4. We still initialize our factorial, right, our running product to a 1. But we're losing those four lines of code that kind of make up that pattern of changing numbers with while loops into 2."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2702.86,
+            "end": 2726.7400000000002,
+            "text": "So this line, i equals 1, this while loop with the conditional and this incrementing of i, become the for loop, and that's it. The for loop takes care of all of that, the initialization, the increment, and going up to but not including the last value, right, x plus 1. So we're going to multiply the factorial with the initialization,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2726.9,
+            "end": 2745.9,
+            "text": "multiply the factorial with 1, then 2, then 3, then 4, all the way up to and including x. Okay, so the big idea about for loops is they're going to repeat however long the sequence is, right? So you're able to repeat certain code a set number of times,"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2745.9,
+            "end": 2759.26,
+            "text": "which is really useful in some situations. While loops were useful in situations where you didn't know how many times you might want to repeat the code. So quick summary, we saw some looping mechanisms today. It was a lot of syntax, I know."
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2759.26,
+            "end": 2778.46,
+            "text": "But the finger exercises for today will certainly help. MITx also has extra help, extra exercises. It's really important to do them just to get the mental model for how exactly these loops work, right? And how they assign variables and how they do the checks behind the scenes, right?"
+        },
+        {
+            "number": "3",
+            "title": "Iteration",
+            "start": 2778.46,
+            "end": 2786.46,
+            "text": "And it'll help you get faster at writing code and at doing quizzes as well. Okay, so that's it for today."
+        }
+    ],
+    "text": "So, let's start today's lecture. Today we're going to be talking about the idea of iteration, and iteration is another way we're going to add control flow to our programs. But before we do that, let's do a little bit of a recap on, sorry, let's do a little bit of a recap of what we've done so far last lecture, because last lecture we actually introduced a different mechanism for control flow, branching. And the control flow is basically a way for us to tell Python not to go systematically through the code. Branching was a way for us to tell Python, hey, based on some condition being true or false, either evaluate some set of code, or another set of code, right? Which was not going linearly, we were actually kind of skipping around through the code. So that's what we learned at the end of the lecture, but we also learned about input and output, so a way for us to write interactive programs. And we learned about a new data type, the string. So the string was a sequence of characters, hopefully you got a chance to do a little bit of exercises on MITX as practice for today's quizzes with strings and branching. Okay, so in branching, what did we learn? We talked about how to actually add a branching point in our program. So we did that using these particular keywords. So when you type them in your program in the file editor, you'll see that they kind of turn a different color. That tells you it's a special word in Python. And these keywords are how we told Python to put a branching point. And the colon kind of ended the branching conditional. And then anything that was indented as part of that conditional was code that would be executed when that condition was true. So I'm just going to quickly go over each one of these boxes. So the first one up here was the simplest way that we could add a conditional to our program. It basically said, hey, go through the program. When you reach this if condition, Python would check the condition and say, if that condition is true, execute the code that's indented as part of that block. If the condition was not true, don't do anything, just carry on with the remaining program. If we wanted to do something else, so if the condition was not true, if we wanted to do something else, we added this else clause here. And the else also has some sort of code indented as part of its code block. And that code would be executed when that condition was false. OK. So that was a really simple if or if else code structure. But sometimes we want to have code that checks for many conditions, not just one. That's where the L if structure came in. So we would have an if condition that starts our code block. If that condition was true, as usual, we execute the code that's part of that block. Else if, so L if, we could insert another condition. And Python would say, OK, well, if that one wasn't true, let me check if this next one is true. And then we would execute the code that's part of that code block. And we can add, we can chain as many of these L ifs as we want together. And Python will evaluate the very first one that it finds true that's part of this chain. Even if more than one is true. It is possible none of those conditions were true, in which case Python would basically skip over all of them and do nothing, enter none of those code blocks. If you wanted to have a structure where if none of those conditions were true, you wanted to do something, you could put an else at the end of a whole chain of if, L if, L if, L ifs. And the else would be executed when none of those conditions are true. OK. So hopefully this is just recap. One sort of tricky thing to remember is the if starts a code block. So the if can have an else associated with it, or it can have an L if, L if, L if and an else associated with it. But if you have if condition and then followed by another if condition, both of those code blocks could potentially be executed because the ifs are independent, right? It's not an else situation, they're just another if code block that gets started. So the way we told Python, again, just to reiterate, the way you told Python which code to execute when the condition is true is by indentation. And indentation is something you have to do. It's not optional in Python. OK. So let's take what we've learned so far and code up a really simple game. So this is sort of a very simple variation of the Lost Woods in Zelda, sort of my version of it. Let's say it's kind of a trick level where you have your character and they enter the Lost Woods. They're presented with this screen. And the trick here is you ask the user if they want to go left or right. If they say right, you're basically going to present them with the exact same screen all over again. So it's kind of representing their loss in the woods. And as long as they say I want to keep going right, I want to keep going right, I want to keep going right, they're basically going to see the same screen over and over again. And the trick to getting out of the woods is to say I want to go left. So no matter how far, how many times they've said right in a row, as long as they type in left, they're out of the woods. So let's try to code that up with what we know, just conditionals. We have an if else, right? The if says if the user exits right, we're going to do something. And otherwise, we're going to say that the user said left or something else or exit, and we're going to tell them that they've exited successfully. All right, now if they said exit right, what do we do? Well, we're going to show them the exact same thing again. So we're setting the background to the same woods background. And then they presented with a choice all over again. Do you want to exit right or you want to exit left? So if they say exit right, we would do something. And otherwise, we would tell them they successfully exited. Well, what if they exited right? If they exited right, then we would do something again, basically present them with the same situation. So we would set the woods background again, and then we would ask them if they want to go right or left again. And otherwise, if they said left, they exit. So we already see a problem, right? How deep do we make this nested loop situation, right? Here we already have three, in case the user said I want to go right three times in a row, but we don't know how persistent the user will be. So how do we know when we're writing our code how deep to make this nested loop? We don't, right? We won't be able to really code this up very well with what we know so far. So that's kind of the motivation for introducing iteration. Because the situation on the previous slide fits really well with some task we want to repeat multiple times, as long as some condition is true. In our case, the condition is the user says I want to exit right. So while the user keeps saying exit right, show them the woods background and ask them again, which way do you want to go? And so while that's true, just repeat this set of things. Check that they said exit right, show them the woods background, ask them again. Check that they said exit right, show them the background, ask them again. And if at any point they'd say I don't want to exit right, we break out of this loop. And we kind of rejoin the rest of the program. That's kind of the terminology we use with if statements, right? We set the background to the exit background and they're out of the woods. So this sets the scene for while loops. Here's another example of while loops sort of in the context of watching a show. So if we want to start a new show on Netflix and we want to watch all episodes of the show in one shot, we're gonna tell Netflix we're starting a new show. And while there are more episodes to watch in this show, we're going to keep watching the next episode, right? So if there are no more episodes to watch, then we're done. Not Python, Netflix will suggest three more shows like this one. And while there are more episodes to watch, so yes, there are more episodes to watch, we're going to play the next episode in sequence. So that's the idea that we're trying to get at with while loops. In Python, this is how we code them. So we start a while loop with the keyword while. So this again will turn blue in Python because it's a special word. Some condition is true, okay? So this is again some expression or something that will evaluate to a boolean. Like we talked about in last lecture, okay, colon and colon tells Python we're starting a code block that's part of the while loop being true. And as usual, the code block means we're going to indent these lines of code, right? So whatever we want to execute, when the condition is true, we'll be indented. When the indented statements are finished executing, Python automatically goes back and re-checks the condition. So it re-checks whether the condition is true or not. And this is done behind the scenes, right? When you code up a while loop, when you type in the keyword while, Python will automatically do this behavior. It'll check the condition, it'll execute the lines of code indented, and then it'll go back and check the condition again. If it's still true, it'll execute the lines of code indented again. And then it'll check the condition again. So it's not something you have to code up, you don't have to tell it to go back. As long as you're writing this while loop, Python will automatically do that sequence of steps for you, okay? So when the condition becomes false, Python will no longer execute the stuff that's indented inside the while loop. And it'll go rejoin the rest of the program at the same indentation level as the while loop, okay? So notice that the condition is kind of something that's dependent on, or sorry, the fact that we're doing this code over and over again depends on this condition being true. So if the code inside is not ever changing anything related to our condition, then it's very likely, it's actually for sure, that this loop will execute infinite number of times. So this is kind of the pitfall of while loops. It's possible that if you're not careful, your code will execute an infinite number of times and it'll just never terminate. And I'll show you how to deal with that in a couple slides. So let's try to code up this Lost Woods program in our, just with a while loop. So here we've got our question that we asked the user, do you wanna go left or right? And we're gonna grab the user input as a string and save it in a variable called where. So whatever the user types in, it'll be saved in a variable called where. So in my computer memory, the way this looks like, if the user types in right, that particular sequence of characters, that'll be saved as the variable where. So then we finish this first line of the code here, and then we check while the value of where is equivalent to right, what are we gonna do? We're gonna ask the user again, where do you wanna go, left or right? So I'm gonna say right again, and then this memory is gonna look exactly the same. If the user keeps typing in right, I keep reassigning the variable where to have the value R-I-G-H-T. At some point, the user might type in left, in which case we're gonna lose the binding from a variable where. From the specific sequence of characters R-I-G-H-T, we're gonna bind it now to the characters L-E-F-T. So at some point, after repeating this many times, the user will type in left, and we're gonna have where is equal to left. And at that point, when the condition is being checked again, Python will say, nope, this is not equivalent. So I'm not gonna go inside this code block, I'm just gonna go down here and print you got out of the lost forest. So in code, the way this looks is this first one here. So you're in the lost forest, go left or right. So if I type in right, it just keeps asking me which way to go. And at some point, I can type in left and I'm out. Okay, so it's pretty cool, right? We just made our own level in this text adventure. Let's have you think about this question. What if the user types in capital R-I-G-H-T? What do you think will happen? Are we gonna ask the user to go left or right again? Or are we going to tell them that they got out of the forest? Yeah, they got out, do you wanna say why? Yeah, exactly, because it's not lower case. So remember when we're doing comparison, so the equal equal on strings, it has to be the same case, right? It's case sensitive. And so capital R-I-G-H-T or even some combination like just capital R, lower case R-I-G-H-T is also going to give us that we got out. So this is counterintuitive, right, to what we see as humans, because we see R-I-G-H-T no matter what to mean right. So a workaround for this would be to use sort of a command on the string to maybe convert everything to lower case, just so it sees more easily compared or something like that. Okay, so another use of while loops is with numbers. Let's look at this example. I'm gonna ask the user for an integer. And then I'm gonna do something really simple. I'm gonna print x to the screen however many times the user told me. So if the user gives me four, I'm gonna print x four times to the screen. So what is this code doing in memory? Well, the user gives me, let's say four. What happens step by step? First, we see our while loop. So I'm gonna check whether four, the current value of n is greater than zero. Yes, that's true. I'm gonna print x to the screen. And then I'm going to do the next line of code, that's part of this indented block, which is to take n and assign it to whatever n is minus one. So I'm gonna lose the binding from the four and I'm gonna take four minus one to be three, create a new object and bind n to the three. Okay, next Python again, it's part of a while loop. So automatically it looks at the condition again and says, well now the value of n is still greater than zero. Yeah, three is still greater than zero. So again, we're gonna lose the binding. Sorry, we're printing x to the screen first. And then we lose the binding from the current value of n, three, two, two. So we're decrementing n by one, each time through this while loop. Then again, Python checks the condition. It says two is still greater than zero. So again, we print another x to the screen. And then we decrement n by one. So we're binding n to one. Again, Python checks the condition is one still greater than zero. Yes, so we print another x to the screen. So we've printed four x's now to the screen. And then Python says, now I'm gonna make n to be zero. And then at this point, Python will do another check. Is it say, it's going to say, is zero greater than zero? And that's gonna be false. So it's not going to execute the code lock anymore. And the program will be done, right? There's no sort of code to rejoin anymore. There's just the end of the program. So we would have printed four x's to the screen. And this is in the Python file I gave you. You can feel free to run it to double check. My question is, what happens, and this is a really common mistake. What happens if we forget this last line? We can try it. I can try it in here. Yeah, exactly. It's gonna go on forever. I'll show you what that looks like. So this is the code when we just have it working as usual. So if I type in three, it prints three of those x's. But if I happen to forget to write this last line, I'm just gonna comment it out. And if I run the program, I can enter any number. And it'll just keep printing stuff to the console. So this is what it's just printing a whole bunch of stuff. So you can see this is all the stuff it printed. So yeah, we don't have a program that terminates because the condition here is never actually being, the variable that's part of this condition is never actually being changed inside my loop, right? And so that's a big problem. When that happens, what we can do, and what I just did here is I'm gonna, you can click the shell and hit Control C or Command C on a Mac. And that will just end the program manually. Or you can just click the red x in the corner. So here's another example of it going infinite. And there's this little red, sorry, red box in the corner. You can click that or you can click the three lines, say Interrupt Kernel. All that will stop the program. So in this class, we're not actually gonna write programs that take seconds to run. So if you find yourself waiting for your program for more than one or two seconds, then likely you've entered an infinite loop. So you'll wanna stop it and try to see where your program went wrong. Okay, so give this a try if you want. Just so you get the hang of stopping an infinite program because you'll very likely run right a program that doesn't terminate. So while true, what's the condition here? It's just true, right? So there is no condition that's being checked. This program will run always an infinite times no matter what. Okay, so that's just this little you try it down here on line 44, just run it. As soon as you run it, it's just gonna print that to the screen over and over again. Be sure to click the shell to put the focus on there and hit Control C or hit the red x. All right. So the big idea with while loops is that they can repeat the code inside them indefinitely. So we have to be a little bit careful with what our conditions are and whether we're actually making progress towards having that condition become false at some point. And when that happens, when they run indefinitely, you'll have to manually intervene to close the program. Okay, so now that we've seen a loop with a little bit of numerical computation inside it, so we were changing the value of n inside our loop. Let's have you work on this little program. It's an extension of the lost woods. This is exactly the same program that I just ran a few slides ago. But what I want you to add is an extra printout. So when the user says write more than two times, the next time you ask them whether they go left or right, I'd like you to print a sad face right before you ask them that question. It can be on a different line. It doesn't have to be on the same line. And the way to do that is to try to create a new variable that's gonna be like your counter. That keeps track of how many times the user had, how many times this while loop has repeated. So I'll give you a couple of moments to do that, and then we'll write it together. As usual, the U-try it is in here, so you can just uncomment the code with in spider, it's control one or command one to batch uncomment, and then you can work off of this code to try to improve it. Okay, so does anyone have a start for me? How can we do this? You don't have to give it to me in full. We can work our way up to the final program, but what's kind of your first thought here? Yes, all right. Okay, so we can create a variable n at the beginning of our program, what do you wanna make it? Zero, okay, good. Zero will keep track, or n will keep track of how many times we've gone through the loop. So inside our program, when do we want to change n? Sorry, every time we go through the loop, right? So every time we wanna go through the loop, we want to change n to be a new value, so maybe we want to increase it by one, so n is equal to n plus one. So now this will keep track of how many times we've gone through the loop, and we can actually double check this by printing n, right? So if we run it, and we say write, we've gone once, we've gone twice, we've got three times, right? So this means we're incrementing it correctly. Now what can I do with this variable n? Now that I have it, and I know it's incrementing correctly. Yeah? Yep, we can set up an if statement, so we can check if that value of n is greater than two, right, according to this specification here. What do you wanna do when if is greater than two? Print something, right, so we can print the sad face. And let's try to run it now. So if we immediately hit left, right, it still works. If we go right one time, nothing, right another time, nothing, right a last time, sad. And from now on, it's going to keep showing me the sad face. Okay. Questions about this code? Yeah? Is it possible to test for something that's non-equivalent? Like, is there a sign that's different than the two equals for non-equivalent? Can we check for not equivalency here? Yeah. So this particular check checks for what the user typed in. It's possible we can add this if statement that checks for the n in here and something else, but then we would have to have maybe another. I'd have to think about it. But it is, it might be possible to try to combine them inside the while loop. Yeah. There's a symbol that allows you to do. Oh, to do not equals, that would be the not equal sign, yeah. So another thing we can do with while loops is to iterate through numbers in a sequence. If we do this, there's a really common pattern which actually leads us to the next kind of loop we're going to see on the next slide. But the pattern when you want to iterate through numbers in a sequence is you first set a loop variable before the while loop. Inside the condition for the loop, you do some sort of check with that variable. So n was my loop variable outside the loop, and then I test it inside the while loop. So n is less than five. And then within the while loop, you can do whatever commands you want to do with that n, but then you have to remember to change it in some way. Because if you don't change it in some way, this while loop condition will always be true. So here, I'm incrementing n by 1 because it starts from 0. I want n to get to something, right, something above five, which will lead to my condition becoming false. So this pattern actually exists in a bunch of different programs. So here's a program that calculates factorial for me. And here I'm calculating four factorial. I'm not excited about the number four. That's four factorial. How do we do this? Well, there's a lot of things I'm initializing here. But sort of the more you work with loops, you'll kind of get used to seeing, right, what is the loop variable. So I is actually going to be my loop variable. Here it's being set to some value initially outside the loop. Inside the conditional, I'm doing some sort of condition check with it. And then inside the body of that conditional, I'm changing it in some way. That gives me some sort of, that takes me to the end of my conditional here. So I'm setting i to 0. I'm incrementing i by 1 each time through the loop. And I'm making forward progress towards making i greater than x, at which point my conditional will become false. The rest of the code, x is equal to four, just sets the thing I want to get the factorial of. And this factorial variable is kind of my running product. So it's the thing that I'm going to keep multiplying to figure out what the factorial is. So here I'm initializing it to 1. And inside the loop, I'm multiplying it by my loop variable every time. So I'm not going to do a memory diagram for this example, but I will do the Python tutor. I'm going to step through to show you exactly what this is doing. So x is 4, i is 1 originally, and factorial is 1. So x is the thing I want to get the factorial of. i is going to be my loop variable, and factorial is my running product. So next step, i1 is less than or equal to 4. So I'm going to enter the loop. Python will calculate the factorial as whatever it is right now, multiplied by 1i. So it's still 1. And then I'm going to increment i from whatever it is now to 1. So I just want to mention this i plus equals 1 is equivalent to saying i equals i plus 1. And this is true no matter what variable you have here. Basically if you have fact times equals 2 or something like that, that basically means factorial equals fact times 2. So that's kind of the pattern here. These are equivalent, and these are equivalent. This is just shorthand notation and programming. So that's what this line here means. i plus equals 1 means i equals i plus 1. So at this line here, I'm taking whatever i is and adding 1 to it, 2. And then I do the check again. And remember, Python does this automatically, right? Because we're using a while loop, it goes back to the condition and checks it again using these new values for the variables. 2 is still less than or equal to 4. So again, we go inside the loop body. Factorial is whatever it is right now, 1 multiplied by i, 2. i is going to be 2 plus 1, 3. And then again, I'm checking that 3 is less than or equal to 4. It still is. So then we're going to do factorial is whatever it is now, 2 multiplied by whatever i is 3. So now it's 6. i is going to be 1 more than what it is right now, 4. 4 is still less than or equal to 4. We're going to go inside the body. Factorial is whatever it is right now, 6 multiplied by 4, and then 24. And then i is going to be whatever it is right now, plus 1, 5. At this point, Python says it's 5 less than or equal to 4, no. And then it breaks the loop, and it goes to print this statement for factorial is, and then it grabs whatever the value of the factorial is. So here I'm using this F string print notation that we learned about last lecture. So I encourage you to go through it yourself, just step by step. That's what Python Tutor is really, really useful for. OK, so let's look at a different kind of loop called a for loop. The for loop is going to allow us to rewrite that special kind of while loop that we saw where we initialize a variable, we test the variable, we do something to the variable within the code in a more efficient, more readable way. So in terms of our Netflix example, a for loop would be equivalent to something like Netflix, if you're not interacting with it, cuts you off after four episodes to save bandwidth. And so there's a sequence of four episodes it knows it's going to go through if you're not interacting with it. So if you've already gone through your sequence of four episodes you're allowed to watch without any interaction, it's done, right? It cuts you off. It says, are you still watching? But if there are still more episodes, if it only showed you two out of the four, then it's going to keep showing you more episodes until it's shown you the four. So this is the program we had with while loops a couple slides ago. And remember, we were initializing a variable, we were testing the variable some condition here and then we were incrementing the variable or doing something that gives us nice forward progress towards making this condition false. But it's really verbose. Certainly it works and you can do it, but it's very easy to forget to do this, something like this, in which case you'll get an infinite loop. With a for loop, those four lines of code just look like this, these two lines of code. So if there's a sequence of values you ever want to iterate over, that's what for loops are useful for. So the syntax for a for loop looks a little bit different than a while loop. It starts with a for keyword. This is a variable that you get to name, whatever name you'd like. The keyword in tells Python I'm going to make this variable take on values in this sequence. And again, we have a colon that tells Python we're going to start a code indentation here. And whatever lines of code you have that are indented are going to be executed, however many sequence of values you have. So the first time through the loop, Python will make this variable name take on the first value in the sequence. And then it's going to execute this code. Automatically, Python will, after it finishes executing these codes, it will go back and set this variable, have the next value in the sequence, and execute the same lines of code. When it's done, it's going to make the variable here take on the next values in the sequence and execute those lines of code. And so these lines of code will effectively be executed, however many values you have in your sequence. So more practically speaking, here we have a variable, so n in this case, in some sequence of values, in this case I'm saying range five, we're going to print the value event. So I'm going to introduce range now. Range is a way for us to grab numerical sequence of values that have some sort of pattern. So if we just say range some number, the pattern is we start at zero and we go up to but not including that number. So range five means the sequence of values Python will iterate over are zero, one, two, three, and four. Range ten means zero, one, two, three, four, five, six, seven, eight, nine. So we go up to but not including the value in the range starting from zero. So each time through the loop, Python will change the value of n to be every one of those values automatically. So these two lines here for n in range five print n, the way they look like behind the scenes, and Python does this for you, is the first time it encounters the for loop, it sets n to be zero, that's the first value in my sequence, and then it prints the value of n, zero. Next time through the loop, Python will say, okay, I've done what you asked me to do inside the co-loop, print n, I'm going to make n have the next value in my sequence. So it loses the binding from the zero and makes it be one. Okay, I've made n one, now what do you want me to do? Well, I'm going to execute whatever is in the, in the, in the indented, print n. So I'm going to print one. So I've already printed zero, then I've printed one. I'm finished executing the code inside the loop, so now n is going to get the next value in the sequence. Lose the binding from one, and you get two. And so on and so on, and by the end, this program will have printed zero, one, two, three, and four, every single value in my range. So it turns out that we can actually make range have three values inside the parentheses, not just one. One is sort of shorthand notation if you ever want to start from zero and want to go up to in including, sorry, up to but not including the value in the parentheses. But you can actually give it three values, a start, a stop, and a step. And Python will automatically generate a sequence of values that matches this pattern. So this should seem familiar to you, right? Because we've seen something like this when we were doing strings, right? Except that we weren't doing parentheses, we were doing square brackets, and we weren't doing commas, we were doing colonists. But it's the exact same idea. Here we're generating numbers, actual integers that we want a loop variable to take on. So if we omit start and step, start by default is zero, and step by default is one. If we omit step, by default it will be one. So here, i in range four, the variable i will take on the values zero, one, two, and three. i in range three comma five, i will take on the values three and four. So we go up to but not including the five. Think about these three questions. What are the range of values in the first one, and what are we going to print? So in one, four, one, what range of values are we going to have i be? So i is going to be one. One, two, three, yes, and we stop. We go up to but not including the stop, which is a four. And what are we printing? Yeah, one, two, three, just all of them. How about the next one, j? What will the values of j be? One, three, and that's it, yep, because we're going every other value. And what are we printing here? Yeah, exactly. So we're doing an operation with each one of these j. So we're going to print two, and then six. And how about the last one? We're stepping backward, right? The negative one. So what's our start? Four, and then three, two, one, and that's it. We're going to down two but not including the end, right? So we're not going to include a zero. And what are we printing here? Yes, $4 signs for the first time, and then $3 signs, and then $2 signs, and then $1 signs, exactly. So the body obviously can do operations and can manipulate that loop variable. So each time that variable goes through, it changes, right? It changes, and then you can use that to your advantage. So here's another example of something useful. We can use four loops to keep track of how many times we're going through a loop. And in this particular case, we're writing a program that sums all the values from zero all the way up to but not including whatever is in here. So how are we doing this? Let's do the memory diagram. We've got my sum is equal to zero as the first line. So this will be zero in memory, bound to the name my sum. And then the for loop will generate for me the values zero through nine, including. So i, the first time through the loop, will have a value of zero. So we're going to do the operations, or the code we're asked to do when i is zero. So my sum will be whatever it is right now, plus whatever i is, zero. So it stays zero. Python's done with the code inside. So now it's going to take i and change it to the next value in the sequence, one. Now we're going to do, again, the stuff inside the loop with i being one. So we're going to take my sum whatever it is right now and add one to it. So it's one. And then we're done there. So Python will take i to be the next value in the sequence two. And then we're going to do, again, my sum is whatever it is now one, plus whatever i is now two. So it's three. Again, I will increment to three automatically. That's the next value in the sequence. So my sum will get a value of six. And then i will change to four, so on and so on and so on, until i becomes eight. That's sort of towards the end. When i is eight, the value of my sum is 36. Zero plus one plus two all the way up to eight is 36. And then when i becomes nine, Python will take my sum whatever it is right now, 36. Add nine to it to give us 45. OK. And then that's the end of the program, right? There's nothing else to do except to print my sum. So at the end of this loop, it's gone through 10 times, adding zero all the way up to nine. We're going to print 45. Yeah? So when I tried running it, it was 45 at the top. And then just like zero, one, two, three, four, three, eight. Oh, maybe you have another print statement, or it might be part of another program that's being run beforehand that you didn't comment out. Yeah. Next question. Is the plus equals something? And that's maybe the same one. The plus equals what it means. Oh, it just means it would be like my sum equals my sum plus i. It's just shorthand notation because most of your variable names might be really long. And it's really annoying to retype them. And so that's generally why that shorthand notation exists. Yeah. But it basically means take whatever my sum is and add i to it and save it back into the variable my sum. OK. Let's have you try this code real quick. So here is code. It's already on the Python file to start out with. I want you to have this code. It's pretty close to working. But there's one issue. So we have this for loop that starts at start, and ends at end. And we're keeping a running sum. And then we're printing the sum at the end. So very similar to what we just saw. But what I want this code to do is I want it to go and sum up the start and the end. So I want if I have start is 3 and end is 5, I want it to add 3 plus 4 plus 5. And so this code is not doing quite that. And I would like you to fix it or to tell me how to fix it. So it's down here on line 140-ish. First thing you should do is run it and maybe see what answer it actually gives you. So I just ran it. It gave me a 7. When you're encountering an output, that's not quite what you expect. One of the first things to do, you can obviously use the Python tutor. But another thing you can do is put print statements at various places. Useful places would be inside the for loop. So here we can print i. That's a reasonable thing to print out. And maybe we'll see exactly what values of i we are adding. Because we know the summing works. We just wrote the program on the previous slide. So we got 347, which is a little confusing. Let's make our print statement be a little bit better. i equals comma and then print the actual value of i. So what do you guys notice? i is 3, i is 4, and then it prints the sum 7. What's the problem with this code? Yeah? The best value should be 5. Yeah, we're not adding 5, right? We're just adding 0 originally, plus 3, plus 4. And we've never added 5. So how can we fix that? Yeah? We can do n plus 1. We can do n plus 1, exactly. So the range, remember, grabs the, oh, plus 1. The range grabs these values as numbers that it's working with. So start is OK, end is OK. But we go up to but not including end, right? So if we go to n plus 1, we're going to go up to but not including n plus 1. So if we run it now, it looks much better. So we've got i is 3, i is 4, i is 5, and the sum is 12. Perfect. So print statements, very useful when debugging code. Questions about this one, or is this, is this, makes sense? OK. The last slide I want to do before we do a summary is just to show you that factorial code we saw using a while loop a few slides back. So it looks really verbose, right? We kind of have to think about it for a while before we realize what it's actually doing. But it was calculating the factorial. Obviously, good variable names helped us figure that out. That same code in a for loop looks like this, where the for loop looks like this. So we still have the initialization of x to 4. We still initialize our factorial, right, our running product to a 1. But we're losing those four lines of code that kind of make up that pattern of changing numbers with while loops into 2. So this line, i equals 1, this while loop with the conditional and this incrementing of i, become the for loop, and that's it. The for loop takes care of all of that, the initialization, the increment, and going up to but not including the last value, right, x plus 1. So we're going to multiply the factorial with the initialization, multiply the factorial with 1, then 2, then 3, then 4, all the way up to and including x. Okay, so the big idea about for loops is they're going to repeat however long the sequence is, right? So you're able to repeat certain code a set number of times, which is really useful in some situations. While loops were useful in situations where you didn't know how many times you might want to repeat the code. So quick summary, we saw some looping mechanisms today. It was a lot of syntax, I know. But the finger exercises for today will certainly help. MITx also has extra help, extra exercises. It's really important to do them just to get the mental model for how exactly these loops work, right? And how they assign variables and how they do the checks behind the scenes, right? And it'll help you get faster at writing code and at doing quizzes as well. Okay, so that's it for today."
+}

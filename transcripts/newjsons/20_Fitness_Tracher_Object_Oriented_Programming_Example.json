@@ -1,0 +1,1720 @@
+{
+    "chunks": [
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 0.0,
+            "end": 40.92,
+            "text": "Okay, so let's get started. Today's lecture will be the last one we have on object-oriented programming and creating our own data types with Python classes. So in today's lecture, we're going to go through an example that's sort of more involved. We're going to be creating our own fitness tracker object, and specifically, we're going"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 40.92,
+            "end": 68.44,
+            "text": "to create a class that implements the idea of a workout. And the slides for today are going to feel very similar to the slides from Monday's lecture. A lot of them are just kind of reinforcing the same ideas we saw last lecture on creating getters and setters, creating class variables, and the idea of inheritance. But we're just going to do it in the context of this more involved example, the fitness"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 68.44,
+            "end": 88.44,
+            "text": "tracker. So let me remind you first of all something we've been talking about, and hopefully you understand at this point in our lectures on object-oriented programming. And that's the idea that when we write our own object types, we're writing code from two different perspectives."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 88.48,
+            "end": 113.24,
+            "text": "The first perspective is the one on the left-hand side here, where we are making design decisions for how we want to implement this new object, this new data type. And when we make these design decisions, we decide the name of the object, we decide the attributes, which are either data or procedures, that we want the object to have. And then once we've decided on this and we've implemented our data type, then we can start"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 113.28000000000002,
+            "end": 135.04000000000002,
+            "text": "to use the data type. And to use it, we are creating a whole bunch of objects of this type. And we're manipulating these objects in some interesting and useful way. So the left-hand side, we're creating this blueprint, this abstract notion of an object. And the right-hand side, we are creating actual instances that we manipulate."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 135.04000000000002,
+            "end": 151.12,
+            "text": "So up until this object-oriented set of lectures, we've really just been working with the right-hand side. And working with objects that other people have created. But the big idea of these set of lectures is that we now get to create our own object types, so we get to write this code here."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 151.12,
+            "end": 168.16,
+            "text": "Okay, so we're going to write code to create a tracker for workouts. And today's lecture, there's going to be sort of a sequence of things that we're going to do. We're going to start out with a really simple workout object, and then we're going to improve on it."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 168.16,
+            "end": 187.28,
+            "text": "And actually set out a little roadmap here on the board that we can follow. So every time we finish sort of a little section, we'll check it off so it's just easier to understand sort of where we are in today's lecture. So we're going to create, first, just a very simple workout object, sort of in the same spirit that we've been creating objects."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 187.28,
+            "end": 203.48,
+            "text": "Then we're going to improve on it a little bit by adding nicer methods and things like that. And then we're going to go through the idea of inheritance to create very specific types of workouts. So if we think about workouts, we have many different kinds of workouts, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 203.48,
+            "end": 229.98,
+            "text": "We've got biking, swimming, running, but really at the core of all these workouts, right, if we think about sort of the information related to just a very generic workout, not a running or swimming specific one or a biking one, just a generic workout, there are some common properties that all of these workouts have, right? So I've listed them here, right, a workout might have an icon associated with it, right,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 229.98,
+            "end": 255.5,
+            "text": "so this, this, this, but whatever it may be, there is an icon sort of property for a workout, the kind of workout, so biking, swimming, running, things like that. A date, so maybe a start date and an end date, start time, end time, that kind of information. The heart rate, maybe average heart rate throughout that entire activity, the distance, and the number of calories burned, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 255.5,
+            "end": 279.02,
+            "text": "All of these properties are common to any kind of workout that we might want to create. But now that we have specific kinds of workouts that we might want to create, we can actually think, well, in addition to these common properties, a swimming specific workout might actually have some more information that we'd like to save, right, and we'd like to allow the user to work with."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 279.02,
+            "end": 297.06,
+            "text": "So the swimming pace, maybe, the stroke type, the hundred-yard splits, things like that for swimming. And for running, we might want to show the user the cadence, the running pace, the mild splits, and maybe the total elevation throughout that, throughout that run, right? But the idea here is that we have some core set of properties, and no matter what kind"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 297.06,
+            "end": 314.3,
+            "text": "of workout we're creating, we would like to save, and we would like to allow the user to, to store and to do operations with. Now when we implement our workout class, we're not going to implement all of these. They're not all necessary. We're going to just keep some of the core ones."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 314.3,
+            "end": 331.82,
+            "text": "So the ones we're actually going to implement in this class are italicized, right? So we're going to keep the icon and the kind of workout, the start time and times, and then the number of calories burned. That's something that we're going to just save as a really common, the common set of attributes for a workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 331.82,
+            "end": 352.38,
+            "text": "But of course, you can see that if you make the design decision to improve upon this workout class, you might include a bunch of these other ones as well. Okay, so, so we're going to have to decide the data attributes. So we just mentioned on the previous slide, right? When we make design decisions, we figure out the attributes that we'd like to have for"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 352.38,
+            "end": 366.74,
+            "text": "our object type. So that's the data and the behaviors. For the data for a workout, we've decided it would be the start time, the end time, and the number of calories burned. So those three things together, maybe start time as a string and time in the string and"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 366.74,
+            "end": 386.3,
+            "text": "calories is a number, right, either a float or int, whatever, those three things together make up the object a workout. And then in terms of functional attributes, so these are the methods that our object might have. Well, we can have, of course, the ability to, you know, tell us the number of calories"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 386.3,
+            "end": 403.62,
+            "text": "burned. So something like a getter method to set the number of calories burned if we accidentally inputted the wrong number, reset it, and then maybe something like displaying an information card, right? So something like this, if we ask, if the user asks us to print a workout object, we"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 403.62,
+            "end": 418.06,
+            "text": "might display information in this nice manner here. Okay. All right, so let's start defining our class. So this is a very simple workout class, so we're going to do box number one up there before we improve on it."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 418.06,
+            "end": 439.5,
+            "text": "So this is in the same spirit as we have been defining classes in the past three lectures, right? So we tell Python we're creating a new object by saying this is a class, and the name of this object, so the type of this object is workout, okay? And the parent of this object is the generic Python object, so far so good, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 439.5,
+            "end": 457.42,
+            "text": "Now the first method we have to implement is the init method, right? It tells Python how to create an object of type workout, the constructor. And we've got a bunch of parameters in here because it's just a regular function that's a little bit special. The first parameter of every method is of course self, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 457.42,
+            "end": 477.46000000000004,
+            "text": "Because when we call a method, we call it on an object, right? So some object dot this method name. The thing before the dot effectively gets mapped to the variable self, which is why every one of these methods has self as the first parameter. And then we've got a whole bunch of other parameters for how we would like to initialize"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 477.46000000000004,
+            "end": 495.70000000000005,
+            "text": "a workout object. So we're going to say when we create a workout object, we're going to tell it the start time, the end time, and the number of calories burned. So that's the function stub, I guess. That's how you create the object."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 495.70000000000005,
+            "end": 514.7,
+            "text": "And then what does this function actually do? What does this method actually do? Well, it does some of the usual things that we know at this point. So it basically maps every one of these input parameters to data attributes, self dot start, self dot end, and self dot calories."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 514.7,
+            "end": 533.8,
+            "text": "But in addition to just saving these as data attributes, the things that are passed in when you create the object, we would like to do two more things. We're creating two more data attributes, right? So in total, a workout object is defined by five data attributes. These last two data attributes, we don't need to pass in, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 533.8,
+            "end": 553.06,
+            "text": "We're just going to, by default, make them two strings. The icon is going to be the string, this sweating person emoji, right? And you can have emojis inside strings, which is actually pretty cool. And the kind is going to be just the kind of workout. So we're just going to set it to be the string workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 553.0600000000001,
+            "end": 564.3000000000001,
+            "text": "When we create running workouts, it'll just be the string running. When we create biking workouts, it'll be a string biking, right? Whatever you want it to be. And we're going to see where these show up later on. OK."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 564.3000000000001,
+            "end": 577.3800000000001,
+            "text": "So that's the definition of my class workout. And then, for now, that's it. That's all we have in terms of the class definition. Now what happens when we create an actual workout object? Well, we invoke the name of the class."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 577.3800000000001,
+            "end": 597.98,
+            "text": "So we say here, workout, right? And we're going to save this object to the right-hand side of the equal sign as variable my underscore workout, so far, review. We pass in the parameters that the workout object expects. So here's a string representing the start time, a string representing the end time,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 597.98,
+            "end": 612.98,
+            "text": "and the calories burned for this particular workout, 200. Yes. Good. OK. So then, we can add a whole bunch more methods to our class, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 612.98,
+            "end": 636.1,
+            "text": "That was just the init method. But last lecture, I mentioned that it's important to add getters and setter methods to allow the user to grab or set various data attributes. So here I've got three getter methods to grab for me the calories start time and end time, and three setter methods to set the calories start time and end time."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 636.3000000000001,
+            "end": 658.0600000000001,
+            "text": "OK. All right. So what I wanted to show you, and this is not something we've actually seen before, I wanted to show you that every time you create an object of some type or even an object that already exists, you can actually look into sort of where this object is stored in memory,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 658.0600000000001,
+            "end": 680.62,
+            "text": "which is kind of cool. So if we think about the class definition that we've done so far, so not creating an actual instance, just defining the class. This class definition is actually kind of like an object stored away in Python memory. So here I have my workout class, and associated with my workout class definition, Python knows"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 680.62,
+            "end": 699.0,
+            "text": "about all of these methods that you're allowed to do with this Python class. And this is called the class state dictionary. So it's a dictionary that basically holds the state of your object. So I wanted to show you what that looks like in code. So this is my workout class."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 699.0,
+            "end": 720.72,
+            "text": "And the way you access the state dictionary is by invoking the name of your class, so not an instance, the name of the actual class, dot this Dunder method, double underscore dict double underscore. So this holds the state dictionary. And if we just access the keys, we're going to see here every single method we've defined"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 720.72,
+            "end": 732.6,
+            "text": "in our class. Right? So you see here, here's my dictionary. I could cast it to a list if I wanted to, but not necessary. But you can see every single method that we've defined, so all our getters, all our setters,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 732.6,
+            "end": 748.9200000000001,
+            "text": "the init method, the double underscore doc actually grabs for us this doc string that you've put right under the class definition. Right? So that's kind of cool. So that's the dictionary keys."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 748.9200000000001,
+            "end": 771.28,
+            "text": "And of course, as we know, keys have values associated with them. So the values associated with each one of these keys is going to be, and we can see here. So for example, the value associated with the doc string is going to be literally the thing that I printed out, right, the little doc string that I put right underneath my"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 771.28,
+            "end": 787.5600000000001,
+            "text": "class definition. So now it knows the doc string for this class that I just created. And the values associated with my getter methods and my setter methods and the init method and all the methods I created are just the locations in memory where Python can find these methods to run."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 787.5600000000001,
+            "end": 806.32,
+            "text": "Right? They don't have actual values with them, of course, associated with them. Of course, because they're just method definitions, but Python just knows where to go in which memory location to actually run this function. So that's kind of cool, cool to know."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 807.32,
+            "end": 825.5200000000001,
+            "text": "OK. So that's the state dictionary of my definition, right, the implementation of my class. Now what happens when I create an actual instance, right? So here I've got my workout equals, and now I've got this actual instance of this class type workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 825.5200000000001,
+            "end": 844.36,
+            "text": "When Python sees this line, it says, OK, what kind of object do you want to create, a workout object? It looks at the init method of that workout object, and then it runs all the lines associated with that workout object. So now it creates a new object in memory, puts that at some memory location."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 844.36,
+            "end": 867.56,
+            "text": "This object is going to be of type workout class. And now this object is going to have its own state dictionary, where in the object state dictionary we're not storing methods or things like that, we're storing the actual data attributes associated with this object, right? So this object, all the data attributes are all the things that you access via the self-dot"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 867.56,
+            "end": 889.6400000000001,
+            "text": "keyword, right? Self-dot icon, self-dot kind, self-dot start, self-dot end, and self-dot calories. So we can actually go in the code, just like we did when we looked at the class state dictionary, and look at the state dictionary for one specific object, one instance. So again, we can call the double underscore dict method on this instance."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 889.6400000000001,
+            "end": 909.8800000000001,
+            "text": "So now I have an actual object that has some values associated with it. And if I look at just the keys, we see these are the data attributes associated with an object of type workout, right? I've got my five data attributes. And then the values associated with those keys are going to be the values that are specific"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 909.8800000000001,
+            "end": 933.72,
+            "text": "to this object, right? So my start is this date here, my end is this date here, calories was 200, the icon was the little sweaty person emoji, and the kind of workout is to work. So it's kind of neat to be able to look into that sort of detail of where things are stored inside memory."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 933.72,
+            "end": 950.6,
+            "text": "Okay. So we saw how to create an instance of an object, and we can create a whole bunch of workouts that we then store, right? And then we can use donotation to access all of these attributes, right? So we can either access attributes directly, or we can access methods, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 950.6,
+            "end": 972.2400000000001,
+            "text": "We already know this. So last lecture I said that you can use donotation to access data attributes. So here we're accessing the calories value, right? And that's fine, but what's preferred is to use the getter methods, right? So get calories will, in this particular case, return the exact same value as just accessing"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 972.2400000000001,
+            "end": 995.4000000000001,
+            "text": "the calories data attribute, okay? But the note that I made last lecture was that it was better to use a getter method because the implementation behind the scenes might change, right? And if the implementation changes, then if you access the calories method directly, or sorry, the calories data attribute directly, your code might crash."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 995.4,
+            "end": 1017.4,
+            "text": "But not only that, somebody who's writing a getter method for this workout function might actually make that method be a lot more complex than just returning that data attribute. And that's what we're going to see in the next slide, right? So the idea behind using these consistent methods instead of accessing using data attributes"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1017.4,
+            "end": 1038.56,
+            "text": "is that you want to keep information hidden, right? You don't want to start messing around with looking at how something is implemented because that goes against the principle of abstraction, modularity, and information hiding, right? You want to keep things hidden because you want to use the objects that somebody else has created in a nicely consistent manner."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1038.56,
+            "end": 1058.68,
+            "text": "The way we use them in a consistent manner is by always using methods that are associated with that object type, okay? And so using getter methods might have seemed inconsequential when we wrote, like, the animal class last lecture, but it's going to seem, it's going to be a lot more important in this particular lecture, okay?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1058.68,
+            "end": 1080.2,
+            "text": "So with that, we've finished our simple workout class, and now we're going to change the implementation just a little bit, right? And what we're going to do is we're going to make a change to the way that we store the information. We're going to use a class variable, and I'll remind you what a class variable is in the"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1080.2,
+            "end": 1098.8400000000001,
+            "text": "next slide. And we're going to make a change to the getcalories method. And we're going to allow the user to say, hey, I'm going to create this workout object, but I don't know about you. I don't know how many calories I burn when I do a workout for 40 minutes, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1098.8400000000001,
+            "end": 1120.6000000000001,
+            "text": "I don't know that right off the bat. So if the user doesn't supply the number of calories burned, we're going to have our getcalories method kind of estimate those calories burned, based on the duration of that workout, right? So we're going to allow the user to either supply the number of calories, in which case"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1120.6000000000001,
+            "end": 1144.48,
+            "text": "they probably know what they're doing, and then when they ask us to get the calories, we're going to use those. Or we're going to allow the user to not supply the number of calories, and instead estimate those calories based on the duration that they said this workout lasted. All right, so that's the big change that we're going to do here in the workout class, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1144.48,
+            "end": 1169.92,
+            "text": "So we're going to do a better getcalories method. All right, so this is the new implementation of my workout class. First thing you'll notice is we're using this class variable, right? We talked about this last lecture when we did the rabbits example. In the rabbits example, we had each rabbit change this class variable value."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1169.92,
+            "end": 1187.3999999999999,
+            "text": "In this example, I'm not going to change this class variable value. I'm actually just going to use it as a variable that every one of these instances is going to be able to access, right? And I'm just not going to change it, which is fine. You don't have to change this class variable."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1187.44,
+            "end": 1203.92,
+            "text": "So this class variable will represent how many calories per hour are burnt, okay? So just a number. And then the init method, and again, we're going to make a different init method than what we saw in the previous slides. The init method is going to be new and improved."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1203.92,
+            "end": 1226.2400000000002,
+            "text": "We're going to take in still the same number of parameters, but the calories are going to have a default value, right? So if the user actually passes in the number of calories, the value for calories here, self.calories, will be whatever the user passed in. But if the user doesn't pass in the number of calories, then this parameter here,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1226.2400000000002,
+            "end": 1248.5200000000002,
+            "text": "self.calories, will be none, right? None being used to represent the absence of a value, okay? So two options here when we create the object. Other things you might notice is that the self.start, so the start time and the end time are no longer just start and end, okay?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1250.4,
+            "end": 1264.8400000000001,
+            "text": "I'm going to talk about this on the next slide, but essentially what I'm doing here is I'm saying the start and end will be passed in as strings, just like we have been in the past, right? Like September 1st, 2022, 1.35 PM. That's fine."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1264.8400000000001,
+            "end": 1282.9199999999998,
+            "text": "We can still pass in the start time as a string. But when I'm storing it inside my object, I'm actually going to store it as whatever this thing gives me. And this thing is actually going to be returning or parsing the string as a new data type,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1282.9199999999998,
+            "end": 1303.24,
+            "text": "something we've not worked with before called a date time object, okay? We're going to look at this on the next slide in a little bit more detail. But for now, all we need to know is that the self.start and self.end will be a new data type, a date time object, okay? So that's my init method, so few changes."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1303.24,
+            "end": 1321.32,
+            "text": "Now my getCalories method will look a little bit different as well, right? We're not just returning self.calories, like we had in that simple workout class, right? We're going to do a little switch. So if the user supplies the number of calories."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1321.32,
+            "end": 1338.28,
+            "text": "So if the calories here were actually passed in, then we don't resort to the calories being none, right? Calories will be 100 or 450 or whatever it is. And then this if statement is false, so we go in the else, and we just return that value."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1338.28,
+            "end": 1361.0000000000002,
+            "text": "So it's exactly the same behavior as in my simple workout class from back there. But if the user does not supply the number of calories when they create an object, then the calories will be none here. When I create my object, the data attribute self.calories will be none here. So when I ask the workout to tell me how many calories I burned,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1361.0000000000002,
+            "end": 1384.64,
+            "text": "we're going to go inside the if statement. And we're going to do something. The thing we're going to do is subtract the end time minus the start time. And something like this is allowed on a date time object, but obviously not allowed on strings, which is why I'm converting these"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1384.64,
+            "end": 1409.92,
+            "text": "strings representing a date and a time into this date time object. This subtraction here gives me something that's called a time delta object. And it's just a new type of object we haven't really worked with before. But it's an object type that we can run a method on. And the method is going to be the total seconds."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1409.92,
+            "end": 1429.2,
+            "text": "So for this time delta object, so 10 minutes or 18 minutes or whatever it may be, if we run this method called total seconds, it will tell us how many seconds are in that time delta object. Divide by 3600 to tell us the number of hours. And then multiply by the class variable cal per hour."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1429.2,
+            "end": 1449.24,
+            "text": "We'll tell us how many calories were burned in that elapsed time, okay? Yeah? Oh, workout dot is just this thing here. Workout dot cal per hour, that's just this. And then we multiply by that, yeah, that number."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1452.68,
+            "end": 1478.52,
+            "text": "Questions about that? Okay, so essentially this is going to do the estimation for us for how many calories were burned in some number of hours or some number of minutes. Now let's demystify this start and end time stuff, okay? So the way that we are converting to this string to a date time object is by"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1478.52,
+            "end": 1495.48,
+            "text": "using this library up here. So a library is a collection of objects, a collection of maybe also functions that all deal with the same type of thing. So in this particular case, they all deal with dates and times and manipulating dates and times and things like that."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1495.48,
+            "end": 1513.16,
+            "text": "In the last lecture, we saw an example of a library, that random library, that allowed us to do operations with random numbers, right? So it's just a nice collection of functions and objects that deal with one sort of common thing. So in this particular case, there is a function inside that library,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1514.24,
+            "end": 1533.1200000000001,
+            "text": "this parser dot parse function that takes in a string and can parse it to this date time object, okay? So if we print the type of start date and the type of end date, it'll show us that it's this type date time thing, okay? So it's a new object type, we haven't worked with it yet, but"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1533.1200000000001,
+            "end": 1555.0400000000002,
+            "text": "it's an object type like a list is, like a dictionary is, like our workout is, right? And so the reason why we're doing the conversion is because we don't want to deal with the messy part of grabbing in a string and figuring out how long the elapsed time is based on just parsing characters throughout this string, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1555.0400000000002,
+            "end": 1568.3200000000002,
+            "text": "I certainly don't want to do that. But you know what, somebody who was passionate about doing that did it in this nice little library for us. So all we're doing is just reusing the work that they've done, right? To save it as this object."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1568.3200000000002,
+            "end": 1588.9199999999998,
+            "text": "And then they basically said, let me implement the minus sign to work with objects of type date time, and it makes things like this very easy. We can just subtract to dates from each other, right? And it'll tell us the elapsed time. We can run a method on that elapsed time to tell us how many seconds that elapsed"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1588.9199999999998,
+            "end": 1599.76,
+            "text": "time is. So pretty cool, yeah. Does the total seconds get imported with the parser? Yeah, yes, the total seconds gets imported with the date you tell parser thing. Yeah, exactly."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1600.72,
+            "end": 1620.44,
+            "text": "It's an operation that can be run on this date, time delta, I think, type object here. It's like total hours, total minutes. I think there might be like total minutes and total hours also, yeah, yeah. So it's parser class and then like dot parser, dot total seconds are. Yeah, exactly, yeah, exactly."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1623.08,
+            "end": 1636.1200000000001,
+            "text": "Yeah, so yeah. The important thing to do to code should be important. Yeah, so we usually import all our stuff right at the top. So I was just going to show the code. So here I've got everything that I need to import way at the beginning."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1636.1200000000001,
+            "end": 1658.5200000000002,
+            "text": "So it's kind of like Python goes and copies and pastes everything in those files and puts them in your file. So now everything that's defined in those files is now accessible in your file. You just have to sort of do the dot notation on these libraries here. So I just wanted to show you down here."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1658.5200000000002,
+            "end": 1670.2400000000002,
+            "text": "So here I shouldn't have imported again, but it's just part of this exercise. So here I've got the parser being imported. I've got the start time. These are just strings, right? Nothing special about them."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1670.2400000000002,
+            "end": 1690.56,
+            "text": "And we can parse them. So I've got these strings parsed and the types of these objects, again, are not strings anymore now that I've parsed them, right? Start date and end date are now these date time objects, date time dot date time. And then we can do operations like this."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1690.56,
+            "end": 1704.3999999999999,
+            "text": "So if I just simply subtract one time from the other and print that time delta object, Python puts it in this nice little format for me. I should just comment these out. It's hard to see. It puts it in this nice little format for me."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1704.3999999999999,
+            "end": 1723.56,
+            "text": "So here's number of hours, colon, number of minutes, colon, number of seconds, right? So this is the STR method that was implemented for that kind of object. It prints it in this nice little form, right? Hours, colon, minutes, colon, seconds. And then we can do this useful thing, which is what we're doing in our code."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1723.56,
+            "end": 1741.96,
+            "text": "We can run the total seconds function on an object of this time delta. And it tells us that this 10 minutes, right, is equivalent to 600 seconds. So very, very cool, very useful. And, you know, we don't even need to know how any of that is implemented. We just make use of these functions."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1741.96,
+            "end": 1765.2,
+            "text": "What's cool about the parser, though, and this will be really, really cool. You can actually write the time and the date in any format. It doesn't have to be month slash day slash year, space, this, right? So this is kind of how I wrote this one. We can actually write it something like sept 30, 2021, right, like that."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1765.2,
+            "end": 1780.4,
+            "text": "And it knows how to read that. Or we can write out September all the way. Put the comma there, put the comma there, put the PM lower case and closer to the time. And it knows how to read that as well. So it knows how to parse all these different ways of writing the dates and"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1780.4,
+            "end": 1810.4,
+            "text": "save them as these daytime objects for using in this very nice, very readable way. Isn't that cool? Okay, so very useful if you ever want to work with date times. Okay, so now, okay, so now this is our state dictionary sort of for how we ended up with our simple workout class."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1810.4,
+            "end": 1829.2,
+            "text": "But what are the changes we made to improve it? Well, in my state dictionary, I added my class variable. Calories per hour. So now this calorie per hour is available for any instance that I create, right? We already knew this, but this is kind of the representation of that."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1832.8,
+            "end": 1851.0,
+            "text": "And we didn't add anything to the instances. Those haven't changed, right? Okay, so little aside on class variables, right? So this cal per hour here is available for all of these instances. Now, a class variable, right, is just like an instance variable."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1851.0,
+            "end": 1867.68,
+            "text": "We can access it from within the class definition, which is how it should always be done. But Python being Python, they allow you to access that class variable from outside the class definition as well. So we can do something like this."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1867.68,
+            "end": 1881.84,
+            "text": "So we can call the cal per hour class variable on the name of this class, right? Outside of the definition, right? This is my class definition. It ended here, right? And this is just code that's outside of the definition."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1881.84,
+            "end": 1902.28,
+            "text": "And Python will be happy to tell you what that value is. Python will also be happy to tell you what that value is if you access it through an instance. So here I've created an actual instance of type workout. So I'm not calling the cal per hour on the name of my class. I'm just grabbing it through one of my instances."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1902.28,
+            "end": 1918.36,
+            "text": "And if I print instance dot cal per hour, Python will also happily tell me what that value is, right? And Python being Python, they're going to allow you to change the value of that cal per hour outside of the class definition as well. So here, outside the class definition,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1918.36,
+            "end": 1941.44,
+            "text": "I'm going to say workout dot cal per hour equals 250. So now, the cal per hour is changed permanently to 250, no matter how I access it, either by calling the name of my class directly, or by calling the class variable through one of the instances, okay? So no good."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1941.44,
+            "end": 1959.8000000000002,
+            "text": "Never, ever work with these data, with these data, access data attributes or access class variables outside of the class definition. If you really want the user to be able to do something like this, right, then write a method for it. And then they can change it or access it in a consistent way,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1959.8,
+            "end": 1977.28,
+            "text": "the way that you want them to access it. Okay, so just a little bit of practice for you guys to create a couple of workout objects, just to make sure everyone's on the same page, we understand what a workout object is. So just create for me two objects, and then print the calories for"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1977.28,
+            "end": 1995.5200000000002,
+            "text": "these workout objects. So the first one I would like you to create, name the variable w underscore one. It started, this workout started in January of 2001, 330, and it went till 4 PM, and you want to estimate the calories from this workout. You don't know how many calories you burned, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 1995.5200000000002,
+            "end": 2018.3200000000002,
+            "text": "And then print the value for that calories. And then the second object, same start date, same end date, but you know that you burned 300 calories, right? So create these two objects, and then print the number of calories burned. So this is online, 199, and it's okay to scroll back up, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2018.3600000000001,
+            "end": 2039.16,
+            "text": "To the init method of workout, just to see how it's implemented. No reason you should have memorized it by now, right? All right, how do we create these two objects? What's w one equal to? Yep."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2042.3600000000001,
+            "end": 2066.8,
+            "text": "Yep, yep, the start date would be first. So I can just, as a string, perfect. Yep, yep, I'm not saying, I don't think I'll say add, I don't know if that works. And then the end date, right, is the next one. So this one's 4 PM, right, like that, you can do that."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2068.4,
+            "end": 2090.32,
+            "text": "And then, what else do I put, or do I put anything else? Exactly, yep, in this particular case, I'm going to let it default to none. And then how do I grab the number of calories burned for this object, for this workout object? How do I print that out?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2097.2400000000002,
+            "end": 2122.5600000000004,
+            "text": "Yep, so I just call the get calories method on w one, and let's slap a print statement around that, like that, okay? Yep. Nine minutes, do that, I don't know if you can do that. Perfect, so what is it, a 30 minute workout at 200 calories per hour?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2122.5600000000004,
+            "end": 2146.04,
+            "text": "It's 100 calories, right, burned. Second one will be pretty similar, right? So I'm just going to copy and paste. What's the difference between this one and the previous one? When I create my object, what's the one difference?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2147.64,
+            "end": 2168.68,
+            "text": "Yeah, yep, exactly. We will pass in 300 as the last param here, right? And so then if we run that, 100 was my first print statement and 300 is my second one, right? So it relies on the number that was passed in,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2168.68,
+            "end": 2189.04,
+            "text": "as opposed to estimating it based on the start. All right, everyone okay with this? We all sort of understand get calories method, perfect. So we've finished our improved method here. We saw this better get calories method, very neat method that allows estimation."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2189.04,
+            "end": 2220.04,
+            "text": "And we saw a little bit about using these daytime objects. Okay, so the next stop, the rest of this lecture, we'll be implementing one subclass of this workout object called a run workout class, okay? And so we're going to use the idea of hierarchies and class inheritance to do this. So let's remember a little bit about hierarchies in terms of Python."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2221.16,
+            "end": 2243.16,
+            "text": "So when we create a class that we know will be sort of this parent class, that's a base class, right? It's the most basic thing that we'd like to work off of. We call that the parent class or the super class. And this one parent class can have many subclasses associated with it, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2243.16,
+            "end": 2269.3999999999996,
+            "text": "So in this particular case, just as an example, we can have two types of workouts, right? One outdoor workout and one kind is an outdoor workout and the other kind is an indoor workout, okay? And both of these are workouts, right? So everything that a workout has and everything that we can do with a workout, we will be able to, will exist in outdoor workout and indoor workout and"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2269.4,
+            "end": 2295.96,
+            "text": "we'll be able to do with outdoor workout and indoor workout, right? So a child class is a parent class, a subclass is a super class, right? But these subclasses can bring about some of their own quote unquote ideas, right? Their own attributes. So for an outdoor workout, we might add more information, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2296.0,
+            "end": 2311.28,
+            "text": "So add more attributes, maybe location, something like that. For indoor workout, you might not need a location, you might not add any extra data attributes. We might add more behaviors, right? So for outdoor workout, I don't know,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2311.28,
+            "end": 2333.44,
+            "text": "you'd add some different behavior than just a regular workout. Same for indoor workout or you might override behaviors. So you might change something that workout does to be specific to an outdoor workout. And of course, we can create as many of these subclasses as we'd like. So for outdoor workouts, we can now have two different types of outdoor workouts,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2333.44,
+            "end": 2347.76,
+            "text": "a running or a swimming. And for indoor workouts, we might have treadmill or weights types of workouts, right? And whenever you create these child classes, they inherit everything that their parents has. So a running class is an outdoor workout and by default,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2347.76,
+            "end": 2366.04,
+            "text": "it's also going to be a workout, right? Because outdoor workout was a workout, okay? So what we're going to do in this run workout class is, I'm going to show you three sort of methods implemented. The first one is going to be just reusing something that our parent can do."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2366.04,
+            "end": 2392.2,
+            "text": "The second one is going to be overriding a method that our parent already can do, to make it better and more specific to the child class. And the third one is to add a method that our parent didn't even have, okay? So we're going to do these three things in the run workout object, okay? So let's remember this example here about common properties that all of our workouts"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2392.2,
+            "end": 2407.64,
+            "text": "have, right? So this is basically us implementing our workout superclass. So I know we didn't implement all of these, but in theory, we can implement all of the things that are highlighted in yellow in our parent class, and these are common no matter what kinds of workouts we create."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2407.64,
+            "end": 2427.96,
+            "text": "Now in the Python file, I actually have a swimming subclass. We're not going to go over the swimming subclass in the lecture, but please feel free to go through it in the Python file for this lecture. And I think you'll also be working with it in recitation on Friday as well. In lecture, we're going to be creating a subclass that's specific to running."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2429.68,
+            "end": 2456.76,
+            "text": "And this running class will of course inherit all of these properties that our parent workout class has, but we're also going to add our own data. And we're going to override some data that the workout class has and things like that. So specifically, the only thing we're actually going to implement that's different than a regular workout is to add an elevation, an elevation attribute, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2456.76,
+            "end": 2474.52,
+            "text": "So beyond that, start time, end time, calories, an icon will also exist. And the kind of workout will also exist. Those are our five data attributes, right, from workout. And we're going to add elevation for running workout to make six. Okay, so this was our parent class, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2474.52,
+            "end": 2500.16,
+            "text": "Just as a reminder, this is what it looked like. We had our class variable and this init method here. This class workout, as their parent, was the generic Python object. Now, when we create our run workout, our parent will be the workout class, right? So we don't just want it to be a Python object, we want it to be a workout object."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2501.16,
+            "end": 2527.28,
+            "text": "So as soon as we do that inside our code, Python says, all right, let me just grab all of the stuff, everything that's defined inside your parent class, this workout, and quote unquote copy and paste it into this class. So right off the bat, we've got all of the things that workout has. But that's not, that doesn't quite work with our run workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2527.28,
+            "end": 2548.52,
+            "text": "Because when we create a run workout, and again, this is a design decision, we would like the user to be able to pass in an extra parameter here. The elevation value. So in addition to the start time, end time, and the calories burned, I'm going to slip in this elevation value right before the calories burned parameter, okay?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2550.28,
+            "end": 2570.0,
+            "text": "So when I initialize my run workout, I could theoretically pass in four values. String, string, number, number. Or, since elevation is zero, elevation has a default parameter and calories has a default parameter, I could pass in just string, string. And those other two will default."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2573.08,
+            "end": 2596.1600000000003,
+            "text": "Okay, so what is this init method doing? It's calling the super function. I know we haven't done this before, but I just wanted to show you this. This is another way to ask Python to tell you who your parent is, right? So when you run this function super inside a class definition,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2596.1600000000003,
+            "end": 2616.2799999999997,
+            "text": "Python effectively returns, so the replacement of this function, right? It's just a function, it has a return value. The return will be the thing in the parentheses here. So effectively, that line becomes workout dot double underscore init double underscore. Exactly what, as we saw in last lecture when we did animal, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2616.2799999999997,
+            "end": 2635.0800000000004,
+            "text": "Rabbits and all those stuff. All right, so what we're doing here is we're saying, well, I know workout can do all those initializations for me. So let me just take advantage of that, not copy and paste it. And just let workout do the job and initialize all that stuff for me."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2635.0800000000004,
+            "end": 2660.4,
+            "text": "So this line of code here initializes the start and times by parsing them, the calories and the icon to the sweaty person emoji and the kind to workout string. But since this is a run workout, I would like to replace the icon with a little running person emoji and the kind of workout this is is no longer"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2660.4,
+            "end": 2678.92,
+            "text": "just a workout, let's say it's a running workout, right? So it becomes a string running. So I'm overriding those data attributes to be the strings. And then the thing that run workout has that workout didn't have at all is this elevation data attribute, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2678.92,
+            "end": 2697.2,
+            "text": "So self dot eleve is now a new data attribute that did not exist in the regular workout. Okay, and then I've got these two methods down here. A getter for the elevation and a setter for the elevation. Nothing fancy with them, they just return and send, yeah."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2697.2,
+            "end": 2719.72,
+            "text": "Yeah, so the super in it calls the parents in it method. And the reason I do that is because I know the parent can just initialize all that stuff for me. So I'm just taking advantage of the fact that it does all that stuff for me, right? You can imagine the in it method, maybe it also checked the types, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2719.72,
+            "end": 2733.72,
+            "text": "To make sure that the person who created this, you know, to kind of enforce that start is a string and does a string. Like all that extra code that would happen in the in it method of workout, we would just let run with this line here. So we don't have to copy and paste it."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2733.72,
+            "end": 2749.6400000000003,
+            "text": "Yes. You also have to define them in the line of half, right, before half processes. Yes. You mean from this, these two? Yep."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2749.6400000000003,
+            "end": 2765.6800000000003,
+            "text": "To have start and color it. And the super needs to have at least start and color it. Yes, exactly, actually. Yes, you're right. So the reason this works is because the in it method of my workout takes in"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2765.68,
+            "end": 2782.16,
+            "text": "the start and the end and the calories, right? If I said that the in it method of run workout doesn't need start and end or something like that, I wouldn't be able to run this in it method, exactly. Or maybe I would run it with some defaults or something like, like if you actually want to run it, you have to pass it."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2782.16,
+            "end": 2801.2400000000002,
+            "text": "You still have to follow the stub of that in it method, right? Yeah, that's a great point. Yeah. Because I feel like before passing the in it of the parent into this one without having to write the super thing."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2801.2400000000002,
+            "end": 2818.08,
+            "text": "Yeah, so this, you're right. I wasn't writing the super thing. I was just naming the parent directly. So in the animal one, I said animal dot double underscore in it, double underscore. And in this particular case, I'm just showing you a different way to do it."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2818.08,
+            "end": 2839.36,
+            "text": "Baby, you don't know who your parent is, question mark? In that case, you can just run this function and it tells you who your parent is. But this line would work just as well if I said workout, right? This thing dot double underscore in it, double underscore. And that would be exactly the same as I had done last lecture."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2839.36,
+            "end": 2855.1600000000003,
+            "text": "So let's look at the state dictionary for this one, right? For this new addition here. So this is the state dictionary of just my plain old workout class, right? We've done, we saw this before. It's all my getters, all my setters, the init, and this cal per hour from the new"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2855.1600000000003,
+            "end": 2879.44,
+            "text": "and improved workout class. Now my subclass, the run workout, the super method basically says, hey, this is, you are a workout. The super method, the state dictionary for it will additionally have these two getters, oh, sorry, this getter and the setter, these two methods, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2879.44,
+            "end": 2901.6,
+            "text": "We're not copying all the stuff all over again down in the run workout state dictionary because that already exists up here, right? But in addition, the run workout has this get elevation and set elevation method. Those are the only things that we've defined in this class, right? So then when I create a run workout instance, so this is an instance of run workout not"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2901.6,
+            "end": 2935.48,
+            "text": "workout, Python points to this run workout class. And the data attributes for a run workout instance are going to be, of course, all the data attributes of a regular workout, that was five, plus the elevation, the new data attribute that I just added, okay? So we're using inheritance in this particular case, right, in the spirit of modularity,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2935.48,
+            "end": 2955.84,
+            "text": "in the spirit of abstraction, in the spirit of writing code that's reusable, that's readable, that's understandable in the future, right? So we're not, if we were writing the run workout by basically copying and pasting everything in there all over again, it would be a really long class where most of it was just a copy and paste off of the workout, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2955.84,
+            "end": 2980.12,
+            "text": "So now in this particular, if we define it in this way, we can easily see new functionality, right, and new data attributes that run workout has in addition to just being a workout object, okay? So all those good things for writing very nice clear code. Okay, so now we're going to look at a function, sorry, a method that's being reused from"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 2980.12,
+            "end": 3005.2,
+            "text": "our parent, and that's this double underscore str method, okay? So this str method, it looks like a beast, right? It's very, very long, but I promise you it's not so bad. So this str method, let's remember what it does. It tells Python what to do when you print an object of type workout, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3005.2,
+            "end": 3022.36,
+            "text": "Because it's defined inside the workout class here. So I'll show you what it actually looks like in the actual workout class. So here's my workout, right? There's my class variable, my init, my getters, my setters, all that. And then here's my str method."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3022.36,
+            "end": 3036.6800000000003,
+            "text": "It's long, right? It takes an entire page. This is not a method that I would like to copy and paste in every single one of my subclasses, right? Because that would be a lot of code, again, against the spirit of abstraction, modularity,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3036.6800000000003,
+            "end": 3057.52,
+            "text": "all that good stuff. So what we're doing is we're just defining it once in our parent class, workout. And it's going to do the following. So str method has to return a string, right? It doesn't print the string, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3057.52,
+            "end": 3076.4,
+            "text": "This is a very important distinction. It returns a string that will eventually be printed when you call the print method. So the thing that I'm doing throughout this whole function, throughout this whole method, is to basically just build up my string to return. Return, right, sure, is return string."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3076.4,
+            "end": 3092.2400000000002,
+            "text": "And I'm building it just by concatenating it piece by piece with more and more stuff that I want to eventually print out. So the output would look something like this, right? I'm basically printing out on the console, sort of like the little square of a watch, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3092.2400000000002,
+            "end": 3114.16,
+            "text": "Very cute. So what am I composing here? The first bit, right, this thing in the red box, prints this line over here. Just horizontal line that's some width long. The next bit here, you notice, it grabs the icon data attribute, puts it here on a line,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3114.16,
+            "end": 3136.0,
+            "text": "along with a vertical bar and a bunch of spaces and a vertical bar. The next bit here prints the kind of workout by accessing the kind data attribute, right? So either workout or running or swimming, whatever that string is, prints it right underneath the emoji. The next bit here is composing the duration."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3136.0,
+            "end": 3151.52,
+            "text": "So remember when we did the datetime object, just over here, right? When we were printing the duration where we just simply subtracted an n time minus a start time, it looked like this, right? I'm perfectly happy with that. That looks really nice."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3151.52,
+            "end": 3173.64,
+            "text": "So let's just use that. So the duration here, the get duration just does the subtraction. It's a method inside my workout class. And then we just sort of keep composing that to our return string. Next, we are going to figure out how many calories were burned in this workout object."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3173.64,
+            "end": 3189.92,
+            "text": "So again, we're grabbing the get calories method, right? The return value from that method. However, it may be calculated, right? So for this workout type, either we gave the value directly or we let it estimate it from the duration of the workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3189.92,
+            "end": 3212.68,
+            "text": "However, it decides to calculate it according to how this workout object was made. That value gets put right there. And then the last bit is this last line down at the bottom, OK? So then we can create any kind of workout, right? Because all the child classes inherit all of the methods from the parent class."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3212.68,
+            "end": 3232.52,
+            "text": "So of course, all these child classes will inherit the STR method of workout. So no matter what kind of workout I'm creating, so here I'm just creating a regular workout. Here a running workout and here a swim workout. No matter how I'm creating it, they'll use the same STR method. So all of these will print it in this really nice format, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3232.52,
+            "end": 3257.84,
+            "text": "The first bit will be specific to the kind of workout we have, right? The little emojis will be different because I've set those separately, right, within the subclasses. The kind as well, the label, right, a workout or running or swimming. The calories burned and the duration will be calculated using the get calories method"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3257.84,
+            "end": 3280.92,
+            "text": "and then the get duration method. So again, in a nicely consistent way. So I'll show you what this looks like in the actual code. Let me just comment that. So here I've got three workouts created and then I'm just printing these three different"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3280.92,
+            "end": 3299.72,
+            "text": "kinds of workouts and just to show you I'm not lying, see the swim workout doesn't have an STR method defined, right? And neither does the run workout, right? It just has a bunch of other stuff defined but no STR method. So we're just using the STR method of our parent and then when we run it, it looks like"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3299.72,
+            "end": 3321.84,
+            "text": "this, right? So I've got a regular workout with their icon and label, running workout with their icon and label and a swimming workout with their icon and label. Isn't that cute, right? So we've made our own little digital thing, okay."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3321.84,
+            "end": 3344.7200000000003,
+            "text": "So this begs the question, right? When can we use an instance of a class, right, of a subclass? Well, you can use an instance of this run workout anywhere where you can use workout, right? Again, the way I think about it is you say, well, a run workout is a workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3344.7200000000003,
+            "end": 3359.2000000000003,
+            "text": "So anything I can do with a workout, I should be able to do with a run workout or swim workout or any of the subclasses, right? But the opposite is not true. If I can do something with a run workout, well, run workout has a bunch of other specific things that it can do."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3359.2000000000003,
+            "end": 3377.7200000000003,
+            "text": "Of course, a regular workout is not going to be able to do those specific things, right? So let's think about these two helper functions. This one calculates the total calories given a list of workouts, and this one calculates the total elevation given a list of workouts. The code looks very similar for both."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3377.7200000000003,
+            "end": 3401.4,
+            "text": "We're just iterating through the loop, grabbing each workout object, and then we're calling the get calories or the get elevation on that workout object, right? So this will give me a number, and then I'm just keeping a running sum for the total elevation and the total calories, and at the end I return it, right? So again, the list here is important."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3401.4,
+            "end": 3427.28,
+            "text": "These are workout objects and workout objects. So what if I have a bunch of, so here I've got two workout objects and two running workout objects. So these workout objects are 30 minutes long, right? So using 200 calories per hour, these ones will each be 100 calories."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3427.28,
+            "end": 3450.52,
+            "text": "These running workouts are two hours long, so they will, it doesn't actually matter, right? Sorry, sorry. These running workouts are two hours long, so they're going to be 400 calories, right? Because these parameters here correspond to the elevation, okay?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3450.52,
+            "end": 3471.36,
+            "text": "And they correspond to the elevation because if we look at the way we defined a running workout right here, right? This is the order of the parameters, start time, end time, elevation value, calories. So when I pass in parameters, they need to go in that order. And I can't skip around, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3471.36,
+            "end": 3497.88,
+            "text": "If I want one of them to be the default variable, then that has to be at the end. So in this particular case, I've got these two running workouts at 400 calories because by default, I didn't actually pass in the number of calories, and then the elevation is 100 and 200, yeah? What if you wanted the default elevation and the calories, would you put comma, comma?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3497.88,
+            "end": 3515.32,
+            "text": "Then you would just put, if you wanted both to be default, then you just put nothing. You can't just leave an empty comma. What if you want default elevation and the calories? Yeah, so then you would have to actually explicitly say like calories equals whatever you want."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3515.32,
+            "end": 3527.0,
+            "text": "All right. So at that point, yeah, now that we're working with default variables, it becomes a little bit tricky. You can't go wrong with just saying like, LF equals whatever you want it to be, calories equals whatever you want."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3527.0,
+            "end": 3550.88,
+            "text": "And then you can do whatever you'd like in that case, yeah. But in this particular case, we know our workouts are 400 and elevation is those values. So when we run total calories on all of the workouts, no matter what kind of workout I have, it doesn't actually matter, right? Because Python will just grab calories for all of these workout types, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3550.88,
+            "end": 3573.6,
+            "text": "So just sums that up. Elevation, if I run it only on running workouts, Python will know what to do. Here's 100 and 200 because those running workouts have an elevation data attribute. But if I ask for, oops, but if I ask for the elevation for a running workout and adjust a regular workout, Python will spit out an error."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3573.6,
+            "end": 3590.7200000000003,
+            "text": "Because as soon as it sees this workout one, it says, well, what's the workout dot get LF method? And it's going to say, I don't have a get LF method for a regular workout. That's not something I know, right? Because that's something that we implemented in the child class."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3590.7200000000003,
+            "end": 3610.88,
+            "text": "So let's go through these together. And it's actually nothing to code just to sort of run. It's just down here. So this is just kind of making sure you understand sort of the order of operations. And I think one of the ones that was a question here where we actually passed in the number"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3610.88,
+            "end": 3635.0,
+            "text": "of calories is at the end. So when I create a regular workout, oops, let me just remove that over here. What is the value when I ask Python to tell you the calories for this workout? At 200 calories an hour, what's the value here? Just yell it out."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3635.0,
+            "end": 3663.4,
+            "text": "30 minutes, 100, right? What's the elevation when I ask Python to tell me the elevation for this object? Error, exactly, yep. Yep, because the workout object has no attribute, right? Has no method get LF."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3663.4,
+            "end": 3688.7200000000003,
+            "text": "That's something specific to a running workout. OK, how about this one, run workout here? So here I'm actually, oops, I didn't mean to do that. What happens if I grab the calories for W2? Yep, 450, yep, it just grabs whatever's passed in, right?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3688.7200000000003,
+            "end": 3701.08,
+            "text": "It doesn't estimate. How about the elevation? Yep, error again, perfect. Now let's create three kinds of running workouts. So here's one."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3701.08,
+            "end": 3713.36,
+            "text": "What's the calories and elevation for this one? I'll just do them both together, right? So RW1, this parameter is the only one passed in. What does that correspond to? Calories or elevation?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3716.96,
+            "end": 3733.64,
+            "text": "Yeah, elevation, remember our parameter list? Elevation comes before calories. So the elevation's 250 and the calories will be estimated, right? Based on whatever this is, right? So calories is first at 100, elevation's 250."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3733.64,
+            "end": 3751.2000000000003,
+            "text": "How about running workout two? So here I've got 450 and 700 in that order. Which one is the elevation? Yep, 450 and calories is 700. So when we print it, I printed them backward just"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3751.2000000000003,
+            "end": 3766.0800000000004,
+            "text": "to confuse us all. And then lastly, how about this run workout three? So here, to answer the question, what if I wanted elevation to be default, but I wanted to pass in calories?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3766.0800000000004,
+            "end": 3786.32,
+            "text": "So here I just say the name of my parameter there and I give it an actual value, right? So clearly here, calories will be 300 and elevation defaults to zero. So just a little practice reading the specifications."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3786.32,
+            "end": 3806.7200000000003,
+            "text": "OK, so that finishes reusing the STR method from the parent. Now let's override our superclass. So our improved workout class, remember, has a get calories method that estimates the calories based on the time that it took you to do this workout, whether it"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3806.7200000000003,
+            "end": 3824.2,
+            "text": "was a running workout or a regular workout. But what I'm doing in this method is I'm going to actually implement my own get calories method inside the class definition for a run workout. So here's my run workout class definition."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3824.2,
+            "end": 3837.0400000000004,
+            "text": "And I've got my own get calories method. So when I run get calories on a run workout, Python will use this one. What is this one going to do? So we're going to do something really cool."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3837.0400000000004,
+            "end": 3855.88,
+            "text": "We're going to estimate the number of calories burned for a run workout based on a set of points, latitude, longitude points. So what we can actually do is we're going to pass in a list of tuples, like this, which"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3855.88,
+            "end": 3874.1600000000003,
+            "text": "represent the route that we take. So from point A, so in this particular case, I've got four places that I have jogged between. So these are my four latitude, longitude points. So each tuple is latitude, comma, longitude."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3874.1600000000003,
+            "end": 3893.8,
+            "text": "So I can make this as precise as I'd like. But what I want this method to do is to potentially, if the user does give me a set of latitude, longitude points that they actually went through, to calculate the calories burned based on a class variable called calories per kilometer."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3893.8,
+            "end": 3911.0,
+            "text": "So given a set of these points, what I'd like to do is to calculate the total kilometers traveled between all of these latitude, longitude points, multiply that distance, that kilometer distance, by the calories per kilometer, and use that as the estimate"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3911.0,
+            "end": 3924.72,
+            "text": "for the calories burned in this particular run workout. So this is how the code achieves that. So I've got another class variable that's only specific to this run workout. So workout does not know about this."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3924.72,
+            "end": 3936.24,
+            "text": "Calories per kilometer is 100. And now I've got my own get calories method here. It's overridden. So if we run this get calories on a run workout, it will use this one."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3936.24,
+            "end": 3947.2000000000003,
+            "text": "And what does it do? Well, if we don't give it any GPS points, if we don't give it a list of tuples there, Python will default to the else. What does the else do?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3947.2000000000003,
+            "end": 3960.1600000000003,
+            "text": "Well, it says, hey, who's your parent? Run their get calories method. So that's just estimating it based on the total time elapsed in this workout. That's our default parent."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3960.1600000000003,
+            "end": 3976.84,
+            "text": "But if the user got fancy and gave us a bunch of tuples representing latitude and longitude points for all of their workouts, then we're going to do the following stuff. We're going to iterate through all of these pairs of GPS"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3976.84,
+            "end": 3993.04,
+            "text": "points, pair by pair. We're going to calculate the distance, given this latitude-longitude value, add on to this running total for the total distance pass, total distance ran, and then return"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 3993.04,
+            "end": 4013.2400000000002,
+            "text": "that total distance multiplied by this data attribute class variable, calories per kilometer. So let me show you what this actually looks like, because the only thing that is sort of still mystifying here is this GPS distance."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4013.2400000000002,
+            "end": 4035.0,
+            "text": "And this GPS distance is actually a function that's in this lecture helper's file, which is included in today's Python zip file. And it's just, from the internet, it's a way to calculate the kilometers, the distance"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4035.0,
+            "end": 4047.6,
+            "text": "traveled between two latitude-longitude pairs. That's all it is. So it does some fancy stuff with sines and cosines and things like that to figure out the distance between these two lat-long pairs."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4047.6,
+            "end": 4063.92,
+            "text": "That's all it is. So we're just running that function nicely down here to help us calculate that total distance. Beyond that, everything is pretty simple. It's just looking at consecutive pairs of these tuples,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4063.92,
+            "end": 4081.48,
+            "text": "getting that distance plus this distance plus this distance, and then multiplying by the caliper column. So in the end, what we get is something like this. So here, let me show you, here are two points, latitude-longitude points."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4081.48,
+            "end": 4093.1600000000003,
+            "text": "So I've got Boston and Newton. So here, I've just got a straight shot, so not counting, getting very precise with blocks and things like that. But if I create a running workout here with the start time,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4093.1600000000003,
+            "end": 4110.84,
+            "text": "end time, elevation value, and now I pass in the root GPS points, this is another piece to my init method. I forgot to show you that. Sorry about that. So here's my init method for run workout."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4110.84,
+            "end": 4123.5199999999995,
+            "text": "I skipped that a little bit. Last parameter here is to actually pass in some root GPS points. And if I actually pass in those root GPS points, when I run the get calories method,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4123.5199999999995,
+            "end": 4136.08,
+            "text": "it tells me that I burned this many. And it calculates it based on that distance between Boston and Newton. In the second example here, I don't actually pass in the value for the GPS points."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4136.08,
+            "end": 4150.360000000001,
+            "text": "So we're defaulting to just our regular calories function from workout, which is to calculate it based on the start time and the end time. So from 135 to 357, right. That's why it's a weird, not round number of calories."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4155.360000000001,
+            "end": 4169.320000000001,
+            "text": "So I think that's also really cool, you guys, this function here. OK, so these overridden methods, just to show you sort of for completion's sake how this run workout class looks,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4169.36,
+            "end": 4181.16,
+            "text": "everything is the same as what we ended up with before. But now I'm going to re-implement my get calories method, right. So now run workout knows about a calories method. And I've also got this data attribute,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4181.16,
+            "end": 4193.92,
+            "text": "sorry, class variable, sorry, who's got messed up, this class variable, cals per kilometer, right. And any run workout instance, we'll know about, of course, the cals per kilometer, as well as the cal per hour from our parent."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4196.88,
+            "end": 4217.0,
+            "text": "Questions about that? OK, we're building something really nice here, right. So I guess the question is, and I think you've probably figured this out, how do you know which method to call? Well, you just look at the object before the dot, right."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4217.0,
+            "end": 4231.0,
+            "text": "You run a method, your object dot method name, what's the thing before the dot? What is its type? If the type, like for example, get calories, if the type is running, you look to see if that class"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4231.0,
+            "end": 4242.4,
+            "text": "definition has a get calories method. If it does, you use that. If it doesn't, and only if it doesn't, you look at your parent and say, does your parent have a get calories method?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4242.4,
+            "end": 4253.96,
+            "text": "If it does, you use that. And if it doesn't, you look at the parent's parent. Does the parent's parent have a get calories method, right. If it does, you use that. If it doesn't, you look at the parent's parent's parent,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4253.96,
+            "end": 4267.700000000001,
+            "text": "all the way up, you keep going all the way up the the chain until you get to the generic Python object. If the Python object type has a method named what you'd like to call, you use that. Otherwise, error."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4267.700000000001,
+            "end": 4281.740000000001,
+            "text": "No such method was found anywhere within our chain of hierarchies up until the Python object. All right. So that finishes overriding our getCalories method. And now we're going to do one more thing,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4281.76,
+            "end": 4297.98,
+            "text": "which is to add something new to run workout that didn't actually exist in workout, although I guess I am implementing it in workout. So it's not actually adding new. But we're going to override it anyway."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4297.98,
+            "end": 4315.82,
+            "text": "So the class workout, let's say that we want to compare two workouts together. So to do that, we're going to implement the Dunder method double underscore eq double underscore. This will allow us to compare two running workout objects"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4315.82,
+            "end": 4331.26,
+            "text": "or two workout objects or running and workout objects using the double equal sign. So w1 equal equal run w2 or whatever. So we can use the double equal sign to compare objects of our type."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4331.26,
+            "end": 4352.9,
+            "text": "So again, my decision for comparing these two objects is to say, well, first, let's compare the types. So if I'm comparing a workout versus a running workout, right off the bat, they're not going to be equal. So first of all, the type of this object should be the same."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4352.9,
+            "end": 4369.66,
+            "text": "So I should be comparing workouts with workouts, running workouts with running workouts, or swims with swims. And I also want every one of the other data attributes to be the same, so the start time, end times, the kind, and the get calories."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4369.66,
+            "end": 4386.740000000001,
+            "text": "So as long as all of these things are the same, I'm going to say that these workouts are the same, are equivalent. So this is the equal method in my workout. And then in my class workout, I can actually override that method."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4386.740000000001,
+            "end": 4419.06,
+            "text": "So this should actually be add override, just like the other one. And in run workout, I'm going to override the equal method, but I'm going to do it in a very modular, pythonic way. I'm going to say that a run workout is going to be the same as another workout if everything in my parent is the same."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4419.06,
+            "end": 4439.66,
+            "text": "So here, I'm just calling the super method, saying workout dot double underscore equal double underscore other. So with this little bit here, this line here, just the super dot double underscore equal double underscore other, this compares all of these things."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4439.66,
+            "end": 4458.22,
+            "text": "So I don't need to rewrite that in the EQ method of run workout. And I can clearly see what else, in addition to regular workout comparison, I need to have happen for them to be equal. I also want the elevations to be equal. That's the other data attribute."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4462.02,
+            "end": 4478.780000000001,
+            "text": "So you can see now how nicely modular this code looks. It's very clear what differentiates a run workout to a regular workout with this line. Questions about this? OK."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4479.139999999999,
+            "end": 4499.7,
+            "text": "Yeah, exactly. Yeah, so this should all be on one line. But the backslash actually just breaks up the line into multiple lines for visibility. So in the code, here's a bunch of workouts."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4499.7,
+            "end": 4514.900000000001,
+            "text": "And I mean, we can run some of them. But you can see why they're true or false. So here, w1 and w2 are not the same, because the calories burned are different. They're both regular workouts."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4514.900000000001,
+            "end": 4527.66,
+            "text": "They both have the same start and end times. But the calories burned are different. So this prints false. Just equality on these workouts. And then here's a true one."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4527.66,
+            "end": 4540.34,
+            "text": "w2 is equivalent to w3, because the start and end times are the same, the length is the same, and the calories burned are the same. w1, w3. Or sorry, w2 and w3."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4540.34,
+            "end": 4556.500000000001,
+            "text": "These two. This one just used the default value. But that default value is calculated to be 100, because it's a 30-minute workout anyway. So you can go through some of the other ones on your own."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4557.5,
+            "end": 4573.58,
+            "text": "I guess the other interesting one is this w1 with rw1. Everything about this is the same. Calories burned. Everything is the same, except for the fact that they are different kinds of workouts."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4573.58,
+            "end": 4584.7,
+            "text": "One is a run. One is a regular. So we run that, that's false. Other questions? Or any questions?"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4589.259999999999,
+            "end": 4603.259999999999,
+            "text": "OK. So last slide. This is the last lecture on object-oriented programming. Hopefully it gave you an idea for how to create your own objects."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4603.259999999999,
+            "end": 4618.18,
+            "text": "And this last example specifically showed how we can just improve it a little bit at a time to make it be this really cool thing. We added a way to estimate calories. We added a way to estimate calories using GPS points."
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4618.18,
+            "end": 4630.620000000001,
+            "text": "And we just did it incrementally. So you don't want to do that right off the bat. Just write a little bit at a time. And in the end, you can write a really cool object type. Now that you know how to create your own object types,"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4630.620000000001,
+            "end": 4645.78,
+            "text": "you can create objects using other objects. So some of the data attributes for something more complex could be a workout object, right? Something like that. But it's possible to overdo it, especially now"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4645.78,
+            "end": 4660.299999999999,
+            "text": "that we're not writing super complex classes. It's possible to over engineer. And when you over engineer, it becomes kind of annoying to just keep scrolling back and forth to this in it, to that in it, to figure out"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4660.299999999999,
+            "end": 4675.700000000001,
+            "text": "what methods were in this class, what methods were in the other class. And so if you can achieve it using just one object type or maybe just a function, no need to create all these complicated object types that"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4675.700000000001,
+            "end": 4689.9800000000005,
+            "text": "build upon object types. But I just wanted to show you that it is possible, especially as you might be building more complex things in future classes, things like that, it is possible to write really complex classes that"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4689.9800000000005,
+            "end": 4705.62,
+            "text": "don't look so bad because you're building upon code that you've already written. So now we've got these ideas of abstraction, modularity, information hiding that all work together to help you achieve this really cool object or a cool class"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4705.62,
+            "end": 4720.98,
+            "text": "or a cool program. OK, so the next set of lectures, we're going to leave programming for a little bit. And we're going to look at figuring out how to write efficient programs and how"
+        },
+        {
+            "number": "20",
+            "title": "Fitness_Tracher_Object_Oriented_Programming_Example",
+            "start": 4720.98,
+            "end": 4730.66,
+            "text": "to figure out whether our programs are efficient or not and things like that. So we're going to go into a more theoretical side of computer science."
+        }
+    ],
+    "text": "Okay, so let's get started. Today's lecture will be the last one we have on object-oriented programming and creating our own data types with Python classes. So in today's lecture, we're going to go through an example that's sort of more involved. We're going to be creating our own fitness tracker object, and specifically, we're going to create a class that implements the idea of a workout. And the slides for today are going to feel very similar to the slides from Monday's lecture. A lot of them are just kind of reinforcing the same ideas we saw last lecture on creating getters and setters, creating class variables, and the idea of inheritance. But we're just going to do it in the context of this more involved example, the fitness tracker. So let me remind you first of all something we've been talking about, and hopefully you understand at this point in our lectures on object-oriented programming. And that's the idea that when we write our own object types, we're writing code from two different perspectives. The first perspective is the one on the left-hand side here, where we are making design decisions for how we want to implement this new object, this new data type. And when we make these design decisions, we decide the name of the object, we decide the attributes, which are either data or procedures, that we want the object to have. And then once we've decided on this and we've implemented our data type, then we can start to use the data type. And to use it, we are creating a whole bunch of objects of this type. And we're manipulating these objects in some interesting and useful way. So the left-hand side, we're creating this blueprint, this abstract notion of an object. And the right-hand side, we are creating actual instances that we manipulate. So up until this object-oriented set of lectures, we've really just been working with the right-hand side. And working with objects that other people have created. But the big idea of these set of lectures is that we now get to create our own object types, so we get to write this code here. Okay, so we're going to write code to create a tracker for workouts. And today's lecture, there's going to be sort of a sequence of things that we're going to do. We're going to start out with a really simple workout object, and then we're going to improve on it. And actually set out a little roadmap here on the board that we can follow. So every time we finish sort of a little section, we'll check it off so it's just easier to understand sort of where we are in today's lecture. So we're going to create, first, just a very simple workout object, sort of in the same spirit that we've been creating objects. Then we're going to improve on it a little bit by adding nicer methods and things like that. And then we're going to go through the idea of inheritance to create very specific types of workouts. So if we think about workouts, we have many different kinds of workouts, right? We've got biking, swimming, running, but really at the core of all these workouts, right, if we think about sort of the information related to just a very generic workout, not a running or swimming specific one or a biking one, just a generic workout, there are some common properties that all of these workouts have, right? So I've listed them here, right, a workout might have an icon associated with it, right, so this, this, this, but whatever it may be, there is an icon sort of property for a workout, the kind of workout, so biking, swimming, running, things like that. A date, so maybe a start date and an end date, start time, end time, that kind of information. The heart rate, maybe average heart rate throughout that entire activity, the distance, and the number of calories burned, right? All of these properties are common to any kind of workout that we might want to create. But now that we have specific kinds of workouts that we might want to create, we can actually think, well, in addition to these common properties, a swimming specific workout might actually have some more information that we'd like to save, right, and we'd like to allow the user to work with. So the swimming pace, maybe, the stroke type, the hundred-yard splits, things like that for swimming. And for running, we might want to show the user the cadence, the running pace, the mild splits, and maybe the total elevation throughout that, throughout that run, right? But the idea here is that we have some core set of properties, and no matter what kind of workout we're creating, we would like to save, and we would like to allow the user to, to store and to do operations with. Now when we implement our workout class, we're not going to implement all of these. They're not all necessary. We're going to just keep some of the core ones. So the ones we're actually going to implement in this class are italicized, right? So we're going to keep the icon and the kind of workout, the start time and times, and then the number of calories burned. That's something that we're going to just save as a really common, the common set of attributes for a workout. But of course, you can see that if you make the design decision to improve upon this workout class, you might include a bunch of these other ones as well. Okay, so, so we're going to have to decide the data attributes. So we just mentioned on the previous slide, right? When we make design decisions, we figure out the attributes that we'd like to have for our object type. So that's the data and the behaviors. For the data for a workout, we've decided it would be the start time, the end time, and the number of calories burned. So those three things together, maybe start time as a string and time in the string and calories is a number, right, either a float or int, whatever, those three things together make up the object a workout. And then in terms of functional attributes, so these are the methods that our object might have. Well, we can have, of course, the ability to, you know, tell us the number of calories burned. So something like a getter method to set the number of calories burned if we accidentally inputted the wrong number, reset it, and then maybe something like displaying an information card, right? So something like this, if we ask, if the user asks us to print a workout object, we might display information in this nice manner here. Okay. All right, so let's start defining our class. So this is a very simple workout class, so we're going to do box number one up there before we improve on it. So this is in the same spirit as we have been defining classes in the past three lectures, right? So we tell Python we're creating a new object by saying this is a class, and the name of this object, so the type of this object is workout, okay? And the parent of this object is the generic Python object, so far so good, right? Now the first method we have to implement is the init method, right? It tells Python how to create an object of type workout, the constructor. And we've got a bunch of parameters in here because it's just a regular function that's a little bit special. The first parameter of every method is of course self, right? Because when we call a method, we call it on an object, right? So some object dot this method name. The thing before the dot effectively gets mapped to the variable self, which is why every one of these methods has self as the first parameter. And then we've got a whole bunch of other parameters for how we would like to initialize a workout object. So we're going to say when we create a workout object, we're going to tell it the start time, the end time, and the number of calories burned. So that's the function stub, I guess. That's how you create the object. And then what does this function actually do? What does this method actually do? Well, it does some of the usual things that we know at this point. So it basically maps every one of these input parameters to data attributes, self dot start, self dot end, and self dot calories. But in addition to just saving these as data attributes, the things that are passed in when you create the object, we would like to do two more things. We're creating two more data attributes, right? So in total, a workout object is defined by five data attributes. These last two data attributes, we don't need to pass in, right? We're just going to, by default, make them two strings. The icon is going to be the string, this sweating person emoji, right? And you can have emojis inside strings, which is actually pretty cool. And the kind is going to be just the kind of workout. So we're just going to set it to be the string workout. When we create running workouts, it'll just be the string running. When we create biking workouts, it'll be a string biking, right? Whatever you want it to be. And we're going to see where these show up later on. OK. So that's the definition of my class workout. And then, for now, that's it. That's all we have in terms of the class definition. Now what happens when we create an actual workout object? Well, we invoke the name of the class. So we say here, workout, right? And we're going to save this object to the right-hand side of the equal sign as variable my underscore workout, so far, review. We pass in the parameters that the workout object expects. So here's a string representing the start time, a string representing the end time, and the calories burned for this particular workout, 200. Yes. Good. OK. So then, we can add a whole bunch more methods to our class, right? That was just the init method. But last lecture, I mentioned that it's important to add getters and setter methods to allow the user to grab or set various data attributes. So here I've got three getter methods to grab for me the calories start time and end time, and three setter methods to set the calories start time and end time. OK. All right. So what I wanted to show you, and this is not something we've actually seen before, I wanted to show you that every time you create an object of some type or even an object that already exists, you can actually look into sort of where this object is stored in memory, which is kind of cool. So if we think about the class definition that we've done so far, so not creating an actual instance, just defining the class. This class definition is actually kind of like an object stored away in Python memory. So here I have my workout class, and associated with my workout class definition, Python knows about all of these methods that you're allowed to do with this Python class. And this is called the class state dictionary. So it's a dictionary that basically holds the state of your object. So I wanted to show you what that looks like in code. So this is my workout class. And the way you access the state dictionary is by invoking the name of your class, so not an instance, the name of the actual class, dot this Dunder method, double underscore dict double underscore. So this holds the state dictionary. And if we just access the keys, we're going to see here every single method we've defined in our class. Right? So you see here, here's my dictionary. I could cast it to a list if I wanted to, but not necessary. But you can see every single method that we've defined, so all our getters, all our setters, the init method, the double underscore doc actually grabs for us this doc string that you've put right under the class definition. Right? So that's kind of cool. So that's the dictionary keys. And of course, as we know, keys have values associated with them. So the values associated with each one of these keys is going to be, and we can see here. So for example, the value associated with the doc string is going to be literally the thing that I printed out, right, the little doc string that I put right underneath my class definition. So now it knows the doc string for this class that I just created. And the values associated with my getter methods and my setter methods and the init method and all the methods I created are just the locations in memory where Python can find these methods to run. Right? They don't have actual values with them, of course, associated with them. Of course, because they're just method definitions, but Python just knows where to go in which memory location to actually run this function. So that's kind of cool, cool to know. OK. So that's the state dictionary of my definition, right, the implementation of my class. Now what happens when I create an actual instance, right? So here I've got my workout equals, and now I've got this actual instance of this class type workout. When Python sees this line, it says, OK, what kind of object do you want to create, a workout object? It looks at the init method of that workout object, and then it runs all the lines associated with that workout object. So now it creates a new object in memory, puts that at some memory location. This object is going to be of type workout class. And now this object is going to have its own state dictionary, where in the object state dictionary we're not storing methods or things like that, we're storing the actual data attributes associated with this object, right? So this object, all the data attributes are all the things that you access via the self-dot keyword, right? Self-dot icon, self-dot kind, self-dot start, self-dot end, and self-dot calories. So we can actually go in the code, just like we did when we looked at the class state dictionary, and look at the state dictionary for one specific object, one instance. So again, we can call the double underscore dict method on this instance. So now I have an actual object that has some values associated with it. And if I look at just the keys, we see these are the data attributes associated with an object of type workout, right? I've got my five data attributes. And then the values associated with those keys are going to be the values that are specific to this object, right? So my start is this date here, my end is this date here, calories was 200, the icon was the little sweaty person emoji, and the kind of workout is to work. So it's kind of neat to be able to look into that sort of detail of where things are stored inside memory. Okay. So we saw how to create an instance of an object, and we can create a whole bunch of workouts that we then store, right? And then we can use donotation to access all of these attributes, right? So we can either access attributes directly, or we can access methods, right? We already know this. So last lecture I said that you can use donotation to access data attributes. So here we're accessing the calories value, right? And that's fine, but what's preferred is to use the getter methods, right? So get calories will, in this particular case, return the exact same value as just accessing the calories data attribute, okay? But the note that I made last lecture was that it was better to use a getter method because the implementation behind the scenes might change, right? And if the implementation changes, then if you access the calories method directly, or sorry, the calories data attribute directly, your code might crash. But not only that, somebody who's writing a getter method for this workout function might actually make that method be a lot more complex than just returning that data attribute. And that's what we're going to see in the next slide, right? So the idea behind using these consistent methods instead of accessing using data attributes is that you want to keep information hidden, right? You don't want to start messing around with looking at how something is implemented because that goes against the principle of abstraction, modularity, and information hiding, right? You want to keep things hidden because you want to use the objects that somebody else has created in a nicely consistent manner. The way we use them in a consistent manner is by always using methods that are associated with that object type, okay? And so using getter methods might have seemed inconsequential when we wrote, like, the animal class last lecture, but it's going to seem, it's going to be a lot more important in this particular lecture, okay? So with that, we've finished our simple workout class, and now we're going to change the implementation just a little bit, right? And what we're going to do is we're going to make a change to the way that we store the information. We're going to use a class variable, and I'll remind you what a class variable is in the next slide. And we're going to make a change to the getcalories method. And we're going to allow the user to say, hey, I'm going to create this workout object, but I don't know about you. I don't know how many calories I burn when I do a workout for 40 minutes, right? I don't know that right off the bat. So if the user doesn't supply the number of calories burned, we're going to have our getcalories method kind of estimate those calories burned, based on the duration of that workout, right? So we're going to allow the user to either supply the number of calories, in which case they probably know what they're doing, and then when they ask us to get the calories, we're going to use those. Or we're going to allow the user to not supply the number of calories, and instead estimate those calories based on the duration that they said this workout lasted. All right, so that's the big change that we're going to do here in the workout class, right? So we're going to do a better getcalories method. All right, so this is the new implementation of my workout class. First thing you'll notice is we're using this class variable, right? We talked about this last lecture when we did the rabbits example. In the rabbits example, we had each rabbit change this class variable value. In this example, I'm not going to change this class variable value. I'm actually just going to use it as a variable that every one of these instances is going to be able to access, right? And I'm just not going to change it, which is fine. You don't have to change this class variable. So this class variable will represent how many calories per hour are burnt, okay? So just a number. And then the init method, and again, we're going to make a different init method than what we saw in the previous slides. The init method is going to be new and improved. We're going to take in still the same number of parameters, but the calories are going to have a default value, right? So if the user actually passes in the number of calories, the value for calories here, self.calories, will be whatever the user passed in. But if the user doesn't pass in the number of calories, then this parameter here, self.calories, will be none, right? None being used to represent the absence of a value, okay? So two options here when we create the object. Other things you might notice is that the self.start, so the start time and the end time are no longer just start and end, okay? I'm going to talk about this on the next slide, but essentially what I'm doing here is I'm saying the start and end will be passed in as strings, just like we have been in the past, right? Like September 1st, 2022, 1.35 PM. That's fine. We can still pass in the start time as a string. But when I'm storing it inside my object, I'm actually going to store it as whatever this thing gives me. And this thing is actually going to be returning or parsing the string as a new data type, something we've not worked with before called a date time object, okay? We're going to look at this on the next slide in a little bit more detail. But for now, all we need to know is that the self.start and self.end will be a new data type, a date time object, okay? So that's my init method, so few changes. Now my getCalories method will look a little bit different as well, right? We're not just returning self.calories, like we had in that simple workout class, right? We're going to do a little switch. So if the user supplies the number of calories. So if the calories here were actually passed in, then we don't resort to the calories being none, right? Calories will be 100 or 450 or whatever it is. And then this if statement is false, so we go in the else, and we just return that value. So it's exactly the same behavior as in my simple workout class from back there. But if the user does not supply the number of calories when they create an object, then the calories will be none here. When I create my object, the data attribute self.calories will be none here. So when I ask the workout to tell me how many calories I burned, we're going to go inside the if statement. And we're going to do something. The thing we're going to do is subtract the end time minus the start time. And something like this is allowed on a date time object, but obviously not allowed on strings, which is why I'm converting these strings representing a date and a time into this date time object. This subtraction here gives me something that's called a time delta object. And it's just a new type of object we haven't really worked with before. But it's an object type that we can run a method on. And the method is going to be the total seconds. So for this time delta object, so 10 minutes or 18 minutes or whatever it may be, if we run this method called total seconds, it will tell us how many seconds are in that time delta object. Divide by 3600 to tell us the number of hours. And then multiply by the class variable cal per hour. We'll tell us how many calories were burned in that elapsed time, okay? Yeah? Oh, workout dot is just this thing here. Workout dot cal per hour, that's just this. And then we multiply by that, yeah, that number. Questions about that? Okay, so essentially this is going to do the estimation for us for how many calories were burned in some number of hours or some number of minutes. Now let's demystify this start and end time stuff, okay? So the way that we are converting to this string to a date time object is by using this library up here. So a library is a collection of objects, a collection of maybe also functions that all deal with the same type of thing. So in this particular case, they all deal with dates and times and manipulating dates and times and things like that. In the last lecture, we saw an example of a library, that random library, that allowed us to do operations with random numbers, right? So it's just a nice collection of functions and objects that deal with one sort of common thing. So in this particular case, there is a function inside that library, this parser dot parse function that takes in a string and can parse it to this date time object, okay? So if we print the type of start date and the type of end date, it'll show us that it's this type date time thing, okay? So it's a new object type, we haven't worked with it yet, but it's an object type like a list is, like a dictionary is, like our workout is, right? And so the reason why we're doing the conversion is because we don't want to deal with the messy part of grabbing in a string and figuring out how long the elapsed time is based on just parsing characters throughout this string, right? I certainly don't want to do that. But you know what, somebody who was passionate about doing that did it in this nice little library for us. So all we're doing is just reusing the work that they've done, right? To save it as this object. And then they basically said, let me implement the minus sign to work with objects of type date time, and it makes things like this very easy. We can just subtract to dates from each other, right? And it'll tell us the elapsed time. We can run a method on that elapsed time to tell us how many seconds that elapsed time is. So pretty cool, yeah. Does the total seconds get imported with the parser? Yeah, yes, the total seconds gets imported with the date you tell parser thing. Yeah, exactly. It's an operation that can be run on this date, time delta, I think, type object here. It's like total hours, total minutes. I think there might be like total minutes and total hours also, yeah, yeah. So it's parser class and then like dot parser, dot total seconds are. Yeah, exactly, yeah, exactly. Yeah, so yeah. The important thing to do to code should be important. Yeah, so we usually import all our stuff right at the top. So I was just going to show the code. So here I've got everything that I need to import way at the beginning. So it's kind of like Python goes and copies and pastes everything in those files and puts them in your file. So now everything that's defined in those files is now accessible in your file. You just have to sort of do the dot notation on these libraries here. So I just wanted to show you down here. So here I shouldn't have imported again, but it's just part of this exercise. So here I've got the parser being imported. I've got the start time. These are just strings, right? Nothing special about them. And we can parse them. So I've got these strings parsed and the types of these objects, again, are not strings anymore now that I've parsed them, right? Start date and end date are now these date time objects, date time dot date time. And then we can do operations like this. So if I just simply subtract one time from the other and print that time delta object, Python puts it in this nice little format for me. I should just comment these out. It's hard to see. It puts it in this nice little format for me. So here's number of hours, colon, number of minutes, colon, number of seconds, right? So this is the STR method that was implemented for that kind of object. It prints it in this nice little form, right? Hours, colon, minutes, colon, seconds. And then we can do this useful thing, which is what we're doing in our code. We can run the total seconds function on an object of this time delta. And it tells us that this 10 minutes, right, is equivalent to 600 seconds. So very, very cool, very useful. And, you know, we don't even need to know how any of that is implemented. We just make use of these functions. What's cool about the parser, though, and this will be really, really cool. You can actually write the time and the date in any format. It doesn't have to be month slash day slash year, space, this, right? So this is kind of how I wrote this one. We can actually write it something like sept 30, 2021, right, like that. And it knows how to read that. Or we can write out September all the way. Put the comma there, put the comma there, put the PM lower case and closer to the time. And it knows how to read that as well. So it knows how to parse all these different ways of writing the dates and save them as these daytime objects for using in this very nice, very readable way. Isn't that cool? Okay, so very useful if you ever want to work with date times. Okay, so now, okay, so now this is our state dictionary sort of for how we ended up with our simple workout class. But what are the changes we made to improve it? Well, in my state dictionary, I added my class variable. Calories per hour. So now this calorie per hour is available for any instance that I create, right? We already knew this, but this is kind of the representation of that. And we didn't add anything to the instances. Those haven't changed, right? Okay, so little aside on class variables, right? So this cal per hour here is available for all of these instances. Now, a class variable, right, is just like an instance variable. We can access it from within the class definition, which is how it should always be done. But Python being Python, they allow you to access that class variable from outside the class definition as well. So we can do something like this. So we can call the cal per hour class variable on the name of this class, right? Outside of the definition, right? This is my class definition. It ended here, right? And this is just code that's outside of the definition. And Python will be happy to tell you what that value is. Python will also be happy to tell you what that value is if you access it through an instance. So here I've created an actual instance of type workout. So I'm not calling the cal per hour on the name of my class. I'm just grabbing it through one of my instances. And if I print instance dot cal per hour, Python will also happily tell me what that value is, right? And Python being Python, they're going to allow you to change the value of that cal per hour outside of the class definition as well. So here, outside the class definition, I'm going to say workout dot cal per hour equals 250. So now, the cal per hour is changed permanently to 250, no matter how I access it, either by calling the name of my class directly, or by calling the class variable through one of the instances, okay? So no good. Never, ever work with these data, with these data, access data attributes or access class variables outside of the class definition. If you really want the user to be able to do something like this, right, then write a method for it. And then they can change it or access it in a consistent way, the way that you want them to access it. Okay, so just a little bit of practice for you guys to create a couple of workout objects, just to make sure everyone's on the same page, we understand what a workout object is. So just create for me two objects, and then print the calories for these workout objects. So the first one I would like you to create, name the variable w underscore one. It started, this workout started in January of 2001, 330, and it went till 4 PM, and you want to estimate the calories from this workout. You don't know how many calories you burned, right? And then print the value for that calories. And then the second object, same start date, same end date, but you know that you burned 300 calories, right? So create these two objects, and then print the number of calories burned. So this is online, 199, and it's okay to scroll back up, right? To the init method of workout, just to see how it's implemented. No reason you should have memorized it by now, right? All right, how do we create these two objects? What's w one equal to? Yep. Yep, yep, the start date would be first. So I can just, as a string, perfect. Yep, yep, I'm not saying, I don't think I'll say add, I don't know if that works. And then the end date, right, is the next one. So this one's 4 PM, right, like that, you can do that. And then, what else do I put, or do I put anything else? Exactly, yep, in this particular case, I'm going to let it default to none. And then how do I grab the number of calories burned for this object, for this workout object? How do I print that out? Yep, so I just call the get calories method on w one, and let's slap a print statement around that, like that, okay? Yep. Nine minutes, do that, I don't know if you can do that. Perfect, so what is it, a 30 minute workout at 200 calories per hour? It's 100 calories, right, burned. Second one will be pretty similar, right? So I'm just going to copy and paste. What's the difference between this one and the previous one? When I create my object, what's the one difference? Yeah, yep, exactly. We will pass in 300 as the last param here, right? And so then if we run that, 100 was my first print statement and 300 is my second one, right? So it relies on the number that was passed in, as opposed to estimating it based on the start. All right, everyone okay with this? We all sort of understand get calories method, perfect. So we've finished our improved method here. We saw this better get calories method, very neat method that allows estimation. And we saw a little bit about using these daytime objects. Okay, so the next stop, the rest of this lecture, we'll be implementing one subclass of this workout object called a run workout class, okay? And so we're going to use the idea of hierarchies and class inheritance to do this. So let's remember a little bit about hierarchies in terms of Python. So when we create a class that we know will be sort of this parent class, that's a base class, right? It's the most basic thing that we'd like to work off of. We call that the parent class or the super class. And this one parent class can have many subclasses associated with it, right? So in this particular case, just as an example, we can have two types of workouts, right? One outdoor workout and one kind is an outdoor workout and the other kind is an indoor workout, okay? And both of these are workouts, right? So everything that a workout has and everything that we can do with a workout, we will be able to, will exist in outdoor workout and indoor workout and we'll be able to do with outdoor workout and indoor workout, right? So a child class is a parent class, a subclass is a super class, right? But these subclasses can bring about some of their own quote unquote ideas, right? Their own attributes. So for an outdoor workout, we might add more information, right? So add more attributes, maybe location, something like that. For indoor workout, you might not need a location, you might not add any extra data attributes. We might add more behaviors, right? So for outdoor workout, I don't know, you'd add some different behavior than just a regular workout. Same for indoor workout or you might override behaviors. So you might change something that workout does to be specific to an outdoor workout. And of course, we can create as many of these subclasses as we'd like. So for outdoor workouts, we can now have two different types of outdoor workouts, a running or a swimming. And for indoor workouts, we might have treadmill or weights types of workouts, right? And whenever you create these child classes, they inherit everything that their parents has. So a running class is an outdoor workout and by default, it's also going to be a workout, right? Because outdoor workout was a workout, okay? So what we're going to do in this run workout class is, I'm going to show you three sort of methods implemented. The first one is going to be just reusing something that our parent can do. The second one is going to be overriding a method that our parent already can do, to make it better and more specific to the child class. And the third one is to add a method that our parent didn't even have, okay? So we're going to do these three things in the run workout object, okay? So let's remember this example here about common properties that all of our workouts have, right? So this is basically us implementing our workout superclass. So I know we didn't implement all of these, but in theory, we can implement all of the things that are highlighted in yellow in our parent class, and these are common no matter what kinds of workouts we create. Now in the Python file, I actually have a swimming subclass. We're not going to go over the swimming subclass in the lecture, but please feel free to go through it in the Python file for this lecture. And I think you'll also be working with it in recitation on Friday as well. In lecture, we're going to be creating a subclass that's specific to running. And this running class will of course inherit all of these properties that our parent workout class has, but we're also going to add our own data. And we're going to override some data that the workout class has and things like that. So specifically, the only thing we're actually going to implement that's different than a regular workout is to add an elevation, an elevation attribute, right? So beyond that, start time, end time, calories, an icon will also exist. And the kind of workout will also exist. Those are our five data attributes, right, from workout. And we're going to add elevation for running workout to make six. Okay, so this was our parent class, right? Just as a reminder, this is what it looked like. We had our class variable and this init method here. This class workout, as their parent, was the generic Python object. Now, when we create our run workout, our parent will be the workout class, right? So we don't just want it to be a Python object, we want it to be a workout object. So as soon as we do that inside our code, Python says, all right, let me just grab all of the stuff, everything that's defined inside your parent class, this workout, and quote unquote copy and paste it into this class. So right off the bat, we've got all of the things that workout has. But that's not, that doesn't quite work with our run workout. Because when we create a run workout, and again, this is a design decision, we would like the user to be able to pass in an extra parameter here. The elevation value. So in addition to the start time, end time, and the calories burned, I'm going to slip in this elevation value right before the calories burned parameter, okay? So when I initialize my run workout, I could theoretically pass in four values. String, string, number, number. Or, since elevation is zero, elevation has a default parameter and calories has a default parameter, I could pass in just string, string. And those other two will default. Okay, so what is this init method doing? It's calling the super function. I know we haven't done this before, but I just wanted to show you this. This is another way to ask Python to tell you who your parent is, right? So when you run this function super inside a class definition, Python effectively returns, so the replacement of this function, right? It's just a function, it has a return value. The return will be the thing in the parentheses here. So effectively, that line becomes workout dot double underscore init double underscore. Exactly what, as we saw in last lecture when we did animal, right? Rabbits and all those stuff. All right, so what we're doing here is we're saying, well, I know workout can do all those initializations for me. So let me just take advantage of that, not copy and paste it. And just let workout do the job and initialize all that stuff for me. So this line of code here initializes the start and times by parsing them, the calories and the icon to the sweaty person emoji and the kind to workout string. But since this is a run workout, I would like to replace the icon with a little running person emoji and the kind of workout this is is no longer just a workout, let's say it's a running workout, right? So it becomes a string running. So I'm overriding those data attributes to be the strings. And then the thing that run workout has that workout didn't have at all is this elevation data attribute, right? So self dot eleve is now a new data attribute that did not exist in the regular workout. Okay, and then I've got these two methods down here. A getter for the elevation and a setter for the elevation. Nothing fancy with them, they just return and send, yeah. Yeah, so the super in it calls the parents in it method. And the reason I do that is because I know the parent can just initialize all that stuff for me. So I'm just taking advantage of the fact that it does all that stuff for me, right? You can imagine the in it method, maybe it also checked the types, right? To make sure that the person who created this, you know, to kind of enforce that start is a string and does a string. Like all that extra code that would happen in the in it method of workout, we would just let run with this line here. So we don't have to copy and paste it. Yes. You also have to define them in the line of half, right, before half processes. Yes. You mean from this, these two? Yep. To have start and color it. And the super needs to have at least start and color it. Yes, exactly, actually. Yes, you're right. So the reason this works is because the in it method of my workout takes in the start and the end and the calories, right? If I said that the in it method of run workout doesn't need start and end or something like that, I wouldn't be able to run this in it method, exactly. Or maybe I would run it with some defaults or something like, like if you actually want to run it, you have to pass it. You still have to follow the stub of that in it method, right? Yeah, that's a great point. Yeah. Because I feel like before passing the in it of the parent into this one without having to write the super thing. Yeah, so this, you're right. I wasn't writing the super thing. I was just naming the parent directly. So in the animal one, I said animal dot double underscore in it, double underscore. And in this particular case, I'm just showing you a different way to do it. Baby, you don't know who your parent is, question mark? In that case, you can just run this function and it tells you who your parent is. But this line would work just as well if I said workout, right? This thing dot double underscore in it, double underscore. And that would be exactly the same as I had done last lecture. So let's look at the state dictionary for this one, right? For this new addition here. So this is the state dictionary of just my plain old workout class, right? We've done, we saw this before. It's all my getters, all my setters, the init, and this cal per hour from the new and improved workout class. Now my subclass, the run workout, the super method basically says, hey, this is, you are a workout. The super method, the state dictionary for it will additionally have these two getters, oh, sorry, this getter and the setter, these two methods, right? We're not copying all the stuff all over again down in the run workout state dictionary because that already exists up here, right? But in addition, the run workout has this get elevation and set elevation method. Those are the only things that we've defined in this class, right? So then when I create a run workout instance, so this is an instance of run workout not workout, Python points to this run workout class. And the data attributes for a run workout instance are going to be, of course, all the data attributes of a regular workout, that was five, plus the elevation, the new data attribute that I just added, okay? So we're using inheritance in this particular case, right, in the spirit of modularity, in the spirit of abstraction, in the spirit of writing code that's reusable, that's readable, that's understandable in the future, right? So we're not, if we were writing the run workout by basically copying and pasting everything in there all over again, it would be a really long class where most of it was just a copy and paste off of the workout, right? So now in this particular, if we define it in this way, we can easily see new functionality, right, and new data attributes that run workout has in addition to just being a workout object, okay? So all those good things for writing very nice clear code. Okay, so now we're going to look at a function, sorry, a method that's being reused from our parent, and that's this double underscore str method, okay? So this str method, it looks like a beast, right? It's very, very long, but I promise you it's not so bad. So this str method, let's remember what it does. It tells Python what to do when you print an object of type workout, right? Because it's defined inside the workout class here. So I'll show you what it actually looks like in the actual workout class. So here's my workout, right? There's my class variable, my init, my getters, my setters, all that. And then here's my str method. It's long, right? It takes an entire page. This is not a method that I would like to copy and paste in every single one of my subclasses, right? Because that would be a lot of code, again, against the spirit of abstraction, modularity, all that good stuff. So what we're doing is we're just defining it once in our parent class, workout. And it's going to do the following. So str method has to return a string, right? It doesn't print the string, right? This is a very important distinction. It returns a string that will eventually be printed when you call the print method. So the thing that I'm doing throughout this whole function, throughout this whole method, is to basically just build up my string to return. Return, right, sure, is return string. And I'm building it just by concatenating it piece by piece with more and more stuff that I want to eventually print out. So the output would look something like this, right? I'm basically printing out on the console, sort of like the little square of a watch, right? Very cute. So what am I composing here? The first bit, right, this thing in the red box, prints this line over here. Just horizontal line that's some width long. The next bit here, you notice, it grabs the icon data attribute, puts it here on a line, along with a vertical bar and a bunch of spaces and a vertical bar. The next bit here prints the kind of workout by accessing the kind data attribute, right? So either workout or running or swimming, whatever that string is, prints it right underneath the emoji. The next bit here is composing the duration. So remember when we did the datetime object, just over here, right? When we were printing the duration where we just simply subtracted an n time minus a start time, it looked like this, right? I'm perfectly happy with that. That looks really nice. So let's just use that. So the duration here, the get duration just does the subtraction. It's a method inside my workout class. And then we just sort of keep composing that to our return string. Next, we are going to figure out how many calories were burned in this workout object. So again, we're grabbing the get calories method, right? The return value from that method. However, it may be calculated, right? So for this workout type, either we gave the value directly or we let it estimate it from the duration of the workout. However, it decides to calculate it according to how this workout object was made. That value gets put right there. And then the last bit is this last line down at the bottom, OK? So then we can create any kind of workout, right? Because all the child classes inherit all of the methods from the parent class. So of course, all these child classes will inherit the STR method of workout. So no matter what kind of workout I'm creating, so here I'm just creating a regular workout. Here a running workout and here a swim workout. No matter how I'm creating it, they'll use the same STR method. So all of these will print it in this really nice format, right? The first bit will be specific to the kind of workout we have, right? The little emojis will be different because I've set those separately, right, within the subclasses. The kind as well, the label, right, a workout or running or swimming. The calories burned and the duration will be calculated using the get calories method and then the get duration method. So again, in a nicely consistent way. So I'll show you what this looks like in the actual code. Let me just comment that. So here I've got three workouts created and then I'm just printing these three different kinds of workouts and just to show you I'm not lying, see the swim workout doesn't have an STR method defined, right? And neither does the run workout, right? It just has a bunch of other stuff defined but no STR method. So we're just using the STR method of our parent and then when we run it, it looks like this, right? So I've got a regular workout with their icon and label, running workout with their icon and label and a swimming workout with their icon and label. Isn't that cute, right? So we've made our own little digital thing, okay. So this begs the question, right? When can we use an instance of a class, right, of a subclass? Well, you can use an instance of this run workout anywhere where you can use workout, right? Again, the way I think about it is you say, well, a run workout is a workout. So anything I can do with a workout, I should be able to do with a run workout or swim workout or any of the subclasses, right? But the opposite is not true. If I can do something with a run workout, well, run workout has a bunch of other specific things that it can do. Of course, a regular workout is not going to be able to do those specific things, right? So let's think about these two helper functions. This one calculates the total calories given a list of workouts, and this one calculates the total elevation given a list of workouts. The code looks very similar for both. We're just iterating through the loop, grabbing each workout object, and then we're calling the get calories or the get elevation on that workout object, right? So this will give me a number, and then I'm just keeping a running sum for the total elevation and the total calories, and at the end I return it, right? So again, the list here is important. These are workout objects and workout objects. So what if I have a bunch of, so here I've got two workout objects and two running workout objects. So these workout objects are 30 minutes long, right? So using 200 calories per hour, these ones will each be 100 calories. These running workouts are two hours long, so they will, it doesn't actually matter, right? Sorry, sorry. These running workouts are two hours long, so they're going to be 400 calories, right? Because these parameters here correspond to the elevation, okay? And they correspond to the elevation because if we look at the way we defined a running workout right here, right? This is the order of the parameters, start time, end time, elevation value, calories. So when I pass in parameters, they need to go in that order. And I can't skip around, right? If I want one of them to be the default variable, then that has to be at the end. So in this particular case, I've got these two running workouts at 400 calories because by default, I didn't actually pass in the number of calories, and then the elevation is 100 and 200, yeah? What if you wanted the default elevation and the calories, would you put comma, comma? Then you would just put, if you wanted both to be default, then you just put nothing. You can't just leave an empty comma. What if you want default elevation and the calories? Yeah, so then you would have to actually explicitly say like calories equals whatever you want. All right. So at that point, yeah, now that we're working with default variables, it becomes a little bit tricky. You can't go wrong with just saying like, LF equals whatever you want it to be, calories equals whatever you want. And then you can do whatever you'd like in that case, yeah. But in this particular case, we know our workouts are 400 and elevation is those values. So when we run total calories on all of the workouts, no matter what kind of workout I have, it doesn't actually matter, right? Because Python will just grab calories for all of these workout types, right? So just sums that up. Elevation, if I run it only on running workouts, Python will know what to do. Here's 100 and 200 because those running workouts have an elevation data attribute. But if I ask for, oops, but if I ask for the elevation for a running workout and adjust a regular workout, Python will spit out an error. Because as soon as it sees this workout one, it says, well, what's the workout dot get LF method? And it's going to say, I don't have a get LF method for a regular workout. That's not something I know, right? Because that's something that we implemented in the child class. So let's go through these together. And it's actually nothing to code just to sort of run. It's just down here. So this is just kind of making sure you understand sort of the order of operations. And I think one of the ones that was a question here where we actually passed in the number of calories is at the end. So when I create a regular workout, oops, let me just remove that over here. What is the value when I ask Python to tell you the calories for this workout? At 200 calories an hour, what's the value here? Just yell it out. 30 minutes, 100, right? What's the elevation when I ask Python to tell me the elevation for this object? Error, exactly, yep. Yep, because the workout object has no attribute, right? Has no method get LF. That's something specific to a running workout. OK, how about this one, run workout here? So here I'm actually, oops, I didn't mean to do that. What happens if I grab the calories for W2? Yep, 450, yep, it just grabs whatever's passed in, right? It doesn't estimate. How about the elevation? Yep, error again, perfect. Now let's create three kinds of running workouts. So here's one. What's the calories and elevation for this one? I'll just do them both together, right? So RW1, this parameter is the only one passed in. What does that correspond to? Calories or elevation? Yeah, elevation, remember our parameter list? Elevation comes before calories. So the elevation's 250 and the calories will be estimated, right? Based on whatever this is, right? So calories is first at 100, elevation's 250. How about running workout two? So here I've got 450 and 700 in that order. Which one is the elevation? Yep, 450 and calories is 700. So when we print it, I printed them backward just to confuse us all. And then lastly, how about this run workout three? So here, to answer the question, what if I wanted elevation to be default, but I wanted to pass in calories? So here I just say the name of my parameter there and I give it an actual value, right? So clearly here, calories will be 300 and elevation defaults to zero. So just a little practice reading the specifications. OK, so that finishes reusing the STR method from the parent. Now let's override our superclass. So our improved workout class, remember, has a get calories method that estimates the calories based on the time that it took you to do this workout, whether it was a running workout or a regular workout. But what I'm doing in this method is I'm going to actually implement my own get calories method inside the class definition for a run workout. So here's my run workout class definition. And I've got my own get calories method. So when I run get calories on a run workout, Python will use this one. What is this one going to do? So we're going to do something really cool. We're going to estimate the number of calories burned for a run workout based on a set of points, latitude, longitude points. So what we can actually do is we're going to pass in a list of tuples, like this, which represent the route that we take. So from point A, so in this particular case, I've got four places that I have jogged between. So these are my four latitude, longitude points. So each tuple is latitude, comma, longitude. So I can make this as precise as I'd like. But what I want this method to do is to potentially, if the user does give me a set of latitude, longitude points that they actually went through, to calculate the calories burned based on a class variable called calories per kilometer. So given a set of these points, what I'd like to do is to calculate the total kilometers traveled between all of these latitude, longitude points, multiply that distance, that kilometer distance, by the calories per kilometer, and use that as the estimate for the calories burned in this particular run workout. So this is how the code achieves that. So I've got another class variable that's only specific to this run workout. So workout does not know about this. Calories per kilometer is 100. And now I've got my own get calories method here. It's overridden. So if we run this get calories on a run workout, it will use this one. And what does it do? Well, if we don't give it any GPS points, if we don't give it a list of tuples there, Python will default to the else. What does the else do? Well, it says, hey, who's your parent? Run their get calories method. So that's just estimating it based on the total time elapsed in this workout. That's our default parent. But if the user got fancy and gave us a bunch of tuples representing latitude and longitude points for all of their workouts, then we're going to do the following stuff. We're going to iterate through all of these pairs of GPS points, pair by pair. We're going to calculate the distance, given this latitude-longitude value, add on to this running total for the total distance pass, total distance ran, and then return that total distance multiplied by this data attribute class variable, calories per kilometer. So let me show you what this actually looks like, because the only thing that is sort of still mystifying here is this GPS distance. And this GPS distance is actually a function that's in this lecture helper's file, which is included in today's Python zip file. And it's just, from the internet, it's a way to calculate the kilometers, the distance traveled between two latitude-longitude pairs. That's all it is. So it does some fancy stuff with sines and cosines and things like that to figure out the distance between these two lat-long pairs. That's all it is. So we're just running that function nicely down here to help us calculate that total distance. Beyond that, everything is pretty simple. It's just looking at consecutive pairs of these tuples, getting that distance plus this distance plus this distance, and then multiplying by the caliper column. So in the end, what we get is something like this. So here, let me show you, here are two points, latitude-longitude points. So I've got Boston and Newton. So here, I've just got a straight shot, so not counting, getting very precise with blocks and things like that. But if I create a running workout here with the start time, end time, elevation value, and now I pass in the root GPS points, this is another piece to my init method. I forgot to show you that. Sorry about that. So here's my init method for run workout. I skipped that a little bit. Last parameter here is to actually pass in some root GPS points. And if I actually pass in those root GPS points, when I run the get calories method, it tells me that I burned this many. And it calculates it based on that distance between Boston and Newton. In the second example here, I don't actually pass in the value for the GPS points. So we're defaulting to just our regular calories function from workout, which is to calculate it based on the start time and the end time. So from 135 to 357, right. That's why it's a weird, not round number of calories. So I think that's also really cool, you guys, this function here. OK, so these overridden methods, just to show you sort of for completion's sake how this run workout class looks, everything is the same as what we ended up with before. But now I'm going to re-implement my get calories method, right. So now run workout knows about a calories method. And I've also got this data attribute, sorry, class variable, sorry, who's got messed up, this class variable, cals per kilometer, right. And any run workout instance, we'll know about, of course, the cals per kilometer, as well as the cal per hour from our parent. Questions about that? OK, we're building something really nice here, right. So I guess the question is, and I think you've probably figured this out, how do you know which method to call? Well, you just look at the object before the dot, right. You run a method, your object dot method name, what's the thing before the dot? What is its type? If the type, like for example, get calories, if the type is running, you look to see if that class definition has a get calories method. If it does, you use that. If it doesn't, and only if it doesn't, you look at your parent and say, does your parent have a get calories method? If it does, you use that. And if it doesn't, you look at the parent's parent. Does the parent's parent have a get calories method, right. If it does, you use that. If it doesn't, you look at the parent's parent's parent, all the way up, you keep going all the way up the the chain until you get to the generic Python object. If the Python object type has a method named what you'd like to call, you use that. Otherwise, error. No such method was found anywhere within our chain of hierarchies up until the Python object. All right. So that finishes overriding our getCalories method. And now we're going to do one more thing, which is to add something new to run workout that didn't actually exist in workout, although I guess I am implementing it in workout. So it's not actually adding new. But we're going to override it anyway. So the class workout, let's say that we want to compare two workouts together. So to do that, we're going to implement the Dunder method double underscore eq double underscore. This will allow us to compare two running workout objects or two workout objects or running and workout objects using the double equal sign. So w1 equal equal run w2 or whatever. So we can use the double equal sign to compare objects of our type. So again, my decision for comparing these two objects is to say, well, first, let's compare the types. So if I'm comparing a workout versus a running workout, right off the bat, they're not going to be equal. So first of all, the type of this object should be the same. So I should be comparing workouts with workouts, running workouts with running workouts, or swims with swims. And I also want every one of the other data attributes to be the same, so the start time, end times, the kind, and the get calories. So as long as all of these things are the same, I'm going to say that these workouts are the same, are equivalent. So this is the equal method in my workout. And then in my class workout, I can actually override that method. So this should actually be add override, just like the other one. And in run workout, I'm going to override the equal method, but I'm going to do it in a very modular, pythonic way. I'm going to say that a run workout is going to be the same as another workout if everything in my parent is the same. So here, I'm just calling the super method, saying workout dot double underscore equal double underscore other. So with this little bit here, this line here, just the super dot double underscore equal double underscore other, this compares all of these things. So I don't need to rewrite that in the EQ method of run workout. And I can clearly see what else, in addition to regular workout comparison, I need to have happen for them to be equal. I also want the elevations to be equal. That's the other data attribute. So you can see now how nicely modular this code looks. It's very clear what differentiates a run workout to a regular workout with this line. Questions about this? OK. Yeah, exactly. Yeah, so this should all be on one line. But the backslash actually just breaks up the line into multiple lines for visibility. So in the code, here's a bunch of workouts. And I mean, we can run some of them. But you can see why they're true or false. So here, w1 and w2 are not the same, because the calories burned are different. They're both regular workouts. They both have the same start and end times. But the calories burned are different. So this prints false. Just equality on these workouts. And then here's a true one. w2 is equivalent to w3, because the start and end times are the same, the length is the same, and the calories burned are the same. w1, w3. Or sorry, w2 and w3. These two. This one just used the default value. But that default value is calculated to be 100, because it's a 30-minute workout anyway. So you can go through some of the other ones on your own. I guess the other interesting one is this w1 with rw1. Everything about this is the same. Calories burned. Everything is the same, except for the fact that they are different kinds of workouts. One is a run. One is a regular. So we run that, that's false. Other questions? Or any questions? OK. So last slide. This is the last lecture on object-oriented programming. Hopefully it gave you an idea for how to create your own objects. And this last example specifically showed how we can just improve it a little bit at a time to make it be this really cool thing. We added a way to estimate calories. We added a way to estimate calories using GPS points. And we just did it incrementally. So you don't want to do that right off the bat. Just write a little bit at a time. And in the end, you can write a really cool object type. Now that you know how to create your own object types, you can create objects using other objects. So some of the data attributes for something more complex could be a workout object, right? Something like that. But it's possible to overdo it, especially now that we're not writing super complex classes. It's possible to over engineer. And when you over engineer, it becomes kind of annoying to just keep scrolling back and forth to this in it, to that in it, to figure out what methods were in this class, what methods were in the other class. And so if you can achieve it using just one object type or maybe just a function, no need to create all these complicated object types that build upon object types. But I just wanted to show you that it is possible, especially as you might be building more complex things in future classes, things like that, it is possible to write really complex classes that don't look so bad because you're building upon code that you've already written. So now we've got these ideas of abstraction, modularity, information hiding that all work together to help you achieve this really cool object or a cool class or a cool program. OK, so the next set of lectures, we're going to leave programming for a little bit. And we're going to look at figuring out how to write efficient programs and how to figure out whether our programs are efficient or not and things like that. So we're going to go into a more theoretical side of computer science."
+}

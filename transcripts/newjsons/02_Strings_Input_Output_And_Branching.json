@@ -1,0 +1,2245 @@
+{
+    "chunks": [
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 0.0,
+            "end": 28.5,
+            "text": "So let's start today's lecture. We're going to be looking at sort of three different topics. The first is we're going to look at a new object type called a string. We briefly mentioned this word last lecture. Then we're going to see how we can write programs that start to get input from"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 28.52,
+            "end": 51.66,
+            "text": "the user and show the user output. And finally, we're going to go into writing a little bit more interesting programs that make decisions based on decisions that we actually input in the code. So not decisions spontaneously, but things that we will code within our programs. But before we go on to these topics,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 51.66,
+            "end": 67.54,
+            "text": "I just wanted to do a quick recap of what we learned last lecture just to make sure we're all on the same page. So we introduced the idea of an object. And every object in Python has a specific type, and the type tells Python the kinds of things you're allowed to do with that object, okay?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 67.54,
+            "end": 89.7,
+            "text": "We talked about once you have objects, you can actually assign these objects to variables, and these variables basically bind a name to the object in memory. With objects, you can also create expressions by combining objects together. And the expressions can either be things that we've seen in math, like with parentheses and with object operator object."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 89.7,
+            "end": 105.7,
+            "text": "Or they can be things like this, which was kind of introduced in programming. It's an expression, but it's kind of a different one. It's more like a command. Or I'm asking Python to do this operation for me. What is the object that comes back from this operation?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 106.86,
+            "end": 125.02,
+            "text": "So today, I'm going to go over this little sort of memory diagram. We started drawing last lecture, and I'm going to use this memory diagram today as well. Here's some lines of code that we wrote last lecture. So we wrote a line in Python that created an object."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 125.02,
+            "end": 144.7,
+            "text": "Its value is 3.14, a float in memory. And the name we gave this object was Pi. So just the name Pi, Pi. Radius equals 2.2 is another assignment statement in Python, and it binds the name radius to the value 2.2 in memory."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 144.7,
+            "end": 164.18,
+            "text": "And once we've created these variables, we can just invoke their names. We can use their names to tell Python to grab for me the values from memory. So when Python sees Pi times radius star star 2, that means take Pi, multiply it with the radius squared. So behind the scenes, Python goes, grabs the value 3.14 from memory,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 164.18,
+            "end": 179.78,
+            "text": "replaces Pi with that value, grabs 2.2 from memory, replaces radius with that value. It does the operation according to the precedence rules. And then that expression, the thing on the right-hand side of this equal sign, becomes a value."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 181.26000000000002,
+            "end": 202.01999999999998,
+            "text": "That value is then created as a new object in memory right here. And that object in memory is then bound to the name area. That's exactly what this assignment statement said. And we can do something like this in Python, which we can't actually do in math, right? If we did this in math, the expression would basically say 0 equals 1."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 202.01999999999998,
+            "end": 223.7,
+            "text": "But in Python, it's totally fine because, again, we evaluate the thing on the right-hand side of the equal sign. So on the right-hand side of the equal sign, we say, I want to grab the value of radius, so 2.2, add 1 to it, 3.2, create this object in memory. Here I have a whole new object in memory, 3.2, and then assign it to the name radius."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 223.70000000000002,
+            "end": 247.42000000000002,
+            "text": "So I've lost the binding from the original 2.2 and rebound the name to 3.2, okay? So we're not modifying objects in memory, we're creating new objects in memory whenever we do such operations. We're gonna see how we can modify objects way into the future. And just sort of for completion, when we have a line that says var is equal type 5,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 247.42000000000002,
+            "end": 262.78000000000003,
+            "text": "multiplied by 4, Python also sees this as an expression. And so as an expression, it has a value. So the right-hand side of this equal sign says, well, I'm gonna sort of systematically evaluate this and say, what's 5 times 4? It's 20."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 262.78000000000003,
+            "end": 277.66,
+            "text": "What's the type of 20? It's an integer. And so that's what the right-hand side evaluates to an integer. And I'm going to bind that value int to the name var. So var is another variable name, and its value is int, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 277.66,
+            "end": 297.42,
+            "text": "The type of my object, which is a little strange, right? So far, we've kind of just put numbers in our memory, but we can put any object type in memory. Okay, so let's move on a little bit onto the new object type called a string. So a string is actually a sequence of case-sensitive characters."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 298.62,
+            "end": 313.98,
+            "text": "The characters can be anything. We have lower case letters, uppercase letters, the numbers on your keyboard, the special characters you see on the keyboard. Even the enter when you do a new line or a tab has a special character associated with it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 313.98,
+            "end": 333.54,
+            "text": "And the way we tell Python we're creating an object of type string is by enclosing the characters we want to be part of that object in these quotation marks. So when Python sees the quotation mark, it knows you're creating a string object. So here, I'm creating the string object which has the lower case letter m, lower case letter e."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 333.54,
+            "end": 350.66,
+            "text": "And here, I'm creating the string object which has the lower case y, lower case o, and lower case u letters. And these objects are things in Python. And we're just going to give them a handle, a binding with some more convenient variable names, a and z."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 351.70000000000005,
+            "end": 370.46,
+            "text": "So in memory, the way this would look in a little memory diagram is we would have the string characters me bound to the variable a, right? So basically what we've seen before. All right, so now what are some things we can do with strings? Well, some really common operations are that we can concatenate strings or"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 370.46,
+            "end": 387.74,
+            "text": "we can repeat strings. So here, I'm not going to put the z in memory. You can kind of imagine how that would look like. But let's say I create now a variable b, equals the letters mysclf. What if I do a plus operator between these two strings?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 387.74,
+            "end": 407.58,
+            "text": "The plus operator tells Python that I'm going to take these two strings, the individual characters in each string, and kind of just put them together to make one new object that is all of these letters put together. So c is equal to a plus b is another assignment operator. And on the right hand side, we have an expression plus operator between two"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 407.58,
+            "end": 426.02,
+            "text": "objects. It's going to put me, which is the c letters, and the mysclf, the b letters all together to create a new object, which I then give a handle or a binding c. So from now on, any time I want this particular string of characters,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 426.02,
+            "end": 445.90000000000003,
+            "text": "M-E-M-Y-S-E-L-F, I can just invoke the name c in my program. That's just the variable name that I gave it. Now notice it didn't insert a space, right? It didn't do me space myself, because we didn't tell it to do a space. So if we wanted to do a space, we'd have to put it in ourselves."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 445.90000000000003,
+            "end": 465.78000000000003,
+            "text": "So we can concatenate, so we can have a larger expression where we can concatenate a with a space and with b together. So that will give me an entirely new object in memory, the string M-E space, M-Y-S-E-L-F. This new object is bound to the name D. Is that okay so far?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 465.78000000000003,
+            "end": 479.78000000000003,
+            "text": "Does that make sense? Okay, all right, so that's concatenation. Basically takes these two string characters, puts them together in a new object. What about the star? I kind of briefly talked about this as repeating something last lecture."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 479.78000000000003,
+            "end": 493.62,
+            "text": "Well, the star operator works between a string and a number. It doesn't work between a string and a string. It doesn't work between, you know, things like that. It works between a string and a number in either order. So a number string or a string times number."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 495.34000000000003,
+            "end": 516.02,
+            "text": "So here, again, it's an assignment operator. On the right-hand side, we're going to figure out what it evaluates to first. So a times three means I'm going to repeat this particular sequence of characters M-E. Because that's what a is, it's M-E, three times. So this line of code here is going to create M-E, M-E, M-E as a new object."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 516.02,
+            "end": 536.1,
+            "text": "And the equal sign tells it to bind it to the name silly. So anytime I want to grab this particular string of characters from memory, I can just type in silly in my program. And that will automatically grab that particular sequence of characters from memory. All right, let's do a quick exercise to make sure that you all have this."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 536.1,
+            "end": 556.74,
+            "text": "And as you're thinking about what this does, I can start typing it in to the console. Or you can even type it in to check yourself. So B is going to be colon and C is going to be the closed parenthesis. So if we go here, we have B is equal to just this colon."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 556.74,
+            "end": 579.9000000000001,
+            "text": "And C is equal to the closed parenthesis. And we don't have to do all the operations at once. We can just do something like two times C and figure out what that is. It's just repeating the closed parenthesis twice. And then we can do B plus 2 times C to give us"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 579.9000000000001,
+            "end": 600.1800000000001,
+            "text": "a colon closed parenthesis, closed parenthesis. So super happy. What about the next one? F is A. G is actually the space B. So there's a space character in there. A little tricky."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 600.1800000000001,
+            "end": 612.18,
+            "text": "And H is 3. Is this the number 3 or the string 3 for H? Yeah, exactly. It's the string 3. So what is F plus G?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 612.18,
+            "end": 630.46,
+            "text": "Again, we can do it in pieces. What is F plus G? A space B, exactly, right? A is by itself, and G is a space B. What is int H? Yeah, it's just 3."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 630.46,
+            "end": 649.1,
+            "text": "What's the type of 3? Int, exactly. I just cast it to an int, right? So if I have F is equal to A, G is equal to space B, and H is equal to the string 3, F plus G,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 649.1,
+            "end": 672.1,
+            "text": "we're doing it a little bit at a time, right, is A space B. And H is just, see, the string 3 here. So if I cast it to an integer, it gives me just the number 3. And we can wrap each of these in a type command to see the exact type, but we can tell right away."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 672.1,
+            "end": 695.62,
+            "text": "So if we do F plus G multiplied by int of 3, or sorry, int of H, which is just a 3, it's going to repeat A space B three times, right? So there's 1, there's 2, and there's 3. What would have happened if I forgot to cast it to an integer?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 695.62,
+            "end": 706.82,
+            "text": "What do you think? If I just did H? An error, yeah, exactly. They're not scary. They're kind of informative once you get to know them."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 706.82,
+            "end": 723.14,
+            "text": "So it's a type error, yeah? Something's wrong with our types. Can't multiply a sequence, so an integer, or a string, a sequence by a non-integer. OK, so what are some other operations"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 723.14,
+            "end": 735.7,
+            "text": "we can do with strings? There's some different things we can do with strings that we actually haven't seen with numbers in last lecture. One of the more common operations is to get the length of a string."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 735.7,
+            "end": 751.38,
+            "text": "So this tells us how many characters are in the string. So if we say S is equal to ABC here, I'm creating a string with characters A, B, and C, and I'm giving it the name S. Now anytime in my program when I say S, Python will replace that with this string"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 751.38,
+            "end": 766.86,
+            "text": "of characters ABC. I can wrap S in this LEN command. And this LEN command is an expression. Basically, Python reads this, and it evaluates it to one value. So replaces this expression with one value."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 766.86,
+            "end": 782.94,
+            "text": "How many characters are in my string? So LEN S will basically become the number three. So in my program, I can say something like another assignment statement down here. Chars is equal to LEN S. This is an expression,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 782.94,
+            "end": 803.38,
+            "text": "like in the previous line, that evaluates to three. So basically, this line says Chars is equal to three. OK, that's a pretty simple operation with strings. Now we're going to get into a little bit more detailed ones that requires you to kind of remember this Python syntax."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 803.38,
+            "end": 818.6999999999999,
+            "text": "So one thing we can do with strings is we can grab individual characters at different positions. So that's called slicing. The syntax, or the way that we actually do this in Python, is using square brackets."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 818.6999999999999,
+            "end": 832.38,
+            "text": "So you can see this here. We have some square bracket notation. This is just how Python does it. So if we have string S is equal to the character's ABC, the way we tell Python we'd like to extract a character"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 832.38,
+            "end": 851.5,
+            "text": "at a particular position is by indexing into that string. Now in Python and modern programming languages, indexing happens from zero. We count from zero in programming in computer science. So what that means is the index of the first character,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 851.54,
+            "end": 864.62,
+            "text": "the index of A is zero, the index of B is one, and the index of C is two. So we can say what's the character at the first position or the first location. But in computer science speak, we say"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 864.62,
+            "end": 877.62,
+            "text": "that's the character at index zero, the character at index one is the character at location two, and so on. So when we're indexing into a string, we're always starting to count from zero."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 877.62,
+            "end": 892.78,
+            "text": "So S at index zero, that's how we call this line here, is another Python expression. It just looks different than the expressions we've seen so far. But this entire expression, Python"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 892.78,
+            "end": 905.42,
+            "text": "evaluates to a particular value, and the value it evaluates it to is the character at that index. So just to show you what that looks like in here, if S is equal to ABC, all we would type is this,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 905.4200000000001,
+            "end": 924.2600000000001,
+            "text": "S at index zero, and this expression evaluates to that single character A. S at index one, B, S at index two, C, S at index three basically says, what is the character at the fourth position? Well, ABC only has three positions,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 924.2600000000001,
+            "end": 936.42,
+            "text": "so this will actually give us our second error of the class, an index error. This is a pretty common error as we start working with more complex programs. It basically means you've indexed too far into the list,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 936.42,
+            "end": 954.66,
+            "text": "either to the right or to the left. You can index into a list with negative indices as well. So if you ever want to grab the character at the last position, so at the rightmost place, that's the character at index negative one."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 954.66,
+            "end": 971.34,
+            "text": "And it's a really convenient way to grab that last character. You basically ask, what's S at negative one? And Python automatically grabs for us that last character. So we don't have to use an expression sort of like len of S negative one."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 971.34,
+            "end": 983.78,
+            "text": "That would be C as well. And here I've inserted an expression, len S minus one, directly in that index. And that's totally fine. Again, Python evaluates things into out, left to right."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 983.78,
+            "end": 1000.18,
+            "text": "It evaluated len S minus one to be two, and basically this line became what's S at index two, which we knew was C. Sir, why did we make negative one a C? Because when you index into negative numbers,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1000.18,
+            "end": 1015.06,
+            "text": "we start counting from the right-hand side, just Python convention. And so S at negative four will give us an error as well, because now we're indexing too far to the left. There's nothing there."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1015.06,
+            "end": 1027.46,
+            "text": "OK, so we can index to get single characters. That's fine. We just use square brackets and say the index that we'd like to get the character at. We can also slice to get substrings."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1027.46,
+            "end": 1039.6200000000001,
+            "text": "So instead of getting single characters, we could ask Python to get us a substring starting from one index, going up to some other index, and potentially skipping characters. You can take every character along the way."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1039.6200000000001,
+            "end": 1058.86,
+            "text": "You can skip every other character or some other pattern like that. The syntax for that is similar to slicing to get a single character, slightly different though. It's similar in that we have square brackets involved."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1058.86,
+            "end": 1074.14,
+            "text": "Slightly different, because now we have to give three numbers within those square brackets, separated by colons. The first number will represent what's the start index. So where do you want to start your substring from?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1074.14,
+            "end": 1090.5,
+            "text": "The second is what's the stop index. So we're going to take every character from that start index, going all the way up to but not including the stop. And the step means how many characters do we skip. So if the step is one, we're taking every character."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1090.5,
+            "end": 1108.18,
+            "text": "If the step is two, we'll take every other character. If the step is three, we skip every two characters and so on. Now there's a bunch of combinations we can do with these three numbers within the square brackets that you'll,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1108.18,
+            "end": 1120.5,
+            "text": "as you work with these exercises, you'll get the hang of. For now, it won't hurt to always give it a start, a stop, and a step. That's perfectly fine."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1120.5,
+            "end": 1133.42,
+            "text": "But something that's really common, if you're always going to take every single character, is to just omit the step part. So if you just give it two numbers, number colon number, Python automatically knows that your step will"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1133.42,
+            "end": 1145.78,
+            "text": "be one by default. So you're not skipping anything. If you're just giving it one number, no colons, we're back to the previous slide, where we're just grabbing one element."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1145.78,
+            "end": 1158.9399999999998,
+            "text": "And I know this is going to be a little confusing. We're going to look at an example on the next slide. But this is something you'll just have to practice a little bit on the shell with the following example, hopefully, just when you go home."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1158.9399999999998,
+            "end": 1173.3000000000002,
+            "text": "Just to make sure that you understand what it's doing. If you have a question, what if I put in this number, or this number, just put it in the shell and see what happens. So let's take a look at a couple of examples."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1173.3000000000002,
+            "end": 1186.38,
+            "text": "So how do we slice to get substrings? Let's say our string is this longer thing, a, b, c, d, e, f, g, h. When we slice, the first thing we want to look at is the step. Is it positive or negative?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1186.38,
+            "end": 1199.1399999999999,
+            "text": "If it's positive, and remember, if you omit it by default, it's plus 1. So if it's positive, we're going to work our way left to right, the way we read. If it's negative, we're going to work our way right to left."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1199.1399999999999,
+            "end": 1212.02,
+            "text": "So what if we index s from 3 colon 6? The step is positive 1, so we're going to work our way left to right. So that means we're going to start at index 3. So that's the d."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1212.02,
+            "end": 1228.26,
+            "text": "So we're going to grab the d, and we're going to go up to, get the substring from d up to, but not including the character at index 6, the g. So the characters we're going to grab are the d, the e, and the f."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1228.26,
+            "end": 1240.22,
+            "text": "We start at 3. We go up to, but not including 6, taking every character because the step is 1. What if the step was 2? So same thing as we just did, except the step is 2."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1240.22,
+            "end": 1251.18,
+            "text": "Again, the step is positive, so we're going to work our way left to right. We're going to start at index 3, so we're going to grab the d, and we're going to create a new object, which is going to be the character's d."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1251.18,
+            "end": 1268.1000000000001,
+            "text": "We're going to skip the e because the step is 2, take the f, and that's it. We've worked our way up to, but not including the element at index 6. There are some other things, I guess,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1268.1000000000001,
+            "end": 1285.58,
+            "text": "trick, sir, you might want to call them, that you can do. So if we just put an empty colon here, that says just make the same object again. So that will evaluate to just a, b, c, d, e, f, g, h again. If we do colon, colon, negative 1,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1285.58,
+            "end": 1302.02,
+            "text": "this is shorthand notation for basically grabbing for me the string backward. So h, g, f, e, d, c, e, b, a. Just make the same string as the original one, but backward. And we can do something like this for 1 with a step"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1302.02,
+            "end": 1316.8200000000002,
+            "text": "negative 2. Now the step is negative, right? So that means we're going to work our way right to left. We're going to start at index 4. So we're going to grab the e."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1316.8200000000002,
+            "end": 1328.22,
+            "text": "We're going to skip every other character. So we're not going to take the d, but we will take the c. And we're going to go down to, but not including, the character at index 1. So we're going to stop right here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1328.22,
+            "end": 1342.46,
+            "text": "So the characters we took in this order were e and then c. So this entire expression evaluates to ec. Yes, question. Why do we skip d? Because the step is 2."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1342.46,
+            "end": 1355.26,
+            "text": "So when the step is 1, we take every character. The step is 2, skip every other one. Yeah? For the first one, s3 to 6, why is g not included? g is not included just by definition."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1355.26,
+            "end": 1370.74,
+            "text": "We go up to, but not including the stop. So we'll go up to, but not including the character at index 6. That's just the definition of slicing in Python. Like a character that's like up to an e, so 1."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1370.74,
+            "end": 1386.3,
+            "text": "So up to an including stop minus 1 means we go up to an including 5. Right, yeah, exactly, yep. OK, so again, if you're unsure what a command does, always try it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1386.3,
+            "end": 1400.46,
+            "text": "You can always try it in your console, write the shell. And here's an opportunity to do that. So here's a string s, a, b, c, d3, f. And I'm actually going to write this one down, just a, b, c, space, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1400.46,
+            "end": 1424.42,
+            "text": "There's a space here, 3, d, what did I do? So d3, f, and then another space, and g, h, i. So what do you guys think the first one will be? 3 colon len s minus 1. I'll even do the indices here for you."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1431.62,
+            "end": 1451.7,
+            "text": "What's the start? Yeah, the space, exactly. So it's going to be a low space. What is len s minus 1? 10, yeah, what's the length?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1451.7,
+            "end": 1463.66,
+            "text": "How many characters are in here? 11, yep, and minus 1 is 10. So when we do this, when the stop is 10, that means we're going to go up to, but not including, the character at 10."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1463.74,
+            "end": 1477.14,
+            "text": "So we're going to go up to this h, right? So we're going to take the space, d3, f, space, g, h, and we stop. Yeah? Why do we start indexing at 0 again and just?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1477.14,
+            "end": 1491.1000000000001,
+            "text": "Convention. Computer science, programming. Except for MATLAB, I think they still start indexing at 1. Other questions about this one, is that all right? OK, how about the next one?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1491.1000000000001,
+            "end": 1507.66,
+            "text": "s4, 0, negative 1. What's the element at index 4? The d, yep, so we're going to grab the d. Are we working our way right or to the right or to the left? Yeah, exactly."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1507.66,
+            "end": 1520.5000000000002,
+            "text": "So we're going to go up to, but not including, the character at index 0. So we're going to get the d, the space, the c, the b. Am I taking the a? No, exactly."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1520.5,
+            "end": 1531.46,
+            "text": "So that's it, d space, cb. Yes? If you want to include the a with the second value, you can negative 1. If you did want to include the a,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1531.46,
+            "end": 1545.54,
+            "text": "actually you would want to do something different, I think. You can't go to negative 1 because negative 1 is actually this right here. That's a good question. I'd have to try it out, play around with it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1545.54,
+            "end": 1559.7,
+            "text": "But if you want to include it, I think maybe you would just do an empty, sorry, go ahead. You would just probably do an empty colon. And by default, that means the beginning. But I'd have to try it out, yeah."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1562.6200000000001,
+            "end": 1571.18,
+            "text": "How about the last one, 6 colon 3. What's the element at index 6? The empty colon works. The empty colon works. OK, perfect."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1571.18,
+            "end": 1580.6599999999999,
+            "text": "Thanks for trying it out. The empty colon works, yeah. If you wanted to grab the a. All right, so s 6 colon 3. What's the element at index 6?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1580.6599999999999,
+            "end": 1590.58,
+            "text": "The f. OK, great. And we're working our way to the right or to the left? To the right? OK, so we're going to start here, but we need to go this way."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1590.58,
+            "end": 1607.46,
+            "text": "But what's the stop index? Yeah, it's not there. It's behind us. So this last one is actually an empty string. And we can try it with something else, too."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1607.46,
+            "end": 1622.18,
+            "text": "So if we had this a, b, c, right? If I'm indexing starting from 2 and I'm going backward to 0, then that gives me the empty string. And the empty string is just quote, quote, with nothing inside."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1622.18,
+            "end": 1633.7,
+            "text": "So that means we didn't take any characters in that particular case. Is that all right? Is it valid? It's valid."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1633.7,
+            "end": 1648.22,
+            "text": "There are no characters in between the f and behind the f. OK, so I'll mention the strings are actually immutable objects. And really, a lot of the objects we've seen so far are immutable."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1648.22,
+            "end": 1659.54,
+            "text": "That means they can't be modified once they're created. We've kind of seen this already, right? When I draw the memory diagrams, when I create a new object, which is, for example, what's the string version of this integer?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1659.54,
+            "end": 1671.3,
+            "text": "Or when I cast a float to an end? Things like that. I'm not changing those original objects I've created. I'm just making a new green box in my memory and reassigning the name."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1671.3,
+            "end": 1684.02,
+            "text": "And we're going to see later on in this course mutable objects, which means that once you do create them in memory, you can modify them. But for now, anytime you make a change to such an object, well, you can't change the object, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1684.02,
+            "end": 1698.94,
+            "text": "If you want to get a different version of the object, Python will create a new object in memory, and you could reassign the variable to that new object. So in this example, if I want to grab, if I have the string car in memory like this,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1698.94,
+            "end": 1712.98,
+            "text": "and it's bound to variable s, and I want to change the first letter to a b, I'm not allowed to. Python won't let me do something like, I want to change the letter at index 0 to a b. That's not allowed."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1712.98,
+            "end": 1730.38,
+            "text": "You can get new versions of that particular string, so you can do some random expression to create the BAR that you might want. But then the CAR remains in memory, right? So the CAR will still be there."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1730.38,
+            "end": 1747.6200000000001,
+            "text": "We're just losing the binding from it. So any questions so far on these strings? Mostly, they're a new data type, right? You haven't worked with them like you have with numbers, so it's a little bit different."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1747.6200000000001,
+            "end": 1760.38,
+            "text": "Again, someone had a question, how do you get the a backward? Try it out in the console. I'm happy to answer questions, help you try along with you. But that's what the console is there for, right? The shell, here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1760.38,
+            "end": 1771.26,
+            "text": "That's what it's there for. It's just to try quick little things if you ever have a question. What if this is this, and you get to try it out? Now let's move on to some input output."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1771.26,
+            "end": 1785.82,
+            "text": "So far, the programs that we can write are pretty stagnant, right? There isn't much interesting things that we can do with them. There's no interaction with the user. So, so far, when we've tried to output things,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1785.82,
+            "end": 1802.78,
+            "text": "well, you might think we have been outputting things, right? So when we write in our console something like 3 plus 2, Python does show something in the shell, right? This is maybe how we interact with the user. But this is not actual true output."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1803.46,
+            "end": 1820.06,
+            "text": "I call this kind of like peeking into the value of the expression. But if you were to write some expression like this in a file editor, Python wouldn't actually print it out. And so here's all the things that we've already tried today."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1820.06,
+            "end": 1830.94,
+            "text": "We've created all these strings. We've got the length of s, right? We indexed. Any time we typed these expressions in the shell, Python automatically gave us our value, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1830.98,
+            "end": 1842.5800000000002,
+            "text": "But if I were to type those exact expressions in a file editor on the left here, Python's not actually gonna print these out. So this is the file editor. From now on, we're just gonna work with files."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1842.5800000000002,
+            "end": 1853.9,
+            "text": "I'm gonna run it by hitting this little green run button or hitting a five. Something happened in the shell. My program ran, right? It says here, it ran this file."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1853.9,
+            "end": 1864.54,
+            "text": "But there's no output, right? Where was the length of s? Where were all these indices we've done before? And that's because these aren't actual outputs, right? When we type them into the shell,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1864.54,
+            "end": 1877.02,
+            "text": "that was just us doing quick little expressions in the shell giving us quick, no. That's why I call it peeking into the value, because it's not true output. If you want the user to see output,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1877.02,
+            "end": 1892.5,
+            "text": "and the shell is how we're gonna show the user output from running a file, we have to explicitly tell Python, hey, I want you to show the output from this expression, or I want you to show the output from this command. And we do this using the print command."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1892.5,
+            "end": 1906.18,
+            "text": "So if we take our expression that we wanna show the output from and wrap it in a print command, Python will then show that output and only that output. Can you imagine if we wrote a file that did all these operations"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1906.18,
+            "end": 1915.7,
+            "text": "and all these intermediary outputs were being shown? That would lead to a really messy file, or a messy program, right? And so that's why we have a command where you can explicitly tell Python"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1915.7,
+            "end": 1930.3,
+            "text": "just the things you wanna show to the user. So here, if you wanna print the length of S, we can wrap the length of S in a print statement and then run the file. And now the only thing that gets shown to the user"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1930.3,
+            "end": 1943.98,
+            "text": "is the thing I explicitly printed out, the three. And then down here, if I wanna print this other result, the result of this other expression, I can wrap that around a print statement, and Python will then print that one as well."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1943.98,
+            "end": 1959.5,
+            "text": "But now I'm in charge of showing the user the things that I want to show them, right? Okay. So whenever you have a print statement, Python will print that resulting expression"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1959.5,
+            "end": 1971.8600000000001,
+            "text": "and then enter a new line. So as you saw here, we had two print statements, one around length and one around S at negative three, and Python put the result of these expressions, each one on a different line."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1971.8600000000001,
+            "end": 1982.82,
+            "text": "Sometimes you might want to have expressions on the same line, or the results of expressions all in the same line. So we can do that. We can put all of these different objects"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1982.82,
+            "end": 1995.9,
+            "text": "within the same print statement. We separate them by a comma within the print statement. That's down here. Python will print all of our objects, no matter what types they are,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 1995.9,
+            "end": 2007.7,
+            "text": "and it'll separate each object by a space. So there's my object, the. There's my object, the number three, and there's my object, the string musketeers, and it printed it all on one line"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2007.7,
+            "end": 2020.82,
+            "text": "with a space in between them, and that's what this comma does. It automatically inserts the space. Now let's say you don't want a space for whatever reason. What if we try concatenating these objects together?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2020.82,
+            "end": 2029.86,
+            "text": "Remember, we saw concatenation, we said it doesn't automatically insert spaces, it just kind of merges the strings together, and we run it. Well, I kind of already gave it away."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2029.86,
+            "end": 2040.7800000000002,
+            "text": "It's gonna be an error, but let's see the error. It's a type error. It says, can only concatenate strings, not integers to strings. All right, makes sense."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2040.7800000000002,
+            "end": 2057.12,
+            "text": "This is a string, this is not a string, so that's not okay, and this is a string. So instead of concatenating different objects together, we now have to remember to cast every object that's not a string to a string."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2058.02,
+            "end": 2073.7000000000003,
+            "text": "So this line is exactly the same as the previous one, except that B, which was the number, the integer three, is now being cast to a string. So I'm wrapping the B around the STR, and that casts my integer to the string,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2073.7000000000003,
+            "end": 2091.26,
+            "text": "and now Python is happy to concatenate these three strings for me. Okay, that's basically what I said. So that's output using the print statement. Now how about input?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2092.98,
+            "end": 2105.86,
+            "text": "We can get input from the user, not surprisingly, with a command called input. The format of input is usually like this, so we have the input command. In the parentheses, we give it a string,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2105.86,
+            "end": 2120.14,
+            "text": "and then we usually wanna save the input to a variable. So the next few slides are gonna go through step by step what happens when I have these two lines of code. Text equals input, type anything, and then I'm gonna print five times text."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2121.62,
+            "end": 2138.3199999999997,
+            "text": "So when Python sees a line that says input and then some string, Python will automatically take the string within the input, right? So in this particular case, here's my input command, the string inside the input is type anything colon space."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2138.3199999999997,
+            "end": 2152.2599999999998,
+            "text": "On the shell, Python will put that string for you, and then it will wait. It waits for the user to type some stuff in, and hit enter. As soon as the user hits enter,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2152.2599999999998,
+            "end": 2171.5,
+            "text": "whatever the user typed in, so let's say the user typed in howdy, whatever the user types in will be saved as a string sort of replacing this input statement. So you can think of the input kind of like an expression."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2171.5,
+            "end": 2184.06,
+            "text": "It's a weird one because it's waiting for the user to give us something, right? But in the end, the input gets replaced by the string version of whatever the user typed in. So the user can type in something,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2184.06,
+            "end": 2197.18,
+            "text": "numbers, letters, characters, anything. As soon as the user hits enter, whatever the user typed in will be saved as a string replacing this input. So in memory, the way this looks like"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2197.18,
+            "end": 2212.5,
+            "text": "is this is our memory cloud, here is this object that I've created, which is the exact characters the user typed in. Okay, well if the user typed in howdy, then what does this line end up being?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2212.5,
+            "end": 2224.02,
+            "text": "Text is equal to the string howdy. And that basically is what we've seen on the previous two slides, right? When we've worked with strings. We're gonna assign this variable"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2224.02,
+            "end": 2240.46,
+            "text": "and bind it to this particular string of characters. Now the next line is easy, right? We're gonna print whatever the result of repeating text is five times. So the print will show on the shell,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2240.46,
+            "end": 2254.46,
+            "text": "howdy, howdy, howdy, howdy, howdy, right? Whatever the user typed in, five times. Okay, let's look at another example. In this particular one, we're gonna ask the user for a number."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2254.46,
+            "end": 2268.3,
+            "text": "And I wanna print five times whatever the user types in. So number one, well again, grab input. So what we're asking the user to do is to type in a number, right? So when the Python sees this,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2268.3,
+            "end": 2284.54,
+            "text": "it prints type a number and then waits for user input. Let's say the user types in the number three. That gets saved as the string three. Again, so no matter what the user types in, it's being saved as a string, even if it's a number."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2284.54,
+            "end": 2299.34,
+            "text": "It's being saved as the string that number, right? So to Python, it's a character. To us, it's a number. But to Python, it's still a character. So number one in memory basically becomes the string three."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2299.34,
+            "end": 2311.74,
+            "text": "Just one single character, three. When I print five times number one, what is that gonna look like? You guys tell me. Exactly, right, three, three, three, three, three, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2311.74,
+            "end": 2323.8599999999997,
+            "text": "Because we're not, we're working with a string here, not an integer. If we wanna work with an integer, we have to wrap our input statement with a cast statement, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2323.8599999999997,
+            "end": 2334.58,
+            "text": "So again, this is what Python does. We can combine expressions together. In this particular case, we're gonna combine the casting, the input, with the input statement."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2334.58,
+            "end": 2351.7,
+            "text": "So now the user can type in for me three again. The input itself is gonna be the string three. But that line becomes num two equals int, parentheses, string three, right? And that, I did it on the shell a little earlier today, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2351.7,
+            "end": 2369.7999999999997,
+            "text": "When we cast a string to an int, it becomes the number that int. So num two is then going to be three. And memory, num two is not the string three anymore because we've cast it to three."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2369.7999999999997,
+            "end": 2384.8199999999997,
+            "text": "So when we print five times three, we're doing the mathematical operation five times three, right, 15. Okay, let's have you code. So I'm gonna give you a couple minutes."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2384.8199999999997,
+            "end": 2396.66,
+            "text": "I'm gonna have you write a program that is interactive. So it's gonna ask the user for something and it's gonna print the something back to the user. So we're gonna ask the user for a verb and then I want you to print two things for me."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2396.66,
+            "end": 2405.94,
+            "text": "The first is whatever the verb that user typed in, you're gonna write I can whatever better than you on one line. And then on the next line, so with another print statement,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2405.94,
+            "end": 2417.66,
+            "text": "I want you to print that verb five times. So if the user types in run, you're gonna write I can run better than you. And then on the next line, run, run, run, run, run. So the way these try it, you try its work"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2417.66,
+            "end": 2430.06,
+            "text": "is I actually have some space here that I've already prewritten the instructions for you. And all you have to do is fill in the code. Okay, so I'll give you a couple minutes and then we'll write it together with suggestions from you"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2430.06,
+            "end": 2451.18,
+            "text": "and we'll see how far we can get and we'll definitely, we'll definitely finish it together. So you don't have to finish it on your own. Yeah. You should have this file."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2451.18,
+            "end": 2469.62,
+            "text": "It's part of the zip file we downloaded for today. Oh, here it is. Yeah. All right, does anyone have a start for me? So how can I ask the user for input?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2470.86,
+            "end": 2488.34,
+            "text": "Yeah. Yep, that works for me. And I'm adding a little extra space here between the colon or whatever prompt you have just so that when the user types it in,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2488.34,
+            "end": 2502.5,
+            "text": "it isn't right beside the colon or the end of your, the end of this string. So as soon as we do this, the user will, the program will wait and the user will get to type something in."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2502.5,
+            "end": 2513.8199999999997,
+            "text": "What's the next step? What's the first? How can you use this input? To print? Yep, let's print something."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2518.2599999999998,
+            "end": 2530.8999999999996,
+            "text": "I can in quotes, yep, I can. Outside of the quotes, put the question with the name. Yep, we can put it, put it question. Yep, exactly. I can question comma, because it's another object"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2530.8999999999996,
+            "end": 2547.8199999999997,
+            "text": "and I'm happy to put a space in between it. I can question at another string better than you. There. And we don't need to write the full program right away. We can just test this little bit out."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2547.8199999999997,
+            "end": 2560.4199999999996,
+            "text": "So choose a verb run. The one I gave you is fine. That looks good so far. All right, so then we can keep working on the second part. How can I print that verb five times?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2561.7799999999997,
+            "end": 2571.74,
+            "text": "Yeah? Print and then question times five. Print question times five. Okay, let's run it and see what happens. Run."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2573.7,
+            "end": 2587.1800000000003,
+            "text": "Not quite, I'm missing spaces. But this is an awesome start. How can I add the spaces in there? Yeah? In parentheses, we can put verb plus close to the space."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2587.78,
+            "end": 2599.58,
+            "text": "In parentheses, yep. We can concatenate it with a space, exactly. Times, on all that times five. Yeah, let's try that. Run."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2599.58,
+            "end": 2611.14,
+            "text": "Yep, that looks pretty good. I do wanna mention one thing. There is one improvement we can make to this program. If we look at the output here, the thing that we're actually printing out"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2611.14,
+            "end": 2624.62,
+            "text": "is this verb space, right? There's one, two, three, four, and the last one actually prints it with a space at the end. So a challenge for you, and the answer is a little bit lower,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2624.62,
+            "end": 2635.94,
+            "text": "I provide you guys with answers to these, but a challenge for you is think about how you can change it, change this last print statement so that this last run doesn't actually have that extra space."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2635.98,
+            "end": 2654.2200000000003,
+            "text": "Just think about it, you don't have to do it right now. Okay, so with what we know so far, we can actually apply some of these ideas to a more numerical example. So Newton's method is a way to actually grab"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2654.2200000000003,
+            "end": 2666.26,
+            "text": "the roots of a polynomial numerically using this idea called successive approximation. We can't actually write the full algorithm with what we know so far, but we can write a really important part of it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2666.26,
+            "end": 2682.0400000000004,
+            "text": "The part that we can write is the one that gets a next guess based on an initial guess. So you don't need to understand how the algorithm works, but basically the next guess based on an original guess looks like this, this is the formula."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2682.0400000000004,
+            "end": 2697.38,
+            "text": "So the next guess is the original guess minus, and we evaluate the formula for whatever polynomial we wanna find at the original guess divided by the derivative of that function at the same guess."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2699.18,
+            "end": 2711.22,
+            "text": "So here's just some code we've got asking the user for input, what x do we wanna find the cube root of? Then we ask the user for input, what guess do you wanna start with?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2711.22,
+            "end": 2724.02,
+            "text": "And then we can just print the current estimate cubed, so we just guess cubed. And then the next guess is just following the formula up here, right? The next guess is going to say it's my original guess,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2724.02,
+            "end": 2741.38,
+            "text": "so the g that I read in from the student, or from the input, minus, and now I have a division. The top of it is gonna be f at g. The computer's not evaluating f, right? We have to actually write down what the formula is,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2741.38,
+            "end": 2752.66,
+            "text": "the function is, we wanna evaluate at g, so it's g cubed minus x, that's our function up there, divided by the derivative, and again, the program is not gonna evaluate the derivative automatically,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2752.66,
+            "end": 2767.14,
+            "text": "we're going to tell it what the derivative is manually, so the derivative of g cubed minus x is just 3g squared, so then we just kind of hard-code that in. And the next guess to try is just gonna be that particular division and subtraction."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2769.94,
+            "end": 2781.38,
+            "text": "I'm sorry? Sorry, there's no function for the particular derivative, but there's more to it. There are Python packages that allow you to do that, but for our purposes, we're just gonna hard-code it"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2781.38,
+            "end": 2795.7400000000002,
+            "text": "in this case, but yeah. So the way this looks in code is as follows, that's exactly what we had in there, and if we run this program, all it does is, let's say we wanna find the cube root of, say, 27,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2795.7400000000002,
+            "end": 2810.1000000000004,
+            "text": "let's start with, I don't know, five, right? It tells me that five cubed is 125, way too big, obviously, so the next guess to try is 3.69, right? And that's all the program does. It doesn't take this next guess and do another guess."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2810.1000000000004,
+            "end": 2825.3,
+            "text": "We haven't learned how to do such a thing yet, but we will in the next couple lectures. One other thing I wanna mention is this thing called an F string. It's something that became available,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2825.3,
+            "end": 2844.26,
+            "text": "I think a couple years ago in Python with Python 3.6. It's a way more convenient way for us to print out mixtures of literal text and resulting expressions. So if you have a bunch of complicated expressions you wanna print out, an F string is the way"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2844.26,
+            "end": 2859.5,
+            "text": "to do it these days. What we know is these first two lines. This is what we've learned in the past couple slides. So if you wanted to have these two values and print, this big number is whatever fraction percent"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2859.5,
+            "end": 2872.62,
+            "text": "out of the original number. If you actually run this in the Python file, you'll see that this comma here puts an extra space between my number and the percent, right? And that doesn't look very good."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2872.62,
+            "end": 2886.36,
+            "text": "When you have 3%, you're expecting the percent sign to be right by the three. But this comma adds for me an extra space. So it looks a little bit weird. Which means that our solution was to cast things to strings."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2886.36,
+            "end": 2901.42,
+            "text": "So if we wanted to have that percent sign be right beside the number, we'd concatenate this cast with a percent. But F strings allow us to do this all in one. So there's no concatenation to think about."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2901.42,
+            "end": 2918.82,
+            "text": "There's no casting to think about. F strings basically are this F and then a long string. And it's a mixture of expressions and things that I want to print literally to the screen. So the thing that's not inside a curly bracket"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2918.82,
+            "end": 2929.5,
+            "text": "are all things I'm gonna print literally to the screen. So the space is space. And then later on, percent space of percent. Those are all things that will literally be printed to the screen."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2929.5,
+            "end": 2940.46,
+            "text": "Anything that's within a curly bracket is considered an expression in Python. And so before Python prints out the thing to the screen, it's actually going to evaluate whatever num times fraction is."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2940.46,
+            "end": 2950.46,
+            "text": "And it knows these are gonna be variables. And then later on, fraction times 100. And then later on, num. These are all variables or expressions that it will evaluate before actually"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2950.46,
+            "end": 2961.48,
+            "text": "putting them on the screen. And now notice these expressions, we might have had to cast to strings beforehand if we wanted to concatenate them, but now we don't. Because they're in this special format"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2961.48,
+            "end": 2971.42,
+            "text": "with the curly brackets of the F string. So just something to practice. I'll use sometimes this. I'll use sometimes casting. I'll use sometimes F strings."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2971.42,
+            "end": 2988.18,
+            "text": "But if you can use F strings whenever you can, that's really the way to go in Python these days. So the big idea actually, even with F strings, is that you can place expressions anywhere, right? We saw, we placed expression, I forget here,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 2988.18,
+            "end": 3001.38,
+            "text": "where we indexed, we placed an expression in the index, right? Now we're placing expressions inside print statements. And now we're placing expressions inside F strings. So expressions can be placed really anywhere. Which is pretty awesome."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3001.38,
+            "end": 3014.86,
+            "text": "Very versatile, Python will just evaluate them and then just move on to the next lines. Okay, so the last topic of, I'm sorry, any other questions about the inputs and outputs, or is that right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3017.5,
+            "end": 3032.34,
+            "text": "Okay, so the last thing that we'll talk about today, and we will maybe talk a little bit about it next time, is conditions for branching. So right now the kinds of programs we can write are basically very linear."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3032.34,
+            "end": 3043.9,
+            "text": "We have a bunch of lines of code and they get evaluated one by one. There's no way to skip around, there's no way to repeat things, there's no decision points in the programs, the values that you get are just the values"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3043.9,
+            "end": 3056.02,
+            "text": "that are in the program. Now we're gonna look at ways that we can add decision points in our program. So if some variable value is less than some other variable value,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3056.02,
+            "end": 3071.5,
+            "text": "we wanna evaluate some code. And otherwise we'll do some other code, right? So some code can now be skipped in programs with this new idea. Before we go on to showing you exactly how to do that,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3071.5,
+            "end": 3083.42,
+            "text": "I'm gonna talk about another notion of equal in programming. And this might be more the notion of equal you might be used to in math. So the first notion of equal is the one we've already seen. It's assignment."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3083.42,
+            "end": 3098.18,
+            "text": "It's done with one equal sign. The value on the right hand side is bound to the variable on the left hand side, right? That we've known. Double equal in Python is how we tell Python"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3098.9,
+            "end": 3112.9,
+            "text": "that we'd like to know whether these two expressions are equal or equivalent. Sorry, not equal. So if we're going to be looking at equivalency, how do we express equivalency?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3112.9,
+            "end": 3125.4,
+            "text": "Well, if something is equal to something else, we can say yes or no. We can say true or false, right? True or false should ring a bell. It's the Boolean data type that we saw last lecture."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3125.4,
+            "end": 3142.5600000000004,
+            "text": "And so now that we're going to show you equality or conditionals in programming, we're gonna start talking about Booleans a little bit more. So expressions don't just have to be numerical. Expressions can actually give us Boolean results."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3142.5600000000004,
+            "end": 3161.6000000000004,
+            "text": "So for example, an expression like two less than three is okay in Python. And this expression actually evaluates to a certain value. It's not a number. It evaluates to true, the Boolean value true,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3161.6000000000004,
+            "end": 3178.28,
+            "text": "because yes, two is less than three. The equal sign here, this notion with a double equal, is how we ask Python to tell us whether two things are equivalent. And this will be the Boolean value false."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3182.32,
+            "end": 3198.6,
+            "text": "So here's a bunch of other operators that we can run on any type, really, in Python. Most of the time, we're gonna run them on numbers, but they can be run on strings and things like that as well. So obviously, the double equal sign checks for equality."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3198.6,
+            "end": 3212.56,
+            "text": "So if i is the same as j, this entire expression is replaced with true. And if they're not equivalent, this entire expression is replaced with false. If we wanna check for inequality, we use not equal."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3212.56,
+            "end": 3229.08,
+            "text": "So exclamation mark equal means not equal. So if the number i, or whatever object i is not equal to object j, then this entire expression is true. If they are equal, then the entire expression is false."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3230.08,
+            "end": 3242.88,
+            "text": "And then of course, we've got the less than, less than or equal to, greater or greater than or equal to, to work with as well. We can apply these to strings. And with strings, it's important to be careful about case."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3242.88,
+            "end": 3260.0,
+            "text": "So for example, lower case a, equivalent to upper case a, is false, right? Because they are not the same character. Now that we're talking about Boolean operators, we can actually start to combine them together."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3260.0,
+            "end": 3273.92,
+            "text": "So if I have the expression, for example, two less than three, right? Like I wrote on the board, that's true. But I can combine that expression with another one. Actually by itself, I can say what is not two less than three,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3273.92,
+            "end": 3285.6000000000004,
+            "text": "and that will be false, right? It's the opposite of it. But I can also combine Boolean expressions together. So I can say what's two less than three and, three less than four."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3287.84,
+            "end": 3300.6400000000003,
+            "text": "So two less than three is true, right? And three less than four is also true. So the combination of these two expression, of these two Boolean expressions is what is true and true? True."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3301.84,
+            "end": 3315.92,
+            "text": "Right, so if one is true and the other one is true, then both of them, and both of them together, are going to be true. If one of these is false, so is three greater than four, is false?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3315.96,
+            "end": 3328.76,
+            "text": "Well, what's false and true? It's going to be false. So if one of these operators is false, then the entire expression is false. And you don't have to remember this truth table."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3328.76,
+            "end": 3339.48,
+            "text": "You can always check it like I just did, right? Here in the console. But at a high level, right? When we're doing the and operator between two Boolean expressions,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3339.48,
+            "end": 3356.36,
+            "text": "we need both of the expressions to be true for the result and to be true. The or is the other one we can usually do. The or is always true, except for when both of the operators are false, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3356.36,
+            "end": 3373.2000000000003,
+            "text": "And it kind of makes sense in English too, right? If either operator is true, then the entire result is true. But when both are false, the or of both of them is false as well. So here's a little example where we can use"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3373.2000000000003,
+            "end": 3384.84,
+            "text": "these operators in Python, so we can draw the little memory diagram as well. So pset time is 15, there's my variable, sleep time is eight, there's my other variable. I'm going to print sleep time is greater than pset time."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3384.84,
+            "end": 3399.76,
+            "text": "So here my print statement is going to grab that expression, which evaluates to false. Eight is less than 15 is false. So that's going to print false. And then I have two more variables."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3399.76,
+            "end": 3411.28,
+            "text": "These ones just happen to be Booleans. Derive is true, drink is false. So drink and derive is going to be false because one of them is false. And so here I've got this other variable both,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3411.28,
+            "end": 3428.08,
+            "text": "and then I'm going to print false to the console. Okay, quick, you try it for you guys. So let's have you write a program that saves a secret number in a variable. So that's going to be your program's secrets."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3428.08,
+            "end": 3436.36,
+            "text": "Presumably people using your program won't be looking at the program itself, they'll just be interacting with the program in the shell. So save a secret number in a variable,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3436.36,
+            "end": 3450.2000000000003,
+            "text": "ask the user to guess a number, and then print either true or false if it's the same as your secret or not. So it's here, in this you try it down here. So you can start with something like secret equals"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3450.2000000000003,
+            "end": 3462.88,
+            "text": "and then put your favorite number there, five, whatever, and then write the rest of the code. So ask the user to guess a number, print a Boolean depending on whether the guess equals this secret or not."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3462.88,
+            "end": 3481.8,
+            "text": "So I'll give you a couple of minutes to write that. Yeah, sorry. If you use the symbol and it's not the same, you have to actually type out A and D in Python. The and means something else."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3481.8,
+            "end": 3505.44,
+            "text": "It's like a, it's an operator with the bits of the number. So something, it's not going to give the same answers. Right, you're thinking about Java or C++ or something, right? All right, does anyone have a start for me for this program? How do I get, grab the user input?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3510.32,
+            "end": 3526.48,
+            "text": "Guess equals input. We can be nice, please, guess. What's that? We want the user to give us an integer, yeah, a number. Exactly."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3526.48,
+            "end": 3542.6800000000003,
+            "text": "So, okay, yeah. If we leave it like that, then we're just grabbing the string. So we have to cast it to an integer, exactly. Now what?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3543.88,
+            "end": 3556.48,
+            "text": "How do I check for equivalency between my secret and the guess? Okay. Secret. Equal, equal guess."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3556.48,
+            "end": 3569.84,
+            "text": "And do you want to print this, yeah. Let's print that. Okay, run it. Let's guess something that's not the same, false. Run it again."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3569.84,
+            "end": 3582.28,
+            "text": "Let's guess something that's the same, true. And we can guess something that's lower to just. Yeah. Is everyone, yeah. Did you assign like the different program?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3582.28,
+            "end": 3594.56,
+            "text": "Did you assign the secret equal to the guess to the number of containers? Yep, yep, exactly. Equal equals this thing. Yep, and then you can do whatever you want"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3594.56,
+            "end": 3603.6,
+            "text": "with that print equal or something. That's the same, but yeah, you can do other things with this variable. Yeah, exactly. Five, yeah."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3604.88,
+            "end": 3619.2000000000003,
+            "text": "If you want at home, try to see what would have happened if you didn't cast it to an integer. See if the program would have crashed or not, or if it would have just worked but given a wrong answer. So why do we do Booleans, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3619.2000000000003,
+            "end": 3630.4,
+            "text": "Booleans are important variables because they allow us to start thinking about writing programs that make decisions, right? The way we talk is, we can say something like, if this is true, do this."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3630.4,
+            "end": 3641.6000000000004,
+            "text": "Otherwise, we can say, we can say something like, if this is true, do this. Otherwise, do this. The Boolean part is, if that something is true, right? So the something is true is gonna be the Boolean"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3641.6000000000004,
+            "end": 3652.76,
+            "text": "that we can create in our programs, and then the do this is some sort of commands, and then the otherwise do that is gonna be some other set of commands, okay? So a really simple Boolean expression could be,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3652.76,
+            "end": 3669.1200000000003,
+            "text": "it's midnight, you get a free food email, do you go get the free food or do you sleep? That's the very simplest kind of decision point you can make. But with conditionals, you can actually write a pretty cool program that gets you to that free food, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3669.1200000000003,
+            "end": 3681.76,
+            "text": "So let's say this is a map of MIT, this is where you are, that's where the free food is, okay? We can write a really simple algorithm using just conditionals that takes you to that free food. So the algorithm goes like this,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3681.76,
+            "end": 3693.04,
+            "text": "so I'm gonna say, I'm gonna walk always in this direction, so I'm either going forward, backward, left, and right, I'm not turning, and I'm gonna say, the algorithm is always gonna have my right hand be on a wall."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3693.04,
+            "end": 3707.48,
+            "text": "So if the right is clear, so standing here, my right is clear, so I'm just gonna keep shimming until I reach a wall. If my right is blocked, but my forward is clear, I'm gonna keep going like this"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3707.48,
+            "end": 3723.32,
+            "text": "all the way to the end of the room. If my right is blocked and my forward is blocked, right, as if I would have reached the end of the room, I would have gone to the left. And if my right, forward, and left is blocked,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3723.32,
+            "end": 3733.8,
+            "text": "if I'm over there, I would go backward, right, so I'd go backward. So basically, starting from here, I've made my way all the way around this room, and I would go out the door down the hallway, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3733.8,
+            "end": 3744.6800000000003,
+            "text": "And if the map of MIT doesn't have islands, so if the free food isn't somewhere, it's sort of in an island in the middle here, if it's just a regular old maze, I would eventually make my way to the free food,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3744.6800000000003,
+            "end": 3760.3199999999997,
+            "text": "following this really simple conditional algorithm. So how do we actually do conditionals in Python? How do we tell Python, hey, I wanna create, I wanna insert a decision point right here? We do that using the keyword if,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3760.3199999999997,
+            "end": 3777.8,
+            "text": "and the if starts a decision block. Now the simplest decision block is just an if by itself. So if Python sees that if, so there's some code that it's following, and then at some point it reaches the if,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3777.8,
+            "end": 3794.84,
+            "text": "the condition tells Python to check whether that condition is true. If the condition is true, so this is our decision point, then I'm going to deviate from my main program and do the code that's part of that condition."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3796.68,
+            "end": 3810.7200000000003,
+            "text": "Those, I guess, two lines, dot, dot, dot inside there. If the condition is not false, I'm not going to go that route, and I'll just keep following the rest of the main program. How does Python know how many code lines to execute"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3810.7200000000003,
+            "end": 3823.92,
+            "text": "that's part of that condition? Well, it looks at the indentation. So I notice here I've kind of put a few spaces for these two and dot, dot, dot code blocks here. Anything that's indented right after that if statement"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3823.92,
+            "end": 3836.32,
+            "text": "and that colon there is a set of commands that are part of that block. So anything here will get executed all at once. And that's a really simple if. Either you do the set of commands,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3836.32,
+            "end": 3850.2400000000002,
+            "text": "extra commands if the condition is true, or you don't. Now you can add an exception to that. So if the condition is true, again, we're following the program. We reach this if conditional here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3850.2400000000002,
+            "end": 3862.68,
+            "text": "If the condition is true, again, we're going to deviate from the program and execute this other set of commands right here. Otherwise, the condition is not true, and we're going to execute this other set of commands"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3862.68,
+            "end": 3873.64,
+            "text": "over here, so these guys over here. So either we do this set of commands or the other set of commands, but we never do both, and we never skip both of them. So either we do one set or the other."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3873.64,
+            "end": 3884.44,
+            "text": "When we're done executing all the indented blocks, part of the condition, or the other one that's that, if the condition wasn't true, then we rejoin the rest of the program and continue executing."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3884.44,
+            "end": 3898.52,
+            "text": "So this is all, the rest of the program is at the same indentation level as our original if and else. We can add a whole bunch of conditions, right? Not just an if, do this, otherwise, do this."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3898.52,
+            "end": 3912.24,
+            "text": "We can actually add a bunch of things to check using L if, which basically stands for else if another condition do this. So here's our program. We reach a decision point."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3912.24,
+            "end": 3926.2000000000003,
+            "text": "If the condition is true like before, we'll execute this set of commands. But otherwise, the condition is not true. We're going to check another condition. Else, if this other condition is true,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3926.2000000000003,
+            "end": 3940.0400000000004,
+            "text": "we'll execute this other set of commands. Otherwise, here's another else if, we'll check another condition. If it's true, we'll execute some other set of commands. Otherwise, there can be more L ifs."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3940.0400000000004,
+            "end": 3954.2400000000002,
+            "text": "And at some point, we're going to rejoin the rest of the program. Now these L ifs are going to be, each condition is checked one at a time. The very first one that's true is the one that gets executed."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3954.2400000000002,
+            "end": 3967.04,
+            "text": "We're never going to execute more than one, right? Because this is an if, else, if, else, if, else, if. So even in English, you're only going to do one of these. You're never going to do all of them. It is possible to skip all of them, though."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3967.04,
+            "end": 3980.1200000000003,
+            "text": "Because if none of those conditions are true, you just don't do any of them. If more than one is true, you do the first one. That is true. If you want to have sort of a catch-all kind of version"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3980.1200000000003,
+            "end": 3991.9200000000005,
+            "text": "of the middle L if, L if, L if, L if, you just add an else at the end. So if none of those conditions are true, you can add an else, which says you just do this if nothing is true."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 3991.9200000000005,
+            "end": 4000.9600000000005,
+            "text": "Kind of like what we had over here. If this one, otherwise, do this. Well, if any of these conditions are true, do one of them. Otherwise, do this."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4004.6000000000004,
+            "end": 4012.1200000000003,
+            "text": "So here's an example. We've got piece at time. We'll just put some variables in there. Sleep time. We'll put some variables in there and run it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4012.1200000000003,
+            "end": 4024.2400000000002,
+            "text": "See what we get. I've got one code block here, an if, L if, and an else. So the first code block, the condition is it checks that the sum of those two is greater than 24. And it does something."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4024.2400000000002,
+            "end": 4035.0400000000004,
+            "text": "This is the block that's part of that condition. Notice it's indented by usually four spaces. L if. So if this one was not true, then I'm going to go ahead and check the next one."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4035.0400000000004,
+            "end": 4046.6800000000003,
+            "text": "The next condition is that the addition is greater than or equal to 24. And then we're going to do this print statement here. And if neither of those are true, I'm going to do whatever is in this code block here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4046.6800000000003,
+            "end": 4058.5600000000004,
+            "text": "I'm going to do these two lines. So this is my sort of, I call it a catch all, because none of those other conditions were true. So we're going to catch ourselves and do these commands here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4058.5600000000004,
+            "end": 4071.32,
+            "text": "And otherwise, once we finish doing either this one or this one or catching whatever is left over in here, we're going to evaluate the print statement here. And we're going to print end of day, because this is the rest of my program."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4071.32,
+            "end": 4092.0800000000004,
+            "text": "Notice it's at the same indentation level as my original program. So here is this, whoops, this program. So if piece at time and sleep time is 22 and 8, the addition is more than 24."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4092.0800000000004,
+            "end": 4108.04,
+            "text": "So this is going to enter this code block here and print impossible. If it's exactly equal to 24, so 22 and 2, we're not going to enter this one. But we will enter this one, because it's exactly equal to."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4108.04,
+            "end": 4122.96,
+            "text": "It's not greater than. So then we're going to print full schedule. And then rejoin the rest of the program here and print end of day. And otherwise, if this is something low, right, less than 24 and not equal to 24, right,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4122.96,
+            "end": 4134.0,
+            "text": "so neither of these conditions are true, then we're going to enter the else. And we're going to evaluate or run these two lines of code here. So the two lines of code here are"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4134.0,
+            "end": 4147.360000000001,
+            "text": "going to grab the absolute value of 24 minus the piece at time minus the sleep time, figuring out how much time we have left in the day. It's also going to print this line here and then rejoin the rest of the program to print end of day."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4151.28,
+            "end": 4165.320000000001,
+            "text": "OK, quick check. Nothing to write here, nothing to run. Think about this program. What is wrong with it? So I'm grabbing a number for x, a number for y."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4165.320000000001,
+            "end": 4176.36,
+            "text": "And then I'm checking if x is the same as y. I'm printing x is the same as y. So I give it 5 and 5. I'm going to print 5 is the same as 5. And then I'd also like to print these are equal."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4176.36,
+            "end": 4185.72,
+            "text": "What's the problem with this program? Yeah? If x is not equal to y, it's still going to print these are equal because it's not invented. Exactly."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4185.72,
+            "end": 4202.5199999999995,
+            "text": "If x is not the same as y, we rejoin the rest of a program because the indentation level of this print statement is the same as the rest of our program. So how do we fix it? Indent."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4202.5199999999995,
+            "end": 4216.96,
+            "text": "Yep. We'll just indent that print statement in to be at the same level as the if statement. So we can actually nest indentation statement. We can nest conditionals, right?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4216.96,
+            "end": 4228.92,
+            "text": "Because once we've created a conditional, it's just a code block. So here I've got an if statement with its own code block. And inside that code block, I can actually have more if statements that are just"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4228.96,
+            "end": 4247.2,
+            "text": "going to be executed whenever this condition is true. So this is the inside code block. So for example, the place where we would execute this inner code block is when x and y are equivalent, right? Because then I'm going to enter this code block here."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4247.2,
+            "end": 4260.52,
+            "text": "This is true. I'm going to print x and y are equal. And then this second conditional here, y is not equal to 0 is also true. And then I'm going to print this one as well."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4260.52,
+            "end": 4271.64,
+            "text": "I've already done one of the conditionals. They're true. So I'm going to skip the elif and skip the else. And I'm going to rejoin the rest of the program. All the other cases, right, when one value is different"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4271.64,
+            "end": 4290.56,
+            "text": "than the other, will either take me here in the else and then rejoin the rest of the program. Or when they're equivalent, I'm going to, or here, I don't actually have a case for that one on the slides. But when they're equivalent and y is equal to 0,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4290.56,
+            "end": 4306.64,
+            "text": "I'm not actually going to enter this inner conditional, right? Because y, while x and y were true, were equivalent, which is true, y was equal to 0. So that not equal to 0 is false."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4306.64,
+            "end": 4316.64,
+            "text": "So it's just backward. And then we rejoin the rest of the program. Yeah? What did you do your float for? Oh, I'm casting the numbers to floats."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4316.64,
+            "end": 4327.4800000000005,
+            "text": "I could cast them to ints as well. Yeah. Just so I'm not comparing strings. Yeah. So now that I've introduced conditionals,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4327.4800000000005,
+            "end": 4341.76,
+            "text": "it's important to do a little bit more practice to get a mental model of how to trace the code, right? And the visual structure of the code actually helps a lot. And Python is unique in the sense. There's no other languages that actually force you"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4341.76,
+            "end": 4351.64,
+            "text": "to indent things. So the other languages don't really force you to have this visual structure to match exactly what's going on. But it's actually really useful in Python."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4351.64,
+            "end": 4364.72,
+            "text": "That's what I like about Python. It just helps you see things that are going on immediately. Like, this set of code is part of this code block. And so it helps you debug a little bit more efficiently. But the more practice you get, the more"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4364.72,
+            "end": 4376.0,
+            "text": "you'll get used to tracing the code and knowing exactly if these variables have this value, exactly where your code is going to go. So I'm going to skip this. You try it, because it's just kind of you tracing the code."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4376.0,
+            "end": 4387.92,
+            "text": "And I'm going to have you do this one, or we can write it real quick, or you can start, and then we can write it together. It's a variation of the program you just wrote. Instead of telling me whether the guess is true"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4387.92,
+            "end": 4405.16,
+            "text": "or is the same as the secret number, I just want you to print whether the guess is too low, too high, or the same as the secret number. So we're going to need to put a conditional in there. If some conditional, we're going to print something."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4405.16,
+            "end": 4417.44,
+            "text": "So I'll give you about a minute, and then we can write it together, and then we can be done. Oh, yeah. Do you have two if statements in the program? You can have two if statements in the program, yeah."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4417.44,
+            "end": 4428.599999999999,
+            "text": "And there's actually some exercises I have for you guys to try at home here where there are two if statements in the program. And just to see what happens, that starts two conditionals. So if you have if some conditional,"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4428.6,
+            "end": 4437.84,
+            "text": "that one can be true, and if some other conditional, that one can also be true, and then both will be evaluated. It's not an L situation, right? Yeah. That's a good question."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4442.200000000001,
+            "end": 4470.6,
+            "text": "So I'm just going to copy the input from before. Does anyone have a start to my conditional? I just copied what we had before for the input. Yeah. So if text is greater than or equal to this to it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4470.6,
+            "end": 4481.6,
+            "text": "Yep. Yep. Print. Print. Yep."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4481.6,
+            "end": 4489.1,
+            "text": "Too high. Good. Yep. So that's a great start. So we can even run it."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4489.1,
+            "end": 4498.6,
+            "text": "And guess something that we know is too high. Perfect. Too high? Yep. Next."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4505.6,
+            "end": 4514.6,
+            "text": "Do you want to do an L or an LF? Yeah. Actually, I would get rid of the equal sign, because if we put in a five now, it would still say too high. That's a good point."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4514.6,
+            "end": 4523.6,
+            "text": "So if we run it now, let's run it with a five. It says too high. Exactly. Yeah. So let's remove the equal sign."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4523.6,
+            "end": 4538.1,
+            "text": "It's a good thing we debug that. So we can do an LF. The guess is equivalent to the secret. And then we can print equal, right? Oops."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4545.6,
+            "end": 4559.1,
+            "text": "Does everyone understand why we removed that equal sign from the greater than? Yeah? Because we would have mistakenly gone into that first path. But LF, we can have a case where the guess is equivalent to secret."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4559.1,
+            "end": 4571.6,
+            "text": "Sure. And then we'll print equal. And then the last one can either be an else, because we know the only other option is guess is less than. Or we can do another LF if we want to, but we can leave it as an else."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4571.6,
+            "end": 4606.6,
+            "text": "And then we can print too low. And then we can run it and we can guess all the variations. So something that's too high, something that's the same. And I'm not sure what I did there. I should restart my kernel."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4606.6,
+            "end": 4623.6,
+            "text": "So we did something that's too high, something that is equivalent. And then we can do something that's too low. Okay, yeah? What's the difference between an else and an else? So there is no difference."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4623.6,
+            "end": 4642.6,
+            "text": "We can do an LF guess is less than secret. The program would work just the same. The else is just quicker, because we know there are no other options here. Why wouldn't we use a row of if statements? In this particular case, we could also put a bunch of if statements in a row."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4642.6,
+            "end": 4661.6,
+            "text": "But then we'd have to be careful that they are mutually exclusive. So like in the previous example, if we have a bunch of conditions that might all be true, all those ifs will execute. Because the if starts a block. The LF is just associated with that block."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4661.6,
+            "end": 4678.6,
+            "text": "So either you do one or the other or the other. But if you have a whole bunch of ifs, then they might all be true and they'll all be executed. Why don't we use parentheses with an else statement? Oh, we could use parentheses in the if-else statements. You mean like this?"
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4678.6,
+            "end": 4697.6,
+            "text": "Yeah, we can do that. Especially if we have a whole bunch of expressions together. But if there's just one, Python will automatically know to do the expression first and then do the if. These are all wonderful questions, by the way. So as we saw, there was a little bug in our code."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4697.6,
+            "end": 4710.6,
+            "text": "It's a good thing we ran it. I should have run it with a bunch of different options. But it's important to debug early and debug often just to make sure that you don't introduce a bug that will carry on throughout the code. That's another big idea."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4710.6,
+            "end": 4726.6,
+            "text": "And then a quick summary of what we've learned. Input and outputs obviously make our programs interactive. We added branching as a way to introduce decision points in our program. And next time we're going to do a little bit more branching and then introduce looping, so ways to repeat commands in our programs."
+        },
+        {
+            "number": "2",
+            "title": "Strings_Input_Output_And_Branching",
+            "start": 4726.6,
+            "end": 4731.6,
+            "text": "So I went a little bit over time. I won't do that again."
+        }
+    ],
+    "text": "So let's start today's lecture. We're going to be looking at sort of three different topics. The first is we're going to look at a new object type called a string. We briefly mentioned this word last lecture. Then we're going to see how we can write programs that start to get input from the user and show the user output. And finally, we're going to go into writing a little bit more interesting programs that make decisions based on decisions that we actually input in the code. So not decisions spontaneously, but things that we will code within our programs. But before we go on to these topics, I just wanted to do a quick recap of what we learned last lecture just to make sure we're all on the same page. So we introduced the idea of an object. And every object in Python has a specific type, and the type tells Python the kinds of things you're allowed to do with that object, okay? We talked about once you have objects, you can actually assign these objects to variables, and these variables basically bind a name to the object in memory. With objects, you can also create expressions by combining objects together. And the expressions can either be things that we've seen in math, like with parentheses and with object operator object. Or they can be things like this, which was kind of introduced in programming. It's an expression, but it's kind of a different one. It's more like a command. Or I'm asking Python to do this operation for me. What is the object that comes back from this operation? So today, I'm going to go over this little sort of memory diagram. We started drawing last lecture, and I'm going to use this memory diagram today as well. Here's some lines of code that we wrote last lecture. So we wrote a line in Python that created an object. Its value is 3.14, a float in memory. And the name we gave this object was Pi. So just the name Pi, Pi. Radius equals 2.2 is another assignment statement in Python, and it binds the name radius to the value 2.2 in memory. And once we've created these variables, we can just invoke their names. We can use their names to tell Python to grab for me the values from memory. So when Python sees Pi times radius star star 2, that means take Pi, multiply it with the radius squared. So behind the scenes, Python goes, grabs the value 3.14 from memory, replaces Pi with that value, grabs 2.2 from memory, replaces radius with that value. It does the operation according to the precedence rules. And then that expression, the thing on the right-hand side of this equal sign, becomes a value. That value is then created as a new object in memory right here. And that object in memory is then bound to the name area. That's exactly what this assignment statement said. And we can do something like this in Python, which we can't actually do in math, right? If we did this in math, the expression would basically say 0 equals 1. But in Python, it's totally fine because, again, we evaluate the thing on the right-hand side of the equal sign. So on the right-hand side of the equal sign, we say, I want to grab the value of radius, so 2.2, add 1 to it, 3.2, create this object in memory. Here I have a whole new object in memory, 3.2, and then assign it to the name radius. So I've lost the binding from the original 2.2 and rebound the name to 3.2, okay? So we're not modifying objects in memory, we're creating new objects in memory whenever we do such operations. We're gonna see how we can modify objects way into the future. And just sort of for completion, when we have a line that says var is equal type 5, multiplied by 4, Python also sees this as an expression. And so as an expression, it has a value. So the right-hand side of this equal sign says, well, I'm gonna sort of systematically evaluate this and say, what's 5 times 4? It's 20. What's the type of 20? It's an integer. And so that's what the right-hand side evaluates to an integer. And I'm going to bind that value int to the name var. So var is another variable name, and its value is int, right? The type of my object, which is a little strange, right? So far, we've kind of just put numbers in our memory, but we can put any object type in memory. Okay, so let's move on a little bit onto the new object type called a string. So a string is actually a sequence of case-sensitive characters. The characters can be anything. We have lower case letters, uppercase letters, the numbers on your keyboard, the special characters you see on the keyboard. Even the enter when you do a new line or a tab has a special character associated with it. And the way we tell Python we're creating an object of type string is by enclosing the characters we want to be part of that object in these quotation marks. So when Python sees the quotation mark, it knows you're creating a string object. So here, I'm creating the string object which has the lower case letter m, lower case letter e. And here, I'm creating the string object which has the lower case y, lower case o, and lower case u letters. And these objects are things in Python. And we're just going to give them a handle, a binding with some more convenient variable names, a and z. So in memory, the way this would look in a little memory diagram is we would have the string characters me bound to the variable a, right? So basically what we've seen before. All right, so now what are some things we can do with strings? Well, some really common operations are that we can concatenate strings or we can repeat strings. So here, I'm not going to put the z in memory. You can kind of imagine how that would look like. But let's say I create now a variable b, equals the letters mysclf. What if I do a plus operator between these two strings? The plus operator tells Python that I'm going to take these two strings, the individual characters in each string, and kind of just put them together to make one new object that is all of these letters put together. So c is equal to a plus b is another assignment operator. And on the right hand side, we have an expression plus operator between two objects. It's going to put me, which is the c letters, and the mysclf, the b letters all together to create a new object, which I then give a handle or a binding c. So from now on, any time I want this particular string of characters, M-E-M-Y-S-E-L-F, I can just invoke the name c in my program. That's just the variable name that I gave it. Now notice it didn't insert a space, right? It didn't do me space myself, because we didn't tell it to do a space. So if we wanted to do a space, we'd have to put it in ourselves. So we can concatenate, so we can have a larger expression where we can concatenate a with a space and with b together. So that will give me an entirely new object in memory, the string M-E space, M-Y-S-E-L-F. This new object is bound to the name D. Is that okay so far? Does that make sense? Okay, all right, so that's concatenation. Basically takes these two string characters, puts them together in a new object. What about the star? I kind of briefly talked about this as repeating something last lecture. Well, the star operator works between a string and a number. It doesn't work between a string and a string. It doesn't work between, you know, things like that. It works between a string and a number in either order. So a number string or a string times number. So here, again, it's an assignment operator. On the right-hand side, we're going to figure out what it evaluates to first. So a times three means I'm going to repeat this particular sequence of characters M-E. Because that's what a is, it's M-E, three times. So this line of code here is going to create M-E, M-E, M-E as a new object. And the equal sign tells it to bind it to the name silly. So anytime I want to grab this particular string of characters from memory, I can just type in silly in my program. And that will automatically grab that particular sequence of characters from memory. All right, let's do a quick exercise to make sure that you all have this. And as you're thinking about what this does, I can start typing it in to the console. Or you can even type it in to check yourself. So B is going to be colon and C is going to be the closed parenthesis. So if we go here, we have B is equal to just this colon. And C is equal to the closed parenthesis. And we don't have to do all the operations at once. We can just do something like two times C and figure out what that is. It's just repeating the closed parenthesis twice. And then we can do B plus 2 times C to give us a colon closed parenthesis, closed parenthesis. So super happy. What about the next one? F is A. G is actually the space B. So there's a space character in there. A little tricky. And H is 3. Is this the number 3 or the string 3 for H? Yeah, exactly. It's the string 3. So what is F plus G? Again, we can do it in pieces. What is F plus G? A space B, exactly, right? A is by itself, and G is a space B. What is int H? Yeah, it's just 3. What's the type of 3? Int, exactly. I just cast it to an int, right? So if I have F is equal to A, G is equal to space B, and H is equal to the string 3, F plus G, we're doing it a little bit at a time, right, is A space B. And H is just, see, the string 3 here. So if I cast it to an integer, it gives me just the number 3. And we can wrap each of these in a type command to see the exact type, but we can tell right away. So if we do F plus G multiplied by int of 3, or sorry, int of H, which is just a 3, it's going to repeat A space B three times, right? So there's 1, there's 2, and there's 3. What would have happened if I forgot to cast it to an integer? What do you think? If I just did H? An error, yeah, exactly. They're not scary. They're kind of informative once you get to know them. So it's a type error, yeah? Something's wrong with our types. Can't multiply a sequence, so an integer, or a string, a sequence by a non-integer. OK, so what are some other operations we can do with strings? There's some different things we can do with strings that we actually haven't seen with numbers in last lecture. One of the more common operations is to get the length of a string. So this tells us how many characters are in the string. So if we say S is equal to ABC here, I'm creating a string with characters A, B, and C, and I'm giving it the name S. Now anytime in my program when I say S, Python will replace that with this string of characters ABC. I can wrap S in this LEN command. And this LEN command is an expression. Basically, Python reads this, and it evaluates it to one value. So replaces this expression with one value. How many characters are in my string? So LEN S will basically become the number three. So in my program, I can say something like another assignment statement down here. Chars is equal to LEN S. This is an expression, like in the previous line, that evaluates to three. So basically, this line says Chars is equal to three. OK, that's a pretty simple operation with strings. Now we're going to get into a little bit more detailed ones that requires you to kind of remember this Python syntax. So one thing we can do with strings is we can grab individual characters at different positions. So that's called slicing. The syntax, or the way that we actually do this in Python, is using square brackets. So you can see this here. We have some square bracket notation. This is just how Python does it. So if we have string S is equal to the character's ABC, the way we tell Python we'd like to extract a character at a particular position is by indexing into that string. Now in Python and modern programming languages, indexing happens from zero. We count from zero in programming in computer science. So what that means is the index of the first character, the index of A is zero, the index of B is one, and the index of C is two. So we can say what's the character at the first position or the first location. But in computer science speak, we say that's the character at index zero, the character at index one is the character at location two, and so on. So when we're indexing into a string, we're always starting to count from zero. So S at index zero, that's how we call this line here, is another Python expression. It just looks different than the expressions we've seen so far. But this entire expression, Python evaluates to a particular value, and the value it evaluates it to is the character at that index. So just to show you what that looks like in here, if S is equal to ABC, all we would type is this, S at index zero, and this expression evaluates to that single character A. S at index one, B, S at index two, C, S at index three basically says, what is the character at the fourth position? Well, ABC only has three positions, so this will actually give us our second error of the class, an index error. This is a pretty common error as we start working with more complex programs. It basically means you've indexed too far into the list, either to the right or to the left. You can index into a list with negative indices as well. So if you ever want to grab the character at the last position, so at the rightmost place, that's the character at index negative one. And it's a really convenient way to grab that last character. You basically ask, what's S at negative one? And Python automatically grabs for us that last character. So we don't have to use an expression sort of like len of S negative one. That would be C as well. And here I've inserted an expression, len S minus one, directly in that index. And that's totally fine. Again, Python evaluates things into out, left to right. It evaluated len S minus one to be two, and basically this line became what's S at index two, which we knew was C. Sir, why did we make negative one a C? Because when you index into negative numbers, we start counting from the right-hand side, just Python convention. And so S at negative four will give us an error as well, because now we're indexing too far to the left. There's nothing there. OK, so we can index to get single characters. That's fine. We just use square brackets and say the index that we'd like to get the character at. We can also slice to get substrings. So instead of getting single characters, we could ask Python to get us a substring starting from one index, going up to some other index, and potentially skipping characters. You can take every character along the way. You can skip every other character or some other pattern like that. The syntax for that is similar to slicing to get a single character, slightly different though. It's similar in that we have square brackets involved. Slightly different, because now we have to give three numbers within those square brackets, separated by colons. The first number will represent what's the start index. So where do you want to start your substring from? The second is what's the stop index. So we're going to take every character from that start index, going all the way up to but not including the stop. And the step means how many characters do we skip. So if the step is one, we're taking every character. If the step is two, we'll take every other character. If the step is three, we skip every two characters and so on. Now there's a bunch of combinations we can do with these three numbers within the square brackets that you'll, as you work with these exercises, you'll get the hang of. For now, it won't hurt to always give it a start, a stop, and a step. That's perfectly fine. But something that's really common, if you're always going to take every single character, is to just omit the step part. So if you just give it two numbers, number colon number, Python automatically knows that your step will be one by default. So you're not skipping anything. If you're just giving it one number, no colons, we're back to the previous slide, where we're just grabbing one element. And I know this is going to be a little confusing. We're going to look at an example on the next slide. But this is something you'll just have to practice a little bit on the shell with the following example, hopefully, just when you go home. Just to make sure that you understand what it's doing. If you have a question, what if I put in this number, or this number, just put it in the shell and see what happens. So let's take a look at a couple of examples. So how do we slice to get substrings? Let's say our string is this longer thing, a, b, c, d, e, f, g, h. When we slice, the first thing we want to look at is the step. Is it positive or negative? If it's positive, and remember, if you omit it by default, it's plus 1. So if it's positive, we're going to work our way left to right, the way we read. If it's negative, we're going to work our way right to left. So what if we index s from 3 colon 6? The step is positive 1, so we're going to work our way left to right. So that means we're going to start at index 3. So that's the d. So we're going to grab the d, and we're going to go up to, get the substring from d up to, but not including the character at index 6, the g. So the characters we're going to grab are the d, the e, and the f. We start at 3. We go up to, but not including 6, taking every character because the step is 1. What if the step was 2? So same thing as we just did, except the step is 2. Again, the step is positive, so we're going to work our way left to right. We're going to start at index 3, so we're going to grab the d, and we're going to create a new object, which is going to be the character's d. We're going to skip the e because the step is 2, take the f, and that's it. We've worked our way up to, but not including the element at index 6. There are some other things, I guess, trick, sir, you might want to call them, that you can do. So if we just put an empty colon here, that says just make the same object again. So that will evaluate to just a, b, c, d, e, f, g, h again. If we do colon, colon, negative 1, this is shorthand notation for basically grabbing for me the string backward. So h, g, f, e, d, c, e, b, a. Just make the same string as the original one, but backward. And we can do something like this for 1 with a step negative 2. Now the step is negative, right? So that means we're going to work our way right to left. We're going to start at index 4. So we're going to grab the e. We're going to skip every other character. So we're not going to take the d, but we will take the c. And we're going to go down to, but not including, the character at index 1. So we're going to stop right here. So the characters we took in this order were e and then c. So this entire expression evaluates to ec. Yes, question. Why do we skip d? Because the step is 2. So when the step is 1, we take every character. The step is 2, skip every other one. Yeah? For the first one, s3 to 6, why is g not included? g is not included just by definition. We go up to, but not including the stop. So we'll go up to, but not including the character at index 6. That's just the definition of slicing in Python. Like a character that's like up to an e, so 1. So up to an including stop minus 1 means we go up to an including 5. Right, yeah, exactly, yep. OK, so again, if you're unsure what a command does, always try it. You can always try it in your console, write the shell. And here's an opportunity to do that. So here's a string s, a, b, c, d3, f. And I'm actually going to write this one down, just a, b, c, space, right? There's a space here, 3, d, what did I do? So d3, f, and then another space, and g, h, i. So what do you guys think the first one will be? 3 colon len s minus 1. I'll even do the indices here for you. What's the start? Yeah, the space, exactly. So it's going to be a low space. What is len s minus 1? 10, yeah, what's the length? How many characters are in here? 11, yep, and minus 1 is 10. So when we do this, when the stop is 10, that means we're going to go up to, but not including, the character at 10. So we're going to go up to this h, right? So we're going to take the space, d3, f, space, g, h, and we stop. Yeah? Why do we start indexing at 0 again and just? Convention. Computer science, programming. Except for MATLAB, I think they still start indexing at 1. Other questions about this one, is that all right? OK, how about the next one? s4, 0, negative 1. What's the element at index 4? The d, yep, so we're going to grab the d. Are we working our way right or to the right or to the left? Yeah, exactly. So we're going to go up to, but not including, the character at index 0. So we're going to get the d, the space, the c, the b. Am I taking the a? No, exactly. So that's it, d space, cb. Yes? If you want to include the a with the second value, you can negative 1. If you did want to include the a, actually you would want to do something different, I think. You can't go to negative 1 because negative 1 is actually this right here. That's a good question. I'd have to try it out, play around with it. But if you want to include it, I think maybe you would just do an empty, sorry, go ahead. You would just probably do an empty colon. And by default, that means the beginning. But I'd have to try it out, yeah. How about the last one, 6 colon 3. What's the element at index 6? The empty colon works. The empty colon works. OK, perfect. Thanks for trying it out. The empty colon works, yeah. If you wanted to grab the a. All right, so s 6 colon 3. What's the element at index 6? The f. OK, great. And we're working our way to the right or to the left? To the right? OK, so we're going to start here, but we need to go this way. But what's the stop index? Yeah, it's not there. It's behind us. So this last one is actually an empty string. And we can try it with something else, too. So if we had this a, b, c, right? If I'm indexing starting from 2 and I'm going backward to 0, then that gives me the empty string. And the empty string is just quote, quote, with nothing inside. So that means we didn't take any characters in that particular case. Is that all right? Is it valid? It's valid. There are no characters in between the f and behind the f. OK, so I'll mention the strings are actually immutable objects. And really, a lot of the objects we've seen so far are immutable. That means they can't be modified once they're created. We've kind of seen this already, right? When I draw the memory diagrams, when I create a new object, which is, for example, what's the string version of this integer? Or when I cast a float to an end? Things like that. I'm not changing those original objects I've created. I'm just making a new green box in my memory and reassigning the name. And we're going to see later on in this course mutable objects, which means that once you do create them in memory, you can modify them. But for now, anytime you make a change to such an object, well, you can't change the object, right? If you want to get a different version of the object, Python will create a new object in memory, and you could reassign the variable to that new object. So in this example, if I want to grab, if I have the string car in memory like this, and it's bound to variable s, and I want to change the first letter to a b, I'm not allowed to. Python won't let me do something like, I want to change the letter at index 0 to a b. That's not allowed. You can get new versions of that particular string, so you can do some random expression to create the BAR that you might want. But then the CAR remains in memory, right? So the CAR will still be there. We're just losing the binding from it. So any questions so far on these strings? Mostly, they're a new data type, right? You haven't worked with them like you have with numbers, so it's a little bit different. Again, someone had a question, how do you get the a backward? Try it out in the console. I'm happy to answer questions, help you try along with you. But that's what the console is there for, right? The shell, here. That's what it's there for. It's just to try quick little things if you ever have a question. What if this is this, and you get to try it out? Now let's move on to some input output. So far, the programs that we can write are pretty stagnant, right? There isn't much interesting things that we can do with them. There's no interaction with the user. So, so far, when we've tried to output things, well, you might think we have been outputting things, right? So when we write in our console something like 3 plus 2, Python does show something in the shell, right? This is maybe how we interact with the user. But this is not actual true output. I call this kind of like peeking into the value of the expression. But if you were to write some expression like this in a file editor, Python wouldn't actually print it out. And so here's all the things that we've already tried today. We've created all these strings. We've got the length of s, right? We indexed. Any time we typed these expressions in the shell, Python automatically gave us our value, right? But if I were to type those exact expressions in a file editor on the left here, Python's not actually gonna print these out. So this is the file editor. From now on, we're just gonna work with files. I'm gonna run it by hitting this little green run button or hitting a five. Something happened in the shell. My program ran, right? It says here, it ran this file. But there's no output, right? Where was the length of s? Where were all these indices we've done before? And that's because these aren't actual outputs, right? When we type them into the shell, that was just us doing quick little expressions in the shell giving us quick, no. That's why I call it peeking into the value, because it's not true output. If you want the user to see output, and the shell is how we're gonna show the user output from running a file, we have to explicitly tell Python, hey, I want you to show the output from this expression, or I want you to show the output from this command. And we do this using the print command. So if we take our expression that we wanna show the output from and wrap it in a print command, Python will then show that output and only that output. Can you imagine if we wrote a file that did all these operations and all these intermediary outputs were being shown? That would lead to a really messy file, or a messy program, right? And so that's why we have a command where you can explicitly tell Python just the things you wanna show to the user. So here, if you wanna print the length of S, we can wrap the length of S in a print statement and then run the file. And now the only thing that gets shown to the user is the thing I explicitly printed out, the three. And then down here, if I wanna print this other result, the result of this other expression, I can wrap that around a print statement, and Python will then print that one as well. But now I'm in charge of showing the user the things that I want to show them, right? Okay. So whenever you have a print statement, Python will print that resulting expression and then enter a new line. So as you saw here, we had two print statements, one around length and one around S at negative three, and Python put the result of these expressions, each one on a different line. Sometimes you might want to have expressions on the same line, or the results of expressions all in the same line. So we can do that. We can put all of these different objects within the same print statement. We separate them by a comma within the print statement. That's down here. Python will print all of our objects, no matter what types they are, and it'll separate each object by a space. So there's my object, the. There's my object, the number three, and there's my object, the string musketeers, and it printed it all on one line with a space in between them, and that's what this comma does. It automatically inserts the space. Now let's say you don't want a space for whatever reason. What if we try concatenating these objects together? Remember, we saw concatenation, we said it doesn't automatically insert spaces, it just kind of merges the strings together, and we run it. Well, I kind of already gave it away. It's gonna be an error, but let's see the error. It's a type error. It says, can only concatenate strings, not integers to strings. All right, makes sense. This is a string, this is not a string, so that's not okay, and this is a string. So instead of concatenating different objects together, we now have to remember to cast every object that's not a string to a string. So this line is exactly the same as the previous one, except that B, which was the number, the integer three, is now being cast to a string. So I'm wrapping the B around the STR, and that casts my integer to the string, and now Python is happy to concatenate these three strings for me. Okay, that's basically what I said. So that's output using the print statement. Now how about input? We can get input from the user, not surprisingly, with a command called input. The format of input is usually like this, so we have the input command. In the parentheses, we give it a string, and then we usually wanna save the input to a variable. So the next few slides are gonna go through step by step what happens when I have these two lines of code. Text equals input, type anything, and then I'm gonna print five times text. So when Python sees a line that says input and then some string, Python will automatically take the string within the input, right? So in this particular case, here's my input command, the string inside the input is type anything colon space. On the shell, Python will put that string for you, and then it will wait. It waits for the user to type some stuff in, and hit enter. As soon as the user hits enter, whatever the user typed in, so let's say the user typed in howdy, whatever the user types in will be saved as a string sort of replacing this input statement. So you can think of the input kind of like an expression. It's a weird one because it's waiting for the user to give us something, right? But in the end, the input gets replaced by the string version of whatever the user typed in. So the user can type in something, numbers, letters, characters, anything. As soon as the user hits enter, whatever the user typed in will be saved as a string replacing this input. So in memory, the way this looks like is this is our memory cloud, here is this object that I've created, which is the exact characters the user typed in. Okay, well if the user typed in howdy, then what does this line end up being? Text is equal to the string howdy. And that basically is what we've seen on the previous two slides, right? When we've worked with strings. We're gonna assign this variable and bind it to this particular string of characters. Now the next line is easy, right? We're gonna print whatever the result of repeating text is five times. So the print will show on the shell, howdy, howdy, howdy, howdy, howdy, right? Whatever the user typed in, five times. Okay, let's look at another example. In this particular one, we're gonna ask the user for a number. And I wanna print five times whatever the user types in. So number one, well again, grab input. So what we're asking the user to do is to type in a number, right? So when the Python sees this, it prints type a number and then waits for user input. Let's say the user types in the number three. That gets saved as the string three. Again, so no matter what the user types in, it's being saved as a string, even if it's a number. It's being saved as the string that number, right? So to Python, it's a character. To us, it's a number. But to Python, it's still a character. So number one in memory basically becomes the string three. Just one single character, three. When I print five times number one, what is that gonna look like? You guys tell me. Exactly, right, three, three, three, three, three, right? Because we're not, we're working with a string here, not an integer. If we wanna work with an integer, we have to wrap our input statement with a cast statement, right? So again, this is what Python does. We can combine expressions together. In this particular case, we're gonna combine the casting, the input, with the input statement. So now the user can type in for me three again. The input itself is gonna be the string three. But that line becomes num two equals int, parentheses, string three, right? And that, I did it on the shell a little earlier today, right? When we cast a string to an int, it becomes the number that int. So num two is then going to be three. And memory, num two is not the string three anymore because we've cast it to three. So when we print five times three, we're doing the mathematical operation five times three, right, 15. Okay, let's have you code. So I'm gonna give you a couple minutes. I'm gonna have you write a program that is interactive. So it's gonna ask the user for something and it's gonna print the something back to the user. So we're gonna ask the user for a verb and then I want you to print two things for me. The first is whatever the verb that user typed in, you're gonna write I can whatever better than you on one line. And then on the next line, so with another print statement, I want you to print that verb five times. So if the user types in run, you're gonna write I can run better than you. And then on the next line, run, run, run, run, run. So the way these try it, you try its work is I actually have some space here that I've already prewritten the instructions for you. And all you have to do is fill in the code. Okay, so I'll give you a couple minutes and then we'll write it together with suggestions from you and we'll see how far we can get and we'll definitely, we'll definitely finish it together. So you don't have to finish it on your own. Yeah. You should have this file. It's part of the zip file we downloaded for today. Oh, here it is. Yeah. All right, does anyone have a start for me? So how can I ask the user for input? Yeah. Yep, that works for me. And I'm adding a little extra space here between the colon or whatever prompt you have just so that when the user types it in, it isn't right beside the colon or the end of your, the end of this string. So as soon as we do this, the user will, the program will wait and the user will get to type something in. What's the next step? What's the first? How can you use this input? To print? Yep, let's print something. I can in quotes, yep, I can. Outside of the quotes, put the question with the name. Yep, we can put it, put it question. Yep, exactly. I can question comma, because it's another object and I'm happy to put a space in between it. I can question at another string better than you. There. And we don't need to write the full program right away. We can just test this little bit out. So choose a verb run. The one I gave you is fine. That looks good so far. All right, so then we can keep working on the second part. How can I print that verb five times? Yeah? Print and then question times five. Print question times five. Okay, let's run it and see what happens. Run. Not quite, I'm missing spaces. But this is an awesome start. How can I add the spaces in there? Yeah? In parentheses, we can put verb plus close to the space. In parentheses, yep. We can concatenate it with a space, exactly. Times, on all that times five. Yeah, let's try that. Run. Yep, that looks pretty good. I do wanna mention one thing. There is one improvement we can make to this program. If we look at the output here, the thing that we're actually printing out is this verb space, right? There's one, two, three, four, and the last one actually prints it with a space at the end. So a challenge for you, and the answer is a little bit lower, I provide you guys with answers to these, but a challenge for you is think about how you can change it, change this last print statement so that this last run doesn't actually have that extra space. Just think about it, you don't have to do it right now. Okay, so with what we know so far, we can actually apply some of these ideas to a more numerical example. So Newton's method is a way to actually grab the roots of a polynomial numerically using this idea called successive approximation. We can't actually write the full algorithm with what we know so far, but we can write a really important part of it. The part that we can write is the one that gets a next guess based on an initial guess. So you don't need to understand how the algorithm works, but basically the next guess based on an original guess looks like this, this is the formula. So the next guess is the original guess minus, and we evaluate the formula for whatever polynomial we wanna find at the original guess divided by the derivative of that function at the same guess. So here's just some code we've got asking the user for input, what x do we wanna find the cube root of? Then we ask the user for input, what guess do you wanna start with? And then we can just print the current estimate cubed, so we just guess cubed. And then the next guess is just following the formula up here, right? The next guess is going to say it's my original guess, so the g that I read in from the student, or from the input, minus, and now I have a division. The top of it is gonna be f at g. The computer's not evaluating f, right? We have to actually write down what the formula is, the function is, we wanna evaluate at g, so it's g cubed minus x, that's our function up there, divided by the derivative, and again, the program is not gonna evaluate the derivative automatically, we're going to tell it what the derivative is manually, so the derivative of g cubed minus x is just 3g squared, so then we just kind of hard-code that in. And the next guess to try is just gonna be that particular division and subtraction. I'm sorry? Sorry, there's no function for the particular derivative, but there's more to it. There are Python packages that allow you to do that, but for our purposes, we're just gonna hard-code it in this case, but yeah. So the way this looks in code is as follows, that's exactly what we had in there, and if we run this program, all it does is, let's say we wanna find the cube root of, say, 27, let's start with, I don't know, five, right? It tells me that five cubed is 125, way too big, obviously, so the next guess to try is 3.69, right? And that's all the program does. It doesn't take this next guess and do another guess. We haven't learned how to do such a thing yet, but we will in the next couple lectures. One other thing I wanna mention is this thing called an F string. It's something that became available, I think a couple years ago in Python with Python 3.6. It's a way more convenient way for us to print out mixtures of literal text and resulting expressions. So if you have a bunch of complicated expressions you wanna print out, an F string is the way to do it these days. What we know is these first two lines. This is what we've learned in the past couple slides. So if you wanted to have these two values and print, this big number is whatever fraction percent out of the original number. If you actually run this in the Python file, you'll see that this comma here puts an extra space between my number and the percent, right? And that doesn't look very good. When you have 3%, you're expecting the percent sign to be right by the three. But this comma adds for me an extra space. So it looks a little bit weird. Which means that our solution was to cast things to strings. So if we wanted to have that percent sign be right beside the number, we'd concatenate this cast with a percent. But F strings allow us to do this all in one. So there's no concatenation to think about. There's no casting to think about. F strings basically are this F and then a long string. And it's a mixture of expressions and things that I want to print literally to the screen. So the thing that's not inside a curly bracket are all things I'm gonna print literally to the screen. So the space is space. And then later on, percent space of percent. Those are all things that will literally be printed to the screen. Anything that's within a curly bracket is considered an expression in Python. And so before Python prints out the thing to the screen, it's actually going to evaluate whatever num times fraction is. And it knows these are gonna be variables. And then later on, fraction times 100. And then later on, num. These are all variables or expressions that it will evaluate before actually putting them on the screen. And now notice these expressions, we might have had to cast to strings beforehand if we wanted to concatenate them, but now we don't. Because they're in this special format with the curly brackets of the F string. So just something to practice. I'll use sometimes this. I'll use sometimes casting. I'll use sometimes F strings. But if you can use F strings whenever you can, that's really the way to go in Python these days. So the big idea actually, even with F strings, is that you can place expressions anywhere, right? We saw, we placed expression, I forget here, where we indexed, we placed an expression in the index, right? Now we're placing expressions inside print statements. And now we're placing expressions inside F strings. So expressions can be placed really anywhere. Which is pretty awesome. Very versatile, Python will just evaluate them and then just move on to the next lines. Okay, so the last topic of, I'm sorry, any other questions about the inputs and outputs, or is that right? Okay, so the last thing that we'll talk about today, and we will maybe talk a little bit about it next time, is conditions for branching. So right now the kinds of programs we can write are basically very linear. We have a bunch of lines of code and they get evaluated one by one. There's no way to skip around, there's no way to repeat things, there's no decision points in the programs, the values that you get are just the values that are in the program. Now we're gonna look at ways that we can add decision points in our program. So if some variable value is less than some other variable value, we wanna evaluate some code. And otherwise we'll do some other code, right? So some code can now be skipped in programs with this new idea. Before we go on to showing you exactly how to do that, I'm gonna talk about another notion of equal in programming. And this might be more the notion of equal you might be used to in math. So the first notion of equal is the one we've already seen. It's assignment. It's done with one equal sign. The value on the right hand side is bound to the variable on the left hand side, right? That we've known. Double equal in Python is how we tell Python that we'd like to know whether these two expressions are equal or equivalent. Sorry, not equal. So if we're going to be looking at equivalency, how do we express equivalency? Well, if something is equal to something else, we can say yes or no. We can say true or false, right? True or false should ring a bell. It's the Boolean data type that we saw last lecture. And so now that we're going to show you equality or conditionals in programming, we're gonna start talking about Booleans a little bit more. So expressions don't just have to be numerical. Expressions can actually give us Boolean results. So for example, an expression like two less than three is okay in Python. And this expression actually evaluates to a certain value. It's not a number. It evaluates to true, the Boolean value true, because yes, two is less than three. The equal sign here, this notion with a double equal, is how we ask Python to tell us whether two things are equivalent. And this will be the Boolean value false. So here's a bunch of other operators that we can run on any type, really, in Python. Most of the time, we're gonna run them on numbers, but they can be run on strings and things like that as well. So obviously, the double equal sign checks for equality. So if i is the same as j, this entire expression is replaced with true. And if they're not equivalent, this entire expression is replaced with false. If we wanna check for inequality, we use not equal. So exclamation mark equal means not equal. So if the number i, or whatever object i is not equal to object j, then this entire expression is true. If they are equal, then the entire expression is false. And then of course, we've got the less than, less than or equal to, greater or greater than or equal to, to work with as well. We can apply these to strings. And with strings, it's important to be careful about case. So for example, lower case a, equivalent to upper case a, is false, right? Because they are not the same character. Now that we're talking about Boolean operators, we can actually start to combine them together. So if I have the expression, for example, two less than three, right? Like I wrote on the board, that's true. But I can combine that expression with another one. Actually by itself, I can say what is not two less than three, and that will be false, right? It's the opposite of it. But I can also combine Boolean expressions together. So I can say what's two less than three and, three less than four. So two less than three is true, right? And three less than four is also true. So the combination of these two expression, of these two Boolean expressions is what is true and true? True. Right, so if one is true and the other one is true, then both of them, and both of them together, are going to be true. If one of these is false, so is three greater than four, is false? Well, what's false and true? It's going to be false. So if one of these operators is false, then the entire expression is false. And you don't have to remember this truth table. You can always check it like I just did, right? Here in the console. But at a high level, right? When we're doing the and operator between two Boolean expressions, we need both of the expressions to be true for the result and to be true. The or is the other one we can usually do. The or is always true, except for when both of the operators are false, right? And it kind of makes sense in English too, right? If either operator is true, then the entire result is true. But when both are false, the or of both of them is false as well. So here's a little example where we can use these operators in Python, so we can draw the little memory diagram as well. So pset time is 15, there's my variable, sleep time is eight, there's my other variable. I'm going to print sleep time is greater than pset time. So here my print statement is going to grab that expression, which evaluates to false. Eight is less than 15 is false. So that's going to print false. And then I have two more variables. These ones just happen to be Booleans. Derive is true, drink is false. So drink and derive is going to be false because one of them is false. And so here I've got this other variable both, and then I'm going to print false to the console. Okay, quick, you try it for you guys. So let's have you write a program that saves a secret number in a variable. So that's going to be your program's secrets. Presumably people using your program won't be looking at the program itself, they'll just be interacting with the program in the shell. So save a secret number in a variable, ask the user to guess a number, and then print either true or false if it's the same as your secret or not. So it's here, in this you try it down here. So you can start with something like secret equals and then put your favorite number there, five, whatever, and then write the rest of the code. So ask the user to guess a number, print a Boolean depending on whether the guess equals this secret or not. So I'll give you a couple of minutes to write that. Yeah, sorry. If you use the symbol and it's not the same, you have to actually type out A and D in Python. The and means something else. It's like a, it's an operator with the bits of the number. So something, it's not going to give the same answers. Right, you're thinking about Java or C++ or something, right? All right, does anyone have a start for me for this program? How do I get, grab the user input? Guess equals input. We can be nice, please, guess. What's that? We want the user to give us an integer, yeah, a number. Exactly. So, okay, yeah. If we leave it like that, then we're just grabbing the string. So we have to cast it to an integer, exactly. Now what? How do I check for equivalency between my secret and the guess? Okay. Secret. Equal, equal guess. And do you want to print this, yeah. Let's print that. Okay, run it. Let's guess something that's not the same, false. Run it again. Let's guess something that's the same, true. And we can guess something that's lower to just. Yeah. Is everyone, yeah. Did you assign like the different program? Did you assign the secret equal to the guess to the number of containers? Yep, yep, exactly. Equal equals this thing. Yep, and then you can do whatever you want with that print equal or something. That's the same, but yeah, you can do other things with this variable. Yeah, exactly. Five, yeah. If you want at home, try to see what would have happened if you didn't cast it to an integer. See if the program would have crashed or not, or if it would have just worked but given a wrong answer. So why do we do Booleans, right? Booleans are important variables because they allow us to start thinking about writing programs that make decisions, right? The way we talk is, we can say something like, if this is true, do this. Otherwise, we can say, we can say something like, if this is true, do this. Otherwise, do this. The Boolean part is, if that something is true, right? So the something is true is gonna be the Boolean that we can create in our programs, and then the do this is some sort of commands, and then the otherwise do that is gonna be some other set of commands, okay? So a really simple Boolean expression could be, it's midnight, you get a free food email, do you go get the free food or do you sleep? That's the very simplest kind of decision point you can make. But with conditionals, you can actually write a pretty cool program that gets you to that free food, right? So let's say this is a map of MIT, this is where you are, that's where the free food is, okay? We can write a really simple algorithm using just conditionals that takes you to that free food. So the algorithm goes like this, so I'm gonna say, I'm gonna walk always in this direction, so I'm either going forward, backward, left, and right, I'm not turning, and I'm gonna say, the algorithm is always gonna have my right hand be on a wall. So if the right is clear, so standing here, my right is clear, so I'm just gonna keep shimming until I reach a wall. If my right is blocked, but my forward is clear, I'm gonna keep going like this all the way to the end of the room. If my right is blocked and my forward is blocked, right, as if I would have reached the end of the room, I would have gone to the left. And if my right, forward, and left is blocked, if I'm over there, I would go backward, right, so I'd go backward. So basically, starting from here, I've made my way all the way around this room, and I would go out the door down the hallway, right? And if the map of MIT doesn't have islands, so if the free food isn't somewhere, it's sort of in an island in the middle here, if it's just a regular old maze, I would eventually make my way to the free food, following this really simple conditional algorithm. So how do we actually do conditionals in Python? How do we tell Python, hey, I wanna create, I wanna insert a decision point right here? We do that using the keyword if, and the if starts a decision block. Now the simplest decision block is just an if by itself. So if Python sees that if, so there's some code that it's following, and then at some point it reaches the if, the condition tells Python to check whether that condition is true. If the condition is true, so this is our decision point, then I'm going to deviate from my main program and do the code that's part of that condition. Those, I guess, two lines, dot, dot, dot inside there. If the condition is not false, I'm not going to go that route, and I'll just keep following the rest of the main program. How does Python know how many code lines to execute that's part of that condition? Well, it looks at the indentation. So I notice here I've kind of put a few spaces for these two and dot, dot, dot code blocks here. Anything that's indented right after that if statement and that colon there is a set of commands that are part of that block. So anything here will get executed all at once. And that's a really simple if. Either you do the set of commands, extra commands if the condition is true, or you don't. Now you can add an exception to that. So if the condition is true, again, we're following the program. We reach this if conditional here. If the condition is true, again, we're going to deviate from the program and execute this other set of commands right here. Otherwise, the condition is not true, and we're going to execute this other set of commands over here, so these guys over here. So either we do this set of commands or the other set of commands, but we never do both, and we never skip both of them. So either we do one set or the other. When we're done executing all the indented blocks, part of the condition, or the other one that's that, if the condition wasn't true, then we rejoin the rest of the program and continue executing. So this is all, the rest of the program is at the same indentation level as our original if and else. We can add a whole bunch of conditions, right? Not just an if, do this, otherwise, do this. We can actually add a bunch of things to check using L if, which basically stands for else if another condition do this. So here's our program. We reach a decision point. If the condition is true like before, we'll execute this set of commands. But otherwise, the condition is not true. We're going to check another condition. Else, if this other condition is true, we'll execute this other set of commands. Otherwise, here's another else if, we'll check another condition. If it's true, we'll execute some other set of commands. Otherwise, there can be more L ifs. And at some point, we're going to rejoin the rest of the program. Now these L ifs are going to be, each condition is checked one at a time. The very first one that's true is the one that gets executed. We're never going to execute more than one, right? Because this is an if, else, if, else, if, else, if. So even in English, you're only going to do one of these. You're never going to do all of them. It is possible to skip all of them, though. Because if none of those conditions are true, you just don't do any of them. If more than one is true, you do the first one. That is true. If you want to have sort of a catch-all kind of version of the middle L if, L if, L if, L if, you just add an else at the end. So if none of those conditions are true, you can add an else, which says you just do this if nothing is true. Kind of like what we had over here. If this one, otherwise, do this. Well, if any of these conditions are true, do one of them. Otherwise, do this. So here's an example. We've got piece at time. We'll just put some variables in there. Sleep time. We'll put some variables in there and run it. See what we get. I've got one code block here, an if, L if, and an else. So the first code block, the condition is it checks that the sum of those two is greater than 24. And it does something. This is the block that's part of that condition. Notice it's indented by usually four spaces. L if. So if this one was not true, then I'm going to go ahead and check the next one. The next condition is that the addition is greater than or equal to 24. And then we're going to do this print statement here. And if neither of those are true, I'm going to do whatever is in this code block here. I'm going to do these two lines. So this is my sort of, I call it a catch all, because none of those other conditions were true. So we're going to catch ourselves and do these commands here. And otherwise, once we finish doing either this one or this one or catching whatever is left over in here, we're going to evaluate the print statement here. And we're going to print end of day, because this is the rest of my program. Notice it's at the same indentation level as my original program. So here is this, whoops, this program. So if piece at time and sleep time is 22 and 8, the addition is more than 24. So this is going to enter this code block here and print impossible. If it's exactly equal to 24, so 22 and 2, we're not going to enter this one. But we will enter this one, because it's exactly equal to. It's not greater than. So then we're going to print full schedule. And then rejoin the rest of the program here and print end of day. And otherwise, if this is something low, right, less than 24 and not equal to 24, right, so neither of these conditions are true, then we're going to enter the else. And we're going to evaluate or run these two lines of code here. So the two lines of code here are going to grab the absolute value of 24 minus the piece at time minus the sleep time, figuring out how much time we have left in the day. It's also going to print this line here and then rejoin the rest of the program to print end of day. OK, quick check. Nothing to write here, nothing to run. Think about this program. What is wrong with it? So I'm grabbing a number for x, a number for y. And then I'm checking if x is the same as y. I'm printing x is the same as y. So I give it 5 and 5. I'm going to print 5 is the same as 5. And then I'd also like to print these are equal. What's the problem with this program? Yeah? If x is not equal to y, it's still going to print these are equal because it's not invented. Exactly. If x is not the same as y, we rejoin the rest of a program because the indentation level of this print statement is the same as the rest of our program. So how do we fix it? Indent. Yep. We'll just indent that print statement in to be at the same level as the if statement. So we can actually nest indentation statement. We can nest conditionals, right? Because once we've created a conditional, it's just a code block. So here I've got an if statement with its own code block. And inside that code block, I can actually have more if statements that are just going to be executed whenever this condition is true. So this is the inside code block. So for example, the place where we would execute this inner code block is when x and y are equivalent, right? Because then I'm going to enter this code block here. This is true. I'm going to print x and y are equal. And then this second conditional here, y is not equal to 0 is also true. And then I'm going to print this one as well. I've already done one of the conditionals. They're true. So I'm going to skip the elif and skip the else. And I'm going to rejoin the rest of the program. All the other cases, right, when one value is different than the other, will either take me here in the else and then rejoin the rest of the program. Or when they're equivalent, I'm going to, or here, I don't actually have a case for that one on the slides. But when they're equivalent and y is equal to 0, I'm not actually going to enter this inner conditional, right? Because y, while x and y were true, were equivalent, which is true, y was equal to 0. So that not equal to 0 is false. So it's just backward. And then we rejoin the rest of the program. Yeah? What did you do your float for? Oh, I'm casting the numbers to floats. I could cast them to ints as well. Yeah. Just so I'm not comparing strings. Yeah. So now that I've introduced conditionals, it's important to do a little bit more practice to get a mental model of how to trace the code, right? And the visual structure of the code actually helps a lot. And Python is unique in the sense. There's no other languages that actually force you to indent things. So the other languages don't really force you to have this visual structure to match exactly what's going on. But it's actually really useful in Python. That's what I like about Python. It just helps you see things that are going on immediately. Like, this set of code is part of this code block. And so it helps you debug a little bit more efficiently. But the more practice you get, the more you'll get used to tracing the code and knowing exactly if these variables have this value, exactly where your code is going to go. So I'm going to skip this. You try it, because it's just kind of you tracing the code. And I'm going to have you do this one, or we can write it real quick, or you can start, and then we can write it together. It's a variation of the program you just wrote. Instead of telling me whether the guess is true or is the same as the secret number, I just want you to print whether the guess is too low, too high, or the same as the secret number. So we're going to need to put a conditional in there. If some conditional, we're going to print something. So I'll give you about a minute, and then we can write it together, and then we can be done. Oh, yeah. Do you have two if statements in the program? You can have two if statements in the program, yeah. And there's actually some exercises I have for you guys to try at home here where there are two if statements in the program. And just to see what happens, that starts two conditionals. So if you have if some conditional, that one can be true, and if some other conditional, that one can also be true, and then both will be evaluated. It's not an L situation, right? Yeah. That's a good question. So I'm just going to copy the input from before. Does anyone have a start to my conditional? I just copied what we had before for the input. Yeah. So if text is greater than or equal to this to it. Yep. Yep. Print. Print. Yep. Too high. Good. Yep. So that's a great start. So we can even run it. And guess something that we know is too high. Perfect. Too high? Yep. Next. Do you want to do an L or an LF? Yeah. Actually, I would get rid of the equal sign, because if we put in a five now, it would still say too high. That's a good point. So if we run it now, let's run it with a five. It says too high. Exactly. Yeah. So let's remove the equal sign. It's a good thing we debug that. So we can do an LF. The guess is equivalent to the secret. And then we can print equal, right? Oops. Does everyone understand why we removed that equal sign from the greater than? Yeah? Because we would have mistakenly gone into that first path. But LF, we can have a case where the guess is equivalent to secret. Sure. And then we'll print equal. And then the last one can either be an else, because we know the only other option is guess is less than. Or we can do another LF if we want to, but we can leave it as an else. And then we can print too low. And then we can run it and we can guess all the variations. So something that's too high, something that's the same. And I'm not sure what I did there. I should restart my kernel. So we did something that's too high, something that is equivalent. And then we can do something that's too low. Okay, yeah? What's the difference between an else and an else? So there is no difference. We can do an LF guess is less than secret. The program would work just the same. The else is just quicker, because we know there are no other options here. Why wouldn't we use a row of if statements? In this particular case, we could also put a bunch of if statements in a row. But then we'd have to be careful that they are mutually exclusive. So like in the previous example, if we have a bunch of conditions that might all be true, all those ifs will execute. Because the if starts a block. The LF is just associated with that block. So either you do one or the other or the other. But if you have a whole bunch of ifs, then they might all be true and they'll all be executed. Why don't we use parentheses with an else statement? Oh, we could use parentheses in the if-else statements. You mean like this? Yeah, we can do that. Especially if we have a whole bunch of expressions together. But if there's just one, Python will automatically know to do the expression first and then do the if. These are all wonderful questions, by the way. So as we saw, there was a little bug in our code. It's a good thing we ran it. I should have run it with a bunch of different options. But it's important to debug early and debug often just to make sure that you don't introduce a bug that will carry on throughout the code. That's another big idea. And then a quick summary of what we've learned. Input and outputs obviously make our programs interactive. We added branching as a way to introduce decision points in our program. And next time we're going to do a little bit more branching and then introduce looping, so ways to repeat commands in our programs. So I went a little bit over time. I won't do that again."
+}

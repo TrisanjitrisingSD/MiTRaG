@@ -1,0 +1,852 @@
+{
+    "chunks": [
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 0.0,
+            "end": 25.92,
+            "text": "All right. Welcome everyone. So in case you missed last lecture, I've got some extra debugging ducks that were left over from last lecture's debugging lecture. Please take them home."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 25.92,
+            "end": 46.120000000000005,
+            "text": "I don't want to have to take them back to my office and then bring them back so many times. So please give them a good home. If you find them useful in your debugging strategy throughout your programming careers, I suggest you upgrade to carrying a debugging duck with you everywhere as I have on my phone."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 46.120000000000005,
+            "end": 62.88,
+            "text": "I use it in my day-to-day life. So that's just the next step beyond an actual duck. All right. So let's get started on today's lecture. We will be going over the idea of exceptions and assertions."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 62.88,
+            "end": 89.72,
+            "text": "And these are basically those scary red errors that we get when our program crashes, okay? Today's lecture will hopefully shed some light on exactly what these exceptions are and how we can actually use them to our advantage in our code. So let's start by talking about exceptions. So when you run your code, usually it runs without error, produces the right output all"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 89.72,
+            "end": 109.12,
+            "text": "the time, like mine does. But sometimes it so happens that your code hits an unexpected condition. And when that unexpected condition is run, you get an exception to something that was expected. So we've already seen a bunch of different exception examples."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 109.12,
+            "end": 129.2,
+            "text": "So we even talked about a couple of these last lectures. So we've got index errors where you index too far into some list, type errors where you're doing funky things with types that Python doesn't like, syntax errors are also exceptions, name errors are also exceptions. So a bunch of these errors that we've encountered are types of exceptions."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 129.2,
+            "end": 152.28000000000003,
+            "text": "So it turns out, so far in our programming experience, that whenever we get an exception, the program immediately crashes. Really we don't have any way to handle these exceptions. We just accept the fact that it crashed and we go back to the debugging board. But it turns out that in Python, we can actually write code to handle these exceptions."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 152.28000000000003,
+            "end": 178.52,
+            "text": "So if your code does happen to throw an exception, so an error occurs or something unexpected happens, you can write code that deals with that situation and either decides to ignore the fact that an error occurred, set some default values, or just raise your own exception and move on. So we're going to see a bunch of examples of these cases."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 178.52,
+            "end": 201.8,
+            "text": "So the way that we deal with exceptions is using some code blocks. The way that we handle exceptions is using these try and accept blocks. So the way that we write an exception handler is to put some potentially problematic code inside this try block. So the try is a keyword in Python."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 201.8,
+            "end": 217.96,
+            "text": "So obviously you can't name a variable try or anything like that. If you type it in your code, you'll see it turns blue. And try tells Python that you're starting a code block that contains some lines of code you'd like Python to execute. So just normal code."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 217.96,
+            "end": 238.96,
+            "text": "If Python is able to successfully execute these lines of code without an exception being raised, so without the program crashing, then nothing happens. Nothing is run inside this accept block. The code just continues as normal. But if it so happens that in that code that you ran, something strange has happened and"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 238.96,
+            "end": 264.84,
+            "text": "the code would have crashed, the code actually doesn't crash because we can catch the exception that gets raised inside this accept block. So if we have an associated accept block over here to a try block from here, Python is going to try to run this potentially problematic code. And if an exception is raised, it will stop running any further lines inside the try block"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 264.84,
+            "end": 290.52,
+            "text": "and immediately hop to the lines in the accept block. And the lines in the accept block will then get executed. So to just kind of draw a parallel to if I were to say this in terms of if and else, the way that I would describe the try and accept blocks is I would say if, and then I would put all the potentially problematic lines of code that I'd like to write inside"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 290.52,
+            "end": 310.12,
+            "text": "this condition for the if. And if all of these lines of code manage to successfully run, then nothing else happens. The inside of this if is essentially just a pass, and we don't execute the else, and then we just carry on with the rest of our lives. But if there is some line of code here that we're trying to run that crashes or that causes"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 310.12,
+            "end": 326.76000000000005,
+            "text": "the program to crash, Python will say, no, I'm not going to crash just yet. Let me see what the code would like me to do. And so we'd hop inside this else, and then we'd do something to handle the problem. And the something we do is inside this accept block. So again, this is not code we'd ever write."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 326.76000000000005,
+            "end": 348.76,
+            "text": "It's just kind of a way to draw a parallel with what we know so far. So the code that we would write is this try a bunch of code, accept, do something you'd like, do some lines of code if an error should come up in the try block. So let's look at some examples with code that you should be able to write at this point in the course."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 348.76,
+            "end": 374.24,
+            "text": "So we have some code on the left here. It's a function called some digits, and we're writing this code without any exceptions, okay? We're just writing it as if you were given this code on a quiz, what would be one solution? So this sum digits takes in a string s, and we say it's non-empty containing some digits, and I want to return the sum of all the characters that are digits."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 374.24,
+            "end": 402.40000000000003,
+            "text": "So I don't actually say anything about whether this string s contains non-digit characters, but let's write it in a robust way anyway. So we'd have a loop that goes through every character in that string s, and I'm using this in keyword here, this nice little trick here that says if that character, so whatever character it may be, is inside one of these- is inside this string of digits, then I know"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 402.40000000000003,
+            "end": 431.96000000000004,
+            "text": "it's a number- sorry, I know it's a digit, and I'm going to cast that digits 0 through 9 whatever it may be to an integer, add it to my running total, and then that loop does its thing until it's done, and then I return the total. So in terms of running the code, this is just as I have it on the slide, so here if the user gives me the string 1, 2, 3, I'm going to sum 1 plus 2 plus 3, 6, perfect."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 431.96000000000004,
+            "end": 450.84,
+            "text": "And if the user gives me 1, 2, 3, and then some random characters that I know I can't add, Python will still- will still be able to evaluate it because that if statement will not be run, right? For a, b, and c, we don't go inside the if, so there's no need to cast anything, right? So the code still works."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 450.84,
+            "end": 473.84,
+            "text": "If I didn't have this if here, right, if I decided to just cast to an end every single thing that comes my way, the first line of code will still work, but the second line of code will throw an exception. You see, I have on right-hand side my scary red text that says value error, invalid literal for int with base 10a."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 473.84,
+            "end": 503.20000000000005,
+            "text": "Kind of hard to parse, but after you've seen a bunch of these, you'll figure out that there's something going on with my types, and then I'm trying to cast, you know, I'm trying to cast to an integer the, the string a, and obviously it doesn't know how to do that. So that's the potentially problematic line, right, casting to an integer. So let's try to write the same code, except that now we'll do it with exception handling,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 503.20000000000005,
+            "end": 516.36,
+            "text": "okay? So a bunch of it is going to be the same. What we're going to change is the potentially problematic code is this- these two lines here, right? I- I don't need the if anymore."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 517.36,
+            "end": 539.92,
+            "text": "Instead, I'm going to just assume I can cast every single character to an integer, and I'm going to try to do that. So I'm going to try to cast every single character to an integer, and a- and then add it to my running total, okay? Most of the time that's going to work, if the input is a digit, but sometimes the users"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 539.92,
+            "end": 560.88,
+            "text": "give me something that's non-digit. In that case, you saw what happens, the code throws a value error. So if we didn't have the accept block, nor the try block, the code crashes immediately, no answer is even given. But with the accept block, Python will say, oh, in this particular for loop run, I had"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 560.88,
+            "end": 582.16,
+            "text": "an exception raised. So I'm going to execute whatever's inside the accept block. And the accept block says print can't convert, and then the character that it couldn't convert that time through the loop. And then that loop iteration is done, and it goes on to the next character in the sequence."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 582.16,
+            "end": 604.12,
+            "text": "So let's run the code, and this is the sum digits with the accept. So here I've got the user giving me perfectly fine input, no exceptions were raised, the code worked well. If the user gives me some characters within there, the loops go through, it adds 1 plus 2 plus 3."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 604.12,
+            "end": 624.44,
+            "text": "But then when it tries to cast to an integer the A, over here, as the iteration goes to A, it's going to say this raises a value error, as we just saw. And I'm going to execute whatever's inside the accept block. So prints couldn't convert character, there it is, and then I actually gave the user the character it couldn't convert."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 624.44,
+            "end": 647.7600000000001,
+            "text": "It goes on to the next iteration, the next character in the sequence, the B, again, tries to convert B, it can't cast it to an integer, so we print couldn't convert B. And then lastly, the C, same with the C. Does that make sense? Is that all right so far? So kind of like a little if-else situation going on here."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 647.7600000000001,
+            "end": 668.48,
+            "text": "Nice places to put try accept blocks are when you're dealing with user input. As the users, when they give you some inputs, right, for using the actual input command, they're very unpredictable. We don't know what kinds of things they'll give you, even though you give them clear instructions to tell me one number, or tell me another number."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 668.48,
+            "end": 696.9200000000001,
+            "text": "So in this three lines of code, down here, I've got the user giving me two numbers and then I print the first one divided by the second one. So I'm a nice user, I do what I'm told, so I'm going to do five divided by eight, perfect, the code runs well. Let's say somebody else runs the code and this time they decide to do seven divided"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 696.9200000000001,
+            "end": 718.84,
+            "text": "by, I don't know, five, like that, value error. So that's one thing that could go wrong, the user tries to be funny. And then another thing that could go wrong is let's say the user gives me a zero for the second number. So in this case, I get a zero division error, you can see Python doesn't know how to divide"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 718.84,
+            "end": 745.68,
+            "text": "by zero, so it raises an exception, this thing's zero division error. So these are, this is a case where I'm dealing with potentially problematic input, so I'm going to wrap my potentially problematic lines of code in a try and accept block. So I've got those three lines that I'm going to try to do and if anything goes wrong, I'm going to execute whatever's in the accept block and all I do is say print bug in user"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 745.68,
+            "end": 767.72,
+            "text": "input. So let's run that, that's this one here. So here again, proper input works well. If the user gives me a letter, bug in user input. So a much nicer, friendlier way to crash the program, right, then, you know, value error,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 767.72,
+            "end": 793.48,
+            "text": "whatever it was. And then again, if the user gives me a zero, bug in user input, again, much nicer way to crash the program. So what we can actually do is give specific, have specific behaviors depending on what exceptions are raised, right, so maybe I don't want a generic text that says bug in user"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 793.48,
+            "end": 811.28,
+            "text": "input for both of those cases, right. Maybe if the user divides by zero, I want to give them a different message than if the user gave me a letter, right. So in that case, what I can do is I can have different accept blocks for every different error that I know might come up, right."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 811.28,
+            "end": 838.82,
+            "text": "So as I'm writing this code, I can think ahead, right, and I can try to catch specific errors. So here, I can catch the value error. So I say accept and then I say the name of the error that I'd like to catch. And this block of code, this accept block of code will be run only if the code in the try block crashes with that specific value error, right."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 838.82,
+            "end": 861.4,
+            "text": "And then I can also catch my zero division error down here. And in this particular case, only this, this accept block is only run when the zero division error is raised, right. So here in the value error, I'm going to print, for the user, I could not convert to a number. So a more specific error message so they know what's up."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 861.4,
+            "end": 884.9599999999999,
+            "text": "And in the zero division error, I can also flag that there was an issue, I can't divide by zero by printing that to the screen. And then I can say, you know, a divided by b is infinity and I can continue the last statement that was supposed to be done in the try block, a plus b. I can give them the answer to a plus b because we can add a zero to a no problem."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 884.9599999999999,
+            "end": 906.72,
+            "text": "The last accept block down here is catching anything else that's not a value error and not a zero division error. So I can't think of anything that could go wrong. So if we happen to go in here, something went very wrong. I would say the only thing I can think of is if our computer is almost out of memory"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 906.72,
+            "end": 926.52,
+            "text": "and running this little piece of code pushes it over the edge, right. Then the Python will probably crash and maybe it'll print that error before completely shutting down the computer or something. So that last one should never really run. So let me show you what happens when we run the code with these specific accept blocks"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 926.52,
+            "end": 943.16,
+            "text": "now. So if the user gives me perfectly nice input, then the program proceeds as normal. Every line of code inside the try block is executed over here. None of the accept blocks are executed. The user gives me a letter."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 943.16,
+            "end": 961.36,
+            "text": "I end the program gracefully with the message could not convert to a number. So then they know that I caught them. And then the last one is if I try to divide by zero, again, I've got the little message can't divide by zero. And then I give them their division to be infinity and a plus b is six."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 961.36,
+            "end": 985.5600000000001,
+            "text": "So I do all the lines of code that are caught over here. Question so far seems all right so far, okay. So really nice ways for us to deal with exceptions that get raised in our programs. Now the things that I've told you that we can associate with a try block is an accept block, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 985.5600000000001,
+            "end": 1005.64,
+            "text": "So we've done that. But we can actually associate a couple other things with try blocks and we don't really use them in this class, but I just thought I'd mention them. So if you have an else block associated with a try block, that means the lines of code inside the else block will execute whenever everything inside the try block is executed perfectly."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1005.64,
+            "end": 1022.92,
+            "text": "So if everything goes according to plan, whatever you put inside the else block will also get executed. And then you can have a finally block as well. So just like we have a try and accept, you can also have a finally associated with those. And the body of the finally will be executed no matter what."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1022.92,
+            "end": 1042.2,
+            "text": "If an exception was raised, you also execute the finally. If the code work perfectly fine without raising any errors, the finally also gets executed. So I gave an example here of something that you might put inside the finally block sort of cleanup code. So if you're writing code that opens files from the file system, a good idea is to close"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1042.2,
+            "end": 1061.96,
+            "text": "them before you finish your program. So that's something that you might want to do inside the finally block. Just close files before shutting down, before your program terminates. OK, so I've shown you how to deal with exceptions. But now what do we do inside the accept blocks?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1061.96,
+            "end": 1088.2,
+            "text": "OK, we've done a couple different things, mostly printing out that something went wrong. But we can do various other things. One thing, and I don't recommend doing this, is to just fail silently. Certainly we could write code that basically has a, yeah, there's a question. So this is an else that we'd associate with a try."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1088.2,
+            "end": 1117.0,
+            "text": "So we would do something like else, and then you would print something here, success or something. And then if the code executes perfectly without an error, then you will also print success. So what do we do inside the accept blocks? One thing is to fail silently, which means that, well, you could say, you could try your"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1117.0,
+            "end": 1135.88,
+            "text": "entire piece of code, and then you could say accept. And then the only line you haven't accept is maybe a line that says pass. So that means any error that happens, you would catch, but you'd do absolutely nothing and let the program continue with a potentially bad value being passed along. That's not a good idea."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1135.88,
+            "end": 1162.64,
+            "text": "You could also silently substitute values that you know might be problematic without flagging things happening, also not good ideas. At the very least, you should flag something to the output that something weird has happened. Another thing you could do is return some error value, so you could have a whole bunch of variables in your code that you could set to some values, like flags kind of thing."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1162.64,
+            "end": 1184.0,
+            "text": "Whatever your code runs into an exception block. But the problem with that is that you have to now check for all these values further on in your code. So now your code becomes overly complicated because you have a whole bunch of extra variables you're constantly checking to see if any errors were flagged or something like that happened."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1184.0,
+            "end": 1206.6,
+            "text": "One last thing, and this is what I'll show you, you can do is to actually still stop the execution. So much like when we tried to run the sum digits program and it crashed with a value error, we could still make our program crash, but it's on our own terms. So we can raise our own value errors or whatever kind of error you'd like to raise with your"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1206.6,
+            "end": 1227.48,
+            "text": "own custom message. So the code still crashes, which is fine because maybe you don't want problematic codes to move on, but you're basically having it crash with a custom message and a custom error type of being raised. So this is a keyword in Python, you raise your own value error and in the parentheses"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1227.48,
+            "end": 1251.32,
+            "text": "you put whatever message you'd like to put. So here's an example of the sum digits where we raise our own exception. So let's say that indeed we only wanted the user to give us digits and we don't actually want this function to keep running and passing along the total if the user ever gave us a string that contains letters."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1251.32,
+            "end": 1276.36,
+            "text": "So in that particular case, I'm going to still put a try block and an accept block, a try block around the problematic code and accept block to catch any errors, but now instead of printing something and letting the code carry on with the loop, we're going to raise a value error with our own message. So my message is that the string contained a character."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1276.36,
+            "end": 1304.72,
+            "text": "So if I run this code, and it's actually up here, if I run this code with perfectly fine inputs, there's no issue, right? We just calculate the total as we want, but if the user gives us some code, some string that does contain extra characters, which maybe we don't actually want to have happened, I still have a value error, which is the same kind of exception that was raised without"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1304.72,
+            "end": 1333.24,
+            "text": "the try and accept, but now the message that I've passed in is string contained a character as opposed to invalid literal for whatever that cryptic message was. So this is a much nicer way to flag or to stop the program, to terminate the program, but not do it on your own terms. So let's have you work on this for a couple minutes."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1333.24,
+            "end": 1349.32,
+            "text": "You'll raise your own value errors. I'd like you to write this function that's called pairwise division. It takes in two lists. The lists should be non-empty and they're equal lengths, right? So as per this example, here's two lists that are not empty and they're the same length,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1349.32,
+            "end": 1378.1599999999999,
+            "text": "and I would like the code to basically go element by element and create a new list where each element is going to be, for example, 4 divided by 1, 5 divided by 2, and 6 divided by 3. So pairwise you do the division, put all those elements in a new list, and return that list. If the denominator, so the second parameter passed in, ldenom, contains any zeros, raise"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1378.2,
+            "end": 1397.0,
+            "text": "a value error. So don't let the code crash with the zero division error, but instead raise a value error with a nice message. So start with just the code to do the task and then add the value error bit at the end. Okay does anyone have a start?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1397.0,
+            "end": 1442.3200000000002,
+            "text": "How would you like to solve this problem? How do you want to write it? I'll num at i divided by ldenom at i. So we do the division for i in. So here, what is i?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1442.3200000000002,
+            "end": 1464.04,
+            "text": "Is it the element or is it an index? Yeah, so how do we grab like basically numbers zero through the length of one of these lists? If you want to do, yeah. Oh, so for i in len, in len, lden? Uh, yeah, so we have to do range."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1464.04,
+            "end": 1479.3600000000001,
+            "text": "Remember, yeah, range, len, lnen. Yep. I think those are my parentheses. That's cool that you did list comprehension right away. Uh, does anyone want to rewrite this using, uh, if or using a loop?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1484.5600000000002,
+            "end": 1513.36,
+            "text": "It's two. Oh, yeah. Good. Yep. So we still want to use the index, right? Because if we're looking at the element in ldenom, it's going to be hard for us to grab the same element in ldenom."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1513.4,
+            "end": 1531.6000000000001,
+            "text": "So let's iterate through the- like zero through the range, right? So basically what we did up there, range, len, and then pick one of them because they're the same length. So now let's change this to i just so we're not confused. I would say i is zero, one, two, three, four, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1531.6000000000001,
+            "end": 1557.8799999999999,
+            "text": "So now we know this is the index. So with this index in hand, this is the right start, right? L-num at i gives me the element in l-num, divide by ldenom exactly at i. Yeah. We can do l dot append, something like that."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1557.8799999999999,
+            "end": 1575.24,
+            "text": "Um, we can't say l at i equals that because our l is not made. Exactly. Yes. Perfect. So we could do like this. This is just another way. And then at the end,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1575.24,
+            "end": 1594.1999999999998,
+            "text": "we can return our variable, right? L. Okay. So that solves our problem. How do we add the piece where we raise a value? So how do you want to check that there's a- that ldenom has a zero? Because this should hopefully run,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1594.2,
+            "end": 1612.04,
+            "text": "work with our code without- oops, did I do it twice? Sorry. Yes, I did. Let me just comment one of these out. Oops. Oh my God. There. So how do I add the piece about value errors? Yes."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1612.04,
+            "end": 1631.3600000000001,
+            "text": "You put the l dot append on your try and then you add accept, and then raise value error, ldenom contains zero. Yep. So we can pop this into a try, and then accept and raise value error. Yep. And with some nice message here."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1631.3600000000001,
+            "end": 1648.92,
+            "text": "Nice message. And we can also put the entire for loop under the try. The code is not very long that it does- it wouldn't make a difference. All right. So if we try to run it like that now, I've got my value error with my nice message."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1649.24,
+            "end": 1663.92,
+            "text": "Another, uh, yeah, another way we could raise the value error just for completion's sake is to say something like, you can even raise things inside if statements. They don't have to be part of accept blocks. Before we even do anything with the code,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1663.92,
+            "end": 1682.1200000000001,
+            "text": "we can say if zero is in ldenom, raise value error. That would also be a fine thing to do. So we can raise value error as wherever we'd like. So now I'd like to talk a little bit about assertions."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1682.1200000000001,
+            "end": 1702.2,
+            "text": "So assertions are actually still exceptions that get raised. They're just a very special type of, uh, exceptions that we mostly use as a defensive programming tool. So, um, uh, assertions are basically used to enforce these contracts that we make between somebody who writes"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1702.2,
+            "end": 1716.68,
+            "text": "a function and somebody who uses a function. So that's basically the function doc strings, right? When we talked about doc strings, I said that it's very hard for us to enforce the, the, um, the, uh, the text within the doc string, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1716.68,
+            "end": 1729.84,
+            "text": "Because it's just the person who's writing the function saying, you know, the input list should not be empty or, you know, these, the input, two input lists like in the previous example should be the same length. And there's no way for us to really enforce that."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1729.84,
+            "end": 1746.76,
+            "text": "It's just something that's nice to have. And we're going to guarantee that the code runs if these things are, uh, upheld. But it turns out that assertions are actually a nice way for us to, uh, add to a, a nice thing to add to our functions that do try to enforce these, this contract through the specification."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1747.6399999999999,
+            "end": 1765.52,
+            "text": "So the way we create an assert, we say assert, and I'm asserting that this statement is true. So if I want that the input length for a function to be non-zero, I would assert that the length L is not equal to zero or something like that. And if the assertion is true, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1765.52,
+            "end": 1783.84,
+            "text": "If that condition is met, then the code carries on as normal. But if the assertion is not true, then Python ends with an assertion error and then some message that the condition was not true. And these are really nice because it halts the execution of a program as soon as that contract is not held, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1783.84,
+            "end": 1803.68,
+            "text": "As soon as something within the specification has gone wrong, then the program terminates with those assertion errors. And it's nice to see them because if you're debugging your code, you don't want to propagate bad values or, you know, bad or bad, yeah, bad values through functions because that value might get propagated later and later and later."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1803.68,
+            "end": 1826.3999999999999,
+            "text": "And then it would make your debugging very hard, okay? So if you stop the execution as soon as something is just strange or off, as in something like an assertion, an assumption on parameters not met, then that's, that's good. So in our sum digits example, here is the code that we wrote last."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1826.3999999999999,
+            "end": 1844.96,
+            "text": "So total down to the bottom is exactly what we had before. All we're going to add is this assert statement up here that the length of s is not empty because part of my contract here is that s is a non-empty string, right? So that's a nice thing to assert. If the user ever gives us an empty string, the program will terminate."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1845.04,
+            "end": 1867.44,
+            "text": "So in this example here, I've got the sum digits with the assert. So if the user gives us an empty string, no total was created, and the assert was immediately false, right? So length s was equal to 0. The assertion error was raised with the message s is empty."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1867.44,
+            "end": 1886.1200000000001,
+            "text": "So what I had here, okay? If I have fine input, then no assertion is raised and the code carries on as normal. So that's nice. So let's have you add one more line of code to your,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1886.1200000000001,
+            "end": 1904.8,
+            "text": "the program that we just wrote. Just add an assert statement that enforces the contract. So I have num and LD num are non-empty lists of equal lengths. So you can do this all in one assert statement, or you can put two separate assert statements with two separate messages."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1904.8,
+            "end": 1932.3200000000002,
+            "text": "However you'd like, it is fine with me. So I'll give you a minute to work on that and then we can write it. All right. What assertions should I put in here? Yeah. So the thing I'm asserting should be true. Do I want them to be equal?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1932.3200000000002,
+            "end": 1945.0800000000002,
+            "text": "Yes. Exactly. So I want Len, L num to equal Len, L, did I? Yeah, d num, like that. Yeah, that's one, right? So the thing you want,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1945.0800000000002,
+            "end": 1963.1200000000001,
+            "text": "you're asserting that this is true and if not, comma, we're going to put a message, right? Lengths different or something like that. Do you want to do the other assert statement or does it have somebody else want to take a crack at the other assert?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 1966.04,
+            "end": 2006.72,
+            "text": "So the other one is that they are non-empty lists. Yeah. So we can definitely do that, not equal to 0 comma empty list or something like that. Very nice. So here we're trying to enforce our nice contracts and I've got two examples down here."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2006.72,
+            "end": 2022.1599999999999,
+            "text": "So here I've got two different lengths of lists. So there you go. My assertion was raised with my nice message, lengths differ and then the code would immediately stop and it would force us to check to see why these lengths are different."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2022.1599999999999,
+            "end": 2044.92,
+            "text": "So these bad lists won't propagate any further if I had larger pieces of code. And then same here, I've got this assertion error that I have an empty list. Any questions so far? One more example I want to go through."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2044.92,
+            "end": 2060.0400000000004,
+            "text": "I'm not going to actually run this one, but it is in the Python slides. I just wanted to give you another example of how we can use exceptions and assertions in just a different setting. And it hopefully shows that as a programmer,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2060.0400000000004,
+            "end": 2079.44,
+            "text": "you get to choose how you add these exceptions and assertions. So wherever they seem reasonable to add, you should add them. So in this particular example, we are assuming that we have a class list. In this case, I only have two students in my class."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2079.44,
+            "end": 2097.04,
+            "text": "So these are their test grades. So I've got a list that looks like this. It looks complicated, but I'll walk you through it. This is one student in my list and this is another student in my list. So I've got a list of lists,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2097.04,
+            "end": 2116.24,
+            "text": "where these things that I've highlighted in red is my students. And for each student, I have more lists as part of their information. So the first list related to one student is their name. The first element is their first name, second element is their last name."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2116.24,
+            "end": 2140.4,
+            "text": "And then the second list for that student is their grades in the class. So just another list of all the grades in the class. So what I would like to do, and this is the code I'm going to go through, is I'd like to create a new list based on the original test grades. That contains the same information as before."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2140.4,
+            "end": 2155.12,
+            "text": "So you can see I still have two lists of students, the first row and the second row. And in each student's information, I again still have their name and their list of grades. But I'm adding one more item at the end for each student,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2155.12,
+            "end": 2174.88,
+            "text": "which is the average of the list of grades. So I've taken the average of these and plopped it as my integer, or float at the end, and same with my next student. So the code that's going to do this looks like this. I've got, that's just the original list to give you an example to look at,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2174.88,
+            "end": 2189.88,
+            "text": "because I find it hard to see things without examples. So this is the code that gets the stats for the class. So that creates this new list containing my average at the end. For each student in the class list, so for example, student here,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2189.88,
+            "end": 2204.08,
+            "text": "Stu is going to be this list of two lists. What I'm going to do in my new list that I'm creating here, new stats, is I'm going to append student at zero, which is just their name, so just a straight copy and paste."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2204.08,
+            "end": 2222.7599999999998,
+            "text": "Student at one, which is just their grades, again a straight up copy and paste of all their list of grades. And then I'm going to apply a function named average, to the list of student grades. And what we're going to see in the next couple slides is we're going to see"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2222.7599999999998,
+            "end": 2246.5200000000004,
+            "text": "a few variations of this average function, and what happens when we apply these different functions. But for now, I will assume that this code will do the job. So the original average function will take in a list of grades. So this grades here will look like this blue box here, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2246.5200000000004,
+            "end": 2262.5200000000004,
+            "text": "So just a list of numbers. It's going to sum all the grades, so sum of all the elements inside that list, and divide by how many there are, average. Okay. Now, let's say that I have a student that contains"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2262.5200000000004,
+            "end": 2283.28,
+            "text": "no quiz grades or no grades at all. In that case, their list of grades will be empty. So if I try to apply the sum of all the grades divided by the length of the grades for somebody who has no grades information, that length will be zero."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2283.28,
+            "end": 2310.0,
+            "text": "So I'm going to get a zero division error when I run my code and it will crash. So what I'd like to do is to change my average function to try to catch such an error. So I'm going to try to do the sum divided by the length, and I'm going to catch this zero division error inside this accept block, and all I'm going to do is print warning no grades data."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2310.0,
+            "end": 2328.84,
+            "text": "So for any student that actually has grades information here, the code to get the average will work just fine, because it will do the sum divided by the length. But, and then, so that means the try block will succeed, and we're going to return the sum divided by the length."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2328.84,
+            "end": 2352.04,
+            "text": "But if any student enters the zero division error here, we're going to print something, and what do we return? What is the function return if we enter the accept block? That's what's going to be printed,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2352.04,
+            "end": 2364.04,
+            "text": "but what does this function actually return? What value? None. None, exactly, right? There's no return inside this accept block and no code after it either. So you can see here,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2364.04,
+            "end": 2377.96,
+            "text": "if it successfully completes for these three students, we've got our numbers, that's what we returned, but for the last student that has no grades information, we're returning none. I don't like that."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2377.96,
+            "end": 2397.68,
+            "text": "What I would like in my grades book is to have numbers as my value there. So instead, let's add a return for that accept block. So we're still going to flag the error. We still want to know that something weird has happened. I don't just want to replace,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2397.68,
+            "end": 2411.3599999999997,
+            "text": "return a zero without actually telling the user that something's gone down. I still flag the error, but then I can return a zero so that it's still a number, and then if I do something with numbers at the end, then it all works out."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2411.36,
+            "end": 2436.1600000000003,
+            "text": "This was a particularly hard first quiz, 10, 10, 80. Okay. One last thing we can do is to just assert, right? So if we want to make sure that every student had some sort of grades information, maybe if the grades data was empty, something weird happened from a previous function that might have been called,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2436.1600000000003,
+            "end": 2454.9600000000005,
+            "text": "I don't know. But maybe we say, let's just assert that the length of the grades is not zero. So we only want this code to execute if there are some grades information, and if not, let's just raise an assertion error just in case. So we can assert that the length of grades is not equal to zero,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2454.9600000000005,
+            "end": 2470.7599999999998,
+            "text": "and in that case, the code will terminate as soon as we try to get that last student's information, right? It will crash and it will crash with this assert statement that there's no grades data. Then we can go back to the code and see did we actually"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2470.7599999999998,
+            "end": 2494.96,
+            "text": "expect the student to have information or not, and then we can try to work through it. So just a quick summary of exceptions and assertions. Hopefully this lecture kind of demystified some of these exceptions that we've been getting. It showed you they're not as scary as they might have seemed originally."
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2495.28,
+            "end": 2510.64,
+            "text": "They don't always have to terminate the program, right? You can catch them, you can deal with them in whatever way that makes sense for that particular function or program. You can print a nice output to the screen, you can set some default values,"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2510.64,
+            "end": 2533.92,
+            "text": "you can still terminate the program but do it on your own terms with your own errors with your own custom messages so that the users can see something nicer than the default Python messages, right? So exception handling is a very important part of writing a program, especially if you expect weird things to happen, right?"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2533.92,
+            "end": 2559.2799999999997,
+            "text": "Assertions on the other hand are a type of exception, and they're useful as I've mentioned to try to enforce these contracts, these specifications. You basically use assertions because you don't want bad values to propagate. So as soon as something that isn't as you expect it to be happens, assertion error is raised and the program"
+        },
+        {
+            "number": "13",
+            "title": "Exceptions_And_Assertions",
+            "start": 2559.2799999999997,
+            "end": 2569.4,
+            "text": "immediately terminates allowing you to check to see why exactly those conditions were not met. So that's it, that's all I had."
+        }
+    ],
+    "text": "All right. Welcome everyone. So in case you missed last lecture, I've got some extra debugging ducks that were left over from last lecture's debugging lecture. Please take them home. I don't want to have to take them back to my office and then bring them back so many times. So please give them a good home. If you find them useful in your debugging strategy throughout your programming careers, I suggest you upgrade to carrying a debugging duck with you everywhere as I have on my phone. I use it in my day-to-day life. So that's just the next step beyond an actual duck. All right. So let's get started on today's lecture. We will be going over the idea of exceptions and assertions. And these are basically those scary red errors that we get when our program crashes, okay? Today's lecture will hopefully shed some light on exactly what these exceptions are and how we can actually use them to our advantage in our code. So let's start by talking about exceptions. So when you run your code, usually it runs without error, produces the right output all the time, like mine does. But sometimes it so happens that your code hits an unexpected condition. And when that unexpected condition is run, you get an exception to something that was expected. So we've already seen a bunch of different exception examples. So we even talked about a couple of these last lectures. So we've got index errors where you index too far into some list, type errors where you're doing funky things with types that Python doesn't like, syntax errors are also exceptions, name errors are also exceptions. So a bunch of these errors that we've encountered are types of exceptions. So it turns out, so far in our programming experience, that whenever we get an exception, the program immediately crashes. Really we don't have any way to handle these exceptions. We just accept the fact that it crashed and we go back to the debugging board. But it turns out that in Python, we can actually write code to handle these exceptions. So if your code does happen to throw an exception, so an error occurs or something unexpected happens, you can write code that deals with that situation and either decides to ignore the fact that an error occurred, set some default values, or just raise your own exception and move on. So we're going to see a bunch of examples of these cases. So the way that we deal with exceptions is using some code blocks. The way that we handle exceptions is using these try and accept blocks. So the way that we write an exception handler is to put some potentially problematic code inside this try block. So the try is a keyword in Python. So obviously you can't name a variable try or anything like that. If you type it in your code, you'll see it turns blue. And try tells Python that you're starting a code block that contains some lines of code you'd like Python to execute. So just normal code. If Python is able to successfully execute these lines of code without an exception being raised, so without the program crashing, then nothing happens. Nothing is run inside this accept block. The code just continues as normal. But if it so happens that in that code that you ran, something strange has happened and the code would have crashed, the code actually doesn't crash because we can catch the exception that gets raised inside this accept block. So if we have an associated accept block over here to a try block from here, Python is going to try to run this potentially problematic code. And if an exception is raised, it will stop running any further lines inside the try block and immediately hop to the lines in the accept block. And the lines in the accept block will then get executed. So to just kind of draw a parallel to if I were to say this in terms of if and else, the way that I would describe the try and accept blocks is I would say if, and then I would put all the potentially problematic lines of code that I'd like to write inside this condition for the if. And if all of these lines of code manage to successfully run, then nothing else happens. The inside of this if is essentially just a pass, and we don't execute the else, and then we just carry on with the rest of our lives. But if there is some line of code here that we're trying to run that crashes or that causes the program to crash, Python will say, no, I'm not going to crash just yet. Let me see what the code would like me to do. And so we'd hop inside this else, and then we'd do something to handle the problem. And the something we do is inside this accept block. So again, this is not code we'd ever write. It's just kind of a way to draw a parallel with what we know so far. So the code that we would write is this try a bunch of code, accept, do something you'd like, do some lines of code if an error should come up in the try block. So let's look at some examples with code that you should be able to write at this point in the course. So we have some code on the left here. It's a function called some digits, and we're writing this code without any exceptions, okay? We're just writing it as if you were given this code on a quiz, what would be one solution? So this sum digits takes in a string s, and we say it's non-empty containing some digits, and I want to return the sum of all the characters that are digits. So I don't actually say anything about whether this string s contains non-digit characters, but let's write it in a robust way anyway. So we'd have a loop that goes through every character in that string s, and I'm using this in keyword here, this nice little trick here that says if that character, so whatever character it may be, is inside one of these- is inside this string of digits, then I know it's a number- sorry, I know it's a digit, and I'm going to cast that digits 0 through 9 whatever it may be to an integer, add it to my running total, and then that loop does its thing until it's done, and then I return the total. So in terms of running the code, this is just as I have it on the slide, so here if the user gives me the string 1, 2, 3, I'm going to sum 1 plus 2 plus 3, 6, perfect. And if the user gives me 1, 2, 3, and then some random characters that I know I can't add, Python will still- will still be able to evaluate it because that if statement will not be run, right? For a, b, and c, we don't go inside the if, so there's no need to cast anything, right? So the code still works. If I didn't have this if here, right, if I decided to just cast to an end every single thing that comes my way, the first line of code will still work, but the second line of code will throw an exception. You see, I have on right-hand side my scary red text that says value error, invalid literal for int with base 10a. Kind of hard to parse, but after you've seen a bunch of these, you'll figure out that there's something going on with my types, and then I'm trying to cast, you know, I'm trying to cast to an integer the, the string a, and obviously it doesn't know how to do that. So that's the potentially problematic line, right, casting to an integer. So let's try to write the same code, except that now we'll do it with exception handling, okay? So a bunch of it is going to be the same. What we're going to change is the potentially problematic code is this- these two lines here, right? I- I don't need the if anymore. Instead, I'm going to just assume I can cast every single character to an integer, and I'm going to try to do that. So I'm going to try to cast every single character to an integer, and a- and then add it to my running total, okay? Most of the time that's going to work, if the input is a digit, but sometimes the users give me something that's non-digit. In that case, you saw what happens, the code throws a value error. So if we didn't have the accept block, nor the try block, the code crashes immediately, no answer is even given. But with the accept block, Python will say, oh, in this particular for loop run, I had an exception raised. So I'm going to execute whatever's inside the accept block. And the accept block says print can't convert, and then the character that it couldn't convert that time through the loop. And then that loop iteration is done, and it goes on to the next character in the sequence. So let's run the code, and this is the sum digits with the accept. So here I've got the user giving me perfectly fine input, no exceptions were raised, the code worked well. If the user gives me some characters within there, the loops go through, it adds 1 plus 2 plus 3. But then when it tries to cast to an integer the A, over here, as the iteration goes to A, it's going to say this raises a value error, as we just saw. And I'm going to execute whatever's inside the accept block. So prints couldn't convert character, there it is, and then I actually gave the user the character it couldn't convert. It goes on to the next iteration, the next character in the sequence, the B, again, tries to convert B, it can't cast it to an integer, so we print couldn't convert B. And then lastly, the C, same with the C. Does that make sense? Is that all right so far? So kind of like a little if-else situation going on here. Nice places to put try accept blocks are when you're dealing with user input. As the users, when they give you some inputs, right, for using the actual input command, they're very unpredictable. We don't know what kinds of things they'll give you, even though you give them clear instructions to tell me one number, or tell me another number. So in this three lines of code, down here, I've got the user giving me two numbers and then I print the first one divided by the second one. So I'm a nice user, I do what I'm told, so I'm going to do five divided by eight, perfect, the code runs well. Let's say somebody else runs the code and this time they decide to do seven divided by, I don't know, five, like that, value error. So that's one thing that could go wrong, the user tries to be funny. And then another thing that could go wrong is let's say the user gives me a zero for the second number. So in this case, I get a zero division error, you can see Python doesn't know how to divide by zero, so it raises an exception, this thing's zero division error. So these are, this is a case where I'm dealing with potentially problematic input, so I'm going to wrap my potentially problematic lines of code in a try and accept block. So I've got those three lines that I'm going to try to do and if anything goes wrong, I'm going to execute whatever's in the accept block and all I do is say print bug in user input. So let's run that, that's this one here. So here again, proper input works well. If the user gives me a letter, bug in user input. So a much nicer, friendlier way to crash the program, right, then, you know, value error, whatever it was. And then again, if the user gives me a zero, bug in user input, again, much nicer way to crash the program. So what we can actually do is give specific, have specific behaviors depending on what exceptions are raised, right, so maybe I don't want a generic text that says bug in user input for both of those cases, right. Maybe if the user divides by zero, I want to give them a different message than if the user gave me a letter, right. So in that case, what I can do is I can have different accept blocks for every different error that I know might come up, right. So as I'm writing this code, I can think ahead, right, and I can try to catch specific errors. So here, I can catch the value error. So I say accept and then I say the name of the error that I'd like to catch. And this block of code, this accept block of code will be run only if the code in the try block crashes with that specific value error, right. And then I can also catch my zero division error down here. And in this particular case, only this, this accept block is only run when the zero division error is raised, right. So here in the value error, I'm going to print, for the user, I could not convert to a number. So a more specific error message so they know what's up. And in the zero division error, I can also flag that there was an issue, I can't divide by zero by printing that to the screen. And then I can say, you know, a divided by b is infinity and I can continue the last statement that was supposed to be done in the try block, a plus b. I can give them the answer to a plus b because we can add a zero to a no problem. The last accept block down here is catching anything else that's not a value error and not a zero division error. So I can't think of anything that could go wrong. So if we happen to go in here, something went very wrong. I would say the only thing I can think of is if our computer is almost out of memory and running this little piece of code pushes it over the edge, right. Then the Python will probably crash and maybe it'll print that error before completely shutting down the computer or something. So that last one should never really run. So let me show you what happens when we run the code with these specific accept blocks now. So if the user gives me perfectly nice input, then the program proceeds as normal. Every line of code inside the try block is executed over here. None of the accept blocks are executed. The user gives me a letter. I end the program gracefully with the message could not convert to a number. So then they know that I caught them. And then the last one is if I try to divide by zero, again, I've got the little message can't divide by zero. And then I give them their division to be infinity and a plus b is six. So I do all the lines of code that are caught over here. Question so far seems all right so far, okay. So really nice ways for us to deal with exceptions that get raised in our programs. Now the things that I've told you that we can associate with a try block is an accept block, right? So we've done that. But we can actually associate a couple other things with try blocks and we don't really use them in this class, but I just thought I'd mention them. So if you have an else block associated with a try block, that means the lines of code inside the else block will execute whenever everything inside the try block is executed perfectly. So if everything goes according to plan, whatever you put inside the else block will also get executed. And then you can have a finally block as well. So just like we have a try and accept, you can also have a finally associated with those. And the body of the finally will be executed no matter what. If an exception was raised, you also execute the finally. If the code work perfectly fine without raising any errors, the finally also gets executed. So I gave an example here of something that you might put inside the finally block sort of cleanup code. So if you're writing code that opens files from the file system, a good idea is to close them before you finish your program. So that's something that you might want to do inside the finally block. Just close files before shutting down, before your program terminates. OK, so I've shown you how to deal with exceptions. But now what do we do inside the accept blocks? OK, we've done a couple different things, mostly printing out that something went wrong. But we can do various other things. One thing, and I don't recommend doing this, is to just fail silently. Certainly we could write code that basically has a, yeah, there's a question. So this is an else that we'd associate with a try. So we would do something like else, and then you would print something here, success or something. And then if the code executes perfectly without an error, then you will also print success. So what do we do inside the accept blocks? One thing is to fail silently, which means that, well, you could say, you could try your entire piece of code, and then you could say accept. And then the only line you haven't accept is maybe a line that says pass. So that means any error that happens, you would catch, but you'd do absolutely nothing and let the program continue with a potentially bad value being passed along. That's not a good idea. You could also silently substitute values that you know might be problematic without flagging things happening, also not good ideas. At the very least, you should flag something to the output that something weird has happened. Another thing you could do is return some error value, so you could have a whole bunch of variables in your code that you could set to some values, like flags kind of thing. Whatever your code runs into an exception block. But the problem with that is that you have to now check for all these values further on in your code. So now your code becomes overly complicated because you have a whole bunch of extra variables you're constantly checking to see if any errors were flagged or something like that happened. One last thing, and this is what I'll show you, you can do is to actually still stop the execution. So much like when we tried to run the sum digits program and it crashed with a value error, we could still make our program crash, but it's on our own terms. So we can raise our own value errors or whatever kind of error you'd like to raise with your own custom message. So the code still crashes, which is fine because maybe you don't want problematic codes to move on, but you're basically having it crash with a custom message and a custom error type of being raised. So this is a keyword in Python, you raise your own value error and in the parentheses you put whatever message you'd like to put. So here's an example of the sum digits where we raise our own exception. So let's say that indeed we only wanted the user to give us digits and we don't actually want this function to keep running and passing along the total if the user ever gave us a string that contains letters. So in that particular case, I'm going to still put a try block and an accept block, a try block around the problematic code and accept block to catch any errors, but now instead of printing something and letting the code carry on with the loop, we're going to raise a value error with our own message. So my message is that the string contained a character. So if I run this code, and it's actually up here, if I run this code with perfectly fine inputs, there's no issue, right? We just calculate the total as we want, but if the user gives us some code, some string that does contain extra characters, which maybe we don't actually want to have happened, I still have a value error, which is the same kind of exception that was raised without the try and accept, but now the message that I've passed in is string contained a character as opposed to invalid literal for whatever that cryptic message was. So this is a much nicer way to flag or to stop the program, to terminate the program, but not do it on your own terms. So let's have you work on this for a couple minutes. You'll raise your own value errors. I'd like you to write this function that's called pairwise division. It takes in two lists. The lists should be non-empty and they're equal lengths, right? So as per this example, here's two lists that are not empty and they're the same length, and I would like the code to basically go element by element and create a new list where each element is going to be, for example, 4 divided by 1, 5 divided by 2, and 6 divided by 3. So pairwise you do the division, put all those elements in a new list, and return that list. If the denominator, so the second parameter passed in, ldenom, contains any zeros, raise a value error. So don't let the code crash with the zero division error, but instead raise a value error with a nice message. So start with just the code to do the task and then add the value error bit at the end. Okay does anyone have a start? How would you like to solve this problem? How do you want to write it? I'll num at i divided by ldenom at i. So we do the division for i in. So here, what is i? Is it the element or is it an index? Yeah, so how do we grab like basically numbers zero through the length of one of these lists? If you want to do, yeah. Oh, so for i in len, in len, lden? Uh, yeah, so we have to do range. Remember, yeah, range, len, lnen. Yep. I think those are my parentheses. That's cool that you did list comprehension right away. Uh, does anyone want to rewrite this using, uh, if or using a loop? It's two. Oh, yeah. Good. Yep. So we still want to use the index, right? Because if we're looking at the element in ldenom, it's going to be hard for us to grab the same element in ldenom. So let's iterate through the- like zero through the range, right? So basically what we did up there, range, len, and then pick one of them because they're the same length. So now let's change this to i just so we're not confused. I would say i is zero, one, two, three, four, right? So now we know this is the index. So with this index in hand, this is the right start, right? L-num at i gives me the element in l-num, divide by ldenom exactly at i. Yeah. We can do l dot append, something like that. Um, we can't say l at i equals that because our l is not made. Exactly. Yes. Perfect. So we could do like this. This is just another way. And then at the end, we can return our variable, right? L. Okay. So that solves our problem. How do we add the piece where we raise a value? So how do you want to check that there's a- that ldenom has a zero? Because this should hopefully run, work with our code without- oops, did I do it twice? Sorry. Yes, I did. Let me just comment one of these out. Oops. Oh my God. There. So how do I add the piece about value errors? Yes. You put the l dot append on your try and then you add accept, and then raise value error, ldenom contains zero. Yep. So we can pop this into a try, and then accept and raise value error. Yep. And with some nice message here. Nice message. And we can also put the entire for loop under the try. The code is not very long that it does- it wouldn't make a difference. All right. So if we try to run it like that now, I've got my value error with my nice message. Another, uh, yeah, another way we could raise the value error just for completion's sake is to say something like, you can even raise things inside if statements. They don't have to be part of accept blocks. Before we even do anything with the code, we can say if zero is in ldenom, raise value error. That would also be a fine thing to do. So we can raise value error as wherever we'd like. So now I'd like to talk a little bit about assertions. So assertions are actually still exceptions that get raised. They're just a very special type of, uh, exceptions that we mostly use as a defensive programming tool. So, um, uh, assertions are basically used to enforce these contracts that we make between somebody who writes a function and somebody who uses a function. So that's basically the function doc strings, right? When we talked about doc strings, I said that it's very hard for us to enforce the, the, um, the, uh, the text within the doc string, right? Because it's just the person who's writing the function saying, you know, the input list should not be empty or, you know, these, the input, two input lists like in the previous example should be the same length. And there's no way for us to really enforce that. It's just something that's nice to have. And we're going to guarantee that the code runs if these things are, uh, upheld. But it turns out that assertions are actually a nice way for us to, uh, add to a, a nice thing to add to our functions that do try to enforce these, this contract through the specification. So the way we create an assert, we say assert, and I'm asserting that this statement is true. So if I want that the input length for a function to be non-zero, I would assert that the length L is not equal to zero or something like that. And if the assertion is true, right? If that condition is met, then the code carries on as normal. But if the assertion is not true, then Python ends with an assertion error and then some message that the condition was not true. And these are really nice because it halts the execution of a program as soon as that contract is not held, right? As soon as something within the specification has gone wrong, then the program terminates with those assertion errors. And it's nice to see them because if you're debugging your code, you don't want to propagate bad values or, you know, bad or bad, yeah, bad values through functions because that value might get propagated later and later and later. And then it would make your debugging very hard, okay? So if you stop the execution as soon as something is just strange or off, as in something like an assertion, an assumption on parameters not met, then that's, that's good. So in our sum digits example, here is the code that we wrote last. So total down to the bottom is exactly what we had before. All we're going to add is this assert statement up here that the length of s is not empty because part of my contract here is that s is a non-empty string, right? So that's a nice thing to assert. If the user ever gives us an empty string, the program will terminate. So in this example here, I've got the sum digits with the assert. So if the user gives us an empty string, no total was created, and the assert was immediately false, right? So length s was equal to 0. The assertion error was raised with the message s is empty. So what I had here, okay? If I have fine input, then no assertion is raised and the code carries on as normal. So that's nice. So let's have you add one more line of code to your, the program that we just wrote. Just add an assert statement that enforces the contract. So I have num and LD num are non-empty lists of equal lengths. So you can do this all in one assert statement, or you can put two separate assert statements with two separate messages. However you'd like, it is fine with me. So I'll give you a minute to work on that and then we can write it. All right. What assertions should I put in here? Yeah. So the thing I'm asserting should be true. Do I want them to be equal? Yes. Exactly. So I want Len, L num to equal Len, L, did I? Yeah, d num, like that. Yeah, that's one, right? So the thing you want, you're asserting that this is true and if not, comma, we're going to put a message, right? Lengths different or something like that. Do you want to do the other assert statement or does it have somebody else want to take a crack at the other assert? So the other one is that they are non-empty lists. Yeah. So we can definitely do that, not equal to 0 comma empty list or something like that. Very nice. So here we're trying to enforce our nice contracts and I've got two examples down here. So here I've got two different lengths of lists. So there you go. My assertion was raised with my nice message, lengths differ and then the code would immediately stop and it would force us to check to see why these lengths are different. So these bad lists won't propagate any further if I had larger pieces of code. And then same here, I've got this assertion error that I have an empty list. Any questions so far? One more example I want to go through. I'm not going to actually run this one, but it is in the Python slides. I just wanted to give you another example of how we can use exceptions and assertions in just a different setting. And it hopefully shows that as a programmer, you get to choose how you add these exceptions and assertions. So wherever they seem reasonable to add, you should add them. So in this particular example, we are assuming that we have a class list. In this case, I only have two students in my class. So these are their test grades. So I've got a list that looks like this. It looks complicated, but I'll walk you through it. This is one student in my list and this is another student in my list. So I've got a list of lists, where these things that I've highlighted in red is my students. And for each student, I have more lists as part of their information. So the first list related to one student is their name. The first element is their first name, second element is their last name. And then the second list for that student is their grades in the class. So just another list of all the grades in the class. So what I would like to do, and this is the code I'm going to go through, is I'd like to create a new list based on the original test grades. That contains the same information as before. So you can see I still have two lists of students, the first row and the second row. And in each student's information, I again still have their name and their list of grades. But I'm adding one more item at the end for each student, which is the average of the list of grades. So I've taken the average of these and plopped it as my integer, or float at the end, and same with my next student. So the code that's going to do this looks like this. I've got, that's just the original list to give you an example to look at, because I find it hard to see things without examples. So this is the code that gets the stats for the class. So that creates this new list containing my average at the end. For each student in the class list, so for example, student here, Stu is going to be this list of two lists. What I'm going to do in my new list that I'm creating here, new stats, is I'm going to append student at zero, which is just their name, so just a straight copy and paste. Student at one, which is just their grades, again a straight up copy and paste of all their list of grades. And then I'm going to apply a function named average, to the list of student grades. And what we're going to see in the next couple slides is we're going to see a few variations of this average function, and what happens when we apply these different functions. But for now, I will assume that this code will do the job. So the original average function will take in a list of grades. So this grades here will look like this blue box here, right? So just a list of numbers. It's going to sum all the grades, so sum of all the elements inside that list, and divide by how many there are, average. Okay. Now, let's say that I have a student that contains no quiz grades or no grades at all. In that case, their list of grades will be empty. So if I try to apply the sum of all the grades divided by the length of the grades for somebody who has no grades information, that length will be zero. So I'm going to get a zero division error when I run my code and it will crash. So what I'd like to do is to change my average function to try to catch such an error. So I'm going to try to do the sum divided by the length, and I'm going to catch this zero division error inside this accept block, and all I'm going to do is print warning no grades data. So for any student that actually has grades information here, the code to get the average will work just fine, because it will do the sum divided by the length. But, and then, so that means the try block will succeed, and we're going to return the sum divided by the length. But if any student enters the zero division error here, we're going to print something, and what do we return? What is the function return if we enter the accept block? That's what's going to be printed, but what does this function actually return? What value? None. None, exactly, right? There's no return inside this accept block and no code after it either. So you can see here, if it successfully completes for these three students, we've got our numbers, that's what we returned, but for the last student that has no grades information, we're returning none. I don't like that. What I would like in my grades book is to have numbers as my value there. So instead, let's add a return for that accept block. So we're still going to flag the error. We still want to know that something weird has happened. I don't just want to replace, return a zero without actually telling the user that something's gone down. I still flag the error, but then I can return a zero so that it's still a number, and then if I do something with numbers at the end, then it all works out. This was a particularly hard first quiz, 10, 10, 80. Okay. One last thing we can do is to just assert, right? So if we want to make sure that every student had some sort of grades information, maybe if the grades data was empty, something weird happened from a previous function that might have been called, I don't know. But maybe we say, let's just assert that the length of the grades is not zero. So we only want this code to execute if there are some grades information, and if not, let's just raise an assertion error just in case. So we can assert that the length of grades is not equal to zero, and in that case, the code will terminate as soon as we try to get that last student's information, right? It will crash and it will crash with this assert statement that there's no grades data. Then we can go back to the code and see did we actually expect the student to have information or not, and then we can try to work through it. So just a quick summary of exceptions and assertions. Hopefully this lecture kind of demystified some of these exceptions that we've been getting. It showed you they're not as scary as they might have seemed originally. They don't always have to terminate the program, right? You can catch them, you can deal with them in whatever way that makes sense for that particular function or program. You can print a nice output to the screen, you can set some default values, you can still terminate the program but do it on your own terms with your own errors with your own custom messages so that the users can see something nicer than the default Python messages, right? So exception handling is a very important part of writing a program, especially if you expect weird things to happen, right? Assertions on the other hand are a type of exception, and they're useful as I've mentioned to try to enforce these contracts, these specifications. You basically use assertions because you don't want bad values to propagate. So as soon as something that isn't as you expect it to be happens, assertion error is raised and the program immediately terminates allowing you to check to see why exactly those conditions were not met. So that's it, that's all I had."
+}

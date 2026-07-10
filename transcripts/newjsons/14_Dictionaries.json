@@ -1,0 +1,1552 @@
+{
+    "chunks": [
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 0.0,
+            "end": 28.8,
+            "text": "All right everyone, let's get started. So today's lecture will be on this thing called dictionaries, and it's not the dictionaries that our parents and grandparents used. Notice I never actually use regular book dictionaries either, maybe once in my entire life."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 29.52,
+            "end": 53.400000000000006,
+            "text": "But it's actually on a Python dictionary. So this is going to be a new data type that we have not worked with before. But it'll be a compound data type much like we've seen lists and tuples to be. It's just going to be very different than lists and tuples. So before I introduce a bunch of syntax and what a Python dictionary is,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 53.400000000000006,
+            "end": 74.12,
+            "text": "let's try to just motivate the need for such a data structure. So suppose we have the following problem. We've been dealing with this problem in many of our lectures, but we once again want to store student information. So let's say we want to store great information for a bunch of students."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 75.64,
+            "end": 96.80000000000001,
+            "text": "With what we know so far, we can store information using lists. It's a very reasonable data structure to use because we might get new students in the class, students might drop, grades might change, things like that. So let's use this mutable data structure list. Let's say we want to store names of students and their grades in the class,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 96.80000000000001,
+            "end": 111.12,
+            "text": "like their final letter grade. Additionally, we can store things like micro quiz grades and p-sets grades. But for now, let's just assume we're storing just the names and the final grades in the class. So if we do this using lists, one reasonable way to store this information is"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 111.12,
+            "end": 129.16,
+            "text": "by saying, well, I'm gonna have a list of all the names of the students in my class. I'm gonna have a list of all the grades of these students in the class. And I'm basically going to go index by index and make the rule that says, at a particular index, I'm storing all the information related to this one person."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 129.16,
+            "end": 148.44,
+            "text": "So at index zero here, I'm storing the name of the student and their grade. At index one, I'm storing the name of that student, John, and their grade. At index two, I'm storing the name of that student and their grade. And at index three, and so on and so on. So now I basically have to remember that for a particular index,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 148.44,
+            "end": 169.76000000000002,
+            "text": "I am storing all the information related to that student, right? Okay, so seems like a reasonable way to do this. Now, let's say that I wanted to look up the grade for a particular student, okay? So I write this function called get grade. It takes in some parameters."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 169.76000000000002,
+            "end": 183.56,
+            "text": "So the first thing it'll take in is the name of the student. So Anna, for example. And I would pass in the list of all the names in my class and the list of all the grades in the class. So these are these two lists that I've previously created, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 183.56,
+            "end": 201.20000000000002,
+            "text": "So these get passed in to this function. So you can imagine if we have a list of everybody at MIT, these lists are gonna be pretty large that we're passing in as parameters. How do we actually grab the letter grade associated with a student? Well, we're gonna use the fact that the letter grade for"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 201.20000000000002,
+            "end": 224.72000000000003,
+            "text": "the student at index i in the grades list is going to be grabbing the letter grade for the student at that same index in the name list, okay? So we have to figure out this particular student being passed in here, what index they're at in the names list. So that's what this line of code is doing."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 224.72000000000003,
+            "end": 245.64000000000001,
+            "text": "It's using this index function on the name list with a parameter, for example, Anna. So this will return for us the index where Anna is in my list. So from the previous example, it's going to say that it's going to return the number zero because Anna is stored in the name list at index zero."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 247.24,
+            "end": 268.56,
+            "text": "So now that I have that index in hand stored in variable i, I can just index into the grade list at that same index, okay? So I can get grades list at index zero will return for me the grade that I got for that particular class or whatever we're storing here. And then we just return the tuple student comma grade."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 268.56,
+            "end": 286.84,
+            "text": "So this becomes really messy, right? I already mentioned that if I have a list of a whole bunch of students for a really large class or the entire university, then it becomes really un-wieldy to just keep passing in all these lists. If I have in addition all these micro quiz lists and all these problem set lists"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 286.84,
+            "end": 301.91999999999996,
+            "text": "that also store additional information for the student, I then have to pass those in for their respective functions. And so it gets really messy, right? Writing these functions that retrieve this information. And additionally, if we're mutating these lists,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 301.91999999999996,
+            "end": 320.24,
+            "text": "like if a new student comes in and we need to add all their information, I need to make sure to update every single one of these lists that I'm maintaining. If a student leaves, right, or drops the class, I need to remember to remove that index from all of these different lists. So really, really messy situation that we could get into by using"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 320.24,
+            "end": 336.48,
+            "text": "this method to store information about students. So let's try a different approach. Instead of using all of these different lists, let's say that we're going to store everything in a master list. Okay, so we're not storing many lists."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 336.48,
+            "end": 355.48,
+            "text": "We'll just store one list for the grades in the class. And the way it'll be stored according to this in the slide is going to be this grades list. Okay, so this is one list with three elements in it. And you can imagine if we have more students, we would just put all these students in this master list."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 355.48,
+            "end": 372.28000000000003,
+            "text": "So what is each one of these student elements? Well, each student element is itself a list. So already, I've got my master list. And each element within this list is also a list. So this is a list for Eric, a list for Anna, and a list for John."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 372.28000000000003,
+            "end": 384.52000000000004,
+            "text": "These are variable names. What are these lists going to be comprised of? Well, they will be comprised of three things. So notice, right, two commas here. So the first thing is their name."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 384.52000000000004,
+            "end": 417.08,
+            "text": "The second thing is another list containing their problem set grades. And I'm kind of using this element of that list to denote what that set of numbers represents. And then another list as my third element being the scores for the micro quiz grades. And again, I'm denoting the first element of that list telling me what this list contains. Okay, so I've got lists, master list with three sub lists for my three students."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 417.08,
+            "end": 441.64,
+            "text": "And each one of those lists contains three elements, a string, a list, and another list. And those two lists are then also comprised of a string and a list themselves. So super complex, a data structure, a sort of composition or design choice that I've made here. But it solves the problem of maintaining all these different lists in separate variables."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 441.64,
+            "end": 459.40000000000003,
+            "text": "So now, let's say I wanted to write a function that gets the grades for a particular student for either problem set or micro quiz's grades. This is the function that does that. So again, it's not looking super nice. So what is this function going to take in?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 459.40000000000003,
+            "end": 478.00000000000006,
+            "text": "The who is going to be a string representing the name. So for example, Anna. The what will be also a string representing what information I'd like to grab, either PS or MQ, and the data is going to be my master list of all the grades. So this grade equals this list of everybody."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 479.52000000000004,
+            "end": 502.71999999999997,
+            "text": "So what is this code going to do? Well, it has a for loop down here and a nested for loop inside it. The outer for loop basically looks through each one of these elements here and looks at the element at index zero. So either Eric, Anna, or John and grabs only the list where that piece,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 502.71999999999997,
+            "end": 522.48,
+            "text": "this string here matches the who, right? So if student at index zero equals who right here, then we found the student I'm interested in grabbing the information for, cool. So now I've grabbed the right piece, the right list, and now I'm interested in their grades for a particular what, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 522.48,
+            "end": 545.9599999999999,
+            "text": "So either MQ or PS. So I do the exact same thing again for that list here, right? So if I'm interested in Anna's PS grades, I grab these lists here, right? And then I'm going to check if the inf one index zero, so either this PS or this MQ matches the what, so either PS or MQ,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 545.9599999999999,
+            "end": 561.24,
+            "text": "to match what I'm interested in grabbing the information, what information I'm interested in grabbing. And then I'm going to go inside this if statement if they match, and then I return the who and the info. So again, super complex, no need to understand this that well,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 561.24,
+            "end": 582.32,
+            "text": "because we're not gonna use this method for long. So this get grades here, for example, if I grab Eric's micro quiz grades and I run the code, it will return for me this tuple that returns for me the name of the student and then just the sub list of the thing that I was interested in. In this case, micro quiz."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 582.32,
+            "end": 601.76,
+            "text": "And it grabs for me all the grades and then I can then index into this returned tuple to grab either the first quiz or the second quiz grades. And same for Anna, right? In this particular case, it grabs for me just the tuple with my name and then that sub list with the prom site grades."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 601.76,
+            "end": 623.72,
+            "text": "Okay, so again, really messy. I have to, I've made my design choice for how to create this, all these lists with sub lists and sub lists within those. And so I'd have to document that probably if I was using this method. And then this function to grab this information, again, super complex."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 625.36,
+            "end": 644.4000000000001,
+            "text": "Hard to read. So it's not really a great way to store information either. But the idea behind this, which is to try to store some data associated with some sort of key, right? The PS or MQ or in this case, I'm storing a bunch of grades for Eric or Anna."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 644.4000000000001,
+            "end": 664.4000000000001,
+            "text": "That idea we can explore and that's basically what dictionaries will do for us. It'll allow us to create data structures that map some sort of custom index, a key, to some value. So much like a book dictionary does, right? It maps the word to its definition."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 664.4000000000001,
+            "end": 688.08,
+            "text": "We'll be able to create our own dictionaries that map some object to another object. So when we create a dictionary, we call every sort of quote unquote element in the dictionary an entry. And that entry is that mapping of a key to a value. So just to draw a parallel with a list, we can think of a list as mapping"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 688.08,
+            "end": 705.76,
+            "text": "something to another something. The thing that a list maps is this index, number 0, 1, 2, 3, in that order, right? So it has to start, have an element at index 0 and then that index increases by 1 from there on, okay?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 705.76,
+            "end": 719.9200000000001,
+            "text": "And for each one of these index indices, I'm mapping that index to some element in my list, right? That's basically what the list does. There's something associated with index 0, something associated with the next one, and so on."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 719.9200000000001,
+            "end": 743.1200000000001,
+            "text": "So it's kind of like a very restrictive dictionary, right? An actual Python dictionary works in similar way, except that now I am not putting any restrictions on my indices. My indices here become these sort of custom indices called a key. And so now I'm able to associate a value,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 743.1200000000001,
+            "end": 763.96,
+            "text": "equivalent element in my list, with that key. So I can have an element associated with any object. So I am using the term value here. And in a dictionary, the key is associated with a value. And that's one entry in the dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 763.96,
+            "end": 786.6400000000001,
+            "text": "Now this is going to be a little bit confusing because we've been using the term value to refer to just some object's value, right? Like variable A has value 5 or something like that. But now I'm going to try to make a conscious effort now that we're introducing dictionary and dictionary values associated with a key to whenever I'm"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 786.6400000000001,
+            "end": 798.36,
+            "text": "talking about the dictionary's value to say dictionary value, just so it's not confusing. But just keep that in mind. It can be a little bit confusing at first, now that we're using the same terminology for two different things."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 800.1200000000001,
+            "end": 816.16,
+            "text": "So we're going to go through, in this lecture, we're going to introduce a bunch of syntax and operations with dictionaries. And there will be lots of you try it exercises just to give you a little bit of practice with the syntax because this is kind of a syntax heavy lecture. So hopefully it helps a little bit."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 816.16,
+            "end": 835.0799999999999,
+            "text": "But let's first see how to store data in a Python dictionary. So as I mentioned, a Python dictionary stores entries. And that entry is a key value pair. So you're mapping one key to its value. The key can be any mutable object, and"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 835.0799999999999,
+            "end": 851.9599999999999,
+            "text": "we're going to see what this means in a little bit. And the value associated with that key, or the Python value associated with that key can be any object you'd like, even lists or other dictionaries. So the way we create a Python dictionary is by using these open and"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 851.9599999999999,
+            "end": 869.12,
+            "text": "close curly braces. So tuples were open and close parentheses, lists were open and close square brackets, dictionaries are open and close curly braces. And this creates inside memory an empty dictionary. So a dictionary with zero entries, so the length of that dictionary is zero."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 870.9599999999999,
+            "end": 889.8399999999999,
+            "text": "To create a dictionary with one entry in it, again, we have curly braces. And we add one entry in it, so this something colon, something else is an entry in my dictionary, one entry. And the thing before the colon is the key, and the thing after the colon is the value associated with that key."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 893.04,
+            "end": 912.64,
+            "text": "So you can think of it, if we're drawing a parallel to lists. This is now mapping sort of at this custom index four. We're putting element 16. Okay, so we can also create dictionaries that aren't just full of integers. And you can mix and match data types as you'd like."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 912.64,
+            "end": 935.2800000000001,
+            "text": "But usually in dictionaries, we kind of have the keys all be the same type. And the values all be the same type. But you can certainly mix and match types, just like you could create lists and tuples full of an integer and the float and another list, and mix and match in that way. So here I'm creating a dictionary, again, open and close curly braces,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 935.2800000000001,
+            "end": 954.36,
+            "text": "starts my dictionary, and it has four elements in it. So each, sorry, four entries in it. And each entry is separated by a comma. I've got here my first entry. So it is mapping the key Anna to the dictionary value B."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 954.36,
+            "end": 978.04,
+            "text": "My second entry maps key map to value A, third entry maps key John to value B. And last entry maps key Katie to value A. So this is a dictionary that essentially maps strings to other strings. So you can see here, I've kind of visualized the dictionary that we just created. We've got these custom indices, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 978.04,
+            "end": 1000.48,
+            "text": "So we're basically mapping names to letter grades, okay? Everything okay so far, does it make sense, I guess, conceptually? Okay, awesome. Okay, so the first thing we'd like to do is once we have a dictionary full of a bunch of entries, how do we grab an entry?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1000.48,
+            "end": 1020.56,
+            "text": "How do we look up a value associated with a key? So the way we do that is in a very similar way to the way we look up an element in a list, right? A key in a dictionary is just a custom index, right? So how did we look up an element in a list?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1020.56,
+            "end": 1037.68,
+            "text": "So if I wanted the element at index three, I would basically say L square brackets three, and that grabs for me the value at that index. Well now, I've got my custom indices, right? My custom indices are these strings. The syntax will be exactly the same."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1037.68,
+            "end": 1060.1200000000001,
+            "text": "I've got this custom index I'd like to look up. So I say dictionary, name, square bracket, custom index. So if I say grade, square bracket, John, Python will go in to my dictionary named grades, it'll look up the key John, and it'll return for me the value associated with that key, B."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1061.1200000000001,
+            "end": 1084.8000000000002,
+            "text": "So this entire expression here evaluates or gets replaced with the string B. Just like when we indexed into a list, L square brackets three, we replaced that entire indexing operation with the value of the element at that location, right? So similar here. If I try to index into a dictionary and that key doesn't exist, so"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1084.8000000000002,
+            "end": 1112.08,
+            "text": "notice my dictionary has no string grace, Python will give me a key error. So if you run code with dictionaries and you get a key error exception being raised in the console, you'll know that you're trying to index into a key that doesn't exist. So the question might be, yes, we're able to look up a value, right, given a key. Can we do the same thing but backwards?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1112.08,
+            "end": 1130.2,
+            "text": "Given a key, sorry, given a value, like A, B, C, whatever, can we look up a key associated with that value? And the answer is no. We'd have to write some sort of loop or some sort of code that goes through every item in my dictionary to check each value and"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1130.2,
+            "end": 1148.1200000000001,
+            "text": "see whether the key associated with that value is equivalent to the one I'm looking for. So there is no nice expression to do that backward operation. And that's because the values in my dictionary can be repeated. So if I look up the value B, right? And I want, what's the key associated with B?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1148.1200000000001,
+            "end": 1157.48,
+            "text": "Well, there's actually two of them. So how does Python know I want both of them? How does it know I want only one of them? How does it know I want maybe a list of all these things? It doesn't, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1157.48,
+            "end": 1176.1599999999999,
+            "text": "So you'd have to write code that does something for that operation. And we're gonna see how to do that later. Okay, so let's have you work on this, you try it. And this is just an exercise in looking up a value. So this is a function I'd like to write according to the specifications."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1176.1599999999999,
+            "end": 1195.56,
+            "text": "So it's called find grades. Grades is a dictionary mapping student names to grades. So string to string exactly like we've seen in the previous slide. And students is going to be a list of student names. So in the example here, I've got my input dictionary, this thing we just saw."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1195.56,
+            "end": 1216.84,
+            "text": "And then my list of student grades is, for example, these two strings, Matt and Katie. For a bunch of these questions, especially even on the micro quiz and things like that, if it gets a little confusing when I try to write the specification in a very detailed way to make it clear what I'd like from this function."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1216.84,
+            "end": 1238.04,
+            "text": "It's important to try to use the example to help you figure out what we'd like. Because we're writing the specification in a general sense, but the example should hopefully make things really clear for what we'd like. So in this particular case, what we want the function to return is a list of the grades for the students being passed in."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1238.04,
+            "end": 1255.8400000000001,
+            "text": "So we look up Matt, we see that their grade is a C. We look up Katie, their grade is an A. So I wanna return the list C comma A in the same order that I passed in my students. So I'll give you a couple of minutes to work on that, and then we can write it together. So that's line 94."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1255.84,
+            "end": 1279.56,
+            "text": "So this is just an exercise on looking up values in the dictionary. All right, does anybody have a start for me? Yes, please. Yep, L new, how about that? So this will be my results list, yep."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1282.6799999999998,
+            "end": 1318.1999999999998,
+            "text": "Yep, for loop. Yep, so grade square bracket LM looks up the value associated with my student named LM. And maybe we can save it like this, grade equals this, and then you said append. Yep, so we can do L new dot append the grade. Anything else?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1319.84,
+            "end": 1347.0000000000002,
+            "text": "Yep, a return, so we can return L new. Yep, so very reasonable code, I like it a lot. Besides the first lecture, I don't know that we've written any code that didn't involve a loop. So your best bet for writing code for any sort of thing in this class is to think what loop can I do. So let's run the code, and it should return for me C comma A, and it does."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1351.3200000000002,
+            "end": 1389.28,
+            "text": "Now that we can iterate, so I mentioned this before, but once we're iterating over tuples and lists and things like that, one thing I would add, just for debugging purposes, is say something like LM is, and then you can say an example of what it could be, like Anna or Matt or whatever, it could be just to remind yourself that loop variable is a string. And so it's one less thing to remember as you're writing for their code, but this is really nice. Okay, so dictionaries are already proving to be really, really useful."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1389.28,
+            "end": 1418.8400000000001,
+            "text": "We can create values associated with custom indices. And if we want to grab the value associated with that custom index, it's really just a matter of indexing using a key, using that specific key, much like we did indexing into a list. No need to loop, none of that iteration, it's just a single line of code that indexes into the list. So let's see a few more operations before we do the next, you try it."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1418.84,
+            "end": 1449.0,
+            "text": "So I've got my list of grades that we've been working with in the past couple of slides. Let's say that we now want to add a new student in their grade. The way we do that is very similar to the way that we would add an element to a list once we already have an index for that list, right? Here notice we don't actually have a slot for grace, yet I'd like to add her to my dictionary. That's okay."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1449.0,
+            "end": 1486.76,
+            "text": "With this particular syntax here, so grades at key grace, if Python does not find grace in my dictionary of keys, it'll just add her, okay? Which is really nice, right? I don't need to check if she's already in there, there's no looping, you just say grades at grace equals a, boom, it adds it for you. What if I want to change an entry in my dictionary? Well, let's say I want to change grace's grade to a c, grades at custom index grace equals c, we'll go in, look at my keys."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1486.76,
+            "end": 1521.44,
+            "text": "When grace didn't exist, Python added her with her value, but she already exists there, so Python will just overwrite her value. So really nice, you know, something to look out for in case you already have values in the dictionary, you know, you want to be careful if you actually do want to overwrite things. But it's really, really nice behavior, and it's different than lists, right? Especially adding an entry to the dictionary. You can delete entries much like we deleted entries from a list."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1521.44,
+            "end": 1565.0,
+            "text": "We use the del function, and the del function says what entry you'd like to delete from what lists, so here we just say the name of our dictionary at index Anna. So this will completely remove Anna and her value, and the value associated with Anna from the dictionary. So what I want to make a note of is that our dictionary is being mutated with all of these different methods, or all of these different functions, right? So here, when I added grace, I've mutated my original dictionary, right? The animation didn't make a copy of this dictionary with grace added, leaving the original unchanged."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1565.0,
+            "end": 1591.8000000000002,
+            "text": "I've literally gone in and mutated my original dictionary to add grace. I've mutated the original dictionary to change her grade. I've mutated the original dictionary to remove Anna from the dictionary, right? So all these functions are actually mutating my dictionary. OK, one other very useful thing that you can do with dictionaries is to check if a key is in my dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1591.8000000000002,
+            "end": 1620.32,
+            "text": "So we do this using the in operator, this in keyword. We've seen the in keyword being used to check if an element is in a list, to check if a substring or a character is in a string, to check if some element is in a tuple. We can also use it to check if an element or a key is in my dictionary. So I want to make a note, it's only checking the keys. It does not look for the values in the dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1620.32,
+            "end": 1648.52,
+            "text": "We'll see how to check if some value is in the dictionary in a little bit. But the in keyword specifically only looks at the keys in the dictionary. So if I have the expression, the string John is in grades, Python only looks at the keys and say, yep, there it is. I don't care what values associated with it, I just care that it's in my keys. So this entire expression here, John in grades, will evaluate so be replaced with true."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1648.52,
+            "end": 1669.5600000000002,
+            "text": "Daniel obviously is not in my dictionary keys, so it returns false. B is not in my dictionary keys, even though it's in my values. It still returns false, because it only looks at the keys. All right, let's have you try this. Exercise."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1669.5600000000002,
+            "end": 1694.04,
+            "text": "So function is called find in L. Again, we can use the specifications and the example to help us figure out what we'd like from this function. So LD is going to be a list of dictionaries. So in the example here, I've got three dictionaries defined. And the first parameter here, the thing being passed as LD,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1694.04,
+            "end": 1724.64,
+            "text": "is the list with d1, d2, d3 as my elements. And k is just an integer. What I'd like to do is return true from the function if that k is a key in any of these dictionaries and false otherwise. So as soon as I see a key that matches k, I want to return true. So in this example here, when I look for the k2 inside these dictionaries,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1724.64,
+            "end": 1750.96,
+            "text": "d1 doesn't have it, but d2 has it, so I would return true. When I look for 25 in that same list of dictionaries, 25 is a value in one of these in d3, but it's not a key in d1, d2, or d3. So that would return false. All right, so that's just a little lower, line 115."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1750.96,
+            "end": 1766.0800000000002,
+            "text": "Give you a couple of moments, and then we can write it together like usual. All right, does anyone want to start me off here? So how can we do this? Create a loop, yes? 4?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1767.04,
+            "end": 1795.8,
+            "text": "Yeah, okay, so that means that d is, I can say k1 mapped to v1 or something like that, right? Key to a value. If k in d, yep. So that will check for me my keys in that particular dictionary that I'm looking at right now."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1796.52,
+            "end": 1815.68,
+            "text": "Yep, we can immediately return true, right? As soon as we found it, no need to check the other dictionaries just pop, you know, pop out of the function and return true. Same inside the if, or inside the four, outside the four."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1815.68,
+            "end": 1836.2800000000002,
+            "text": "Outside the four, we can return false. Yep, I like this code a lot. Uses this in operator, right, to do the task. So the return false outside of the four loop works really well, because if I've gone through every d inside ld here,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1836.2800000000002,
+            "end": 1855.4,
+            "text": "then I'm checking every single dictionary, right? As soon as I find one that has that key, this return true acts like a break and a return, right? So breaks out of the loop and returns immediately, and it doesn't return false."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1855.4,
+            "end": 1880.4,
+            "text": "But if I've gone through every dictionary and didn't find the key matching k, then I return false. Yeah. Did anybody try it a different way or is this? We could certainly try it with a Boolean flag, right? We could flag the fact that we found it through some loop,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1880.96,
+            "end": 1896.3600000000001,
+            "text": "and keep track of it, and at the end, just return that flag. That's another way to do it. But this is probably the most pythonic way. So we can run it on these two examples here, right? So I'm expecting two, looking up two to return true,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1896.3600000000001,
+            "end": 1915.1200000000001,
+            "text": "and looking up 25 to return false, and it does. Questions about this code or dictionary so far? Is everything okay so far? All right, a couple more operations. So so far we've looked up values in the dictionary,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1915.1200000000001,
+            "end": 1935.8000000000002,
+            "text": "we've added stuff to the dictionary, we've deleted stuff from the dictionary. One really useful thing to do is to be able to look at every single entry in my dictionary. The reason why we'd want to do this is because we should assume that when we create our dictionaries, there's no order to them, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1935.8000000000002,
+            "end": 1948.8000000000002,
+            "text": "This is very much unlike lists. Lists had an order to them. We knew that the first element in our list was at index zero. The next one was at index one and so on, right? Lists were ordered sequences of elements."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1948.8000000000002,
+            "end": 1968.2,
+            "text": "But dictionaries are not ordered sequences of elements. That's not super true. There are up until a very recent version of Python, there was no guarantee to order. They would put in some order that I couldn't figure out how it was determined."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1968.68,
+            "end": 1991.04,
+            "text": "But I forget which Python version, maybe 3.6 or something like that, started to guarantee an order for the dictionary elements. That order was the same order that you inserted the elements. But if you'd like to write robust code that could be run by people using an older version of Python,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 1991.04,
+            "end": 2019.0000000000002,
+            "text": "you should write the code assuming that no such order exists. It's okay, it doesn't make the code that much harder to write. But if we're not assuming any order to Python entries in the dictionary, then that means a lot of times we actually have to look at each entry in the dictionary to do some task. One of the first things you might want to do is to iterate through all the keys in the dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2019.0000000000002,
+            "end": 2044.04,
+            "text": "To do that, we use a function called grades.keys, and this grades.keys function here doesn't mutate the dictionary at all, but instead it returns for me an iterable, a sequence of values, which are all the keys in my dictionary. Now, the data type of this return value is called dict underscore keys."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2044.04,
+            "end": 2060.5200000000004,
+            "text": "It's not a data type we've worked with before. Okay, it looks really weird. But if you'd like, and you don't have to do this, you can always cast this sequence of values that's type dict keys to a list like this. So if you cast to a list grades.keys,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2060.5200000000004,
+            "end": 2076.96,
+            "text": "it gives for us this more recognizable list with each key being an element in the list. You don't have to do this, but if it makes it easier for you, you can. So this line of code here, grades.keys returns for you,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2076.96,
+            "end": 2088.2,
+            "text": "you can think of it like this iterable, this list of all the keys in the dictionary. Again, they're not ordered, right? I mean, they're ordered in the order that I added them into the dictionary, right? Anna, then Matt, then John, then Katie,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2088.2,
+            "end": 2106.16,
+            "text": "but they're not sorted in alphabetical order. If you have integers, they won't be sorted in ascending or descending order. So it's best to just not assume an order to begin with. Similarly, we can get an iterable of all the values in the dictionary. Okay, and to do this, no surprise there,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2106.16,
+            "end": 2121.0,
+            "text": "we use grades.values, and this is again a function where it doesn't mutate the grades at all, but instead it gets replaced with this dict.values data type. I've never seen it before either. And you can cast it to a list if you'd like,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2121.0,
+            "end": 2135.96,
+            "text": "because it makes more sense to us at this point in time, which just returns for us this list of every single value in my dictionary. Again, no order, right? We can see that there's no order except for the order that we actually added the element in."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2135.96,
+            "end": 2152.56,
+            "text": "Yeah. When you said like it acts like a couple, do you mean like it might be very such another time to print out the same list? Yeah. Yeah, it'll print out the same, the same iterable I guess if you do it again. Yeah."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2152.56,
+            "end": 2166.2,
+            "text": "We're just doing like if we're just iterating over the dictionary, there can be chances for like it comes out in the order. If you're iterating over the dictionary, not in the Python version we're using, but in a previous version,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2166.2,
+            "end": 2187.7999999999997,
+            "text": "if you ran you're on your machine or if I ran the same code on my machine, it might have given me a different order. But in the versions we're using from now on in Python, right, because you guys all probably downloaded the latest version of Anaconda and Spider, it will guarantee the order that you inserted the elements in."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2187.7999999999997,
+            "end": 2217.8,
+            "text": "But if somebody using an older version of Python takes your code and runs it, they might actually get A, A, B, B or some other order for these functions here. Yeah, you're welcome. So these being iterable just means that we can have something like 4k in grades.keys, basically giving us a loop where k is going to be each element in this list."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2218.8,
+            "end": 2238.6400000000003,
+            "text": "So that's fine. So we can iterate over the keys or we can iterate over the values directly, but what I find personally most effective is to iterate over each entry in the dictionary. So not just over the keys or the values by themselves, it's to iterate over the keys and the values together."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2238.6400000000003,
+            "end": 2262.76,
+            "text": "So to do that, we use this function called grades.items. And unsurprisingly, this will return also an iterable, where each element in my iterable is not just the key or the value, it's a tuple of the key, comma, the value, okay? And again, we can cast it to a list to give us something that's more recognizable."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2262.76,
+            "end": 2281.28,
+            "text": "You can see now each element in the returned list is going to be the tuple, where I have an entry, right? So my entry, Anna, comma, B, is this first element in my returned list, and then Matt A, and then John B, and then KDA. So I grab these entries together where I have access to both the key and the value for that entry,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2281.28,
+            "end": 2300.0400000000004,
+            "text": "which means, and this is the important part, that we can do something like this. And we can do this for the previous slide as well, but for this particular grades.items iteration, if we're grabbing a key value pair out of items, that means we can do something like this."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2300.04,
+            "end": 2327.2,
+            "text": "For K, comma, V in grades.items means that Python will map K to the key for that entry, and V to the value for that entry, as I'm iterating over each one of these pairs, right? So with each iteration, I have access to both the key and the value for that entry, which is pretty useful, right? So if I have this line of code here, if I print key K has value V,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2327.2000000000003,
+            "end": 2339.2400000000002,
+            "text": "the K and the V will change with each entry, right? I'm just grabbing both the key and the value for that entry. Yeah, question? Can we use the grades.items to list actually, like, is it actually tuple or is it the actual item?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2339.2400000000002,
+            "end": 2352.36,
+            "text": "It's not a tuple, so the actual object type is this thing, dict underscore items. So again, not a type that we've worked with before, but that's just the type, right? Like, we've seen lists, tuples, dictionaries."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2352.36,
+            "end": 2363.44,
+            "text": "Dict underscore items is another data type, yeah. But the cool thing is that it's an iterable. So it's a sequence of values, which means that you can cast it to a list, which is also a sequence of values,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2363.44,
+            "end": 2379.2000000000003,
+            "text": "and it knows how to do that casting, and you get the more recognizable list that we've been using. Other questions? Okay. So I really like using grades.items to iterate over entries. So let's have you try this exercise."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2379.2000000000003,
+            "end": 2394.04,
+            "text": "So it's a function called count matches. It takes in one dictionary D, I didn't say what the elements are, but you can mix and match. So here I have a dictionary with just int mapped to ints,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2394.04,
+            "end": 2410.7200000000003,
+            "text": "and here I've got a dictionary where it maps ints and strings and things like that. And what I want this function to do is tell me how many entries in this input dictionaries have the key match its value. So here, in this first example, the key here is 1,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2410.7200000000003,
+            "end": 2420.2000000000003,
+            "text": "the value is 2, so they don't match. These don't match and these don't match, so the count should be 0. But down here in this example, the 1 doesn't match 2, so that's fine."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2420.2000000000003,
+            "end": 2438.8,
+            "text": "But the key A matches its value, one count, key 5 matches its value, two counts. So this should return count 2. All right. Let's have you work on that down by line 137, and then we'll write it together."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2440.1200000000003,
+            "end": 2454.1200000000003,
+            "text": "All right. How could I start this? Yes. Account, yes. Zero, yep. A for loop. A for loop, yep."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2459.48,
+            "end": 2478.6,
+            "text": "Yep, as a function, yep. V equal k, yep. So this is where my value equals my key for that particular entry. Count equals count plus 1. Perfect. Yep."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2478.6,
+            "end": 2491.56,
+            "text": "Return count. Did anybody do it a different way? No. Okay. Awesome. Yeah. Why do you have to call it like?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2491.56,
+            "end": 2504.48,
+            "text": "Oh, wait, I have to do it if I have to go over it. We can write it, yeah. Yeah. I did like the count equals zero, and then it's like for x and d, like he said it was just going to call it the value,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2504.48,
+            "end": 2518.8,
+            "text": "it's going to say it's like at x equals x, then like that, it counts. I got a lot that I'm just going to call it x. Yeah. So we can say for x and d dot keys or something like that, right? Something like that or no?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2518.8,
+            "end": 2529.36,
+            "text": "Yeah. We can also say for x and d, I think that might work too, because it'll grab the key for us. But just to be safe, keys. And now we need to grab the value."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2529.36,
+            "end": 2541.8,
+            "text": "So how do you grab the value associated with key x? Is it like d like brackets? No, it's brackets or? Yeah. Score brackets. It's just indexing, right? So d square brackets x, oops,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2541.8,
+            "end": 2561.8,
+            "text": "if d square brackets x equals, so that's the value equals the key, right? Then again, we, you know, count plus 1. So this is our other way. Yeah. So we don't have to use items,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2561.8,
+            "end": 2581.76,
+            "text": "but it just, items makes things easier because we have in hand a variable that's the value and a variable that's the key. And doing things like indexing starts to get confusing if, you know, I mean, it can be confusing. But yeah, both ways are very valid."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2581.76,
+            "end": 2594.4,
+            "text": "So let's run it and it should work. Yeah. So the first count is 0 as we expected in the second count is 2. Is that any questions about this code? Does it make sense?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2594.4,
+            "end": 2617.72,
+            "text": "Is there another way that somebody tried it? Okay. Good. Okay. So dictionaries are mutable objects, right? So all the aliasing and cloning rules apply. Remember when we talked about lists"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2617.72,
+            "end": 2637.32,
+            "text": "and using the equal sign between a list and another variable name? Just the plain old equal sign means that you are making an alias for that list. Same thing applies to dictionaries. So using, you know, saying d1 equals d2 where d2 is a dictionary means that you've just created an alias for that dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2637.32,
+            "end": 2650.7599999999998,
+            "text": "So if you change the dictionary through either of those variables, you're changing the object itself. If you want to actually make a copy, you use d.copy where d is the name of the dictionary. You'd like a copy and that gets you a copy of that dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2650.7599999999998,
+            "end": 2668.32,
+            "text": "And then you can change it without changing the original one. So let's talk a little bit about the values for a dictionary and the keys. Because there are some restrictions on the keys for the dictionary, no restrictions on the values. So dictionary values can be any type, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2668.32,
+            "end": 2683.2,
+            "text": "You can have a dictionary value that's a float, int, string, tuple. You can have a dictionary value that's a list, right? Which is a mutable object. You could have a dictionary value that's another dictionary. All are okay, whatever you'd like for the values to be."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2683.2,
+            "end": 2697.24,
+            "text": "You can have dictionary values that are duplicates. So you can have one key that maps to value five, another key that maps to value five. All good. So the key, so the values don't need to be unique."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2697.24,
+            "end": 2720.96,
+            "text": "We do have restrictions on the keys though, okay? The first restriction on the keys is that it has to be unique, right? So if you're mapping a key one to value five, you cannot map a key one to value six. Because if you go and look up the value associated with one,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2720.96,
+            "end": 2743.12,
+            "text": "how does Python know which value you'd like, the five or the six, right? So the keys have to be unique, first of all. Second, the keys have to be immutable, technically hashable. But for the purposes of this class, just think of them as having to be immutable. So a key can only be one of these types that we've seen so far,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2743.12,
+            "end": 2763.48,
+            "text": "int, float, string, tuple, or bool. You cannot have a key that's a list, you cannot have a key that's a dictionary because they're mutable objects. So let's look at that a little bit further in detail. So the reason why we can't have a key that is mutable is because of the way keys are"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2763.48,
+            "end": 2784.6,
+            "text": "stored in Python, sorry, the way the dictionaries are stored in Python. So I'm gonna show you an example on the next slide. First, I'm gonna explain how they're stored and then we'll go through an example showing you exactly why you can't have a mutable structure. So the way keys are, the way dictionaries are stored in Python is you first need"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2784.6,
+            "end": 2806.04,
+            "text": "a key, right, to associate with a value. So everything starts off with the key you'd like to add to your dictionary. So Python basically runs a function called a hash function on the key. For simplicity's sake, let's say the key you're trying to store is a number. That hash function might return that same number, it might return something else."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2806.04,
+            "end": 2829.5,
+            "text": "If you're trying to store a string as a key, Python, again, runs maybe a different hash function that takes in that string, which might be a bunch of characters, and it converts it to some number. So the hash function always takes in your key and converts it to a number. That number, think of it like representing a memory location"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2829.5,
+            "end": 2849.78,
+            "text": "where you're going to store the value associated with that key, right? So you're always grabbing a number that represents a memory location. At that memory location, you'll store the value. So next time you want to look up the value associated with a key, you just run that same hash function, the function won't change."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2849.78,
+            "end": 2865.2200000000003,
+            "text": "You run the same hash function on your object, and you'll be able to get that same integer back. You'll be able to grab that same value back. But if you're storing mutable objects, that means that object can change. So if you run the hash function, the thing that gives you a number,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2865.2200000000003,
+            "end": 2880.7000000000003,
+            "text": "on something that's changed, that number might not be the same, right? Because you've changed the thing that you're passing into the function. So why would it give you the same value back? So let's look at this example. So again, we're storing grades."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2880.7000000000003,
+            "end": 2903.6200000000003,
+            "text": "And let's say we're trying to store a bunch of grades inside our memory. And let's say our memory is just 16 locations, so 0 through 15. So at these locations, I'm going to store grades associated with a person. The function I'm going to run on the student is using their name. So I'm going to store Anna's grade somewhere."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2903.6200000000003,
+            "end": 2921.82,
+            "text": "But I need to run a function that takes in the string a and a, and gets for me a number. That number is where I'm going to store my grade. So a simple hash function we might do is to say, well, I'm going to take a and map it to 1, b, map it to 2, c, map it to 3, and so on."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2921.82,
+            "end": 2943.38,
+            "text": "I can sum all of those numbers associated with my letters and my name, right, 16. And then I can mod it with 16, which is how many entries I have in my memory. So if I mod it with 16, that's going to give me a number 0 through 15, right? If you take the remainder when you divide by 16, you'll either get 0 all the way up through 15."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2944.5800000000004,
+            "end": 2967.1400000000003,
+            "text": "So if I mod my name, that means I'm going to store my grade at memory location 0. So far, so good? So I'm basically, I made up this hash function that tells me where to put my grade. Now I add another person. Again, I'm going to convert the letters in their name to numbers so"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2967.1400000000003,
+            "end": 2987.38,
+            "text": "that I can easily get a number out of their letters. So I'm basically hashing their letters to a number. Again, summing this for Eric is 35, I'm going to mod it with 16, which means I'm going to put Eric's grade at location 3. Next person, John, same thing, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 2987.38,
+            "end": 3007.0200000000004,
+            "text": "I add the numbers, mod 16, I'm going to put John at location 15. So this is my memory where I'm storing the values associated with these students. So if I want to grab back my grade, I run the exact same hash function. So I'm going to run the same hash function on my name. My name hasn't changed, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3007.0200000000004,
+            "end": 3019.34,
+            "text": "It's still the string. I'm not allowed to change it because it's a string. And so I'm going to get the same value back 0. So that means to grab the letter associated with my name, I just need to go straight into my memory location and"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3019.34,
+            "end": 3040.06,
+            "text": "look up the value associated, the value at that memory location. So I know it's going to be a C. Now let's say I'm storing a list, a student name as a list. So again, Anna, Eric, and John are immutable, right? They will not change."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3040.06,
+            "end": 3060.2599999999998,
+            "text": "But if I store Kate as a list, her name might change. Again, I can run the same hash function on her name. That means her grade, when I first store it, is going to be at location 5. So I'm storing Kate at location 5. All these three strings, I know I can get back because they cannot change."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3060.2599999999998,
+            "end": 3079.7000000000003,
+            "text": "But let's say that Kate goes and changes her name from Kate with a K to Kate with a C. It's the same object, right? The same person, she earned her grade B originally. So if I want to grab her grade back, even though her name has changed, I would still like to grab the B associated with her as a person."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3081.5000000000005,
+            "end": 3098.74,
+            "text": "But Kate with a C, if I run that same hash function that I ran to put her grade in my table, tells me that I now need to look up her grade at memory location 13, no longer at memory location 5. Right? She's not there."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3101.1,
+            "end": 3118.1,
+            "text": "Okay, so now it's like, did the student disappear? All that stuff. So you see now, that means that's the reason why I cannot have a mutable object as a key to my list. Because if that object changes, running that hash function on that changed"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3118.1,
+            "end": 3135.8199999999997,
+            "text": "object might not give me the same memory location where I originally stored the value associated with that object. Does that make sense? Okay, so let's revisit our original example. The one where we tried to store everything in a master list,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3135.8199999999997,
+            "end": 3151.3399999999997,
+            "text": "all these grades in a master list. Now let's store it in a master dictionary. Okay, so I've got my grades. Notice curly bracket, curly bracket is a dictionary. I've got two students in my class, Anna, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3151.3399999999997,
+            "end": 3170.8599999999997,
+            "text": "So this is Anna's information and Bob, that's Bob's information. So just two students in my master dictionary. So the key Anna, right, is going to be one entry key. Key Bob is the other entry key. And what's the information associated with these keys?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3170.8599999999997,
+            "end": 3190.8599999999997,
+            "text": "Well, with Anna, I've got this dictionary associated with her name. So that's this big thing here, I'll explain it in a bit. And similarly with Bob, Bob has one thing associated with it, him. And it's another dictionary. Okay, so I'm mapping strings to dictionaries here."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3190.8599999999997,
+            "end": 3208.54,
+            "text": "And that's fine because values in a dictionary can be other dictionaries. So what are these dictionaries about? Well, the number of items in the dictionary for a particular person, there's three elements, right? So comma, comma separates my three elements."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3208.54,
+            "end": 3226.14,
+            "text": "The first one is going to be mapped with key MQ. The second one mapped with key PS for problem set, and the last one mapped with the string fin for final, great. So each one of these students has this dictionary associated with them. And that dictionary then itself has three entries."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3226.14,
+            "end": 3245.7400000000002,
+            "text": "One for the micro quiz, one for the PS, one for the final scores. So now, what's the values associated with those keys? Well, the micro quiz is going to be a list. The problem set is going to be a list, and the final is going to be a string. So a really nice representation of my class, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3245.7400000000002,
+            "end": 3261.2200000000003,
+            "text": "And same for Bob. So now, what if we want to grab a student's exam grade or the student's list of exam grades? Remember that big function, right? With the two nested for loops and the nested ifs."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3261.2200000000003,
+            "end": 3280.18,
+            "text": "That becomes this line. Isn't that cool? Applause, I like that, yeah, exactly. We should applaud this, because look how easy it is now to, yes, thank you, yes. Dictionaries are awesome guys, so, yeah."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3280.18,
+            "end": 3299.3,
+            "text": "So look, that line becomes this, grabbing one, one quiz score becomes this single line of code right here. So let's break it down. Again, we do left to right whenever we've got this chain of stuff going on. So the first thing we say is, well, we're looking up grades at some index."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3299.3,
+            "end": 3315.1800000000003,
+            "text": "So grades at some index gives me that dictionary. So something like this whole thing here, right? Okay, good, that's first chain. Now this box here gets replaced with that dictionary, and I'm doing another index into that dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3315.1800000000003,
+            "end": 3340.2200000000003,
+            "text": "So that means I'm going to grab the MQ associated with that dictionary. So the value associated with MQ is going to be this list 544. So this box here gets replaced with the list 544. And then if I want to grab just the first quiz value, I say now I'm going to index in the list 544 and index zero."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3340.2200000000003,
+            "end": 3363.1800000000003,
+            "text": "So that grabs for me just the five. So then the first quiz score for Anna was a five. It's pretty bad. Okay, so let's have you think about this. This is a function, nothing to code here, just to think."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3363.1800000000003,
+            "end": 3389.34,
+            "text": "This is a function that grabs the average of every single thing, where that thing is what, in the class. So if what is MQ, as is in down here in this example, if what is MQ, this code is supposed to get the average of all of the microquizzes for all the students in the class."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3389.34,
+            "end": 3411.6200000000003,
+            "text": "So you basically want to grab the average of 10 plus 8 plus 3. And if it's PS, I would like to grab the average of all the problem sets for all the students in the class. So the average of 10, 10, 7, 8, and 0. So we've got a loop, right, that goes through every student in the keys."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3411.6200000000003,
+            "end": 3436.5000000000005,
+            "text": "So the student, student, stud, student here is going to be this dictionary, right? So given this dictionary, what line should you insert here? Such that you're creating a list, just a single top level list of all of the values in there. So the thing you actually want to end up with, and if we're looking at the PS scores, just because it's a little easier to think about,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3436.5,
+            "end": 3467.1,
+            "text": "is going to be 10, 10, right, 7, 8, and 0. So in the end, what I would like to get in my all data, this list that I'm maintaining here, is something like this for the PS. So think about which one of these lines will accomplish that. And just to help you out, we can say student is my dictionary of,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3467.1,
+            "end": 3493.02,
+            "text": "who thinks it's the first one, second one, third one, fourth one, okay? Nobody thought it's the first one, you guys sure? Okay, why do you think it's the second one? Is it because of the append? Yeah?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3493.02,
+            "end": 3511.1,
+            "text": "Let's think about it. So all data is a list, and what are we appending? So what is data at stud at what going to give us? Data at student is the dictionary, this dictionary here, right? This value here."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3512.1,
+            "end": 3536.1,
+            "text": "And if we take this value and index into the what, will it be an integer or will it be a list? A list. So when we append a list to another list, what is that going to give us? So if we have a list already with, you know, ABC."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3536.1,
+            "end": 3554.1,
+            "text": "If I append another list to this, will it put the element within that list, itself? Yeah, exactly. So I don't, that's not going to work for us. Clearly, D is not right either, and definitely indexing into data at student"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3554.1,
+            "end": 3570.1,
+            "text": "at what is not going to be right, okay? So that leaves one other choice, the first one. So let's see why the first one works. We're concatenating, right? So the plus concatenates."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3570.1,
+            "end": 3584.1,
+            "text": "So let's say I already have a list, ABC. I'm going to concatenate something I already have with data at student at what, which we said is what? Is it a single element or another list? Exactly."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3584.1,
+            "end": 3602.1,
+            "text": "So we would concatenate with something like, you know, 10, 10 or something like that. So that will return for us ABC, 10, 10, which will allow us to do something like getting the sum of all these elements. Questions about that? Does that make sense?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3602.1,
+            "end": 3630.1,
+            "text": "Is that all right? Yes. Yeah. Because we're indexing into MQ. So if you index into MQ, MQ is your key."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3630.1,
+            "end": 3647.1,
+            "text": "So you grab the value associated with that key. It would be this list here, the 10. Or for PS, it would be the list 10, 10. So quick recap on lists and dictionaries before we do one final longer example. So again, lists are ordered sequences of elements, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3647.1,
+            "end": 3664.1,
+            "text": "There is some element at index 0. There's some element at index 1, some element at index 2. So we do have these quote, unquote, indices, right? But there's an order to these indices. And there has to be an element at index 0 and further up from there, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3664.1,
+            "end": 3682.1,
+            "text": "Dictionaries also have these quote, unquote, indices, which we call keys. But these are custom. So you can basically rearrange, you could think of it as being allowed to rearrange indices however you'd like, right? There's no order to the indices in a dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3682.1,
+            "end": 3704.1,
+            "text": "There are some restrictions on the keys or these indices. So they can't be immutable, like a hashable. But other than that, the things that you store related to that key can be any type, just like you can store any type in a list. So the last thing I'd like to go through is a larger example."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3704.1,
+            "end": 3727.1,
+            "text": "And this would showcase a whole bunch of things that we've been talking about so far. It will showcase sort of how to, first of all, create dictionaries, which is what we did today. It will showcase how to reuse functions, how to write functions and reuse functions in other places. It will showcase a little bit of mutability as well. But this is all in a larger example."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3727.1,
+            "end": 3751.1,
+            "text": "And if I go a little bit fast through this, I've given you Python tutor links, and it's also in the file to run on your own. So the goal of this last example is to basically find the most common words in a song's lyrics, and dictionaries are going to be really useful for doing something like this. So I'm going to show you, first of all, what we want to end up with,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3751.1,
+            "end": 3777.1,
+            "text": "and then we can talk about how to divide this larger problem into smaller pieces. So those are all the pieces, but basically what I want to end up with is I want to have a song be stored as a string. You'll recognize these, but these are very old. I actually haven't updated these songs for a few years, but yeah."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3777.1,
+            "end": 3801.1,
+            "text": "Anyway, don't judge. So I've got a song stored as a string, and I'm going to run each individual function. But in the end, what I'd like to do is come up with something like this. So I want to present the user the top most common words in the song. So here I have a list, so you can see open, close, square bracket tells me it's a list,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3801.1,
+            "end": 3823.1,
+            "text": "and I've got elements in my list. So here's the first element in my list, which tells the user that the word I occurs 18 times. The next element in my list tells the user that the word we occurs 17 times. The next element tells the user that the words ain't ever getting older occur all 16 times, and then so on, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3823.1,
+            "end": 3847.1,
+            "text": "So we're decreasing in frequency with the most common word occurring 18 times, and then I'm showing the user the most common words down to and including six. So I would choose some arbitrary value. I want to find in the song the words that occur at least six times, for example. So that's the goal of this program."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3847.1,
+            "end": 3864.1,
+            "text": "So how will we achieve this? It's obviously a pretty big task. I wouldn't want to code the entire thing right off the bat, but we can actually divide it into three smaller pieces. The first piece, and we're going to write the code for this,"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3864.1,
+            "end": 3888.1,
+            "text": "is to create something called a frequency dictionary. So given a string of words, we're going to create a dictionary that maps each word to how often it occurs. So fancy word, frequency dictionary, but it's pretty simple. It just maps the word to its count inside my long string. So this presents the data, which is this string of words in a much nicer format, right?"
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3888.1,
+            "end": 3915.1,
+            "text": "It's a dictionary that tells me the frequency of each word. Once I have that in hand, things get a little bit easier. I can write another function that finds the word that occurs most often in that dictionary. So the way I'm going to do that is look up the frequencies in the values, find the maximum of those values, and then figure out which keys are associated with that maximum value."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3915.1,
+            "end": 3944.1,
+            "text": "And this is all made possible because I've reimagined my data in this frequency dictionary format. The last step, once I figure out how to write a function that returns for me the words that occur the most times, is to find the words that occur at least some number of times. And I'll go through an example of this one in a few slides when we get to it. But this last function here, number three, you can actually rewrite it in a whole bunch of ways."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3944.1,
+            "end": 3974.1,
+            "text": "I'm just going to show you one way to write it. That'll involve mutability, but you don't have to do it using mutability. You can definitely do it with a whole bunch of other implementations. So let's begin by first creating a dictionary that maps the word to their frequencies. So I've picked a song that is a real song, and it has some repetition, and it's short that it fits in one line."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 3974.1,
+            "end": 4003.1,
+            "text": "So I've got this song here, and I've got my function generate word dictionary. The song is a string. So it's basically the song a little bit cleaned up, not in terms of words, but in terms of removing punctuation, removing commas, maybe exclamation, or I might have kept quotations or something like that. But basically it's removing all of the punctuation stuff, because that will mess up my word counts."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4003.1,
+            "end": 4030.1,
+            "text": "So what is this function going to do, given a string for my song? Well first, I'm going to convert all my letters to lowercase. This means that capital T-H-E will be counted as the same word as lowercase T-H-E, which is the correct way to do it. So convert everything to lowercase. Then I'm going to use our friend the split function, remember, which takes in my string and splits on a character."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4030.1,
+            "end": 4058.1,
+            "text": "So by default it'll split on the space. So this puts our string of words in a very manageable format, a list of words. Much nicer to work with lists than work with a string. Now that I have my word list, I'm going to create my empty dictionary and then populate it. So I'm iterating over my list of words, and then I have a choice."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4058.1,
+            "end": 4085.1,
+            "text": "I've seen this word already, and I want to update the frequency. So I want to increase the frequency by one, because I've already added this word to my dictionary. Or this is the first time I'm seeing this word, and I want to add it to my dictionary with a frequency of one. So the first case here, the if, will update the frequency, because I've already seen the word in my dictionary. So here I'm using the in keyword to check if the key, the word, is already in my dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4085.1,
+            "end": 4109.1,
+            "text": "If so, I increase its frequency by one. Otherwise, this is the first time I'm adding my word to my dictionary, so give it a frequency of one. And then I return the word dictionary. So this will map strings to integers. Let's work through it in the Python tutor."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4110.1,
+            "end": 4125.1,
+            "text": "So step, step, step, step, step. Lowercase my input string, step. I've split it. So now I've got this list of all of my words, step. This is where we begin."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4125.1,
+            "end": 4137.1,
+            "text": "So I've created my empty dictionary over here. This is, keep an eye on this area here. It will become populated soon. The first word, w, is raw, right? It's the first word in my list."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4137.1,
+            "end": 4150.1,
+            "text": "It's obviously the first time I'm seeing it. I have nothing in my dictionary right now. So I'm going to pop in my else, and I'm going to add it to my dictionary with a frequency of one. Yay. That worked."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4150.1,
+            "end": 4164.1,
+            "text": "Next, word in my dictionary is this, in my list is this one. Same word I've already seen. So I'm going to go inside the if and increase the frequency to two. Right? Raw is now two."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4165.1,
+            "end": 4174.1,
+            "text": "It is aw, right? So here's my word. I've got the next one in my list. It's the first time I'm seeing it. Add it to my dictionary with a frequency of one."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4174.1,
+            "end": 4195.1,
+            "text": "Next word I'm seeing is, again, increase its frequency to two. And I'm going to go faster now. This is increasing the frequency to three, right? Because I've seen it three times now. And then I'm adding roam for the first time, ma for the first time, and row for the first time."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4195.1,
+            "end": 4218.1,
+            "text": "And lastly, I'm going to increase ma frequency two more times, because it occurs two more times in my song, right? So that it's increased to two, and now it's increased to three, and then we're done. So we return the word dictionary. Really nice way to represent my list, my song, right? Very nice."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4218.1,
+            "end": 4253.1,
+            "text": "OK, so now that I have this frequency dictionary, and I've put it up here, this is what we ended up with, how can we write a function that returns for me the most frequent word? So one thing we can recognize is the most frequent word has the highest value, Python dictionary value, in my dictionary, right? So as a human, I would kind of look to see which one of these entries have the biggest value. As a computer, I can't really do that, because I have to do it a little bit more systematically."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4253.1,
+            "end": 4290.1,
+            "text": "So what we can say is, well, let's look at our values and grab the maximum of the values. So here I'm using this dot values function on my dictionary to grab for me all of the values in my dictionary. So this will be kind of like the list two comma three comma one comma three comma one, and then I'm running the max function on that list. So max of this list of numbers gives me the maximum value in that list, the three. So highest now has the value integer three, and now all I need to do is iterate over my element, entries in my dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4290.1,
+            "end": 4326.1,
+            "text": "So this is kv in the items, and I'm checking now inside this iteration is if the value is equal to the highest. So as I'm looking at each entry is the value for that entry the same as the highest one I've seen. If it is, I'm going to maintain a list of all the words with that highest value, because there might be more than one word that has that highest value. As we saw when we actually ran it here, right here, I had a list of all of these words that occurred 16 times. So that's kind of the output that I want to maintain."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4326.1,
+            "end": 4358.1,
+            "text": "So I'm appending to my words list, and at the end I'm returning this tuple with the words comma that highest value. So Python tutor, like in the previous time, so let's create our original dictionaries is what we ended up with last time. So the highest value is three here, and I'm going to look through each entry in my dictionary so you can see kv is going to be each one of these in order. So first it's raw two, then it's a three and so on. Obviously the two is not equal to the three, so we move on."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4358.1,
+            "end": 4402.1,
+            "text": "The three equals the three, so we take the a and boom, add it to my list here. So this is the list I'm maintaining of all the words that occur with that frequency three. Next, no for your own, yes for ma, so I'm going to add it to my list, and then no for row, and I'm done. So the return is going to be this list, this tuple here with the list of the words that occur three times. Last part, I'm not going to go through Python tutor, I did include a link to it because it becomes very messy with the arrows, but I do encourage you to try to follow it along on your own time."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4402.1,
+            "end": 4431.1,
+            "text": "I will explain however the way that I chose to solve this problem. So I chose to solve this problem to include mutation and reusing the function that we just wrote that grabs for me the highest value and the words associated with that highest frequency value. So this is the idea. I have my original word dictionary, right? This is the frequency dictionary we created right off the bat."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4431.1,
+            "end": 4474.1,
+            "text": "What I'm going to do is look to see which words occur with the highest frequency. So the highest frequency, my function from before, grabs for me, figures out that it's three, and it figures out the words associated with that three are a and ma. That's exactly what we just did. So I'm going to grab those words and those entries in the dictionary, and then I'm going to mutate the dictionary to remove those words because I know those words occur with the highest frequency. So now I've removed those words and I've saved them because they were the result of the function that I had just run."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4474.1,
+            "end": 4499.1,
+            "text": "So I'm maintaining this frequency list, which will contain all the words that occur at least, I guess I said greater than one time, so at least two times. So I'm going to grab the ones that occur three and two times. So right now I had just grabbed the words that occur three times. I've removed them from my dictionary. So I've actually mutated my dictionary to remove those words."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4499.1,
+            "end": 4529.1,
+            "text": "Now, if I run the exact same function that I just wrote on the previous slide on this mutated dictionary, which words will it give me? Which words occur the most now? Exactly, right? Now the highest value in my dictionary and this frequency dictionary is two because I mutated to remove what was previously the highest value. So I'm running the same function again on the mutated dictionary to give me just the raw."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4529.1,
+            "end": 4561.1,
+            "text": "So I grab that, keep track of that in my frequency list, mutate the dictionary to remove that. And as I'm doing that, I'm also keeping track to make sure that the highest frequency I have in the remaining dictionary is at least whatever I was interested in. So here I want it at least two. This function, the one I will write, will no longer grab any other values from the dictionary because now one frequency one I don't want to grab. So this is the resulting value."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4561.1,
+            "end": 4582.1,
+            "text": "And that's the idea. We're using mutability and the function we just wrote to do this task. And this is the code that does that. So this runs the function we wrote previously, step number two, gives us that list, that tuple with the list of all the words. This loop here makes sure I still have frequencies that are at least x in the dictionary."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4582.1,
+            "end": 4603.1,
+            "text": "I grab the tuple that I just created, so something like this, and add it to my frequency list. So this is the resulting list that I'm keeping track of. And then this bit here removes the word from my dictionary. So I'm mutating the dictionary using this Dell keyword that we saw at the beginning of this lecture. Yeah, question."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4603.1,
+            "end": 4632.1,
+            "text": "I don't know what, like I know it says that while basically while you're using people, it raises that. Yeah. I guess what I'm just going to do is why it's still in the dictionary and why it's still in the dictionary. So I think maybe it's because the function, I forget what the specification said, but I don't know if it said at least two or greater than two. Or greater, at least x or greater than x."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4632.1,
+            "end": 4649.1,
+            "text": "It depends on which one I actually said in the specification. But you can imagine changing this to greater than or greater than or equal to. And then we're running this function again inside this while loop to grab the frequency value. Yeah. So these are just the observations I actually stated at the beginning of this example."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4649.1,
+            "end": 4668.1,
+            "text": "A bunch of the different things that we've learned that we're using within this example. So slicing or splitting, iterating over the list directly, mutability, you know, using the items, things like that. So that's it. That's all I have. I'll see you guys on Monday."
+        },
+        {
+            "number": "14",
+            "title": "Dictionaries",
+            "start": 4668.1,
+            "end": 4686.1,
+            "text": "Monday is Halloween. If you'd like to bring a costume, I love Halloween. I will wear something different than what I usually wear. Thank you."
+        }
+    ],
+    "text": "All right everyone, let's get started. So today's lecture will be on this thing called dictionaries, and it's not the dictionaries that our parents and grandparents used. Notice I never actually use regular book dictionaries either, maybe once in my entire life. But it's actually on a Python dictionary. So this is going to be a new data type that we have not worked with before. But it'll be a compound data type much like we've seen lists and tuples to be. It's just going to be very different than lists and tuples. So before I introduce a bunch of syntax and what a Python dictionary is, let's try to just motivate the need for such a data structure. So suppose we have the following problem. We've been dealing with this problem in many of our lectures, but we once again want to store student information. So let's say we want to store great information for a bunch of students. With what we know so far, we can store information using lists. It's a very reasonable data structure to use because we might get new students in the class, students might drop, grades might change, things like that. So let's use this mutable data structure list. Let's say we want to store names of students and their grades in the class, like their final letter grade. Additionally, we can store things like micro quiz grades and p-sets grades. But for now, let's just assume we're storing just the names and the final grades in the class. So if we do this using lists, one reasonable way to store this information is by saying, well, I'm gonna have a list of all the names of the students in my class. I'm gonna have a list of all the grades of these students in the class. And I'm basically going to go index by index and make the rule that says, at a particular index, I'm storing all the information related to this one person. So at index zero here, I'm storing the name of the student and their grade. At index one, I'm storing the name of that student, John, and their grade. At index two, I'm storing the name of that student and their grade. And at index three, and so on and so on. So now I basically have to remember that for a particular index, I am storing all the information related to that student, right? Okay, so seems like a reasonable way to do this. Now, let's say that I wanted to look up the grade for a particular student, okay? So I write this function called get grade. It takes in some parameters. So the first thing it'll take in is the name of the student. So Anna, for example. And I would pass in the list of all the names in my class and the list of all the grades in the class. So these are these two lists that I've previously created, right? So these get passed in to this function. So you can imagine if we have a list of everybody at MIT, these lists are gonna be pretty large that we're passing in as parameters. How do we actually grab the letter grade associated with a student? Well, we're gonna use the fact that the letter grade for the student at index i in the grades list is going to be grabbing the letter grade for the student at that same index in the name list, okay? So we have to figure out this particular student being passed in here, what index they're at in the names list. So that's what this line of code is doing. It's using this index function on the name list with a parameter, for example, Anna. So this will return for us the index where Anna is in my list. So from the previous example, it's going to say that it's going to return the number zero because Anna is stored in the name list at index zero. So now that I have that index in hand stored in variable i, I can just index into the grade list at that same index, okay? So I can get grades list at index zero will return for me the grade that I got for that particular class or whatever we're storing here. And then we just return the tuple student comma grade. So this becomes really messy, right? I already mentioned that if I have a list of a whole bunch of students for a really large class or the entire university, then it becomes really un-wieldy to just keep passing in all these lists. If I have in addition all these micro quiz lists and all these problem set lists that also store additional information for the student, I then have to pass those in for their respective functions. And so it gets really messy, right? Writing these functions that retrieve this information. And additionally, if we're mutating these lists, like if a new student comes in and we need to add all their information, I need to make sure to update every single one of these lists that I'm maintaining. If a student leaves, right, or drops the class, I need to remember to remove that index from all of these different lists. So really, really messy situation that we could get into by using this method to store information about students. So let's try a different approach. Instead of using all of these different lists, let's say that we're going to store everything in a master list. Okay, so we're not storing many lists. We'll just store one list for the grades in the class. And the way it'll be stored according to this in the slide is going to be this grades list. Okay, so this is one list with three elements in it. And you can imagine if we have more students, we would just put all these students in this master list. So what is each one of these student elements? Well, each student element is itself a list. So already, I've got my master list. And each element within this list is also a list. So this is a list for Eric, a list for Anna, and a list for John. These are variable names. What are these lists going to be comprised of? Well, they will be comprised of three things. So notice, right, two commas here. So the first thing is their name. The second thing is another list containing their problem set grades. And I'm kind of using this element of that list to denote what that set of numbers represents. And then another list as my third element being the scores for the micro quiz grades. And again, I'm denoting the first element of that list telling me what this list contains. Okay, so I've got lists, master list with three sub lists for my three students. And each one of those lists contains three elements, a string, a list, and another list. And those two lists are then also comprised of a string and a list themselves. So super complex, a data structure, a sort of composition or design choice that I've made here. But it solves the problem of maintaining all these different lists in separate variables. So now, let's say I wanted to write a function that gets the grades for a particular student for either problem set or micro quiz's grades. This is the function that does that. So again, it's not looking super nice. So what is this function going to take in? The who is going to be a string representing the name. So for example, Anna. The what will be also a string representing what information I'd like to grab, either PS or MQ, and the data is going to be my master list of all the grades. So this grade equals this list of everybody. So what is this code going to do? Well, it has a for loop down here and a nested for loop inside it. The outer for loop basically looks through each one of these elements here and looks at the element at index zero. So either Eric, Anna, or John and grabs only the list where that piece, this string here matches the who, right? So if student at index zero equals who right here, then we found the student I'm interested in grabbing the information for, cool. So now I've grabbed the right piece, the right list, and now I'm interested in their grades for a particular what, right? So either MQ or PS. So I do the exact same thing again for that list here, right? So if I'm interested in Anna's PS grades, I grab these lists here, right? And then I'm going to check if the inf one index zero, so either this PS or this MQ matches the what, so either PS or MQ, to match what I'm interested in grabbing the information, what information I'm interested in grabbing. And then I'm going to go inside this if statement if they match, and then I return the who and the info. So again, super complex, no need to understand this that well, because we're not gonna use this method for long. So this get grades here, for example, if I grab Eric's micro quiz grades and I run the code, it will return for me this tuple that returns for me the name of the student and then just the sub list of the thing that I was interested in. In this case, micro quiz. And it grabs for me all the grades and then I can then index into this returned tuple to grab either the first quiz or the second quiz grades. And same for Anna, right? In this particular case, it grabs for me just the tuple with my name and then that sub list with the prom site grades. Okay, so again, really messy. I have to, I've made my design choice for how to create this, all these lists with sub lists and sub lists within those. And so I'd have to document that probably if I was using this method. And then this function to grab this information, again, super complex. Hard to read. So it's not really a great way to store information either. But the idea behind this, which is to try to store some data associated with some sort of key, right? The PS or MQ or in this case, I'm storing a bunch of grades for Eric or Anna. That idea we can explore and that's basically what dictionaries will do for us. It'll allow us to create data structures that map some sort of custom index, a key, to some value. So much like a book dictionary does, right? It maps the word to its definition. We'll be able to create our own dictionaries that map some object to another object. So when we create a dictionary, we call every sort of quote unquote element in the dictionary an entry. And that entry is that mapping of a key to a value. So just to draw a parallel with a list, we can think of a list as mapping something to another something. The thing that a list maps is this index, number 0, 1, 2, 3, in that order, right? So it has to start, have an element at index 0 and then that index increases by 1 from there on, okay? And for each one of these index indices, I'm mapping that index to some element in my list, right? That's basically what the list does. There's something associated with index 0, something associated with the next one, and so on. So it's kind of like a very restrictive dictionary, right? An actual Python dictionary works in similar way, except that now I am not putting any restrictions on my indices. My indices here become these sort of custom indices called a key. And so now I'm able to associate a value, equivalent element in my list, with that key. So I can have an element associated with any object. So I am using the term value here. And in a dictionary, the key is associated with a value. And that's one entry in the dictionary. Now this is going to be a little bit confusing because we've been using the term value to refer to just some object's value, right? Like variable A has value 5 or something like that. But now I'm going to try to make a conscious effort now that we're introducing dictionary and dictionary values associated with a key to whenever I'm talking about the dictionary's value to say dictionary value, just so it's not confusing. But just keep that in mind. It can be a little bit confusing at first, now that we're using the same terminology for two different things. So we're going to go through, in this lecture, we're going to introduce a bunch of syntax and operations with dictionaries. And there will be lots of you try it exercises just to give you a little bit of practice with the syntax because this is kind of a syntax heavy lecture. So hopefully it helps a little bit. But let's first see how to store data in a Python dictionary. So as I mentioned, a Python dictionary stores entries. And that entry is a key value pair. So you're mapping one key to its value. The key can be any mutable object, and we're going to see what this means in a little bit. And the value associated with that key, or the Python value associated with that key can be any object you'd like, even lists or other dictionaries. So the way we create a Python dictionary is by using these open and close curly braces. So tuples were open and close parentheses, lists were open and close square brackets, dictionaries are open and close curly braces. And this creates inside memory an empty dictionary. So a dictionary with zero entries, so the length of that dictionary is zero. To create a dictionary with one entry in it, again, we have curly braces. And we add one entry in it, so this something colon, something else is an entry in my dictionary, one entry. And the thing before the colon is the key, and the thing after the colon is the value associated with that key. So you can think of it, if we're drawing a parallel to lists. This is now mapping sort of at this custom index four. We're putting element 16. Okay, so we can also create dictionaries that aren't just full of integers. And you can mix and match data types as you'd like. But usually in dictionaries, we kind of have the keys all be the same type. And the values all be the same type. But you can certainly mix and match types, just like you could create lists and tuples full of an integer and the float and another list, and mix and match in that way. So here I'm creating a dictionary, again, open and close curly braces, starts my dictionary, and it has four elements in it. So each, sorry, four entries in it. And each entry is separated by a comma. I've got here my first entry. So it is mapping the key Anna to the dictionary value B. My second entry maps key map to value A, third entry maps key John to value B. And last entry maps key Katie to value A. So this is a dictionary that essentially maps strings to other strings. So you can see here, I've kind of visualized the dictionary that we just created. We've got these custom indices, right? So we're basically mapping names to letter grades, okay? Everything okay so far, does it make sense, I guess, conceptually? Okay, awesome. Okay, so the first thing we'd like to do is once we have a dictionary full of a bunch of entries, how do we grab an entry? How do we look up a value associated with a key? So the way we do that is in a very similar way to the way we look up an element in a list, right? A key in a dictionary is just a custom index, right? So how did we look up an element in a list? So if I wanted the element at index three, I would basically say L square brackets three, and that grabs for me the value at that index. Well now, I've got my custom indices, right? My custom indices are these strings. The syntax will be exactly the same. I've got this custom index I'd like to look up. So I say dictionary, name, square bracket, custom index. So if I say grade, square bracket, John, Python will go in to my dictionary named grades, it'll look up the key John, and it'll return for me the value associated with that key, B. So this entire expression here evaluates or gets replaced with the string B. Just like when we indexed into a list, L square brackets three, we replaced that entire indexing operation with the value of the element at that location, right? So similar here. If I try to index into a dictionary and that key doesn't exist, so notice my dictionary has no string grace, Python will give me a key error. So if you run code with dictionaries and you get a key error exception being raised in the console, you'll know that you're trying to index into a key that doesn't exist. So the question might be, yes, we're able to look up a value, right, given a key. Can we do the same thing but backwards? Given a key, sorry, given a value, like A, B, C, whatever, can we look up a key associated with that value? And the answer is no. We'd have to write some sort of loop or some sort of code that goes through every item in my dictionary to check each value and see whether the key associated with that value is equivalent to the one I'm looking for. So there is no nice expression to do that backward operation. And that's because the values in my dictionary can be repeated. So if I look up the value B, right? And I want, what's the key associated with B? Well, there's actually two of them. So how does Python know I want both of them? How does it know I want only one of them? How does it know I want maybe a list of all these things? It doesn't, right? So you'd have to write code that does something for that operation. And we're gonna see how to do that later. Okay, so let's have you work on this, you try it. And this is just an exercise in looking up a value. So this is a function I'd like to write according to the specifications. So it's called find grades. Grades is a dictionary mapping student names to grades. So string to string exactly like we've seen in the previous slide. And students is going to be a list of student names. So in the example here, I've got my input dictionary, this thing we just saw. And then my list of student grades is, for example, these two strings, Matt and Katie. For a bunch of these questions, especially even on the micro quiz and things like that, if it gets a little confusing when I try to write the specification in a very detailed way to make it clear what I'd like from this function. It's important to try to use the example to help you figure out what we'd like. Because we're writing the specification in a general sense, but the example should hopefully make things really clear for what we'd like. So in this particular case, what we want the function to return is a list of the grades for the students being passed in. So we look up Matt, we see that their grade is a C. We look up Katie, their grade is an A. So I wanna return the list C comma A in the same order that I passed in my students. So I'll give you a couple of minutes to work on that, and then we can write it together. So that's line 94. So this is just an exercise on looking up values in the dictionary. All right, does anybody have a start for me? Yes, please. Yep, L new, how about that? So this will be my results list, yep. Yep, for loop. Yep, so grade square bracket LM looks up the value associated with my student named LM. And maybe we can save it like this, grade equals this, and then you said append. Yep, so we can do L new dot append the grade. Anything else? Yep, a return, so we can return L new. Yep, so very reasonable code, I like it a lot. Besides the first lecture, I don't know that we've written any code that didn't involve a loop. So your best bet for writing code for any sort of thing in this class is to think what loop can I do. So let's run the code, and it should return for me C comma A, and it does. Now that we can iterate, so I mentioned this before, but once we're iterating over tuples and lists and things like that, one thing I would add, just for debugging purposes, is say something like LM is, and then you can say an example of what it could be, like Anna or Matt or whatever, it could be just to remind yourself that loop variable is a string. And so it's one less thing to remember as you're writing for their code, but this is really nice. Okay, so dictionaries are already proving to be really, really useful. We can create values associated with custom indices. And if we want to grab the value associated with that custom index, it's really just a matter of indexing using a key, using that specific key, much like we did indexing into a list. No need to loop, none of that iteration, it's just a single line of code that indexes into the list. So let's see a few more operations before we do the next, you try it. So I've got my list of grades that we've been working with in the past couple of slides. Let's say that we now want to add a new student in their grade. The way we do that is very similar to the way that we would add an element to a list once we already have an index for that list, right? Here notice we don't actually have a slot for grace, yet I'd like to add her to my dictionary. That's okay. With this particular syntax here, so grades at key grace, if Python does not find grace in my dictionary of keys, it'll just add her, okay? Which is really nice, right? I don't need to check if she's already in there, there's no looping, you just say grades at grace equals a, boom, it adds it for you. What if I want to change an entry in my dictionary? Well, let's say I want to change grace's grade to a c, grades at custom index grace equals c, we'll go in, look at my keys. When grace didn't exist, Python added her with her value, but she already exists there, so Python will just overwrite her value. So really nice, you know, something to look out for in case you already have values in the dictionary, you know, you want to be careful if you actually do want to overwrite things. But it's really, really nice behavior, and it's different than lists, right? Especially adding an entry to the dictionary. You can delete entries much like we deleted entries from a list. We use the del function, and the del function says what entry you'd like to delete from what lists, so here we just say the name of our dictionary at index Anna. So this will completely remove Anna and her value, and the value associated with Anna from the dictionary. So what I want to make a note of is that our dictionary is being mutated with all of these different methods, or all of these different functions, right? So here, when I added grace, I've mutated my original dictionary, right? The animation didn't make a copy of this dictionary with grace added, leaving the original unchanged. I've literally gone in and mutated my original dictionary to add grace. I've mutated the original dictionary to change her grade. I've mutated the original dictionary to remove Anna from the dictionary, right? So all these functions are actually mutating my dictionary. OK, one other very useful thing that you can do with dictionaries is to check if a key is in my dictionary. So we do this using the in operator, this in keyword. We've seen the in keyword being used to check if an element is in a list, to check if a substring or a character is in a string, to check if some element is in a tuple. We can also use it to check if an element or a key is in my dictionary. So I want to make a note, it's only checking the keys. It does not look for the values in the dictionary. We'll see how to check if some value is in the dictionary in a little bit. But the in keyword specifically only looks at the keys in the dictionary. So if I have the expression, the string John is in grades, Python only looks at the keys and say, yep, there it is. I don't care what values associated with it, I just care that it's in my keys. So this entire expression here, John in grades, will evaluate so be replaced with true. Daniel obviously is not in my dictionary keys, so it returns false. B is not in my dictionary keys, even though it's in my values. It still returns false, because it only looks at the keys. All right, let's have you try this. Exercise. So function is called find in L. Again, we can use the specifications and the example to help us figure out what we'd like from this function. So LD is going to be a list of dictionaries. So in the example here, I've got three dictionaries defined. And the first parameter here, the thing being passed as LD, is the list with d1, d2, d3 as my elements. And k is just an integer. What I'd like to do is return true from the function if that k is a key in any of these dictionaries and false otherwise. So as soon as I see a key that matches k, I want to return true. So in this example here, when I look for the k2 inside these dictionaries, d1 doesn't have it, but d2 has it, so I would return true. When I look for 25 in that same list of dictionaries, 25 is a value in one of these in d3, but it's not a key in d1, d2, or d3. So that would return false. All right, so that's just a little lower, line 115. Give you a couple of moments, and then we can write it together like usual. All right, does anyone want to start me off here? So how can we do this? Create a loop, yes? 4? Yeah, okay, so that means that d is, I can say k1 mapped to v1 or something like that, right? Key to a value. If k in d, yep. So that will check for me my keys in that particular dictionary that I'm looking at right now. Yep, we can immediately return true, right? As soon as we found it, no need to check the other dictionaries just pop, you know, pop out of the function and return true. Same inside the if, or inside the four, outside the four. Outside the four, we can return false. Yep, I like this code a lot. Uses this in operator, right, to do the task. So the return false outside of the four loop works really well, because if I've gone through every d inside ld here, then I'm checking every single dictionary, right? As soon as I find one that has that key, this return true acts like a break and a return, right? So breaks out of the loop and returns immediately, and it doesn't return false. But if I've gone through every dictionary and didn't find the key matching k, then I return false. Yeah. Did anybody try it a different way or is this? We could certainly try it with a Boolean flag, right? We could flag the fact that we found it through some loop, and keep track of it, and at the end, just return that flag. That's another way to do it. But this is probably the most pythonic way. So we can run it on these two examples here, right? So I'm expecting two, looking up two to return true, and looking up 25 to return false, and it does. Questions about this code or dictionary so far? Is everything okay so far? All right, a couple more operations. So so far we've looked up values in the dictionary, we've added stuff to the dictionary, we've deleted stuff from the dictionary. One really useful thing to do is to be able to look at every single entry in my dictionary. The reason why we'd want to do this is because we should assume that when we create our dictionaries, there's no order to them, right? This is very much unlike lists. Lists had an order to them. We knew that the first element in our list was at index zero. The next one was at index one and so on, right? Lists were ordered sequences of elements. But dictionaries are not ordered sequences of elements. That's not super true. There are up until a very recent version of Python, there was no guarantee to order. They would put in some order that I couldn't figure out how it was determined. But I forget which Python version, maybe 3.6 or something like that, started to guarantee an order for the dictionary elements. That order was the same order that you inserted the elements. But if you'd like to write robust code that could be run by people using an older version of Python, you should write the code assuming that no such order exists. It's okay, it doesn't make the code that much harder to write. But if we're not assuming any order to Python entries in the dictionary, then that means a lot of times we actually have to look at each entry in the dictionary to do some task. One of the first things you might want to do is to iterate through all the keys in the dictionary. To do that, we use a function called grades.keys, and this grades.keys function here doesn't mutate the dictionary at all, but instead it returns for me an iterable, a sequence of values, which are all the keys in my dictionary. Now, the data type of this return value is called dict underscore keys. It's not a data type we've worked with before. Okay, it looks really weird. But if you'd like, and you don't have to do this, you can always cast this sequence of values that's type dict keys to a list like this. So if you cast to a list grades.keys, it gives for us this more recognizable list with each key being an element in the list. You don't have to do this, but if it makes it easier for you, you can. So this line of code here, grades.keys returns for you, you can think of it like this iterable, this list of all the keys in the dictionary. Again, they're not ordered, right? I mean, they're ordered in the order that I added them into the dictionary, right? Anna, then Matt, then John, then Katie, but they're not sorted in alphabetical order. If you have integers, they won't be sorted in ascending or descending order. So it's best to just not assume an order to begin with. Similarly, we can get an iterable of all the values in the dictionary. Okay, and to do this, no surprise there, we use grades.values, and this is again a function where it doesn't mutate the grades at all, but instead it gets replaced with this dict.values data type. I've never seen it before either. And you can cast it to a list if you'd like, because it makes more sense to us at this point in time, which just returns for us this list of every single value in my dictionary. Again, no order, right? We can see that there's no order except for the order that we actually added the element in. Yeah. When you said like it acts like a couple, do you mean like it might be very such another time to print out the same list? Yeah. Yeah, it'll print out the same, the same iterable I guess if you do it again. Yeah. We're just doing like if we're just iterating over the dictionary, there can be chances for like it comes out in the order. If you're iterating over the dictionary, not in the Python version we're using, but in a previous version, if you ran you're on your machine or if I ran the same code on my machine, it might have given me a different order. But in the versions we're using from now on in Python, right, because you guys all probably downloaded the latest version of Anaconda and Spider, it will guarantee the order that you inserted the elements in. But if somebody using an older version of Python takes your code and runs it, they might actually get A, A, B, B or some other order for these functions here. Yeah, you're welcome. So these being iterable just means that we can have something like 4k in grades.keys, basically giving us a loop where k is going to be each element in this list. So that's fine. So we can iterate over the keys or we can iterate over the values directly, but what I find personally most effective is to iterate over each entry in the dictionary. So not just over the keys or the values by themselves, it's to iterate over the keys and the values together. So to do that, we use this function called grades.items. And unsurprisingly, this will return also an iterable, where each element in my iterable is not just the key or the value, it's a tuple of the key, comma, the value, okay? And again, we can cast it to a list to give us something that's more recognizable. You can see now each element in the returned list is going to be the tuple, where I have an entry, right? So my entry, Anna, comma, B, is this first element in my returned list, and then Matt A, and then John B, and then KDA. So I grab these entries together where I have access to both the key and the value for that entry, which means, and this is the important part, that we can do something like this. And we can do this for the previous slide as well, but for this particular grades.items iteration, if we're grabbing a key value pair out of items, that means we can do something like this. For K, comma, V in grades.items means that Python will map K to the key for that entry, and V to the value for that entry, as I'm iterating over each one of these pairs, right? So with each iteration, I have access to both the key and the value for that entry, which is pretty useful, right? So if I have this line of code here, if I print key K has value V, the K and the V will change with each entry, right? I'm just grabbing both the key and the value for that entry. Yeah, question? Can we use the grades.items to list actually, like, is it actually tuple or is it the actual item? It's not a tuple, so the actual object type is this thing, dict underscore items. So again, not a type that we've worked with before, but that's just the type, right? Like, we've seen lists, tuples, dictionaries. Dict underscore items is another data type, yeah. But the cool thing is that it's an iterable. So it's a sequence of values, which means that you can cast it to a list, which is also a sequence of values, and it knows how to do that casting, and you get the more recognizable list that we've been using. Other questions? Okay. So I really like using grades.items to iterate over entries. So let's have you try this exercise. So it's a function called count matches. It takes in one dictionary D, I didn't say what the elements are, but you can mix and match. So here I have a dictionary with just int mapped to ints, and here I've got a dictionary where it maps ints and strings and things like that. And what I want this function to do is tell me how many entries in this input dictionaries have the key match its value. So here, in this first example, the key here is 1, the value is 2, so they don't match. These don't match and these don't match, so the count should be 0. But down here in this example, the 1 doesn't match 2, so that's fine. But the key A matches its value, one count, key 5 matches its value, two counts. So this should return count 2. All right. Let's have you work on that down by line 137, and then we'll write it together. All right. How could I start this? Yes. Account, yes. Zero, yep. A for loop. A for loop, yep. Yep, as a function, yep. V equal k, yep. So this is where my value equals my key for that particular entry. Count equals count plus 1. Perfect. Yep. Return count. Did anybody do it a different way? No. Okay. Awesome. Yeah. Why do you have to call it like? Oh, wait, I have to do it if I have to go over it. We can write it, yeah. Yeah. I did like the count equals zero, and then it's like for x and d, like he said it was just going to call it the value, it's going to say it's like at x equals x, then like that, it counts. I got a lot that I'm just going to call it x. Yeah. So we can say for x and d dot keys or something like that, right? Something like that or no? Yeah. We can also say for x and d, I think that might work too, because it'll grab the key for us. But just to be safe, keys. And now we need to grab the value. So how do you grab the value associated with key x? Is it like d like brackets? No, it's brackets or? Yeah. Score brackets. It's just indexing, right? So d square brackets x, oops, if d square brackets x equals, so that's the value equals the key, right? Then again, we, you know, count plus 1. So this is our other way. Yeah. So we don't have to use items, but it just, items makes things easier because we have in hand a variable that's the value and a variable that's the key. And doing things like indexing starts to get confusing if, you know, I mean, it can be confusing. But yeah, both ways are very valid. So let's run it and it should work. Yeah. So the first count is 0 as we expected in the second count is 2. Is that any questions about this code? Does it make sense? Is there another way that somebody tried it? Okay. Good. Okay. So dictionaries are mutable objects, right? So all the aliasing and cloning rules apply. Remember when we talked about lists and using the equal sign between a list and another variable name? Just the plain old equal sign means that you are making an alias for that list. Same thing applies to dictionaries. So using, you know, saying d1 equals d2 where d2 is a dictionary means that you've just created an alias for that dictionary. So if you change the dictionary through either of those variables, you're changing the object itself. If you want to actually make a copy, you use d.copy where d is the name of the dictionary. You'd like a copy and that gets you a copy of that dictionary. And then you can change it without changing the original one. So let's talk a little bit about the values for a dictionary and the keys. Because there are some restrictions on the keys for the dictionary, no restrictions on the values. So dictionary values can be any type, right? You can have a dictionary value that's a float, int, string, tuple. You can have a dictionary value that's a list, right? Which is a mutable object. You could have a dictionary value that's another dictionary. All are okay, whatever you'd like for the values to be. You can have dictionary values that are duplicates. So you can have one key that maps to value five, another key that maps to value five. All good. So the key, so the values don't need to be unique. We do have restrictions on the keys though, okay? The first restriction on the keys is that it has to be unique, right? So if you're mapping a key one to value five, you cannot map a key one to value six. Because if you go and look up the value associated with one, how does Python know which value you'd like, the five or the six, right? So the keys have to be unique, first of all. Second, the keys have to be immutable, technically hashable. But for the purposes of this class, just think of them as having to be immutable. So a key can only be one of these types that we've seen so far, int, float, string, tuple, or bool. You cannot have a key that's a list, you cannot have a key that's a dictionary because they're mutable objects. So let's look at that a little bit further in detail. So the reason why we can't have a key that is mutable is because of the way keys are stored in Python, sorry, the way the dictionaries are stored in Python. So I'm gonna show you an example on the next slide. First, I'm gonna explain how they're stored and then we'll go through an example showing you exactly why you can't have a mutable structure. So the way keys are, the way dictionaries are stored in Python is you first need a key, right, to associate with a value. So everything starts off with the key you'd like to add to your dictionary. So Python basically runs a function called a hash function on the key. For simplicity's sake, let's say the key you're trying to store is a number. That hash function might return that same number, it might return something else. If you're trying to store a string as a key, Python, again, runs maybe a different hash function that takes in that string, which might be a bunch of characters, and it converts it to some number. So the hash function always takes in your key and converts it to a number. That number, think of it like representing a memory location where you're going to store the value associated with that key, right? So you're always grabbing a number that represents a memory location. At that memory location, you'll store the value. So next time you want to look up the value associated with a key, you just run that same hash function, the function won't change. You run the same hash function on your object, and you'll be able to get that same integer back. You'll be able to grab that same value back. But if you're storing mutable objects, that means that object can change. So if you run the hash function, the thing that gives you a number, on something that's changed, that number might not be the same, right? Because you've changed the thing that you're passing into the function. So why would it give you the same value back? So let's look at this example. So again, we're storing grades. And let's say we're trying to store a bunch of grades inside our memory. And let's say our memory is just 16 locations, so 0 through 15. So at these locations, I'm going to store grades associated with a person. The function I'm going to run on the student is using their name. So I'm going to store Anna's grade somewhere. But I need to run a function that takes in the string a and a, and gets for me a number. That number is where I'm going to store my grade. So a simple hash function we might do is to say, well, I'm going to take a and map it to 1, b, map it to 2, c, map it to 3, and so on. I can sum all of those numbers associated with my letters and my name, right, 16. And then I can mod it with 16, which is how many entries I have in my memory. So if I mod it with 16, that's going to give me a number 0 through 15, right? If you take the remainder when you divide by 16, you'll either get 0 all the way up through 15. So if I mod my name, that means I'm going to store my grade at memory location 0. So far, so good? So I'm basically, I made up this hash function that tells me where to put my grade. Now I add another person. Again, I'm going to convert the letters in their name to numbers so that I can easily get a number out of their letters. So I'm basically hashing their letters to a number. Again, summing this for Eric is 35, I'm going to mod it with 16, which means I'm going to put Eric's grade at location 3. Next person, John, same thing, right? I add the numbers, mod 16, I'm going to put John at location 15. So this is my memory where I'm storing the values associated with these students. So if I want to grab back my grade, I run the exact same hash function. So I'm going to run the same hash function on my name. My name hasn't changed, right? It's still the string. I'm not allowed to change it because it's a string. And so I'm going to get the same value back 0. So that means to grab the letter associated with my name, I just need to go straight into my memory location and look up the value associated, the value at that memory location. So I know it's going to be a C. Now let's say I'm storing a list, a student name as a list. So again, Anna, Eric, and John are immutable, right? They will not change. But if I store Kate as a list, her name might change. Again, I can run the same hash function on her name. That means her grade, when I first store it, is going to be at location 5. So I'm storing Kate at location 5. All these three strings, I know I can get back because they cannot change. But let's say that Kate goes and changes her name from Kate with a K to Kate with a C. It's the same object, right? The same person, she earned her grade B originally. So if I want to grab her grade back, even though her name has changed, I would still like to grab the B associated with her as a person. But Kate with a C, if I run that same hash function that I ran to put her grade in my table, tells me that I now need to look up her grade at memory location 13, no longer at memory location 5. Right? She's not there. Okay, so now it's like, did the student disappear? All that stuff. So you see now, that means that's the reason why I cannot have a mutable object as a key to my list. Because if that object changes, running that hash function on that changed object might not give me the same memory location where I originally stored the value associated with that object. Does that make sense? Okay, so let's revisit our original example. The one where we tried to store everything in a master list, all these grades in a master list. Now let's store it in a master dictionary. Okay, so I've got my grades. Notice curly bracket, curly bracket is a dictionary. I've got two students in my class, Anna, right? So this is Anna's information and Bob, that's Bob's information. So just two students in my master dictionary. So the key Anna, right, is going to be one entry key. Key Bob is the other entry key. And what's the information associated with these keys? Well, with Anna, I've got this dictionary associated with her name. So that's this big thing here, I'll explain it in a bit. And similarly with Bob, Bob has one thing associated with it, him. And it's another dictionary. Okay, so I'm mapping strings to dictionaries here. And that's fine because values in a dictionary can be other dictionaries. So what are these dictionaries about? Well, the number of items in the dictionary for a particular person, there's three elements, right? So comma, comma separates my three elements. The first one is going to be mapped with key MQ. The second one mapped with key PS for problem set, and the last one mapped with the string fin for final, great. So each one of these students has this dictionary associated with them. And that dictionary then itself has three entries. One for the micro quiz, one for the PS, one for the final scores. So now, what's the values associated with those keys? Well, the micro quiz is going to be a list. The problem set is going to be a list, and the final is going to be a string. So a really nice representation of my class, right? And same for Bob. So now, what if we want to grab a student's exam grade or the student's list of exam grades? Remember that big function, right? With the two nested for loops and the nested ifs. That becomes this line. Isn't that cool? Applause, I like that, yeah, exactly. We should applaud this, because look how easy it is now to, yes, thank you, yes. Dictionaries are awesome guys, so, yeah. So look, that line becomes this, grabbing one, one quiz score becomes this single line of code right here. So let's break it down. Again, we do left to right whenever we've got this chain of stuff going on. So the first thing we say is, well, we're looking up grades at some index. So grades at some index gives me that dictionary. So something like this whole thing here, right? Okay, good, that's first chain. Now this box here gets replaced with that dictionary, and I'm doing another index into that dictionary. So that means I'm going to grab the MQ associated with that dictionary. So the value associated with MQ is going to be this list 544. So this box here gets replaced with the list 544. And then if I want to grab just the first quiz value, I say now I'm going to index in the list 544 and index zero. So that grabs for me just the five. So then the first quiz score for Anna was a five. It's pretty bad. Okay, so let's have you think about this. This is a function, nothing to code here, just to think. This is a function that grabs the average of every single thing, where that thing is what, in the class. So if what is MQ, as is in down here in this example, if what is MQ, this code is supposed to get the average of all of the microquizzes for all the students in the class. So you basically want to grab the average of 10 plus 8 plus 3. And if it's PS, I would like to grab the average of all the problem sets for all the students in the class. So the average of 10, 10, 7, 8, and 0. So we've got a loop, right, that goes through every student in the keys. So the student, student, stud, student here is going to be this dictionary, right? So given this dictionary, what line should you insert here? Such that you're creating a list, just a single top level list of all of the values in there. So the thing you actually want to end up with, and if we're looking at the PS scores, just because it's a little easier to think about, is going to be 10, 10, right, 7, 8, and 0. So in the end, what I would like to get in my all data, this list that I'm maintaining here, is something like this for the PS. So think about which one of these lines will accomplish that. And just to help you out, we can say student is my dictionary of, who thinks it's the first one, second one, third one, fourth one, okay? Nobody thought it's the first one, you guys sure? Okay, why do you think it's the second one? Is it because of the append? Yeah? Let's think about it. So all data is a list, and what are we appending? So what is data at stud at what going to give us? Data at student is the dictionary, this dictionary here, right? This value here. And if we take this value and index into the what, will it be an integer or will it be a list? A list. So when we append a list to another list, what is that going to give us? So if we have a list already with, you know, ABC. If I append another list to this, will it put the element within that list, itself? Yeah, exactly. So I don't, that's not going to work for us. Clearly, D is not right either, and definitely indexing into data at student at what is not going to be right, okay? So that leaves one other choice, the first one. So let's see why the first one works. We're concatenating, right? So the plus concatenates. So let's say I already have a list, ABC. I'm going to concatenate something I already have with data at student at what, which we said is what? Is it a single element or another list? Exactly. So we would concatenate with something like, you know, 10, 10 or something like that. So that will return for us ABC, 10, 10, which will allow us to do something like getting the sum of all these elements. Questions about that? Does that make sense? Is that all right? Yes. Yeah. Because we're indexing into MQ. So if you index into MQ, MQ is your key. So you grab the value associated with that key. It would be this list here, the 10. Or for PS, it would be the list 10, 10. So quick recap on lists and dictionaries before we do one final longer example. So again, lists are ordered sequences of elements, right? There is some element at index 0. There's some element at index 1, some element at index 2. So we do have these quote, unquote, indices, right? But there's an order to these indices. And there has to be an element at index 0 and further up from there, right? Dictionaries also have these quote, unquote, indices, which we call keys. But these are custom. So you can basically rearrange, you could think of it as being allowed to rearrange indices however you'd like, right? There's no order to the indices in a dictionary. There are some restrictions on the keys or these indices. So they can't be immutable, like a hashable. But other than that, the things that you store related to that key can be any type, just like you can store any type in a list. So the last thing I'd like to go through is a larger example. And this would showcase a whole bunch of things that we've been talking about so far. It will showcase sort of how to, first of all, create dictionaries, which is what we did today. It will showcase how to reuse functions, how to write functions and reuse functions in other places. It will showcase a little bit of mutability as well. But this is all in a larger example. And if I go a little bit fast through this, I've given you Python tutor links, and it's also in the file to run on your own. So the goal of this last example is to basically find the most common words in a song's lyrics, and dictionaries are going to be really useful for doing something like this. So I'm going to show you, first of all, what we want to end up with, and then we can talk about how to divide this larger problem into smaller pieces. So those are all the pieces, but basically what I want to end up with is I want to have a song be stored as a string. You'll recognize these, but these are very old. I actually haven't updated these songs for a few years, but yeah. Anyway, don't judge. So I've got a song stored as a string, and I'm going to run each individual function. But in the end, what I'd like to do is come up with something like this. So I want to present the user the top most common words in the song. So here I have a list, so you can see open, close, square bracket tells me it's a list, and I've got elements in my list. So here's the first element in my list, which tells the user that the word I occurs 18 times. The next element in my list tells the user that the word we occurs 17 times. The next element tells the user that the words ain't ever getting older occur all 16 times, and then so on, right? So we're decreasing in frequency with the most common word occurring 18 times, and then I'm showing the user the most common words down to and including six. So I would choose some arbitrary value. I want to find in the song the words that occur at least six times, for example. So that's the goal of this program. So how will we achieve this? It's obviously a pretty big task. I wouldn't want to code the entire thing right off the bat, but we can actually divide it into three smaller pieces. The first piece, and we're going to write the code for this, is to create something called a frequency dictionary. So given a string of words, we're going to create a dictionary that maps each word to how often it occurs. So fancy word, frequency dictionary, but it's pretty simple. It just maps the word to its count inside my long string. So this presents the data, which is this string of words in a much nicer format, right? It's a dictionary that tells me the frequency of each word. Once I have that in hand, things get a little bit easier. I can write another function that finds the word that occurs most often in that dictionary. So the way I'm going to do that is look up the frequencies in the values, find the maximum of those values, and then figure out which keys are associated with that maximum value. And this is all made possible because I've reimagined my data in this frequency dictionary format. The last step, once I figure out how to write a function that returns for me the words that occur the most times, is to find the words that occur at least some number of times. And I'll go through an example of this one in a few slides when we get to it. But this last function here, number three, you can actually rewrite it in a whole bunch of ways. I'm just going to show you one way to write it. That'll involve mutability, but you don't have to do it using mutability. You can definitely do it with a whole bunch of other implementations. So let's begin by first creating a dictionary that maps the word to their frequencies. So I've picked a song that is a real song, and it has some repetition, and it's short that it fits in one line. So I've got this song here, and I've got my function generate word dictionary. The song is a string. So it's basically the song a little bit cleaned up, not in terms of words, but in terms of removing punctuation, removing commas, maybe exclamation, or I might have kept quotations or something like that. But basically it's removing all of the punctuation stuff, because that will mess up my word counts. So what is this function going to do, given a string for my song? Well first, I'm going to convert all my letters to lowercase. This means that capital T-H-E will be counted as the same word as lowercase T-H-E, which is the correct way to do it. So convert everything to lowercase. Then I'm going to use our friend the split function, remember, which takes in my string and splits on a character. So by default it'll split on the space. So this puts our string of words in a very manageable format, a list of words. Much nicer to work with lists than work with a string. Now that I have my word list, I'm going to create my empty dictionary and then populate it. So I'm iterating over my list of words, and then I have a choice. I've seen this word already, and I want to update the frequency. So I want to increase the frequency by one, because I've already added this word to my dictionary. Or this is the first time I'm seeing this word, and I want to add it to my dictionary with a frequency of one. So the first case here, the if, will update the frequency, because I've already seen the word in my dictionary. So here I'm using the in keyword to check if the key, the word, is already in my dictionary. If so, I increase its frequency by one. Otherwise, this is the first time I'm adding my word to my dictionary, so give it a frequency of one. And then I return the word dictionary. So this will map strings to integers. Let's work through it in the Python tutor. So step, step, step, step, step. Lowercase my input string, step. I've split it. So now I've got this list of all of my words, step. This is where we begin. So I've created my empty dictionary over here. This is, keep an eye on this area here. It will become populated soon. The first word, w, is raw, right? It's the first word in my list. It's obviously the first time I'm seeing it. I have nothing in my dictionary right now. So I'm going to pop in my else, and I'm going to add it to my dictionary with a frequency of one. Yay. That worked. Next, word in my dictionary is this, in my list is this one. Same word I've already seen. So I'm going to go inside the if and increase the frequency to two. Right? Raw is now two. It is aw, right? So here's my word. I've got the next one in my list. It's the first time I'm seeing it. Add it to my dictionary with a frequency of one. Next word I'm seeing is, again, increase its frequency to two. And I'm going to go faster now. This is increasing the frequency to three, right? Because I've seen it three times now. And then I'm adding roam for the first time, ma for the first time, and row for the first time. And lastly, I'm going to increase ma frequency two more times, because it occurs two more times in my song, right? So that it's increased to two, and now it's increased to three, and then we're done. So we return the word dictionary. Really nice way to represent my list, my song, right? Very nice. OK, so now that I have this frequency dictionary, and I've put it up here, this is what we ended up with, how can we write a function that returns for me the most frequent word? So one thing we can recognize is the most frequent word has the highest value, Python dictionary value, in my dictionary, right? So as a human, I would kind of look to see which one of these entries have the biggest value. As a computer, I can't really do that, because I have to do it a little bit more systematically. So what we can say is, well, let's look at our values and grab the maximum of the values. So here I'm using this dot values function on my dictionary to grab for me all of the values in my dictionary. So this will be kind of like the list two comma three comma one comma three comma one, and then I'm running the max function on that list. So max of this list of numbers gives me the maximum value in that list, the three. So highest now has the value integer three, and now all I need to do is iterate over my element, entries in my dictionary. So this is kv in the items, and I'm checking now inside this iteration is if the value is equal to the highest. So as I'm looking at each entry is the value for that entry the same as the highest one I've seen. If it is, I'm going to maintain a list of all the words with that highest value, because there might be more than one word that has that highest value. As we saw when we actually ran it here, right here, I had a list of all of these words that occurred 16 times. So that's kind of the output that I want to maintain. So I'm appending to my words list, and at the end I'm returning this tuple with the words comma that highest value. So Python tutor, like in the previous time, so let's create our original dictionaries is what we ended up with last time. So the highest value is three here, and I'm going to look through each entry in my dictionary so you can see kv is going to be each one of these in order. So first it's raw two, then it's a three and so on. Obviously the two is not equal to the three, so we move on. The three equals the three, so we take the a and boom, add it to my list here. So this is the list I'm maintaining of all the words that occur with that frequency three. Next, no for your own, yes for ma, so I'm going to add it to my list, and then no for row, and I'm done. So the return is going to be this list, this tuple here with the list of the words that occur three times. Last part, I'm not going to go through Python tutor, I did include a link to it because it becomes very messy with the arrows, but I do encourage you to try to follow it along on your own time. I will explain however the way that I chose to solve this problem. So I chose to solve this problem to include mutation and reusing the function that we just wrote that grabs for me the highest value and the words associated with that highest frequency value. So this is the idea. I have my original word dictionary, right? This is the frequency dictionary we created right off the bat. What I'm going to do is look to see which words occur with the highest frequency. So the highest frequency, my function from before, grabs for me, figures out that it's three, and it figures out the words associated with that three are a and ma. That's exactly what we just did. So I'm going to grab those words and those entries in the dictionary, and then I'm going to mutate the dictionary to remove those words because I know those words occur with the highest frequency. So now I've removed those words and I've saved them because they were the result of the function that I had just run. So I'm maintaining this frequency list, which will contain all the words that occur at least, I guess I said greater than one time, so at least two times. So I'm going to grab the ones that occur three and two times. So right now I had just grabbed the words that occur three times. I've removed them from my dictionary. So I've actually mutated my dictionary to remove those words. Now, if I run the exact same function that I just wrote on the previous slide on this mutated dictionary, which words will it give me? Which words occur the most now? Exactly, right? Now the highest value in my dictionary and this frequency dictionary is two because I mutated to remove what was previously the highest value. So I'm running the same function again on the mutated dictionary to give me just the raw. So I grab that, keep track of that in my frequency list, mutate the dictionary to remove that. And as I'm doing that, I'm also keeping track to make sure that the highest frequency I have in the remaining dictionary is at least whatever I was interested in. So here I want it at least two. This function, the one I will write, will no longer grab any other values from the dictionary because now one frequency one I don't want to grab. So this is the resulting value. And that's the idea. We're using mutability and the function we just wrote to do this task. And this is the code that does that. So this runs the function we wrote previously, step number two, gives us that list, that tuple with the list of all the words. This loop here makes sure I still have frequencies that are at least x in the dictionary. I grab the tuple that I just created, so something like this, and add it to my frequency list. So this is the resulting list that I'm keeping track of. And then this bit here removes the word from my dictionary. So I'm mutating the dictionary using this Dell keyword that we saw at the beginning of this lecture. Yeah, question. I don't know what, like I know it says that while basically while you're using people, it raises that. Yeah. I guess what I'm just going to do is why it's still in the dictionary and why it's still in the dictionary. So I think maybe it's because the function, I forget what the specification said, but I don't know if it said at least two or greater than two. Or greater, at least x or greater than x. It depends on which one I actually said in the specification. But you can imagine changing this to greater than or greater than or equal to. And then we're running this function again inside this while loop to grab the frequency value. Yeah. So these are just the observations I actually stated at the beginning of this example. A bunch of the different things that we've learned that we're using within this example. So slicing or splitting, iterating over the list directly, mutability, you know, using the items, things like that. So that's it. That's all I have. I'll see you guys on Monday. Monday is Halloween. If you'd like to bring a costume, I love Halloween. I will wear something different than what I usually wear. Thank you."
+}

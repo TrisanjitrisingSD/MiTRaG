@@ -1,0 +1,2014 @@
+{
+    "chunks": [
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 0.0,
+            "end": 33.44,
+            "text": "OK, let's get started with today's lecture. It's going to be more of a chill lecture than what we've done in the past, even though we've got quite a few things to cover, as you can see from this title slide. I'm not going to go super-duper fast,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 33.44,
+            "end": 45.36,
+            "text": "so please feel free to ask lots of questions. And then the second half of the lecture will be really chill, because we're going to be talking about testing and debugging strategies. So super-high-level topic."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 45.36,
+            "end": 62.12,
+            "text": "But first, we're going to tie up some loose ends related to lists and relating to functions. So we're not going to introduce a lot of new syntax. These ideas are sort of more optional in your day-to-day coding, but they're just really, really nice to know."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 62.12,
+            "end": 78.56,
+            "text": "So let's first start talking about this idea of a list comprehension. So you've been writing functions that deal with lists. And one really common pattern that I hope you've seen so far is the following."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 78.56,
+            "end": 89.16000000000001,
+            "text": "So this code right here shows something that we've definitely coded together, and you've definitely coded in the finger exercises and the quizzes. And so it is a really common pattern."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 89.16000000000001,
+            "end": 103.64000000000001,
+            "text": "So the idea here is you have a function that creates a new list where the elements of this new list are a function of the input list. So the pattern here is we create a new empty list inside the function."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 103.64000000000001,
+            "end": 114.96,
+            "text": "We have a loop over every element in the input. And to each one of these elements in the input, we apply the same function. So in this particular case, we're taking that element and squaring it."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 114.96,
+            "end": 131.72,
+            "text": "And each one of these elements we're appending to this new list, originally empty, until we've reached we've done this function to every element in L, and then we return this newly created list. So since this is a really common thing that programmers do,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 131.72,
+            "end": 145.64000000000001,
+            "text": "Python allows you to do this exact functionality with one line of code. And the way we do this is using something called the list comprehension. So the way that we do a list comprehension,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 145.64000000000001,
+            "end": 161.4,
+            "text": "essentially taking these four lines of code from this function, we are going to write them in this one line of code that looks something like this. So the idea here is with this one line of code, we're going to create a new list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 161.4,
+            "end": 172.76000000000002,
+            "text": "We're going to have an iterator that goes through some sort of sequence of values. And we're going to apply the same function to every one of those elements. And the other optional piece that we"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 172.76000000000002,
+            "end": 191.56,
+            "text": "can add inside this list comprehension is to only apply that function if some condition holds. So let's look at this example and see how we can convert these four lines of code to one line of list comprehension code."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 191.56,
+            "end": 211.76000000000002,
+            "text": "So we've got creating a new empty list. This is going to tell Python to create a new empty list for us. So just open and close square brackets. And within these open and close square brackets, we're going to write a one liner expression."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 211.76000000000002,
+            "end": 226.52,
+            "text": "And this one liner is going to encapsulate these two lines of code here. So the expression, sorry, the function we're going to apply to every element in L is going to be taking that element and squaring it."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 226.52,
+            "end": 239.68,
+            "text": "So on the right hand side here in the list comprehension, we've got some E squared. Well, what is E? Well, it's going to be every element E in L. So if we read this in English, we basically"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 239.68,
+            "end": 256.8,
+            "text": "say L new is going to contain elements E squared for E in L. So it sounds weird, but it kind of makes sense, even if we read it in English. And behind the scenes, Python will take one by one, each element in L, square it, and that's"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 256.8,
+            "end": 275.24,
+            "text": "the sequence of elements it will populate this L new with. OK, now what if we add a condition to that? So let's say we want to create this new list of elements only for even elements. So we only want to square the even elements"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 275.24,
+            "end": 291.20000000000005,
+            "text": "within my original list L. Well, if we were to write a function that does that, we have to add this extra condition here. So everything else is the same, except for this, if E%2 equals 0, this tells Python to only grab elements that"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 291.20000000000005,
+            "end": 306.6,
+            "text": "are even, right, divisible by 2. So how do we write this in list comprehension form? So here's a new list, and this is the function to apply, only if the test is true. In list comprehension, this is my new list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 306.6,
+            "end": 320.92,
+            "text": "I've got the for loop is over here, and then the test to apply is at the end here, if E%2 equals 0. And then what is the function we're applying? It's just E squared like before."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 320.92,
+            "end": 335.32,
+            "text": "So the test just gets appended to the end of this list comprehension expression here. Yeah? Is it running faster in relation to that? Does it run faster?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 335.32,
+            "end": 348.59999999999997,
+            "text": "I'm not sure, actually. It might run marginally faster, but probably not significantly. The reason to do this is because as you get more practice with it, this will be easier to read in code."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 348.59999999999997,
+            "end": 361.64,
+            "text": "And often, if you see a large chunk like this, your eyes will glaze over, right? You're not going to want to read a chunk like that. But if you see it all in one line, you're going to think, well, how bad can it be?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 361.64,
+            "end": 376.56,
+            "text": "And so you can come up with really complicated list comprehension expressions. But usually, we reserve them for really simple, really quick ways to create these lists that you just populate with some values right off the bat."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 376.56,
+            "end": 395.36,
+            "text": "So it just makes the code a lot easier to read. OK, so list comprehensions are pretty useful. If you get a little bit of practice with them, you'll find yourself kind of using them all over the place. And they basically replace code that looks like this."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 395.40000000000003,
+            "end": 413.56,
+            "text": "So these lines of code is a very generic way of writing this one liner list comprehension. So here, I've got a function F that I would like to apply. This XPR expression is the function I would like to apply to each element."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 413.56,
+            "end": 428.36,
+            "text": "This is the list I would like to apply that function to. And the test is going to be the conditional. In this particular case, this test means I apply it to every single element. But you can imagine having a function which,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 428.36,
+            "end": 441.08000000000004,
+            "text": "in the previous case, we would say lambda x x percent 2 equals 0 as our conditional. And then the function that we're essentially replacing is this, with list comprehensions, right? We create this new list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 441.08000000000004,
+            "end": 454.64000000000004,
+            "text": "Again, this is the pattern that we saw in the previous slide. We loop through every element in the list. If that condition holds, append that function applied to each element. And then at the end, return the list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 454.64000000000004,
+            "end": 469.40000000000003,
+            "text": "So this is just a very generic way to write a list comprehension. So let's look at some concrete examples. So here, I'm not applying the function E squared to a particular set of elements from a list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 469.40000000000003,
+            "end": 485.28,
+            "text": "I'm applying it to the sequence of values given by range. Remember, when we were talking about four loops iterating through things, they can iterate through integers following some pattern, like range 6, range 1, comma 9, comma 2, something like that."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 485.28,
+            "end": 498.4,
+            "text": "As long as you have a sequence of values you can iterate over, you can plop that into this list comprehension. So you could iterate over lists. You could iterate over tuples. You could iterate over these direct ranges."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 498.4,
+            "end": 511.56,
+            "text": "You could iterate over a range of the length of a list. Whatever creates an iterable for you, you can put that in the list comprehension. So in this particular case, the way I read this is I've got something that I'm squaring."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 511.56,
+            "end": 524.28,
+            "text": "And what's the thing that I'm squaring? It's going to be each value in range 6. So I think about it like, what is this sequence of values that I'm going to operate on? Well, it's going to be the number 0, 1, 2, 3, 4, 5."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 524.28,
+            "end": 539.3599999999999,
+            "text": "And the thing that I'm going to do to them is square each one of those values. So the end list that I get out of this one liner here is a list containing 0 squared, 1 squared, 2 squared, 3 squared, 4 squared, and 5 squared."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 539.3599999999999,
+            "end": 553.8399999999999,
+            "text": "We can add a condition to that. So here I've got each element squared for e in range 8, only if e is even. So then the way I think about it is, let's start off with what every element in the range is."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 553.8399999999999,
+            "end": 570.36,
+            "text": "Well, it's 0, 1, 2, 3, 4, 5, 6, 7. The condition I'm applying to that is that it's even. So the numbers I'm going to end up with, I'm filtering all those to only contain 0, 2, 4, and 6, because we go up to but not including 8."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 570.36,
+            "end": 587.52,
+            "text": "And then I'm going to square every one of those. So the end result from this list comprehension is a list containing the element 0 squared, 2 squared, 4 squared, and 6 squared. And lastly, we've been doing just single integers"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 587.52,
+            "end": 602.0,
+            "text": "in the resulting list. But as I mentioned, we can do more complicated things. So as long as we can write a little expression here for the thing that we'd like to calculate or add to the list, we can put it in the list comprehension."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 602.0,
+            "end": 620.92,
+            "text": "So in this particular case, the element that I'm adding to my resulting list from the list comprehension is a list itself. So each element in my resulting list is another list. And that inner list is going to contain two elements every time,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 620.92,
+            "end": 638.24,
+            "text": "the thing I'm actually iterating over, and it's square. And I've got a condition here. So I've got the elements 0, 1, 2, and 3. That's the range. But I'm only grabbing the odd ones in this particular case."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 638.24,
+            "end": 661.6800000000001,
+            "text": "So the resulting set of numbers that I'm going to apply this to is going to be the number is the numbers 1 and 3. Because those are the two odd numbers in range 4. And so the resulting list is going to contain two elements. So this outer square bracket is the list that I've created."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 661.6800000000001,
+            "end": 683.72,
+            "text": "And its elements will be the element that I have actually iterated over and it's square as a list. So 1 and 1 squared for e and e squared when e is 1. And then 3 and 9, 3 squared, when e is 3. Questions about that?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 687.6400000000001,
+            "end": 699.28,
+            "text": "So pretty cool. It's a really nice way to create lists really quickly. Like if you wanted to create a list full of 100 zeros, no need to do a loop. You basically do a list comprehension"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 699.28,
+            "end": 715.88,
+            "text": "that says square brackets 0, 4, e, and range 101. And then you've got yourself a nice little list full of 100 zeros. All right, so think about this. And then tell me what the answer is."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 715.88,
+            "end": 731.16,
+            "text": "So the idea here is we have this list comprehension. And just go through it step by step. It looks a little bit intimidating. But the first step is to look at the for loop. And ask yourself, what are the values I'm iterating over?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 731.16,
+            "end": 741.36,
+            "text": "Then look at the condition if there is one. There is one. In this case, it's at the end here. So now what subsets of those original things you're iterating over are you actually keeping?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 741.36,
+            "end": 758.68,
+            "text": "And then from those things that you're keeping, what function are you applying? It's the one right at the beginning. So think about it and then I'll ask you to tell me. So step one, what are the values I'm iterating over?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 758.68,
+            "end": 774.16,
+            "text": "The full values, not including the condition. Someone yell it out? Yeah, that list in the middle. Awesome, OK. So x, y, a, b, c, d, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 774.16,
+            "end": 785.32,
+            "text": "And then 7. And then what's the last thing? Is it the number 4.0 or a string? Yeah, exactly, 4.0. OK, string, string."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 785.32,
+            "end": 797.1600000000001,
+            "text": "Step two, from this list, what are the values that I'm actually keeping based on the condition? If there's string. All right, which one's a string? Is x, y?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 797.1600000000001,
+            "end": 803.0400000000001,
+            "text": "Yes. Is a, b, c, d? Yeah. Is 7? Nope."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 803.0400000000001,
+            "end": 813.8399999999999,
+            "text": "Is 4.0? Yes, excellent. OK, so then these are the elements that I'm keeping. And now what's the function I'm applying and what's the result going to be?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 813.8399999999999,
+            "end": 830.92,
+            "text": "It's going to be a list containing 3, 2, 4, 3, 2, because that's length 2, 4, because that's length 4, and 3, because that's length 3. Great. And we've got ourselves a nice little list"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 830.92,
+            "end": 842.1200000000001,
+            "text": "based on that condition, that sequence of values, and that function applied. Yeah? Why does it return a list? Why does it return a list, the whole thing?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 842.1200000000001,
+            "end": 854.08,
+            "text": "Or I guess I thought it was return 2, 4, 3, and 7 lines. Oh, yeah. So we're not printing things out here. When we're writing this as a list comprehension, we're essentially telling Python to create"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 854.08,
+            "end": 866.96,
+            "text": "this resulting list of values. That's just what a list comprehension does. And so just kind of this expression here with these outer square brackets around our entire expression tells Python that the resulting thing is a list."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 866.96,
+            "end": 882.52,
+            "text": "Yeah, this is a good question. Other questions? OK, so that, oh yeah, question. Does it support multiple conditions? Does it support multiple conditions?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 882.52,
+            "end": 896.2,
+            "text": "Yes. So at the end here, you would say if, and then you could wrap them in parentheses. I think, I don't know if you have to, but just to be safe, I would wrap my conditions in parentheses."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 896.2,
+            "end": 902.84,
+            "text": "And then you'd use and, or, or whatever you want to combine the expressions, or the conditions with. Does the question? Yeah?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 902.84,
+            "end": 918.5600000000001,
+            "text": "Yeah, this is the lambda I have to choose from. This one, the lambda? Here, this is a lambda function that we talked about, I forget, when a couple of lectures ago. It's basically an anonymous function."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 918.5600000000001,
+            "end": 935.8800000000001,
+            "text": "And all it does is return true all the time. So the test will always be true, which means that when we do if test parentheses E, this will always be true in this particular case. But we've given a different lambda function,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 935.8800000000001,
+            "end": 950.48,
+            "text": "that might not be the case. OK, so let's move on to the next topic. The next, I guess, two topics will be dealing with functions. And I want to wrap up a couple of things here just to give you a couple more ideas regarding functions."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 950.52,
+            "end": 968.16,
+            "text": "So the first one is actually related to this last question is the idea of a default parameter. So this is going to be a way for us to add parameters to our functions that get some default value. And that's what that lambda thing actually was in that example."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 968.16,
+            "end": 979.2,
+            "text": "But hopefully this piece of the lecture makes that a little bit more clear. And then the second part regarding functions we're going to go over is the idea of functions as objects, kind of working up on that."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 979.2,
+            "end": 993.0400000000001,
+            "text": "And we're going to see what happens when we return a function object from another function. We've seen functions as parameters to other functions, but we're going to see what happens when you make a function be the return value of another function."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 993.0400000000001,
+            "end": 1010.36,
+            "text": "But that's in a little bit. For now, let's look at default parameters. OK, we've seen this code before, triggering flashbacks. So this is by section root. I'll go over it just to remind ourselves what it does."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1010.36,
+            "end": 1023.7600000000001,
+            "text": "We've got this code inside this function we wrote a long, long time ago. And then we decided to wrap it in a function so that it's a really nicely useful piece of code that we can run many, many times."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1023.7600000000001,
+            "end": 1043.08,
+            "text": "So the parameter to this function was x, a value we'd like to approximate the square root of. And the code we're using to approximate is using the bisection search algorithm, which initializes some variables, namely epsilon,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1043.08,
+            "end": 1060.32,
+            "text": "sort of how close we want to be to the final answer. Low and high endpoints, we remember that. And then initial guess, the halfway between low and high. And then we keep making guesses between low and high, being the midpoint of low and high,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1060.32,
+            "end": 1080.0,
+            "text": "as long as we're not close enough to the final answer. So we're going to either initialize our low endpoint or our high endpoint, depending on whether that guess was too low or too high. And then within the loop, we make another guess"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1080.0,
+            "end": 1094.6799999999998,
+            "text": "using those changed values of either low or high, based on if or else. And then we keep doing this process of making more guesses at the halfway point as long as we're still farther than epsilon away."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1094.6799999999998,
+            "end": 1109.84,
+            "text": "OK, that was a recap of what we've done so far. The interesting thing that we had done with this function was, or when we turned it into a function, was to return our approximation. So this guess, instead of just printing it to the user,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1109.84,
+            "end": 1125.8000000000002,
+            "text": "we returned it so that it could be useful in other parts of the code. And so when we called the function, we just said, name a function, and then some value of x. Now, there are situations where a user would"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1125.8000000000002,
+            "end": 1138.3200000000002,
+            "text": "want to change the value of epsilon. Right now, with the way we wrote this code, epsilon is set to 0.01. And whenever you run the function, it always finds the approximation to the square root of x"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1138.3200000000002,
+            "end": 1151.48,
+            "text": "to that precision, 0.01. Now, sometimes, depending on the application, the user might want an even better approximation, so 0.0001. Or they might not care to be as precise,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1151.48,
+            "end": 1165.8000000000002,
+            "text": "and they want maybe approximated to 1, or to 0.5, or something much bigger than 0.01. So what are the options in this particular case for these scenarios? One option would be, obviously, to go inside our function"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1165.8000000000002,
+            "end": 1181.72,
+            "text": "and say, well, I'm going to change epsilon to be something super-duper precise, 0.0001. And so people who call this function will always get an approximation to that precision. But what about people who don't want it that precise?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1181.72,
+            "end": 1192.9599999999998,
+            "text": "So all the function calls are going to be affected by making that change, and so that's not really desirable. We'd like to let the person who makes the function call be in charge of what precision they'd like."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1192.9599999999998,
+            "end": 1210.6,
+            "text": "Another option is to put epsilon outside the function, so to say, OK, well, the only parameter is going to be x, and let's not set epsilon within the function. Let's let the user maybe set epsilon outside the function, and then they can use, and then our code will basically"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1210.6,
+            "end": 1227.72,
+            "text": "pop up one level to the global scope and use the epsilon that the user chose. Not a good idea, because as soon as we allow somebody using our code to make their own variables within our code, we're putting our trust in somebody else's"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1227.72,
+            "end": 1241.44,
+            "text": "hands, and they might forget to reset epsilon, or they might forget to set it to begin with. And so that's just using global variables is not a good idea in the first place. We'd like to keep control of the epsilon that's"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1241.44,
+            "end": 1256.32,
+            "text": "being used inside our function. So unsurprisingly, the last option is going to be our best option. Let's just add epsilon as another parameter to the function. So there it is."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1256.36,
+            "end": 1276.3999999999999,
+            "text": "We've got bisection root, again, as a function. We've got a parameter x, and we have epsilon as a second parameter that the user can call the function with. So other than that, the function body is exactly the same, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1276.3999999999999,
+            "end": 1296.3200000000002,
+            "text": "Except that right now, when we make a function call, we have to pass in epsilon as the second parameter. So in terms of code, this is the bisection root with epsilon as a parameter, and so now the user can find the approximation to 123 to 0.1."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1296.3200000000002,
+            "end": 1315.36,
+            "text": "It's 11.088, in case you're wondering. And then the approximation to 193 to 0.0001, which is 11.0905. So much better, the user can now be in charge of deciding how close they'd"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1315.36,
+            "end": 1335.16,
+            "text": "like the approximation to be for every one of their values. But notice that this code is kind of verbose, and really most of the time, maybe the users don't want to be in charge of setting the epsilon. Maybe they don't know what a good epsilon might be, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1335.16,
+            "end": 1351.6000000000001,
+            "text": "So how do they know that they should choose 0.01 by default? Maybe that's something you could put in the function specification for anyone using your function. But it's, you know, you're going to rely on users reading your specification, and that's a little bit scary."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1351.6000000000001,
+            "end": 1367.68,
+            "text": "So instead, the functionality that would really like to have is to say, OK, I want to write a function that does take in two parameters. But by default, one of those parameters is something that I set as the person who's"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1367.68,
+            "end": 1381.76,
+            "text": "writing this function, right? So what I would really like to have is epsilon to have some sort of a default value. So if users don't know what to call it with, that code will just use that default value."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1381.76,
+            "end": 1395.52,
+            "text": "And otherwise, if the user is more experienced and they know they'd like an epsilon of 1 times 10 to the negative 10, or whatever it might be, then they can be in charge of setting it. So most of the time, we want to call the bisection root"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1395.52,
+            "end": 1407.16,
+            "text": "function without an epsilon parameter, so that it may use a default one. But sometimes, we'd like to allow the user to actually set the epsilon. And so to that end, we're introducing"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1407.16,
+            "end": 1422.2,
+            "text": "the idea of keyword parameters, also known as default parameters, and they are set like this. So the bisection function definition still takes in the thing we'd like to approximate the square root of x."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1422.24,
+            "end": 1442.92,
+            "text": "But the second parameter here, epsilon, will be equal to something inside the function definition. So we, as the people who are writing this function, are going to say the default value of epsilon is 0.01. So that means when we call the function down here,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1442.92,
+            "end": 1459.6399999999999,
+            "text": "if the user makes a function call without explicitly passing in a second parameter, Python will use the default one that the person who wrote the function set. So Python will run bisection root of 123 with epsilon being 0.01."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1459.6399999999999,
+            "end": 1478.04,
+            "text": "And otherwise, if the user does want to override that epsilon, they can just pass it in themselves. And that default value of 0.01 will be overwritten to be 0.5. And so in our code here, this is the bisection root with the default values."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1478.04,
+            "end": 1493.5200000000002,
+            "text": "And so you can see here, if I run it with 123, even though there are two parameters here for the bisection square root function, Python doesn't complain, because it's using epsilon as 0.01. So I run it, and it runs just fine."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1493.5200000000002,
+            "end": 1506.5400000000002,
+            "text": "But in the second line here, if I actually want to use 0.5 as my epsilon value, it overrides my default parameter, and it calculates the square root of 123 with epsilon being 0.5. OK."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1509.64,
+            "end": 1526.96,
+            "text": "Questions so far? So now that we've introduced default parameters, there's a few rules about making function calls. When you create the function definition, so over here, when you're the one defining a function"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1526.96,
+            "end": 1540.04,
+            "text": "and you decide to allow some default parameters in your parameter list, everything that's a default parameter needs to go at the end. You can't switch these around. You can't say epsilon equals 0.01 comma x."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1540.04,
+            "end": 1553.5600000000002,
+            "text": "Python will not allow that. So anytime you have default parameters, they always have to go to the end. That's the only rule for defining the function with default parameters."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1553.5600000000002,
+            "end": 1564.4,
+            "text": "And then once you have default parameters, you can actually call the function in many, many, many different ways. And I know some of these will be confusing. You might not know whether they're allowed or not."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1564.44,
+            "end": 1575.88,
+            "text": "You can never go wrong with the last one, as we're going to see in a bit. So the first one here showcases what happens when you give values for everything that's not a default parameter."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1575.88,
+            "end": 1590.0400000000002,
+            "text": "In this case, just x. If you just give a value for non-default parameters, Python sets default parameters for everything else. Not a big deal. Alternatively, you can pass in just like we have in the past"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1590.0400000000002,
+            "end": 1600.76,
+            "text": "when we write our own functions with multiple parameters. You can pass in one at a time. In the same order, values for every one of those parameters, default or not. And if you pass in values for all of them,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1600.76,
+            "end": 1616.2,
+            "text": "Python will not be confused, and it'll just match them one at a time. Variations on that, you can always pass in a value for a parameter name. So looking at the function definition,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1616.2,
+            "end": 1630.52,
+            "text": "we can see the parameter names, the formal parameters, are named x and epsilon. So when you make your function calls, you can actually explicitly tell Python something like this. x equals 123."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1630.52,
+            "end": 1643.04,
+            "text": "Epsilon equals 0.1. And if you have more parameters, you say that parameter equals whatever value you want to run it with. And so that will not confuse Python. And if you do it in that way, you can actually"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1643.04,
+            "end": 1655.7600000000002,
+            "text": "do it in any order you'd like. Because Python will just assign each one of these variables to be whatever you told them to. So worst case, you just do something like this where one at a time, you just"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1655.7600000000002,
+            "end": 1672.0800000000002,
+            "text": "say what the formal parameter is and its value. And then Python will not get confused. The ones at the bottom, though, is where we run into trouble. So for example, if you put the default parameter first and then you put the default parameter first"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1672.0800000000002,
+            "end": 1688.96,
+            "text": "and then any parameter that's not a default one afterward, Python gives an error because the default ones have to go after the non-default ones. And the last one doesn't actually give an error, but Python, remember, matches parameters one by one."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1688.96,
+            "end": 1707.1200000000001,
+            "text": "So it's actually going to find an approximation to the square root of 0.001 to an epsilon of 123. Because it's just mapping the parameters one at a time. And so that's not an error, but it's not exactly what we wanted to do."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1707.16,
+            "end": 1728.7600000000002,
+            "text": "Questions about this? OK. So now let's move on to another sort of nuance about functions. And we're going to go back to the idea of functions being objects in Python."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1728.7600000000002,
+            "end": 1748.8,
+            "text": "So I drew this picture back when we first learned of functions as objects. So I'll just do it again just to jog your memory. So remember that when we make a function definition, inside the memory, Python creates an object."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1748.8,
+            "end": 1761.92,
+            "text": "As soon as we see just this function definition, Python doesn't care what code is inside here. This code does not run. It only runs when it's being called. And right here, I have not made a function call at all."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1761.92,
+            "end": 1780.1200000000001,
+            "text": "All Python knows at this point is that there is a function object inside memory. And its name is even. And this is exactly the same as creating an integer object inside memory and giving it the name R through a line like this."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1780.1200000000001,
+            "end": 1795.32,
+            "text": "Or creating a float object in memory and giving it the name pi. It's just some object with some name. And so that means that we can have some code that looks like this, which is going to essentially create"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1795.32,
+            "end": 1812.8799999999999,
+            "text": "an alias for that function object in memory. So here, the name is even refers to that function object. And I'm telling Python that I would like to refer to that function object using the name myfunk as well."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1812.8799999999999,
+            "end": 1830.34,
+            "text": "So both myfunk and is even are names that point to this object in memory. It's not a function call. I'm not trying to figure out if some number is even. I am literally giving another name to this function, this code."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1830.34,
+            "end": 1845.94,
+            "text": "That does this thing here. OK. And so that means that if I have two names that point to the same object, if I am going to invoke those two names, as I do here, with some parameters,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1845.94,
+            "end": 1860.18,
+            "text": "Python is going to say, well, I'm going to run the code pointed to by these names with these parameters. So they will both run the code that they're pointing to. This is even. And so it's just going to return true or false."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1860.18,
+            "end": 1876.9,
+            "text": "We've seen this before. So remember, just another name for that object in memory. So we've seen already how we can pass functions as parameters to other functions. And now we're going to see what happens"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1876.9,
+            "end": 1896.18,
+            "text": "when we return a function from another function. So we're not returning a function call here. We are returning a function object. So in this particular code, we have only one function. It's named makeProd."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1896.18,
+            "end": 1915.06,
+            "text": "And it happens to have some stuff going on inside it. So what's the stuff that this function will do? Well, this function itself will create another function. So this g only exists whenever makeProd exists. The main program, you can think of it"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1915.06,
+            "end": 1929.02,
+            "text": "as sort of this level of the code in terms of indentation, the main program does not know about g. g is only defined inside makeProd. So when we first run this program, as is, there's no function call being done."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1929.02,
+            "end": 1943.98,
+            "text": "So the main program does not know anything about the internals of makeProd. So makeProd creates its own function here. And then all it does is return this function object. Notice it's not a function call."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1943.98,
+            "end": 1959.34,
+            "text": "There's no open close parentheses with a parameter in it. It's just the name g. It's this function object. That's the key thing here. So let's run two codes, this one and this one."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1959.34,
+            "end": 1975.98,
+            "text": "They will do the exact same thing. They're going to call makeProd with some parameters. And then we're going to see what happens when we return this g. And notice already it's looking slightly different than what we've been doing before."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1975.98,
+            "end": 1990.58,
+            "text": "Yes, we have a call to makeProd here, but we've kind of chained another function call right after makeProd. We've got makeProd parentheses 2, parentheses 3. And so this is kind of like, I think of it"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 1990.58,
+            "end": 2003.6200000000001,
+            "text": "as chaining a bunch of function calls together. And this is possible, as we're going to see when we step through the function environments that are being created. This is made possible because makeProd, this function call,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2003.6200000000001,
+            "end": 2022.26,
+            "text": "returns a function itself. So let's step through the code on the left very carefully. And then I'll step through the code on the right, which will do the exact same thing. And hopefully it will clear up confusions if we do it twice."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2022.3,
+            "end": 2036.1,
+            "text": "So this is the code from the left. Let's say we have this exact program here. I've got one function definition. And then I've got one function call here. And then I'm going to print the return value."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2036.1,
+            "end": 2047.66,
+            "text": "So as soon as I run my code, Python creates my global environment. And in the global environment, this is the scope of the main program. What do we have?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2047.66,
+            "end": 2060.1000000000004,
+            "text": "Well, we have one function definition, which has some code within it. I don't care what it is at this point because I don't have a function call. So then the next thing that I need to do"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2060.1000000000004,
+            "end": 2077.54,
+            "text": "is go down here and say val equals. So I'm going to create a variable val in my global environment. And I'm going to make a function call. So function calls are done left to right, just like expressions. And the first thing Python sees is this function call,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2077.54,
+            "end": 2091.58,
+            "text": "make prod parentheses 2. It's a function call. So we need to create another orange box because a new environment gets created every time we make a function call."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2091.58,
+            "end": 2105.42,
+            "text": "So here I have my scope, my environment for make prod. And I'm currently just stuck here trying to figure out what this is going to return and just the red box here. Well, every time I have a function call,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2105.42,
+            "end": 2118.54,
+            "text": "I need to look at the function definition. And the function definition says, there's one formal parameter a that I need to map to the actual parameter. So the thing I'm calling make prod with is 2."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2118.54,
+            "end": 2138.02,
+            "text": "Should be pretty straightforward, right? And then I can move on to do the body of make prod. So the body of make prod says, I would like to create a function definition. The name of this function is G. So there is G."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2138.02,
+            "end": 2157.9,
+            "text": "And it contains some code. Again, I don't care what this code is because I'm not making a function call to G yet. Right now, I'm just defining G. So far so good. So this G, I want you to notice, only exists inside this call"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2157.9,
+            "end": 2173.98,
+            "text": "to make prod. The global environment does not know about G at this point. Because we only define G inside make prod. It's here, right? I didn't define it outside of make prod."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2173.98,
+            "end": 2197.9,
+            "text": "So the global scope doesn't know about it. But make prod does know about it. And so the only way that the global environment can know about G is if this make prod function somehow returns G. So if we pass G back as a parameter, as a value, sorry,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2197.9,
+            "end": 2213.9,
+            "text": "to the main program scope, the main program can know about G. But otherwise, G is kind of stuck in this little subtask, little environment of make prod. And the main program doesn't know about it. And so that's what this code is doing."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2213.9,
+            "end": 2237.82,
+            "text": "It's essentially saying, well, I've made it my definition. And now I return G. So here, this G and the associated code, so this object pointed to by G, is going to be returned back to the main program. So now the main program knows about this object, G,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2237.82,
+            "end": 2263.82,
+            "text": "that has some code associated with it. This line here where it returns a star B. So the thing that I've boxed and read down here is the return value from make prod 2. And make prod 2 return G. So this, you can essentially say, is G."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2263.82,
+            "end": 2279.86,
+            "text": "Is that OK? Does that make sense? We're passing functions along, not function calls. And so this is just a function named G. And so now this line of code, val equals, if we replace the red box with G,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2279.86,
+            "end": 2299.2599999999998,
+            "text": "val equals G parentheses 3. So G parentheses 3 is another function call. Just clearly, we look at it, it's a function call. It's got a function name, parentheses, and a parameter. And so since it's a function call,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2299.2599999999998,
+            "end": 2319.06,
+            "text": "we create another scope for this function call. As before, we look at what G takes in as a parameter. It's about a variable named B, a formal parameter B. And we map it to 3, because that's our function call, G parentheses 3."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2319.06,
+            "end": 2332.94,
+            "text": "And then we have to do the body of G. The body of G says return A multiplied by B. Well, I know what B is. It's 3, because you just called me with that value. But what is A?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2332.94,
+            "end": 2350.9,
+            "text": "The scope of G has no A within it. So thinking back to our function, our electron functions, if a function call doesn't know about a variable name within its environment, within its scope, it moves up the function call hierarchy."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2350.9,
+            "end": 2365.62,
+            "text": "So it says, who called me? Where was G defined? Well, G was defined inside make prod. And so it was called from make prod. Does make prod have a variable named A?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2365.62,
+            "end": 2377.98,
+            "text": "It does, right? And its value was 2. So we didn't need to go any further up the hierarchy. We've already found a variable named A. So Python will use B as 3, and A as 2."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2377.98,
+            "end": 2393.94,
+            "text": "Multiplies that to B6. And then the G function call can return 6. It returns it back to the main program, because that's where this function call was being done, right? Remember, we had this replace of G, parentheses 3,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2393.94,
+            "end": 2408.78,
+            "text": "out in this global scope here. And so that 6 gets returned back to the main program, and then val becomes 6. And we print 6. OK."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2408.78,
+            "end": 2427.7,
+            "text": "So that was showing you how to chain function calls together. And this was only made possible because make prod has a function, returned another function object. If make prod returned, I don't know, a tuple or an integer or something that was not a function,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2427.7,
+            "end": 2440.7799999999997,
+            "text": "this code would fail. Because the return from make prod would be, let's say it returned to number 10. The return from make prod would be replaced with 10. And then Python would see this line as 10 parentheses 3."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2440.7799999999997,
+            "end": 2454.06,
+            "text": "What the heck is that, right? And so it would completely fail. And so this is only made possible by the fact that this make prod function returns a function object. And so we're able to chain these function calls together."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2457.1,
+            "end": 2475.2200000000003,
+            "text": "So let's look at the exact same code, except this time, instead of chaining them in a row, let's explicitly save the intermediate steps. So what I'm going to do is say, make prod parentheses 2, I'm going to save as a variable."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2475.2200000000003,
+            "end": 2495.1000000000004,
+            "text": "And then make that variable call the 3, the second part of my chain from the previous slide. And it's going to do the exact same thing. So here I've got the global scope. Just like before, I've got a function definition for make prod."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2495.1000000000004,
+            "end": 2506.18,
+            "text": "So this is the name make prod. It points to some code. And then I've got this variable doubler that's going to equal something. So that's a function call."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2506.18,
+            "end": 2522.1,
+            "text": "The function call says, here's my environment for make prod with its scope. So in this particular scope, I've got my formal parameter a that maps to 2. And then the function body itself creates this variable g."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2522.1,
+            "end": 2540.46,
+            "text": "That's just some code, exactly the same as before. Any questions so far based on what happened in the last sort of example and here? Or is this OK so far? OK."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2540.46,
+            "end": 2554.54,
+            "text": "So now I've set up my code. And this is where the interesting part comes in, right? Make prod is going to finish its call by saying, I'm going to return something. And the thing it returns is g."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2554.58,
+            "end": 2570.2599999999998,
+            "text": "So it returns this name, g, just happens to be a function object. But think of it as anything else. We're basically saying doubler equals 10, or doubler equals some list or some tuple. Doubler is going to be some value, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2570.2599999999998,
+            "end": 2592.1000000000004,
+            "text": "This value is just code associated with a function. So in my main program scope, I've got doubler equals g, which based on the memory diagram we did five or 10 slides ago, it's like when we had my func equals is even. I basically have two names for the same function object, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2592.1000000000004,
+            "end": 2608.6600000000003,
+            "text": "Doubler is a name and g is the other name. And they both point to this function object. Does that make sense? That's OK. OK."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2608.6600000000003,
+            "end": 2630.5,
+            "text": "So now that I've got two names that point to the same function object, we can just use this doubler in the next line. And this doubler is like saying g parentheses 3, except that I'm using the name doubler, which I saved it as on the previous line."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2630.5,
+            "end": 2648.5800000000004,
+            "text": "So g parentheses 3 is another function call. Create another environment for g or doubler, whatever name. And here I've got one formal parameter b. It's values 3. And then we do the same trick where you ask,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2648.5800000000004,
+            "end": 2663.7000000000003,
+            "text": "what is the value of a? I'm going to look up the hierarchy of things that got called to see what's the first value of a that I grab. And the first value of a that we grab is the 2, right? And so we're going to multiply the 2 with the 3."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2663.7000000000003,
+            "end": 2683.22,
+            "text": "And that 6 gets returned back to whoever called it, which was out here in the main program scope. And so this val will be equal to 6. And that's it. Questions."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2683.22,
+            "end": 2692.22,
+            "text": "Which one was easier to understand, this one, or the one where we did the chaining? Just show of hands. Who liked this one more? Who liked the chaining more?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2692.22,
+            "end": 2699.78,
+            "text": "Oh, interesting. OK. Was the chaining just easier to grasp, because there were less names? OK, cool."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2699.82,
+            "end": 2711.5800000000004,
+            "text": "I'm glad I showed it first, then. Any questions, though? Yeah. Is there a particular reason you thought this way compared to the chaining?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2711.5800000000004,
+            "end": 2721.86,
+            "text": "No reason. In fact, you would want to do the chaining way, because then you avoid extra lines of code. And again, with practice, it just becomes really easy to know what's going on."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2726.38,
+            "end": 2742.1,
+            "text": "OK. So that might have been confusing. Why do we bother doing that? Because in that particular example, all we were doing is multiplying to, or I guess,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2742.1,
+            "end": 2763.7400000000002,
+            "text": "doubling a number. We could have easily written that code to double a number and without actually returning a function. That seemed way overkill for what that code was trying to do. Well, it was kind of showing you what you can do"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2763.7400000000002,
+            "end": 2779.6600000000003,
+            "text": "with an easy example. And you would definitely never, ever write functions returning other functions for such simple examples. But it's really a method for cases"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2779.6600000000003,
+            "end": 2795.94,
+            "text": "where you have larger pieces of code that you'd like to write. Because if you're writing a larger piece of code, some software project, and every single function you'd ever want to use is kind of defined at the top level"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2795.94,
+            "end": 2812.0600000000004,
+            "text": "in the main program, it would become really messy. And so there are cases where you would like some functions to only be visible or accessible by other functions. And so you'd only define those functions within the scope of other functions."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2812.0600000000004,
+            "end": 2828.38,
+            "text": "That's one thing. The other thing is using this sort of chaining method allows you to have some control over the flow of control of a program. And so you can imagine in the example here"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2828.38,
+            "end": 2847.7799999999997,
+            "text": "where you basically create this, you have this line here, and at some point you return g. And you don't want to do the doubling right away. So you don't want to do val equals doubler right away. You can imagine having a bunch more lines of code here"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2847.7799999999997,
+            "end": 2865.82,
+            "text": "that do other stuff before you actually do the doubling. And so in that case, in this larger, more complex program, you're essentially interrupting the flow of control here. You're not doing the doubling right away, but you did grab this function back."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2865.82,
+            "end": 2882.14,
+            "text": "And then you can maybe do other things with that function before finally doing the doubling. And so in that case, you can basically execute some code partially, do some other operations, and then finish executing at the end"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2882.14,
+            "end": 2898.34,
+            "text": "after you've done these operations. So again, for this example, it doesn't make much sense. But in a larger piece of code, this idea of functions, returning functions is just another tool to achieve these ideas of decomposition abstraction, which"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2898.34,
+            "end": 2913.94,
+            "text": "lead you to write more organized code, more robust code, more easy to read code, and so on and so on. So you don't have to do this, but you do have to understand what it means for a function to return another function."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2913.94,
+            "end": 2931.18,
+            "text": "Any other questions? OK. So now we're going to do the last piece of today's lecture, ideas of testing and debugging. This lecture is usually pretty dry,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2931.18,
+            "end": 2952.66,
+            "text": "so I'm going to try to make it more fun, as fun as I can. The reason why we introduced this lecture now is because I'm hoping that by this point in the course, you've had a chance to do some testing and debugging strategies on your own by kind of a trial and error thing on quizzes"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2952.7,
+            "end": 2964.2599999999998,
+            "text": "and on p sets. So you've gotten a chance to maybe use the Python tutor. You've gotten a chance to use print statements, various things like that, and see what works best for you, what doesn't work at all, things like that."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2964.2599999999998,
+            "end": 2976.8999999999996,
+            "text": "So you've maybe gotten a little bit burned by some of these strategies, but I hope that by you being burned by some things that you've tried that work that didn't work, you'll maybe appreciate this lecture a little bit more than if I just showed"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2976.8999999999996,
+            "end": 2992.94,
+            "text": "you this lecture back on day one or day two or something like that, because it's a lot of common sense stuff, but there's a little bit of actual strategy as well in this particular set of slides."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 2992.94,
+            "end": 3005.34,
+            "text": "So your programming experience so far, I know this is certainly mine, is I hope that when I run my code, it immediately runs perfectly. But instead, what is happening for me is I run my code and it immediately crashes."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3005.34,
+            "end": 3022.54,
+            "text": "I've got my red errors on the side, and I get a little bit flustered. So this is exactly what happens probably for you too. And the idea here is that you want to write the code in such a way that it makes it easy to test and debug."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3022.54,
+            "end": 3038.98,
+            "text": "And I know I always say this, and I actually don't always practice it, but it's important to write the code by writing it by adding comments as you're writing the code. So writing specifications, writing comments for yourself"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3038.98,
+            "end": 3050.66,
+            "text": "as you're actually writing the code, not when you finished it, is very important. It helps you as you're writing it or when you're coming back to it in a couple of days. Modularizing the programs also helps."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3050.66,
+            "end": 3071.02,
+            "text": "So if you see a chunk of code that you're copying and pasting all over the place, you'll want to plop it out in a little function that you call multiple places. So ideas like that employ this defensive programming mechanism, and it allows you to perform really easy testing"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3071.02,
+            "end": 3086.82,
+            "text": "and validation when it comes time to do that, and then possibly debugging when it comes time to do that. So the lecture is going to be divided into two pieces. The first, we're going to talk about testing and validation, some nice testing strategies, and then we're"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3086.82,
+            "end": 3101.7400000000002,
+            "text": "going to talk about some strategies for debugging as well. So the testing and validation part is where you come up with a set of input test cases and expected outputs. And all you're doing is running your code"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3101.7400000000002,
+            "end": 3119.0200000000004,
+            "text": "to make sure that the expected output matches the output that you actually get from running the code. The debugging part is where one of your tests don't match the expected output. One of the outputs that you get don't match the expected output."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3119.0200000000004,
+            "end": 3137.1400000000003,
+            "text": "And at that point, you have to figure out why the code is not working, obviously. So before you even test your code, as I mentioned before, it's you have to set yourself up to do the testing and debugging. So to ease this part, it's important to write documentation"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3137.1400000000003,
+            "end": 3150.7000000000003,
+            "text": "very well so when you're writing your own function, not functions that we've given you, document the doc string, what are the inputs you expect, what should the function do, what should the function return, things like that. If you're writing the code in a sort of a strange way"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3150.7000000000003,
+            "end": 3162.1000000000004,
+            "text": "or if you use some piece from Stack Overflow or something like that, document it to make sure that if you're looking at it a week from now, you still remember what that piece of code did. So really, really simple things like that"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3162.1000000000004,
+            "end": 3176.26,
+            "text": "can make a really big difference when it comes time to test and debug. Breaking up the code, obviously, into smaller chunks is very important because if you're copying and pasting the same piece of code over and over again,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3176.26,
+            "end": 3188.9,
+            "text": "you remember to make a change in one place. You might forget to make that same changes in all these different places. And so that'll be very frustrating when it comes time to actually run and debug the code."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3188.9,
+            "end": 3201.86,
+            "text": "So once you have code that's written, you would start the testing process. You remove all the errors. Static semantic errors and syntax errors are really easy to remove."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3201.86,
+            "end": 3218.1,
+            "text": "Python immediately tells you, right, index error on this line or syntax error on this line. Those are really easy to figure out. Using a paper and pen or typing it out in your Python file, you come up with a bunch of test cases."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3218.1,
+            "end": 3233.06,
+            "text": "And for each one of those test cases, the way we write on your micro quiz test cases, you say what you expect the output to be. So when you actually run it, you don't need to remember what this output should be."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3233.06,
+            "end": 3248.7,
+            "text": "It's just written down somewhere on paper or on the screen. So when you're creating a bunch of test cases, you can create some different classes of tests. So hopefully, we're modularizing our programs, which"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3248.7,
+            "end": 3264.82,
+            "text": "means that we're creating functions. The simplest classes of tests are called unit tests. And these tests basically test a function with different inputs. So what you're going to do is come up"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3264.82,
+            "end": 3282.2200000000003,
+            "text": "with a bunch of different test cases for one particular function and run these test cases on the function. If they all work perfect, but if they don't, or if you find a bug as you're writing test cases in the code, you'll want to perform regression testing."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3282.2200000000003,
+            "end": 3298.1800000000003,
+            "text": "And regression testing means that as you find a bug, you add a new test case for them. Or as you fix a bug, you run the same code with all of the previous test cases to make sure that the bug you fixed"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3298.1800000000003,
+            "end": 3313.26,
+            "text": "didn't introduce errors in a previous test case. So there's a bunch of iterations of unit testing and regression testing to test all of these different modules, all the functions in your program. And at some point, you're ready to do integration testing."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3313.26,
+            "end": 3323.7000000000003,
+            "text": "And in integration testing, you've got all these modules. For example, as you did in Hangman, you've got all these little functions that do individual things. You put them all together into a larger program."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3323.7000000000003,
+            "end": 3336.1400000000003,
+            "text": "In Hangman, it was a bunch of a big while loop where you check all these different things that the user might input. And then you call the different functions you wrote. And as you find errors in the integration,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3336.1400000000003,
+            "end": 3348.9800000000005,
+            "text": "when you've written code that integrated all these different pieces together, you might have to go back and do more unit tests for some of the functions that you wrote. OK."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3348.9800000000005,
+            "end": 3360.2200000000003,
+            "text": "So you've done unit testing, regression testing, and integration testing. What are some actual testing approaches? How do you actually create these test cases to run your code with?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3360.2200000000003,
+            "end": 3374.7000000000003,
+            "text": "So I guess the most natural way to write a test case is just intuition about the problem. So given a dog string, what are going to be some natural boundaries, some natural values of x and y for which you'd test this code with?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3374.7000000000003,
+            "end": 3395.5,
+            "text": "You guys tell me. What's some values that we could test this code with? Think about the boundaries to the question, right? Yeah, 3 and 4 is good. So x is less than y is a good one."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3395.5,
+            "end": 3406.5,
+            "text": "Vice versa, right? 4 and 3 is another one, where y is greater less than x. We could test them being equal, right? What about 0 and 0? What about 1,000 and 1,000?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3406.5,
+            "end": 3418.06,
+            "text": "So we could do extremes. We could do bigger than, less than. We could do equal things like that, right? So mathematical functions are kind of easy to apply this idea to because they just have natural boundaries."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3418.06,
+            "end": 3431.34,
+            "text": "But often, there are functions which don't have these natural boundaries, and then we might be stuck doing random testing. And in random testing, obviously, the more test cases you have, the better chance you have of finding a bug."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3431.34,
+            "end": 3447.62,
+            "text": "But there are actual techniques for coming up with test cases. So the first one is called black box testing. Second is called glass box testing. Now, in black box testing, you're going to treat the code of the function as a black box."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3447.62,
+            "end": 3462.98,
+            "text": "So we don't even look at what the code is doing. All we're looking at to guide writing our test cases is the specification, the doc string, right? And so hopefully, the person who wrote this function wrote a really nice doc string because that's"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3462.98,
+            "end": 3480.1000000000004,
+            "text": "what we're going to use to write our test cases. So the way that we're going to write a test case for the square root function is by saying, what is the value of x and epsilon according to these constraints here?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3480.1000000000004,
+            "end": 3492.38,
+            "text": "So obviously, we're not going to test the code with values that don't match those constraints because the person who wrote this function doesn't guarantee that this function will work for those weird values."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3492.38,
+            "end": 3503.9,
+            "text": "So the good thing about black box testing is if we're the ones testing this function, we're only using the specification to write the test cases. So if, for example, this person implemented square root"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3503.9,
+            "end": 3518.38,
+            "text": "using approximation method, I don't care. My test cases will work if the person changes their implementation to use the bisection method. My set of test cases will still work, even if the person who wrote this function"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3518.38,
+            "end": 3536.2999999999997,
+            "text": "changed the black box, the implementation. So it's black box testing is really nice in that respect. And so for this particular function, here's a bunch of test cases that I would run it with. So obviously, x being 0, perfect square, less than 1"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3536.2999999999997,
+            "end": 3549.5,
+            "text": "are kind of nice ones to test. Irrational values and then a bunch of extremes is also good to test. And then epsilon the same, we've got some reasonable values of epsilon and then some extremes."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3549.5,
+            "end": 3564.78,
+            "text": "And we can even mix and match. We can have 0 and extremes, epsilon, and perfect squares and extremes, epsilon, and things like that. So lots more test cases than this, but this is a really good start."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3564.78,
+            "end": 3580.7,
+            "text": "In glass box testing, we're going to use the code itself to guide the test cases that we write. So if we write something, a test suite that's path complete, that means that we're going to hit every single path inside the program."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3580.7,
+            "end": 3593.14,
+            "text": "So that means we have to look at the code to guide the test cases that we're writing, which means that we're going to have to write a test case for the code hitting the if part of a branch. We have to write a test case for the code hitting"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3593.14,
+            "end": 3603.22,
+            "text": "the else part of a branch or the L if part of the branch. If we have a for loop, we need to write a test case where the code doesn't go through the loop at all. It goes through once or it goes through many times through the loop."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3603.22,
+            "end": 3611.98,
+            "text": "Same with while loops. We write a test case so that the code doesn't go through the while loop at all. It matches the condition once or it matches the condition many times."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3611.98,
+            "end": 3628.62,
+            "text": "So you can imagine that this glass box testing leads to a whole lot more test cases, especially when we have a whole bunch of different, uh, combinations of all of these conditionals and loops and things that we'd like to hit. The problem with glassbox testing and having a complete path,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3628.62,
+            "end": 3644.46,
+            "text": "uh, uh, uh, path complete test suite is that we might accidentally miss a bug. So here's an example of a code that's not correct. So it finds absolute value of x. Um, if x is less than negative 1, we return negative x, else we return x."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3644.46,
+            "end": 3660.9,
+            "text": "So path complete test suite could be testing 2 and negative 2. The 2 brings us through the else, so we return 2, and the negative 2 brings us through the if, so we return 2. We might say this code works,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3660.9,
+            "end": 3675.5,
+            "text": "but it doesn't, right? We already can tell that negative 1 is returned incorrectly as negative 1. And so in addition to testing, uh, all the paths through the code, we'll also want to look at boundary condition,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3675.5,
+            "end": 3693.6200000000003,
+            "text": "especially for conditionals when we do, uh, glassbox testing, okay? Okay. So we have a go- a whole bunch of test cases. We've run our code with all these test cases, and then at some point, we've, uh, gotten an output from a test case that does not match what we expected to do."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3693.6200000000003,
+            "end": 3711.58,
+            "text": "Then we have to do the debugging process, okay? And this is where- this is where, um, a little creativity is required. Uh, there is no recipe like there was in glassbox testing and blackbox testing for writing test cases."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3711.58,
+            "end": 3726.02,
+            "text": "There is no similar sort of, you know, recipe for debugging a program. There is a lot of experience that's needed, right? A lot of times that you've seen a bug crop up, um, in order to figure out sort of what the problem might be."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3726.02,
+            "end": 3743.06,
+            "text": "And so a lot of experience writing code is very useful in the debugging process. There are tools to help you do the debugging process, but there aren't many tools to actually do the debugging. You kind of just have to do it. So there's tools built into, uh, into Anaconda."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3743.06,
+            "end": 3757.7400000000002,
+            "text": "They're not very good. I've used them. Um, Python Tudor obviously is a really good one, especially for small programs because you get to just go step-by-step and see the values, um, of each variable as the code is running. I- so I like that a lot."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3757.7400000000002,
+            "end": 3768.84,
+            "text": "Print statements are also really good, but you have to know where- where to put them, right? And you have to use them effectively. Um, so in that sense, you know, if you're not as familiar with print statements,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3768.84,
+            "end": 3783.82,
+            "text": "Python Tudor might be a better- a better suited for debugging. But no matter what, it's important to be systematic. Don't just start changing random val- you know, random variables or random conditions and then run the code through the tester again, right? That's not going to work very well for us."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3783.82,
+            "end": 3796.46,
+            "text": "Um, when we see error messages in the debugging process, these are really easy to figure out, right? Index error. Oh, shoot, I gotta check my indices. Um, maybe I went over. If you see an index error,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3796.46,
+            "end": 3811.1800000000003,
+            "text": "you should probably print out the variable that you're indexing into- or indexing with. Um, type errors. Oh, man, look, I'm casting a list to an integer. What is that going to do? Nothing, it's going to give us an error."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3811.2200000000003,
+            "end": 3826.82,
+            "text": "Or here, I'm dividing a string by an integer. Again, something really simple to fix. Name errors, of course. Here's I have a- here I have a variable that I've never initialized. And then syntax errors basically mean things like your indentations off,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3826.82,
+            "end": 3845.06,
+            "text": "or you're missing a parentheses or something like that. Logic errors are a lot harder, okay? These ones, you cannot, uh, just look at the line and say this is where the problem is. These ones happen when your output is- does not match the expected output."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3845.06,
+            "end": 3859.14,
+            "text": "And this is where kind of engaging another part of your brain is very important. I've definitely done this a lot. I've had some errors, I went for a walk, come back and I figured out. I figured out in the shower or I figured out in bed, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3859.14,
+            "end": 3874.98,
+            "text": "Um, so thinking a little bit before you even start the problem is good for this- for these logic errors. Drawing a picture, taking a break, talking to friends, all these are really good. Explaining the code to something else, somebody else is also a really nice thing to do."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3874.98,
+            "end": 3892.5,
+            "text": "That's me explaining the code for something we're going to do in a couple of minutes. Um, to my son, he's seven now and he's doing scratch. So that's pretty cool but he was helping me debug and now I'm helping him debug. Um, yeah. Or you can explain code to some inanimate object like a rubber ducky."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3892.5,
+            "end": 3917.06,
+            "text": "Now having said that, you guys came on a good day. Because you will all get to have your own rubber duck, different kinds, grab your personality duck that matches your personality. After class, I've got Minecraft ducks, giraffe ducks, princess ducks, police ducks,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3917.06,
+            "end": 3939.58,
+            "text": "elephant ducks, whatever ducks you'd like, come grab one, um, use it for your quizzes, use it for your p-sets, um, whatever you'd like to use it for, go for it, okay? So hopefully it comes in handy, um, use it well. All right. So we're not quite done yet though."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3939.58,
+            "end": 3957.18,
+            "text": "Um, okay. So I will give you a little bit of, uh, debugging tips though. So I know it's, it's, I said it's a creative process. I said it's really hard to come up with a recipe to do the actual debugging,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3957.18,
+            "end": 3975.94,
+            "text": "but there are, um, there, there is maybe one way- one really nice way to do it. So the idea behind debugging is basically use the scientific method. Like I said, don't just randomly change things expecting for it to work out. What you want to do is look at a bunch of test cases that failed."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3975.94,
+            "end": 3990.38,
+            "text": "It's possible that they're all, they all have something in common and that might lead you to a small piece of code in your program that is the one that you should be focusing on changing, right? So you want to look at the data, form a hypothesis and try to see if"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 3990.38,
+            "end": 4008.1800000000003,
+            "text": "another test case also fails that particular one. As you're, um, as you're doing the debugging method, right? If you really have no idea about where to start, try putting print statements at reasonable places in the code. So when you first enter functions,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4008.1800000000003,
+            "end": 4023.1800000000003,
+            "text": "when you first enter a loop, write all the values of the loop variable and all the variables that you're creating in the loop or modifying in loop and things like that. And if all else fails, using the bisection method is a really nice way to try to solve the problem."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4023.1800000000003,
+            "end": 4036.5000000000005,
+            "text": "So bisection method in debugging basically says, put a print statement about halfway in the code. If everything looks right for all the variables at that point, you know the problem is after this. If something is wrong,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4036.5000000000005,
+            "end": 4048.54,
+            "text": "you know the problem is in the first half of the code. Then put a print statement in the quarter of the code, right? And then at that point, see if the values, all the values at that point match what you expect them to be."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4048.54,
+            "end": 4060.58,
+            "text": "If do great, you know the problems in the second quarter, I guess, yes, the second quarter. Um, and if they don't, you know the problem is in the first quarter, okay? So the bisection method is,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4060.58,
+            "end": 4077.86,
+            "text": "is a nice way to try to debug the code. So what we're going to do in the last bit of lecture is, we're going to debug some code together that's in the Python file and then what I have is included in today's zip file, is actually a Wordle game that I wrote."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4077.86,
+            "end": 4096.86,
+            "text": "It's like 12 underscore world.py or whatever and it's buggy. So I introduced some bugs in it and I would, if you'd like to practice debugging, you can try to fix the Wordle game to get it to work and then you can play yourself or you can amaze your friends and get them to play your game in"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4096.86,
+            "end": 4114.9,
+            "text": "case you'd like to do something like that, okay? So before we end, I would like to actually do some debugging with you just to show you the bisection method for debugging. So the code we're going to debug is this one right here."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4114.9,
+            "end": 4141.42,
+            "text": "And I've already included sort of the fixed code step by step, but we're going to talk through it together. So this function is buggy. It's a function called isPAL that takes in a list X and it's supposed to return true if the list elements are a palindrome and false otherwise."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4141.42,
+            "end": 4158.620000000001,
+            "text": "So using the input a, b, c, b, a cast as a list. So the input is going to be the string a, string b, string c, string b, a. This list is a palindrome, right? Because it's the same forwards as it is backwards."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4159.9800000000005,
+            "end": 4173.06,
+            "text": "So if I run it, it should print true. Okay, so that test case worked well. But now what about the second test case? Surprise, it's not going to work. If I pass in the list a, b, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4173.06,
+            "end": 4189.3,
+            "text": "So my input is going to be the string a and the string b. This is not a palindrome, right? So I expect it to print false, but it prints true. So I have a nice test case here that I can make fixes with and see whether it actually gets fixed."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4189.3,
+            "end": 4204.22,
+            "text": "Now, of course, a, b, c, d, e, f, g, h, i, j, k, l, m. This also doesn't work, right? So this is another test case that's not going to work. But I don't want to use this long one as my test case. I want to use the simplest test case I can find that doesn't work, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4204.22,
+            "end": 4220.26,
+            "text": "So a, b seems like a really nice one to test with. Okay, so now the first thing we want to do, now that we figured out the input I'd like to test with is put a print statement about halfway through the code. Yes, there's only like five lines of code here."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4221.54,
+            "end": 4239.78,
+            "text": "So there's only probably one place that makes sense to put a print statement. But let's just work with me here. So the print statement could be put right here, right before the if statement, right? So I've got two lines of code that do something and then an if. So let's just put it right before the if."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4239.82,
+            "end": 4253.74,
+            "text": "Scroll down. Step two, here I go. I've put my print statement right before the if. Now we can run the code again. So I'm not going to run the one that worked."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4253.74,
+            "end": 4276.580000000001,
+            "text": "Let me try to run the one that didn't work to figure out what the problem is. So I run this. The print statement is printing the temp, so the reverse of x and x. So what I'm expecting in, and I should have probably written this over here, what I'm expecting to get, what I'm expecting is to see the reverse of AB,"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4276.580000000001,
+            "end": 4292.38,
+            "text": "so BA, and then the original x, AB. But I don't. So I see AB and AB. This first one should be BA. So already I have something that's unexpected, and so I know the problem is"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4292.38,
+            "end": 4308.219999999999,
+            "text": "going to be in these first two lines of code, right? Somewhere in here. All right, so then what I would like to do is figure out which one of these lines of code is the problem. So I'm going to put another print statement a quarter of the way through the code."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4308.219999999999,
+            "end": 4331.62,
+            "text": "Okay, well, there's only one more place to put it, so let's put it in here. I've got another print statement right before the reverse. So what I'm going to be checking is before the reverse, the value of my temp variable and my original variable. And after the reverse, the value of my reverse variable and the original variable."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4331.62,
+            "end": 4355.9400000000005,
+            "text": "So what I'm expecting to see is this one here, they should be the same, AB, AB. But this one here, I'm expecting to see BA, AB. So run it with this buggy example. So before the reverse, I'm expecting AB and AB, and I do get that, so that's good. I'm happy to see that."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4355.9400000000005,
+            "end": 4375.06,
+            "text": "And then after the reverse, that's my problem, right? I'm expecting this one to be reversed, but it's not. So now I know the problem lies here, temp.reverse. Because here, in this print statement here, temp and x were as expected. So what do you think the fix should be to the reverse?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4375.06,
+            "end": 4384.18,
+            "text": "Yeah? Yeah, exactly. We need to add parentheses. This is a function. We need to call it like a function, right?"
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4384.22,
+            "end": 4401.700000000001,
+            "text": "So let's do that fix. We've done it here. So here, I've added the parentheses to the reverse and run it again. So now what I'm expecting is, before the reverse, I need to see AB, AB. So this one should be the same."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4401.700000000001,
+            "end": 4419.5,
+            "text": "It shouldn't change, because I didn't do anything to that temp equals x. And after the reverse, I'm expecting the temp to be BA and the x to be AB, unchanged. Let's run it. So before the reverse, everything looks OK. Temp and x are the same."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4419.5,
+            "end": 4432.26,
+            "text": "After the reverse, look at that. I've got my BA as my reverse variable. I'm happy. But then my x has also changed. I'm sad."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4432.26,
+            "end": 4449.9800000000005,
+            "text": "Yes? Exactly. There's a clue, we see a clue. We've made a change to temp, and x has also changed. So as was suggested from the back, we need to make a copy of x."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4449.9800000000005,
+            "end": 4476.38,
+            "text": "What we've done here is called an, when I did temp equals x on a mutable variable. What did I make? An alias, exactly. So let's make a copy of that x right here. So hopefully that fixes things, because I've run out of lines to fix."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4476.38,
+            "end": 4496.34,
+            "text": "So we run this code again with AB and see the output. Before the reverse, temp and x should be the same, and they are. They're both AB AB. And after the reverse, the temp should be the reversed BA, and it is, and the x should remain the same, AB."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4496.66,
+            "end": 4513.9800000000005,
+            "text": "And it's false, so it's not a palindrome. Last thing I need to do is double check my original test case, the one that actually worked before I made all my changes, to see whether it still works. And it does."
+        },
+        {
+            "number": "12",
+            "title": "ListComprehension_Function_As_Objects",
+            "start": 4513.9800000000005,
+            "end": 4531.9800000000005,
+            "text": "So that particular list is a palindrome, so that still returns true. So that's it. So I've got just one, I guess, list comprehension for you to try on your own, to write, and then of course the buggy wordle game for you to try as well."
+        }
+    ],
+    "text": "OK, let's get started with today's lecture. It's going to be more of a chill lecture than what we've done in the past, even though we've got quite a few things to cover, as you can see from this title slide. I'm not going to go super-duper fast, so please feel free to ask lots of questions. And then the second half of the lecture will be really chill, because we're going to be talking about testing and debugging strategies. So super-high-level topic. But first, we're going to tie up some loose ends related to lists and relating to functions. So we're not going to introduce a lot of new syntax. These ideas are sort of more optional in your day-to-day coding, but they're just really, really nice to know. So let's first start talking about this idea of a list comprehension. So you've been writing functions that deal with lists. And one really common pattern that I hope you've seen so far is the following. So this code right here shows something that we've definitely coded together, and you've definitely coded in the finger exercises and the quizzes. And so it is a really common pattern. So the idea here is you have a function that creates a new list where the elements of this new list are a function of the input list. So the pattern here is we create a new empty list inside the function. We have a loop over every element in the input. And to each one of these elements in the input, we apply the same function. So in this particular case, we're taking that element and squaring it. And each one of these elements we're appending to this new list, originally empty, until we've reached we've done this function to every element in L, and then we return this newly created list. So since this is a really common thing that programmers do, Python allows you to do this exact functionality with one line of code. And the way we do this is using something called the list comprehension. So the way that we do a list comprehension, essentially taking these four lines of code from this function, we are going to write them in this one line of code that looks something like this. So the idea here is with this one line of code, we're going to create a new list. We're going to have an iterator that goes through some sort of sequence of values. And we're going to apply the same function to every one of those elements. And the other optional piece that we can add inside this list comprehension is to only apply that function if some condition holds. So let's look at this example and see how we can convert these four lines of code to one line of list comprehension code. So we've got creating a new empty list. This is going to tell Python to create a new empty list for us. So just open and close square brackets. And within these open and close square brackets, we're going to write a one liner expression. And this one liner is going to encapsulate these two lines of code here. So the expression, sorry, the function we're going to apply to every element in L is going to be taking that element and squaring it. So on the right hand side here in the list comprehension, we've got some E squared. Well, what is E? Well, it's going to be every element E in L. So if we read this in English, we basically say L new is going to contain elements E squared for E in L. So it sounds weird, but it kind of makes sense, even if we read it in English. And behind the scenes, Python will take one by one, each element in L, square it, and that's the sequence of elements it will populate this L new with. OK, now what if we add a condition to that? So let's say we want to create this new list of elements only for even elements. So we only want to square the even elements within my original list L. Well, if we were to write a function that does that, we have to add this extra condition here. So everything else is the same, except for this, if E%2 equals 0, this tells Python to only grab elements that are even, right, divisible by 2. So how do we write this in list comprehension form? So here's a new list, and this is the function to apply, only if the test is true. In list comprehension, this is my new list. I've got the for loop is over here, and then the test to apply is at the end here, if E%2 equals 0. And then what is the function we're applying? It's just E squared like before. So the test just gets appended to the end of this list comprehension expression here. Yeah? Is it running faster in relation to that? Does it run faster? I'm not sure, actually. It might run marginally faster, but probably not significantly. The reason to do this is because as you get more practice with it, this will be easier to read in code. And often, if you see a large chunk like this, your eyes will glaze over, right? You're not going to want to read a chunk like that. But if you see it all in one line, you're going to think, well, how bad can it be? And so you can come up with really complicated list comprehension expressions. But usually, we reserve them for really simple, really quick ways to create these lists that you just populate with some values right off the bat. So it just makes the code a lot easier to read. OK, so list comprehensions are pretty useful. If you get a little bit of practice with them, you'll find yourself kind of using them all over the place. And they basically replace code that looks like this. So these lines of code is a very generic way of writing this one liner list comprehension. So here, I've got a function F that I would like to apply. This XPR expression is the function I would like to apply to each element. This is the list I would like to apply that function to. And the test is going to be the conditional. In this particular case, this test means I apply it to every single element. But you can imagine having a function which, in the previous case, we would say lambda x x percent 2 equals 0 as our conditional. And then the function that we're essentially replacing is this, with list comprehensions, right? We create this new list. Again, this is the pattern that we saw in the previous slide. We loop through every element in the list. If that condition holds, append that function applied to each element. And then at the end, return the list. So this is just a very generic way to write a list comprehension. So let's look at some concrete examples. So here, I'm not applying the function E squared to a particular set of elements from a list. I'm applying it to the sequence of values given by range. Remember, when we were talking about four loops iterating through things, they can iterate through integers following some pattern, like range 6, range 1, comma 9, comma 2, something like that. As long as you have a sequence of values you can iterate over, you can plop that into this list comprehension. So you could iterate over lists. You could iterate over tuples. You could iterate over these direct ranges. You could iterate over a range of the length of a list. Whatever creates an iterable for you, you can put that in the list comprehension. So in this particular case, the way I read this is I've got something that I'm squaring. And what's the thing that I'm squaring? It's going to be each value in range 6. So I think about it like, what is this sequence of values that I'm going to operate on? Well, it's going to be the number 0, 1, 2, 3, 4, 5. And the thing that I'm going to do to them is square each one of those values. So the end list that I get out of this one liner here is a list containing 0 squared, 1 squared, 2 squared, 3 squared, 4 squared, and 5 squared. We can add a condition to that. So here I've got each element squared for e in range 8, only if e is even. So then the way I think about it is, let's start off with what every element in the range is. Well, it's 0, 1, 2, 3, 4, 5, 6, 7. The condition I'm applying to that is that it's even. So the numbers I'm going to end up with, I'm filtering all those to only contain 0, 2, 4, and 6, because we go up to but not including 8. And then I'm going to square every one of those. So the end result from this list comprehension is a list containing the element 0 squared, 2 squared, 4 squared, and 6 squared. And lastly, we've been doing just single integers in the resulting list. But as I mentioned, we can do more complicated things. So as long as we can write a little expression here for the thing that we'd like to calculate or add to the list, we can put it in the list comprehension. So in this particular case, the element that I'm adding to my resulting list from the list comprehension is a list itself. So each element in my resulting list is another list. And that inner list is going to contain two elements every time, the thing I'm actually iterating over, and it's square. And I've got a condition here. So I've got the elements 0, 1, 2, and 3. That's the range. But I'm only grabbing the odd ones in this particular case. So the resulting set of numbers that I'm going to apply this to is going to be the number is the numbers 1 and 3. Because those are the two odd numbers in range 4. And so the resulting list is going to contain two elements. So this outer square bracket is the list that I've created. And its elements will be the element that I have actually iterated over and it's square as a list. So 1 and 1 squared for e and e squared when e is 1. And then 3 and 9, 3 squared, when e is 3. Questions about that? So pretty cool. It's a really nice way to create lists really quickly. Like if you wanted to create a list full of 100 zeros, no need to do a loop. You basically do a list comprehension that says square brackets 0, 4, e, and range 101. And then you've got yourself a nice little list full of 100 zeros. All right, so think about this. And then tell me what the answer is. So the idea here is we have this list comprehension. And just go through it step by step. It looks a little bit intimidating. But the first step is to look at the for loop. And ask yourself, what are the values I'm iterating over? Then look at the condition if there is one. There is one. In this case, it's at the end here. So now what subsets of those original things you're iterating over are you actually keeping? And then from those things that you're keeping, what function are you applying? It's the one right at the beginning. So think about it and then I'll ask you to tell me. So step one, what are the values I'm iterating over? The full values, not including the condition. Someone yell it out? Yeah, that list in the middle. Awesome, OK. So x, y, a, b, c, d, right? And then 7. And then what's the last thing? Is it the number 4.0 or a string? Yeah, exactly, 4.0. OK, string, string. Step two, from this list, what are the values that I'm actually keeping based on the condition? If there's string. All right, which one's a string? Is x, y? Yes. Is a, b, c, d? Yeah. Is 7? Nope. Is 4.0? Yes, excellent. OK, so then these are the elements that I'm keeping. And now what's the function I'm applying and what's the result going to be? It's going to be a list containing 3, 2, 4, 3, 2, because that's length 2, 4, because that's length 4, and 3, because that's length 3. Great. And we've got ourselves a nice little list based on that condition, that sequence of values, and that function applied. Yeah? Why does it return a list? Why does it return a list, the whole thing? Or I guess I thought it was return 2, 4, 3, and 7 lines. Oh, yeah. So we're not printing things out here. When we're writing this as a list comprehension, we're essentially telling Python to create this resulting list of values. That's just what a list comprehension does. And so just kind of this expression here with these outer square brackets around our entire expression tells Python that the resulting thing is a list. Yeah, this is a good question. Other questions? OK, so that, oh yeah, question. Does it support multiple conditions? Does it support multiple conditions? Yes. So at the end here, you would say if, and then you could wrap them in parentheses. I think, I don't know if you have to, but just to be safe, I would wrap my conditions in parentheses. And then you'd use and, or, or whatever you want to combine the expressions, or the conditions with. Does the question? Yeah? Yeah, this is the lambda I have to choose from. This one, the lambda? Here, this is a lambda function that we talked about, I forget, when a couple of lectures ago. It's basically an anonymous function. And all it does is return true all the time. So the test will always be true, which means that when we do if test parentheses E, this will always be true in this particular case. But we've given a different lambda function, that might not be the case. OK, so let's move on to the next topic. The next, I guess, two topics will be dealing with functions. And I want to wrap up a couple of things here just to give you a couple more ideas regarding functions. So the first one is actually related to this last question is the idea of a default parameter. So this is going to be a way for us to add parameters to our functions that get some default value. And that's what that lambda thing actually was in that example. But hopefully this piece of the lecture makes that a little bit more clear. And then the second part regarding functions we're going to go over is the idea of functions as objects, kind of working up on that. And we're going to see what happens when we return a function object from another function. We've seen functions as parameters to other functions, but we're going to see what happens when you make a function be the return value of another function. But that's in a little bit. For now, let's look at default parameters. OK, we've seen this code before, triggering flashbacks. So this is by section root. I'll go over it just to remind ourselves what it does. We've got this code inside this function we wrote a long, long time ago. And then we decided to wrap it in a function so that it's a really nicely useful piece of code that we can run many, many times. So the parameter to this function was x, a value we'd like to approximate the square root of. And the code we're using to approximate is using the bisection search algorithm, which initializes some variables, namely epsilon, sort of how close we want to be to the final answer. Low and high endpoints, we remember that. And then initial guess, the halfway between low and high. And then we keep making guesses between low and high, being the midpoint of low and high, as long as we're not close enough to the final answer. So we're going to either initialize our low endpoint or our high endpoint, depending on whether that guess was too low or too high. And then within the loop, we make another guess using those changed values of either low or high, based on if or else. And then we keep doing this process of making more guesses at the halfway point as long as we're still farther than epsilon away. OK, that was a recap of what we've done so far. The interesting thing that we had done with this function was, or when we turned it into a function, was to return our approximation. So this guess, instead of just printing it to the user, we returned it so that it could be useful in other parts of the code. And so when we called the function, we just said, name a function, and then some value of x. Now, there are situations where a user would want to change the value of epsilon. Right now, with the way we wrote this code, epsilon is set to 0.01. And whenever you run the function, it always finds the approximation to the square root of x to that precision, 0.01. Now, sometimes, depending on the application, the user might want an even better approximation, so 0.0001. Or they might not care to be as precise, and they want maybe approximated to 1, or to 0.5, or something much bigger than 0.01. So what are the options in this particular case for these scenarios? One option would be, obviously, to go inside our function and say, well, I'm going to change epsilon to be something super-duper precise, 0.0001. And so people who call this function will always get an approximation to that precision. But what about people who don't want it that precise? So all the function calls are going to be affected by making that change, and so that's not really desirable. We'd like to let the person who makes the function call be in charge of what precision they'd like. Another option is to put epsilon outside the function, so to say, OK, well, the only parameter is going to be x, and let's not set epsilon within the function. Let's let the user maybe set epsilon outside the function, and then they can use, and then our code will basically pop up one level to the global scope and use the epsilon that the user chose. Not a good idea, because as soon as we allow somebody using our code to make their own variables within our code, we're putting our trust in somebody else's hands, and they might forget to reset epsilon, or they might forget to set it to begin with. And so that's just using global variables is not a good idea in the first place. We'd like to keep control of the epsilon that's being used inside our function. So unsurprisingly, the last option is going to be our best option. Let's just add epsilon as another parameter to the function. So there it is. We've got bisection root, again, as a function. We've got a parameter x, and we have epsilon as a second parameter that the user can call the function with. So other than that, the function body is exactly the same, right? Except that right now, when we make a function call, we have to pass in epsilon as the second parameter. So in terms of code, this is the bisection root with epsilon as a parameter, and so now the user can find the approximation to 123 to 0.1. It's 11.088, in case you're wondering. And then the approximation to 193 to 0.0001, which is 11.0905. So much better, the user can now be in charge of deciding how close they'd like the approximation to be for every one of their values. But notice that this code is kind of verbose, and really most of the time, maybe the users don't want to be in charge of setting the epsilon. Maybe they don't know what a good epsilon might be, right? So how do they know that they should choose 0.01 by default? Maybe that's something you could put in the function specification for anyone using your function. But it's, you know, you're going to rely on users reading your specification, and that's a little bit scary. So instead, the functionality that would really like to have is to say, OK, I want to write a function that does take in two parameters. But by default, one of those parameters is something that I set as the person who's writing this function, right? So what I would really like to have is epsilon to have some sort of a default value. So if users don't know what to call it with, that code will just use that default value. And otherwise, if the user is more experienced and they know they'd like an epsilon of 1 times 10 to the negative 10, or whatever it might be, then they can be in charge of setting it. So most of the time, we want to call the bisection root function without an epsilon parameter, so that it may use a default one. But sometimes, we'd like to allow the user to actually set the epsilon. And so to that end, we're introducing the idea of keyword parameters, also known as default parameters, and they are set like this. So the bisection function definition still takes in the thing we'd like to approximate the square root of x. But the second parameter here, epsilon, will be equal to something inside the function definition. So we, as the people who are writing this function, are going to say the default value of epsilon is 0.01. So that means when we call the function down here, if the user makes a function call without explicitly passing in a second parameter, Python will use the default one that the person who wrote the function set. So Python will run bisection root of 123 with epsilon being 0.01. And otherwise, if the user does want to override that epsilon, they can just pass it in themselves. And that default value of 0.01 will be overwritten to be 0.5. And so in our code here, this is the bisection root with the default values. And so you can see here, if I run it with 123, even though there are two parameters here for the bisection square root function, Python doesn't complain, because it's using epsilon as 0.01. So I run it, and it runs just fine. But in the second line here, if I actually want to use 0.5 as my epsilon value, it overrides my default parameter, and it calculates the square root of 123 with epsilon being 0.5. OK. Questions so far? So now that we've introduced default parameters, there's a few rules about making function calls. When you create the function definition, so over here, when you're the one defining a function and you decide to allow some default parameters in your parameter list, everything that's a default parameter needs to go at the end. You can't switch these around. You can't say epsilon equals 0.01 comma x. Python will not allow that. So anytime you have default parameters, they always have to go to the end. That's the only rule for defining the function with default parameters. And then once you have default parameters, you can actually call the function in many, many, many different ways. And I know some of these will be confusing. You might not know whether they're allowed or not. You can never go wrong with the last one, as we're going to see in a bit. So the first one here showcases what happens when you give values for everything that's not a default parameter. In this case, just x. If you just give a value for non-default parameters, Python sets default parameters for everything else. Not a big deal. Alternatively, you can pass in just like we have in the past when we write our own functions with multiple parameters. You can pass in one at a time. In the same order, values for every one of those parameters, default or not. And if you pass in values for all of them, Python will not be confused, and it'll just match them one at a time. Variations on that, you can always pass in a value for a parameter name. So looking at the function definition, we can see the parameter names, the formal parameters, are named x and epsilon. So when you make your function calls, you can actually explicitly tell Python something like this. x equals 123. Epsilon equals 0.1. And if you have more parameters, you say that parameter equals whatever value you want to run it with. And so that will not confuse Python. And if you do it in that way, you can actually do it in any order you'd like. Because Python will just assign each one of these variables to be whatever you told them to. So worst case, you just do something like this where one at a time, you just say what the formal parameter is and its value. And then Python will not get confused. The ones at the bottom, though, is where we run into trouble. So for example, if you put the default parameter first and then you put the default parameter first and then any parameter that's not a default one afterward, Python gives an error because the default ones have to go after the non-default ones. And the last one doesn't actually give an error, but Python, remember, matches parameters one by one. So it's actually going to find an approximation to the square root of 0.001 to an epsilon of 123. Because it's just mapping the parameters one at a time. And so that's not an error, but it's not exactly what we wanted to do. Questions about this? OK. So now let's move on to another sort of nuance about functions. And we're going to go back to the idea of functions being objects in Python. So I drew this picture back when we first learned of functions as objects. So I'll just do it again just to jog your memory. So remember that when we make a function definition, inside the memory, Python creates an object. As soon as we see just this function definition, Python doesn't care what code is inside here. This code does not run. It only runs when it's being called. And right here, I have not made a function call at all. All Python knows at this point is that there is a function object inside memory. And its name is even. And this is exactly the same as creating an integer object inside memory and giving it the name R through a line like this. Or creating a float object in memory and giving it the name pi. It's just some object with some name. And so that means that we can have some code that looks like this, which is going to essentially create an alias for that function object in memory. So here, the name is even refers to that function object. And I'm telling Python that I would like to refer to that function object using the name myfunk as well. So both myfunk and is even are names that point to this object in memory. It's not a function call. I'm not trying to figure out if some number is even. I am literally giving another name to this function, this code. That does this thing here. OK. And so that means that if I have two names that point to the same object, if I am going to invoke those two names, as I do here, with some parameters, Python is going to say, well, I'm going to run the code pointed to by these names with these parameters. So they will both run the code that they're pointing to. This is even. And so it's just going to return true or false. We've seen this before. So remember, just another name for that object in memory. So we've seen already how we can pass functions as parameters to other functions. And now we're going to see what happens when we return a function from another function. So we're not returning a function call here. We are returning a function object. So in this particular code, we have only one function. It's named makeProd. And it happens to have some stuff going on inside it. So what's the stuff that this function will do? Well, this function itself will create another function. So this g only exists whenever makeProd exists. The main program, you can think of it as sort of this level of the code in terms of indentation, the main program does not know about g. g is only defined inside makeProd. So when we first run this program, as is, there's no function call being done. So the main program does not know anything about the internals of makeProd. So makeProd creates its own function here. And then all it does is return this function object. Notice it's not a function call. There's no open close parentheses with a parameter in it. It's just the name g. It's this function object. That's the key thing here. So let's run two codes, this one and this one. They will do the exact same thing. They're going to call makeProd with some parameters. And then we're going to see what happens when we return this g. And notice already it's looking slightly different than what we've been doing before. Yes, we have a call to makeProd here, but we've kind of chained another function call right after makeProd. We've got makeProd parentheses 2, parentheses 3. And so this is kind of like, I think of it as chaining a bunch of function calls together. And this is possible, as we're going to see when we step through the function environments that are being created. This is made possible because makeProd, this function call, returns a function itself. So let's step through the code on the left very carefully. And then I'll step through the code on the right, which will do the exact same thing. And hopefully it will clear up confusions if we do it twice. So this is the code from the left. Let's say we have this exact program here. I've got one function definition. And then I've got one function call here. And then I'm going to print the return value. So as soon as I run my code, Python creates my global environment. And in the global environment, this is the scope of the main program. What do we have? Well, we have one function definition, which has some code within it. I don't care what it is at this point because I don't have a function call. So then the next thing that I need to do is go down here and say val equals. So I'm going to create a variable val in my global environment. And I'm going to make a function call. So function calls are done left to right, just like expressions. And the first thing Python sees is this function call, make prod parentheses 2. It's a function call. So we need to create another orange box because a new environment gets created every time we make a function call. So here I have my scope, my environment for make prod. And I'm currently just stuck here trying to figure out what this is going to return and just the red box here. Well, every time I have a function call, I need to look at the function definition. And the function definition says, there's one formal parameter a that I need to map to the actual parameter. So the thing I'm calling make prod with is 2. Should be pretty straightforward, right? And then I can move on to do the body of make prod. So the body of make prod says, I would like to create a function definition. The name of this function is G. So there is G. And it contains some code. Again, I don't care what this code is because I'm not making a function call to G yet. Right now, I'm just defining G. So far so good. So this G, I want you to notice, only exists inside this call to make prod. The global environment does not know about G at this point. Because we only define G inside make prod. It's here, right? I didn't define it outside of make prod. So the global scope doesn't know about it. But make prod does know about it. And so the only way that the global environment can know about G is if this make prod function somehow returns G. So if we pass G back as a parameter, as a value, sorry, to the main program scope, the main program can know about G. But otherwise, G is kind of stuck in this little subtask, little environment of make prod. And the main program doesn't know about it. And so that's what this code is doing. It's essentially saying, well, I've made it my definition. And now I return G. So here, this G and the associated code, so this object pointed to by G, is going to be returned back to the main program. So now the main program knows about this object, G, that has some code associated with it. This line here where it returns a star B. So the thing that I've boxed and read down here is the return value from make prod 2. And make prod 2 return G. So this, you can essentially say, is G. Is that OK? Does that make sense? We're passing functions along, not function calls. And so this is just a function named G. And so now this line of code, val equals, if we replace the red box with G, val equals G parentheses 3. So G parentheses 3 is another function call. Just clearly, we look at it, it's a function call. It's got a function name, parentheses, and a parameter. And so since it's a function call, we create another scope for this function call. As before, we look at what G takes in as a parameter. It's about a variable named B, a formal parameter B. And we map it to 3, because that's our function call, G parentheses 3. And then we have to do the body of G. The body of G says return A multiplied by B. Well, I know what B is. It's 3, because you just called me with that value. But what is A? The scope of G has no A within it. So thinking back to our function, our electron functions, if a function call doesn't know about a variable name within its environment, within its scope, it moves up the function call hierarchy. So it says, who called me? Where was G defined? Well, G was defined inside make prod. And so it was called from make prod. Does make prod have a variable named A? It does, right? And its value was 2. So we didn't need to go any further up the hierarchy. We've already found a variable named A. So Python will use B as 3, and A as 2. Multiplies that to B6. And then the G function call can return 6. It returns it back to the main program, because that's where this function call was being done, right? Remember, we had this replace of G, parentheses 3, out in this global scope here. And so that 6 gets returned back to the main program, and then val becomes 6. And we print 6. OK. So that was showing you how to chain function calls together. And this was only made possible because make prod has a function, returned another function object. If make prod returned, I don't know, a tuple or an integer or something that was not a function, this code would fail. Because the return from make prod would be, let's say it returned to number 10. The return from make prod would be replaced with 10. And then Python would see this line as 10 parentheses 3. What the heck is that, right? And so it would completely fail. And so this is only made possible by the fact that this make prod function returns a function object. And so we're able to chain these function calls together. So let's look at the exact same code, except this time, instead of chaining them in a row, let's explicitly save the intermediate steps. So what I'm going to do is say, make prod parentheses 2, I'm going to save as a variable. And then make that variable call the 3, the second part of my chain from the previous slide. And it's going to do the exact same thing. So here I've got the global scope. Just like before, I've got a function definition for make prod. So this is the name make prod. It points to some code. And then I've got this variable doubler that's going to equal something. So that's a function call. The function call says, here's my environment for make prod with its scope. So in this particular scope, I've got my formal parameter a that maps to 2. And then the function body itself creates this variable g. That's just some code, exactly the same as before. Any questions so far based on what happened in the last sort of example and here? Or is this OK so far? OK. So now I've set up my code. And this is where the interesting part comes in, right? Make prod is going to finish its call by saying, I'm going to return something. And the thing it returns is g. So it returns this name, g, just happens to be a function object. But think of it as anything else. We're basically saying doubler equals 10, or doubler equals some list or some tuple. Doubler is going to be some value, right? This value is just code associated with a function. So in my main program scope, I've got doubler equals g, which based on the memory diagram we did five or 10 slides ago, it's like when we had my func equals is even. I basically have two names for the same function object, right? Doubler is a name and g is the other name. And they both point to this function object. Does that make sense? That's OK. OK. So now that I've got two names that point to the same function object, we can just use this doubler in the next line. And this doubler is like saying g parentheses 3, except that I'm using the name doubler, which I saved it as on the previous line. So g parentheses 3 is another function call. Create another environment for g or doubler, whatever name. And here I've got one formal parameter b. It's values 3. And then we do the same trick where you ask, what is the value of a? I'm going to look up the hierarchy of things that got called to see what's the first value of a that I grab. And the first value of a that we grab is the 2, right? And so we're going to multiply the 2 with the 3. And that 6 gets returned back to whoever called it, which was out here in the main program scope. And so this val will be equal to 6. And that's it. Questions. Which one was easier to understand, this one, or the one where we did the chaining? Just show of hands. Who liked this one more? Who liked the chaining more? Oh, interesting. OK. Was the chaining just easier to grasp, because there were less names? OK, cool. I'm glad I showed it first, then. Any questions, though? Yeah. Is there a particular reason you thought this way compared to the chaining? No reason. In fact, you would want to do the chaining way, because then you avoid extra lines of code. And again, with practice, it just becomes really easy to know what's going on. OK. So that might have been confusing. Why do we bother doing that? Because in that particular example, all we were doing is multiplying to, or I guess, doubling a number. We could have easily written that code to double a number and without actually returning a function. That seemed way overkill for what that code was trying to do. Well, it was kind of showing you what you can do with an easy example. And you would definitely never, ever write functions returning other functions for such simple examples. But it's really a method for cases where you have larger pieces of code that you'd like to write. Because if you're writing a larger piece of code, some software project, and every single function you'd ever want to use is kind of defined at the top level in the main program, it would become really messy. And so there are cases where you would like some functions to only be visible or accessible by other functions. And so you'd only define those functions within the scope of other functions. That's one thing. The other thing is using this sort of chaining method allows you to have some control over the flow of control of a program. And so you can imagine in the example here where you basically create this, you have this line here, and at some point you return g. And you don't want to do the doubling right away. So you don't want to do val equals doubler right away. You can imagine having a bunch more lines of code here that do other stuff before you actually do the doubling. And so in that case, in this larger, more complex program, you're essentially interrupting the flow of control here. You're not doing the doubling right away, but you did grab this function back. And then you can maybe do other things with that function before finally doing the doubling. And so in that case, you can basically execute some code partially, do some other operations, and then finish executing at the end after you've done these operations. So again, for this example, it doesn't make much sense. But in a larger piece of code, this idea of functions, returning functions is just another tool to achieve these ideas of decomposition abstraction, which lead you to write more organized code, more robust code, more easy to read code, and so on and so on. So you don't have to do this, but you do have to understand what it means for a function to return another function. Any other questions? OK. So now we're going to do the last piece of today's lecture, ideas of testing and debugging. This lecture is usually pretty dry, so I'm going to try to make it more fun, as fun as I can. The reason why we introduced this lecture now is because I'm hoping that by this point in the course, you've had a chance to do some testing and debugging strategies on your own by kind of a trial and error thing on quizzes and on p sets. So you've gotten a chance to maybe use the Python tutor. You've gotten a chance to use print statements, various things like that, and see what works best for you, what doesn't work at all, things like that. So you've maybe gotten a little bit burned by some of these strategies, but I hope that by you being burned by some things that you've tried that work that didn't work, you'll maybe appreciate this lecture a little bit more than if I just showed you this lecture back on day one or day two or something like that, because it's a lot of common sense stuff, but there's a little bit of actual strategy as well in this particular set of slides. So your programming experience so far, I know this is certainly mine, is I hope that when I run my code, it immediately runs perfectly. But instead, what is happening for me is I run my code and it immediately crashes. I've got my red errors on the side, and I get a little bit flustered. So this is exactly what happens probably for you too. And the idea here is that you want to write the code in such a way that it makes it easy to test and debug. And I know I always say this, and I actually don't always practice it, but it's important to write the code by writing it by adding comments as you're writing the code. So writing specifications, writing comments for yourself as you're actually writing the code, not when you finished it, is very important. It helps you as you're writing it or when you're coming back to it in a couple of days. Modularizing the programs also helps. So if you see a chunk of code that you're copying and pasting all over the place, you'll want to plop it out in a little function that you call multiple places. So ideas like that employ this defensive programming mechanism, and it allows you to perform really easy testing and validation when it comes time to do that, and then possibly debugging when it comes time to do that. So the lecture is going to be divided into two pieces. The first, we're going to talk about testing and validation, some nice testing strategies, and then we're going to talk about some strategies for debugging as well. So the testing and validation part is where you come up with a set of input test cases and expected outputs. And all you're doing is running your code to make sure that the expected output matches the output that you actually get from running the code. The debugging part is where one of your tests don't match the expected output. One of the outputs that you get don't match the expected output. And at that point, you have to figure out why the code is not working, obviously. So before you even test your code, as I mentioned before, it's you have to set yourself up to do the testing and debugging. So to ease this part, it's important to write documentation very well so when you're writing your own function, not functions that we've given you, document the doc string, what are the inputs you expect, what should the function do, what should the function return, things like that. If you're writing the code in a sort of a strange way or if you use some piece from Stack Overflow or something like that, document it to make sure that if you're looking at it a week from now, you still remember what that piece of code did. So really, really simple things like that can make a really big difference when it comes time to test and debug. Breaking up the code, obviously, into smaller chunks is very important because if you're copying and pasting the same piece of code over and over again, you remember to make a change in one place. You might forget to make that same changes in all these different places. And so that'll be very frustrating when it comes time to actually run and debug the code. So once you have code that's written, you would start the testing process. You remove all the errors. Static semantic errors and syntax errors are really easy to remove. Python immediately tells you, right, index error on this line or syntax error on this line. Those are really easy to figure out. Using a paper and pen or typing it out in your Python file, you come up with a bunch of test cases. And for each one of those test cases, the way we write on your micro quiz test cases, you say what you expect the output to be. So when you actually run it, you don't need to remember what this output should be. It's just written down somewhere on paper or on the screen. So when you're creating a bunch of test cases, you can create some different classes of tests. So hopefully, we're modularizing our programs, which means that we're creating functions. The simplest classes of tests are called unit tests. And these tests basically test a function with different inputs. So what you're going to do is come up with a bunch of different test cases for one particular function and run these test cases on the function. If they all work perfect, but if they don't, or if you find a bug as you're writing test cases in the code, you'll want to perform regression testing. And regression testing means that as you find a bug, you add a new test case for them. Or as you fix a bug, you run the same code with all of the previous test cases to make sure that the bug you fixed didn't introduce errors in a previous test case. So there's a bunch of iterations of unit testing and regression testing to test all of these different modules, all the functions in your program. And at some point, you're ready to do integration testing. And in integration testing, you've got all these modules. For example, as you did in Hangman, you've got all these little functions that do individual things. You put them all together into a larger program. In Hangman, it was a bunch of a big while loop where you check all these different things that the user might input. And then you call the different functions you wrote. And as you find errors in the integration, when you've written code that integrated all these different pieces together, you might have to go back and do more unit tests for some of the functions that you wrote. OK. So you've done unit testing, regression testing, and integration testing. What are some actual testing approaches? How do you actually create these test cases to run your code with? So I guess the most natural way to write a test case is just intuition about the problem. So given a dog string, what are going to be some natural boundaries, some natural values of x and y for which you'd test this code with? You guys tell me. What's some values that we could test this code with? Think about the boundaries to the question, right? Yeah, 3 and 4 is good. So x is less than y is a good one. Vice versa, right? 4 and 3 is another one, where y is greater less than x. We could test them being equal, right? What about 0 and 0? What about 1,000 and 1,000? So we could do extremes. We could do bigger than, less than. We could do equal things like that, right? So mathematical functions are kind of easy to apply this idea to because they just have natural boundaries. But often, there are functions which don't have these natural boundaries, and then we might be stuck doing random testing. And in random testing, obviously, the more test cases you have, the better chance you have of finding a bug. But there are actual techniques for coming up with test cases. So the first one is called black box testing. Second is called glass box testing. Now, in black box testing, you're going to treat the code of the function as a black box. So we don't even look at what the code is doing. All we're looking at to guide writing our test cases is the specification, the doc string, right? And so hopefully, the person who wrote this function wrote a really nice doc string because that's what we're going to use to write our test cases. So the way that we're going to write a test case for the square root function is by saying, what is the value of x and epsilon according to these constraints here? So obviously, we're not going to test the code with values that don't match those constraints because the person who wrote this function doesn't guarantee that this function will work for those weird values. So the good thing about black box testing is if we're the ones testing this function, we're only using the specification to write the test cases. So if, for example, this person implemented square root using approximation method, I don't care. My test cases will work if the person changes their implementation to use the bisection method. My set of test cases will still work, even if the person who wrote this function changed the black box, the implementation. So it's black box testing is really nice in that respect. And so for this particular function, here's a bunch of test cases that I would run it with. So obviously, x being 0, perfect square, less than 1 are kind of nice ones to test. Irrational values and then a bunch of extremes is also good to test. And then epsilon the same, we've got some reasonable values of epsilon and then some extremes. And we can even mix and match. We can have 0 and extremes, epsilon, and perfect squares and extremes, epsilon, and things like that. So lots more test cases than this, but this is a really good start. In glass box testing, we're going to use the code itself to guide the test cases that we write. So if we write something, a test suite that's path complete, that means that we're going to hit every single path inside the program. So that means we have to look at the code to guide the test cases that we're writing, which means that we're going to have to write a test case for the code hitting the if part of a branch. We have to write a test case for the code hitting the else part of a branch or the L if part of the branch. If we have a for loop, we need to write a test case where the code doesn't go through the loop at all. It goes through once or it goes through many times through the loop. Same with while loops. We write a test case so that the code doesn't go through the while loop at all. It matches the condition once or it matches the condition many times. So you can imagine that this glass box testing leads to a whole lot more test cases, especially when we have a whole bunch of different, uh, combinations of all of these conditionals and loops and things that we'd like to hit. The problem with glassbox testing and having a complete path, uh, uh, uh, path complete test suite is that we might accidentally miss a bug. So here's an example of a code that's not correct. So it finds absolute value of x. Um, if x is less than negative 1, we return negative x, else we return x. So path complete test suite could be testing 2 and negative 2. The 2 brings us through the else, so we return 2, and the negative 2 brings us through the if, so we return 2. We might say this code works, but it doesn't, right? We already can tell that negative 1 is returned incorrectly as negative 1. And so in addition to testing, uh, all the paths through the code, we'll also want to look at boundary condition, especially for conditionals when we do, uh, glassbox testing, okay? Okay. So we have a go- a whole bunch of test cases. We've run our code with all these test cases, and then at some point, we've, uh, gotten an output from a test case that does not match what we expected to do. Then we have to do the debugging process, okay? And this is where- this is where, um, a little creativity is required. Uh, there is no recipe like there was in glassbox testing and blackbox testing for writing test cases. There is no similar sort of, you know, recipe for debugging a program. There is a lot of experience that's needed, right? A lot of times that you've seen a bug crop up, um, in order to figure out sort of what the problem might be. And so a lot of experience writing code is very useful in the debugging process. There are tools to help you do the debugging process, but there aren't many tools to actually do the debugging. You kind of just have to do it. So there's tools built into, uh, into Anaconda. They're not very good. I've used them. Um, Python Tudor obviously is a really good one, especially for small programs because you get to just go step-by-step and see the values, um, of each variable as the code is running. I- so I like that a lot. Print statements are also really good, but you have to know where- where to put them, right? And you have to use them effectively. Um, so in that sense, you know, if you're not as familiar with print statements, Python Tudor might be a better- a better suited for debugging. But no matter what, it's important to be systematic. Don't just start changing random val- you know, random variables or random conditions and then run the code through the tester again, right? That's not going to work very well for us. Um, when we see error messages in the debugging process, these are really easy to figure out, right? Index error. Oh, shoot, I gotta check my indices. Um, maybe I went over. If you see an index error, you should probably print out the variable that you're indexing into- or indexing with. Um, type errors. Oh, man, look, I'm casting a list to an integer. What is that going to do? Nothing, it's going to give us an error. Or here, I'm dividing a string by an integer. Again, something really simple to fix. Name errors, of course. Here's I have a- here I have a variable that I've never initialized. And then syntax errors basically mean things like your indentations off, or you're missing a parentheses or something like that. Logic errors are a lot harder, okay? These ones, you cannot, uh, just look at the line and say this is where the problem is. These ones happen when your output is- does not match the expected output. And this is where kind of engaging another part of your brain is very important. I've definitely done this a lot. I've had some errors, I went for a walk, come back and I figured out. I figured out in the shower or I figured out in bed, right? Um, so thinking a little bit before you even start the problem is good for this- for these logic errors. Drawing a picture, taking a break, talking to friends, all these are really good. Explaining the code to something else, somebody else is also a really nice thing to do. That's me explaining the code for something we're going to do in a couple of minutes. Um, to my son, he's seven now and he's doing scratch. So that's pretty cool but he was helping me debug and now I'm helping him debug. Um, yeah. Or you can explain code to some inanimate object like a rubber ducky. Now having said that, you guys came on a good day. Because you will all get to have your own rubber duck, different kinds, grab your personality duck that matches your personality. After class, I've got Minecraft ducks, giraffe ducks, princess ducks, police ducks, elephant ducks, whatever ducks you'd like, come grab one, um, use it for your quizzes, use it for your p-sets, um, whatever you'd like to use it for, go for it, okay? So hopefully it comes in handy, um, use it well. All right. So we're not quite done yet though. Um, okay. So I will give you a little bit of, uh, debugging tips though. So I know it's, it's, I said it's a creative process. I said it's really hard to come up with a recipe to do the actual debugging, but there are, um, there, there is maybe one way- one really nice way to do it. So the idea behind debugging is basically use the scientific method. Like I said, don't just randomly change things expecting for it to work out. What you want to do is look at a bunch of test cases that failed. It's possible that they're all, they all have something in common and that might lead you to a small piece of code in your program that is the one that you should be focusing on changing, right? So you want to look at the data, form a hypothesis and try to see if another test case also fails that particular one. As you're, um, as you're doing the debugging method, right? If you really have no idea about where to start, try putting print statements at reasonable places in the code. So when you first enter functions, when you first enter a loop, write all the values of the loop variable and all the variables that you're creating in the loop or modifying in loop and things like that. And if all else fails, using the bisection method is a really nice way to try to solve the problem. So bisection method in debugging basically says, put a print statement about halfway in the code. If everything looks right for all the variables at that point, you know the problem is after this. If something is wrong, you know the problem is in the first half of the code. Then put a print statement in the quarter of the code, right? And then at that point, see if the values, all the values at that point match what you expect them to be. If do great, you know the problems in the second quarter, I guess, yes, the second quarter. Um, and if they don't, you know the problem is in the first quarter, okay? So the bisection method is, is a nice way to try to debug the code. So what we're going to do in the last bit of lecture is, we're going to debug some code together that's in the Python file and then what I have is included in today's zip file, is actually a Wordle game that I wrote. It's like 12 underscore world.py or whatever and it's buggy. So I introduced some bugs in it and I would, if you'd like to practice debugging, you can try to fix the Wordle game to get it to work and then you can play yourself or you can amaze your friends and get them to play your game in case you'd like to do something like that, okay? So before we end, I would like to actually do some debugging with you just to show you the bisection method for debugging. So the code we're going to debug is this one right here. And I've already included sort of the fixed code step by step, but we're going to talk through it together. So this function is buggy. It's a function called isPAL that takes in a list X and it's supposed to return true if the list elements are a palindrome and false otherwise. So using the input a, b, c, b, a cast as a list. So the input is going to be the string a, string b, string c, string b, a. This list is a palindrome, right? Because it's the same forwards as it is backwards. So if I run it, it should print true. Okay, so that test case worked well. But now what about the second test case? Surprise, it's not going to work. If I pass in the list a, b, right? So my input is going to be the string a and the string b. This is not a palindrome, right? So I expect it to print false, but it prints true. So I have a nice test case here that I can make fixes with and see whether it actually gets fixed. Now, of course, a, b, c, d, e, f, g, h, i, j, k, l, m. This also doesn't work, right? So this is another test case that's not going to work. But I don't want to use this long one as my test case. I want to use the simplest test case I can find that doesn't work, right? So a, b seems like a really nice one to test with. Okay, so now the first thing we want to do, now that we figured out the input I'd like to test with is put a print statement about halfway through the code. Yes, there's only like five lines of code here. So there's only probably one place that makes sense to put a print statement. But let's just work with me here. So the print statement could be put right here, right before the if statement, right? So I've got two lines of code that do something and then an if. So let's just put it right before the if. Scroll down. Step two, here I go. I've put my print statement right before the if. Now we can run the code again. So I'm not going to run the one that worked. Let me try to run the one that didn't work to figure out what the problem is. So I run this. The print statement is printing the temp, so the reverse of x and x. So what I'm expecting in, and I should have probably written this over here, what I'm expecting to get, what I'm expecting is to see the reverse of AB, so BA, and then the original x, AB. But I don't. So I see AB and AB. This first one should be BA. So already I have something that's unexpected, and so I know the problem is going to be in these first two lines of code, right? Somewhere in here. All right, so then what I would like to do is figure out which one of these lines of code is the problem. So I'm going to put another print statement a quarter of the way through the code. Okay, well, there's only one more place to put it, so let's put it in here. I've got another print statement right before the reverse. So what I'm going to be checking is before the reverse, the value of my temp variable and my original variable. And after the reverse, the value of my reverse variable and the original variable. So what I'm expecting to see is this one here, they should be the same, AB, AB. But this one here, I'm expecting to see BA, AB. So run it with this buggy example. So before the reverse, I'm expecting AB and AB, and I do get that, so that's good. I'm happy to see that. And then after the reverse, that's my problem, right? I'm expecting this one to be reversed, but it's not. So now I know the problem lies here, temp.reverse. Because here, in this print statement here, temp and x were as expected. So what do you think the fix should be to the reverse? Yeah? Yeah, exactly. We need to add parentheses. This is a function. We need to call it like a function, right? So let's do that fix. We've done it here. So here, I've added the parentheses to the reverse and run it again. So now what I'm expecting is, before the reverse, I need to see AB, AB. So this one should be the same. It shouldn't change, because I didn't do anything to that temp equals x. And after the reverse, I'm expecting the temp to be BA and the x to be AB, unchanged. Let's run it. So before the reverse, everything looks OK. Temp and x are the same. After the reverse, look at that. I've got my BA as my reverse variable. I'm happy. But then my x has also changed. I'm sad. Yes? Exactly. There's a clue, we see a clue. We've made a change to temp, and x has also changed. So as was suggested from the back, we need to make a copy of x. What we've done here is called an, when I did temp equals x on a mutable variable. What did I make? An alias, exactly. So let's make a copy of that x right here. So hopefully that fixes things, because I've run out of lines to fix. So we run this code again with AB and see the output. Before the reverse, temp and x should be the same, and they are. They're both AB AB. And after the reverse, the temp should be the reversed BA, and it is, and the x should remain the same, AB. And it's false, so it's not a palindrome. Last thing I need to do is double check my original test case, the one that actually worked before I made all my changes, to see whether it still works. And it does. So that particular list is a palindrome, so that still returns true. So that's it. So I've got just one, I guess, list comprehension for you to try on your own, to write, and then of course the buggy wordle game for you to try as well."
+}

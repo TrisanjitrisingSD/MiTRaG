@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MIT Python AI Tutor • RAG Powered</title>
+
+    <!-- Browser Tab Icon -->
+    <link rel="icon" type="image/png" href="/static/logo.png">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Highlight.js -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+</head>
+
+<body>
+   <div id="logoOverlay" class="logo-overlay"></div>
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <img src="/static/logo.png"
+                    alt="MIT Python AI Tutor"
+                    class="logo"
+                    id="logo">
+
+                <div>
+
+                    <h1>MIT Python AI Tutor</h1>
+
+                    <p class="subtitle">
+
+                        Learn Python interactively using MIT OpenCourseWare lectures powered by Retrieval-Augmented Generation.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- ================= WELCOME ================= -->
+
+        <div id="welcome" class="welcome-card">
+
+            <h2>👋 Welcome!</h2>
+
+            <p>
+
+                Ask anything from the MIT Python Programming course.
+
+            </p>
+
+            <div class="examples">
+
+                <div class="example">
+                    💡 Explain recursion with an example.
+                </div>
+
+                <div class="example">
+                    📘 Difference between tuple and list.
+                </div>
+                <div class="example">
+                    📈 Explain Big-O complexity.
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= CHAT ================= -->
+
+        <div id="chatBox" class="chat-box"></div>
+
+        <!-- ================= INPUT ================= -->
+
+        <div class="input-area">
+
+            <textarea
+                id="question"
+                rows="1"
+                placeholder="Ask anything about Python... (Press Enter to send, Shift + Enter for a new line)"></textarea>
+
+            <button
+                id="sendBtn"
+                onclick="askQuestion()">
+
+                Send
+
+            </button>
+
+        </div>
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer class="footer">
+
+            Built with ❤️ using
+
+            <span class="tech">FastAPI</span>
+
+            <span class="dot">•</span>
+
+            <span class="tech">Gemini</span>
+
+            <span class="dot">•</span>
+
+            <span class="tech">Llama</span>
+
+            <span class="dot">•</span>
+
+            <span class="tech">RAG</span>
+
+            <span class="dot">•</span>
+
+            <span class="tech">MIT OpenCourseWare</span>
+
+        </footer>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>

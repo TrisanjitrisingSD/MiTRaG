@@ -1,0 +1,985 @@
+{
+    "chunks": [
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 0.0,
+            "end": 39.2,
+            "text": "All right, let's get started. So today, we're going to be starting a completely new set of topics, and we'll be talking about these topics for the next four lectures, and it's a big topic. The big idea we're trying to accomplish in these next four lectures is for us to start defining our own object types."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 39.2,
+            "end": 63.18,
+            "text": "And we'll be defining these object types through these things called Python classes. So today's lecture, we'll just give you a really, we'll just define a really simple object type, and then we'll build up from there on. So let's take a step back and think about particular objects, like really specific objects that we've been working with."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 63.18,
+            "end": 87.39999999999999,
+            "text": "So for example, we've been working with probably the number 1234, we've been working with the float pi 3.14159, we've been working with sequences of characters like HLLO with lists of numbers, right? So here's a list with those specific elements within it, and we've been working with dictionaries. And here's a specific dictionary with these entries."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 87.39999999999999,
+            "end": 108.36,
+            "text": "Now every one of these things up here is an object, right? We have it in our program, we can manipulate it, we can add it to other things, we can index, we can do all these things. But every one of these objects is basically has a certain type, right? We talked about this back in lecture one when I introduced types of objects."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 108.36,
+            "end": 121.76,
+            "text": "So what does that mean? Well in that lecture I said that the type of an object basically tells us the kinds of things that we can do with it, right? So the things you can do with a number are going to be different than the kinds of things you can do with strings."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 121.76,
+            "end": 140.28,
+            "text": "And we've been seeing this, you know, since that lecture up until today. Today we're going to see how we can create our own object types. So to do that we have to understand the following thing, and this is something I'll keep repeating today. Decide to create an object type, every one of these objects for example, has been created"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 140.28,
+            "end": 155.28,
+            "text": "using some blueprint, right? And when you're creating these objects you need to think about two things. The first is what data will represent this object, and the second is what behaviors will this object have? Now the objects up here are pretty simple, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 155.28,
+            "end": 178.12,
+            "text": "The kinds of data that represents, you know, this integer is, well there's no data really, it's just the number itself. But you know, it has some operations, some things that you can do with this integer. Now the data that represents a list is going to be different than the data that represents an integer because a list is kind of made up of a sequence of numbers or, you know, objects."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 178.12,
+            "end": 197.24,
+            "text": "And then the data that makes up a dictionary is completely different than the data that makes up the list because a dictionary has entries where each entry has a key and a value pair and then you have a bunch of these entries, right? So the data representing each one of these objects is different and we're going to decide what data represents the new objects that we want to create."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 197.24,
+            "end": 215.84,
+            "text": "And of course this is something we've known from the first lecture, the kinds of ways that we can interact with these objects is also different amongst all these different object types, right? So in terms of terminology, when we create an actual object that we want to manipulate, we call it an instance of a type."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 215.84,
+            "end": 241.52,
+            "text": "So this specific number, 1234, is an instance of an integer and this specific sequence of characters, lowercase h, l, l, o, is an instance of a string. All right, so the idea of object-oriented programming is basically that everything in Python is an object and this we've talked about when we were introducing functions, we treated functions like objects."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 241.52,
+            "end": 258.88,
+            "text": "And what that means is that we can create new objects that have some type, so we actually create these very specific objects that we can manipulate and we can also destroy the objects, right? So you can create them, manipulate them and destroy them as you will, but each one of these objects has a specific type."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 258.88,
+            "end": 283.15999999999997,
+            "text": "So let's talk a little bit more about the data abstraction. So once you have an object that you'd like to create, so think of anything in the world, something, something, something, the two things that you need to think about are what is going to be the way that you represent the object in terms of data, right? And the other thing is what are the behaviors of this object?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 283.15999999999997,
+            "end": 302.44,
+            "text": "How can other programmers or other objects interact with this thing that you're creating? So when we're creating our own object type, we have to think about these data abstractions, okay? So let's take a more sort of real-life example. So let's say I have these two very specific cars that actually exist in the real world."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 302.44,
+            "end": 319.32000000000005,
+            "text": "So we can actually drive these cars around, we can manipulate them, right? They have already been created. They are actual objects, right? Well, behind the scenes, these objects were created using some blueprint, right? This blueprint is not an actual tangible thing."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 319.32000000000005,
+            "end": 338.28000000000003,
+            "text": "It's basically some abstract notion of how to create those specific objects, those specific cars. So as we're thinking about creating our own object types, we have to think about design decisions, right? If I want to create a blueprint for a car that somebody can then use to create an actual"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 338.28000000000003,
+            "end": 355.12,
+            "text": "car in real life, how do I abstract the car? And as we're creating these objects ourselves, we get to make these design decisions, which is pretty cool. So if I were creating this car, right, the blueprint for a car, I would say, well, I'm going to use maybe the length of the car, the width of the car, and the height of the"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 355.12,
+            "end": 375.88,
+            "text": "car, and the color of the car. And those four data attributes will represent a car object. But of course, that's my design decision, right? If you are more familiar with cars, or if you wanted to get into a more detailed description or representation, you would also have a number for how many horsepower it has, how many doors"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 375.88,
+            "end": 392.72,
+            "text": "it has, maybe how many people it could fit, other things like that. But a very simple data abstraction for a car is length, width, height, and color, right? So that's data abstraction. So what data represents this object you're trying to create? Now, how about the interface?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 392.72,
+            "end": 417.8,
+            "text": "Well, in terms of the interface, we decide what are some ways that programmers can interact with the object, or other objects can interact with this object. So we could say that we could let the users change the color of the car, right? We could say that we can let the car make a noise. So honk the horn, could be maybe one thing, one function that this car could do."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 417.8,
+            "end": 439.24,
+            "text": "And if we say honk the horn, then maybe you would print something to the screen, right? Something like that. And then we can have the car drive from point A to point B, or we could have the car go in a circle, you could have the car crash on another car. And all of these behaviors are part of the interface for this particular car."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 439.24,
+            "end": 461.48,
+            "text": "But we're going to define them such that any car that we create from here on, any actual object that we create, will have all of these behaviors and all of these data attributes. So an example a little closer to home is the list, right? We've been working with lists so far. So behind the scenes, somebody created the data type list, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 461.48,
+            "end": 482.24,
+            "text": "So there's some code in Python that basically defines the data that makes up the list, the data attributes, how is a list described, and the behaviors, the procedures, the functions that a list can do, right? So in terms of data attributes, well, there's many design decisions that whoever decided to create this list class could have done."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 482.24,
+            "end": 497.28,
+            "text": "How could they have represented the list? Well, they could have said, I'm going to allocate sort of a contiguous block of memory, and your elements will go in that order, right, from the smallest memory value to the biggest memory value. That's one design decision."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 497.28,
+            "end": 523.1999999999999,
+            "text": "Another one could be that instead of allocating sort of a contiguous block of memory, you could say, I can allocate memories here and there, that's okay. But then each element in my list will then be represented by two things, the first being the value at that location, and the second could be maybe another integer or something that tells Python which memory location to go to to get the next element in the list."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 523.1999999999999,
+            "end": 542.6,
+            "text": "So both valid design decisions, I think Python did the second one. So that's how you represent the data that represents the list. And in terms of behaviors, well, we've already been working with lists, so we know a bunch of the behaviors that lists have, right? You can index into it, you can sort a list, you can append an item to the end of the list,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 542.6,
+            "end": 564.88,
+            "text": "you can get the maximum element within the list, all of these different procedures, functions are things that you can do with lists, right, and we've been working with them. And we've been working with lists without actually knowing the representation, how somebody decided to represent this class, which is pretty cool. So a couple more real life examples, right, if we were to think about representing, you"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 564.88,
+            "end": 581.68,
+            "text": "know, one of the, each of these, so if we think about the object in elevator, right, again, it's up to us to make the design decision. It's basically a box that can change floors, right? So we could represent it using the length of width, the height. Maybe we could also represent, which are all floats or something like that."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 581.68,
+            "end": 604.0799999999999,
+            "text": "We can also represent it using the max capacity and the current floor it's at. So all five of these variables, you know, together, values together, represent my elevator, right? And again, it's my design decision to do this, yours might be different. And in terms of things that the elevator can do, well, we can change its current floor,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 604.0799999999999,
+            "end": 623.76,
+            "text": "which is basically saying, you know, change the value of the variable current floor to be something else. Add people to it, maybe checking if you're at max capacity or not, and maybe printing out a warning if you're above that, removing people, things like that. An employee is also a pretty common example of something that's typically implemented"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 623.76,
+            "end": 643.32,
+            "text": "in a bunch of programming languages. So an employee, basically a person that has a salary, right, maybe works for company X. So you could represent this employee using their name, right, maybe a string for the first name, a string for the last name, and then their birth date, maybe, and then their salary, which is, you know, a float or something like that."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 643.32,
+            "end": 660.04,
+            "text": "And in terms of behaviors, what can employees do? Well, you can change their name, you can change their salary, you can maybe activate or deactivate them as current employees, things like that. A queue at a store, also a really nice example, and it kind of goes hand in hand with a stack of pancakes."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 660.04,
+            "end": 680.24,
+            "text": "How would you represent a queue at a store? Well, the representation isn't going to be a set of things. The representation could be something really simple, like just a list, right, which is fine. So maybe the list will have, you know, some strings with the names of the people who are currently in the queue at a store."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 680.24,
+            "end": 703.72,
+            "text": "But what's going to make a queue kind of special is the way that we'll be using it, right? So the representation isn't super unique, it's just a list. But the way that a queue operates will be special, because if you think about the queue, the first person who comes into the queue will be the first person out of the queue, right, a first in, first out kind of situation."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 703.72,
+            "end": 727.92,
+            "text": "So that means if you make the design decision to add new people at the end of the queue, right, so if I have a new person that gets added here, they're the newest person in. That means if I'm removing a person from the queue, I better remove the oldest one, which is going to be over at the beginning of my list, right? So the way that you use the queue will be consistent with this idea, and then you can"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 727.92,
+            "end": 749.2,
+            "text": "basically simulate the queue. And the stack of pancakes is very similar, if you think about pancakes, the first one you made is the last one you eat, right? So it's a first in, last out of kind of situation. So that means that we can still represent a stack of pancakes using a list, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 749.2,
+            "end": 771.36,
+            "text": "So the representation, the data representation for a stack of pancakes will be the same as a queue, except that the behavior will be different, right? Because if I just made a new pancake and it goes at the end here, right, the newest one that I made is the first one that I'm going to eat. So if I add a pancake to the end of my list, I'm going to remove the pancake that I want"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 771.36,
+            "end": 793.28,
+            "text": "to eat from the end of my list as well. Okay, so the idea of object-oriented programming, and the reason we're doing this is because now we're bundling basically data and behaviors into one thing. And so we can create all of these different objects that have the same type that all are going to function in the same way."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 793.28,
+            "end": 807.8399999999999,
+            "text": "We know they're going to be consistent, right? They're going to be consistent in the data that represents them, and consistent in the way that we use them, right? So the queue, right? We know for sure that the queue is going to be a first in, first out kind of situation,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 807.8399999999999,
+            "end": 829.28,
+            "text": "right? And the way we're going to implement this is using these things called Python classes. And the reason we create these Python classes is to make code that's very nicely reusable. We can create really simple Python classes that we'll see today, and then we can build upon these Python classes to create more complex classes, which we'll see on Wednesday."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 829.28,
+            "end": 846.6,
+            "text": "But the big idea here, and this is something that I was a little bit confused about when I first started learning about object-oriented programming, is you get to be in charge of the design decision, right? So you get to decide what data represents the class, and you decide what behaviors represent the class."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 846.6,
+            "end": 862.0400000000001,
+            "text": "So if you wanted to say that you represent a queue using a list, right? That's in first out. If you add items to the end, you remove items from the beginning. That's one design decision. Another design decision could be, well, you still represent it as a list, but new items"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 862.0400000000001,
+            "end": 877.76,
+            "text": "get added to the front. But to be consistent with the idea of a queue, that means you remove items from the back. And then the behavior is the same, right? We're implementing a queue, no matter which one of those design decisions we've made. Okay."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 877.76,
+            "end": 899.36,
+            "text": "So as we're going through today's lecture, I want to make a note of a couple things. So I've got these little tabs up at the top here. We're going to be basically switching our brains a little bit today. We're going to be defining a Python object, right? So we're going to be writing code that tells Python, hey, I am telling you I would like"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 899.36,
+            "end": 917.1200000000001,
+            "text": "to create this object type, okay? These are the data, this is the data that represents them, represents it, and these are the behaviors that represent it. So that's us implementing the class. So telling Python that we are now creating and telling you what an object of this type"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 917.1200000000001,
+            "end": 935.96,
+            "text": "is and does. And the other thing is once we have a definition for this object type, we're going to actually use the type, right? We're going to create new objects of this type. So when we're creating the class, when we're telling Python that an object like this exists,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 935.96,
+            "end": 957.64,
+            "text": "we're deciding the name of our class, we're deciding what data abstracts it, we're deciding what behaviors we can do with it, right? So if you think about the list, we haven't actually seen the code to do this, but someone wrote code to define this list class. Now using the class means that we're assuming that this code already exists, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 957.64,
+            "end": 970.6,
+            "text": "And you're just creating a whole bunch of objects of this type. So we've been doing this definitely, right? If we think about the list class again, here, you know, for example, we created an actual object that we can manipulate, right? L is equal to 1, 2."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 970.6,
+            "end": 990.52,
+            "text": "We've also created L is equal to 3, 4, 5, and all these things, right? We're basically creating these instances that we can manipulate and use in our program to achieve something useful. And today we're going to see how we can do both of those things. I want to draw a little parallel with functions because it's going to feel very similar, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 990.52,
+            "end": 1012.76,
+            "text": "And with functions, when we were defining a function, we were telling Python that I would like to, you know, abstract some code that does something useful using this class, using this function definition, right? So we were writing the definition for the function in this abstract way. We didn't actually run the function at that point, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1012.76,
+            "end": 1031.0,
+            "text": "We just defined it. And so when we define a class, that's basically what we're doing. We're telling Python that we're creating this object that bundles data and behaviors together, okay? When we create instances of this data type that we're going to define, that's kind of"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1031.0,
+            "end": 1052.6399999999999,
+            "text": "like we called the actual function that we defined, right? So when we called the function, we were now doing something useful in our program, right? We said, here are some actual parameters I want you to run this function with. Now tell me what the output is, okay? And that's exactly what we're going to do when we create instances of the data type we're"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1052.6399999999999,
+            "end": 1070.3999999999999,
+            "text": "defining. We're now creating actual objects that we can manipulate and use in our class. Okay. So the object we're going to create in today's lecture is a coordinate in a 2D plane, okay? Pretty simple, pretty mathematical."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1070.4,
+            "end": 1088.16,
+            "text": "So before we actually write the code, let's kind of think about what it actually means to put a coordinate in a 2D plane. So we're going to think about if we had a bunch of instances, right? If we had a bunch of coordinates in a 2D plane, what do they look like? What kind of data are we interested in, you know, grabbing from these instances?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1088.16,
+            "end": 1111.4,
+            "text": "What are some things we can do with it? So here I have a point in my 2D plane. So if we think about how we look at this coordinate, well, we know how far away the coordinate is on the x-axis, and we know how far away the coordinate is on the y-axis, right? So that's one instance of a coordinate object."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1111.4,
+            "end": 1133.56,
+            "text": "Now let's say we had another one, right? Here's another dot in my 2D plane. Again, this dot will also know how far away it is on the x-axis and how far away it is on the y-axis, okay? So one reasonable data abstraction for a coordinate in a 2D plane could be to say I want two numbers,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1133.56,
+            "end": 1148.72,
+            "text": "one representing how far away it is on the x-axis, and one for how far away it is on the y-axis, right? That seems pretty reasonable. I don't care about color, right? Even though I colored these things, but you can imagine making a cuter version of this"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1148.72,
+            "end": 1165.64,
+            "text": "coordinate object that also has a color associated with it, okay? So the data that will represent my point in a coordinate plane and a 2D coordinate plane is just two numbers, right? One for the x, one for the y. Now what are some things that we can do with these coordinate objects?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1165.64,
+            "end": 1189.16,
+            "text": "Certainly something really simple we can do is to say, well, point, you know, one of these points, you know, the orange one, for example, tell me how far away you are on the x-axis, or tell me how far away you're on the y-axis, right? So those two commands could return, you know, something like three, that's how far away that point is on the x-axis, or four, for how far away it is on the y-axis."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1189.16,
+            "end": 1208.52,
+            "text": "Those are pretty simple things to do. One more interesting thing to do is to say, well, hey, you point orange point right over there, can you tell me how far away you are between the green point, right? So that would be the Euclidean distance between these two points. And we're going to write code that figures out how far away one coordinate object is"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1208.52,
+            "end": 1230.96,
+            "text": "from another coordinate object, okay? All right, so let's start defining this class coordinate. We're going to, you can see here, this is the code that implements the class. So this will tell Python that we are now creating this object type coordinate, okay? So we're not using it yet, we're not creating any objects, any object instances, we're just"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1230.96,
+            "end": 1251.4,
+            "text": "telling Python that we'd like to create this object type. So we start with the keyword class, right? In parallel, we started with the keyword df to define a function. Then we say the name of our object type, so this will be literally the type of the object, so coordinate, just like we had list, int, float, you know, all those things, this will"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1251.4,
+            "end": 1268.1200000000001,
+            "text": "be of type coordinate. And then in parentheses here, we say the parent of this class. So usually we say object until two lectures from now when we're going to see what happens when we put something else in there. But when we put an object in the parentheses there, we're telling Python that anything"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1268.1200000000001,
+            "end": 1291.44,
+            "text": "a generic Python object can do, our object can do as well. So something really, really basic is saying that I'm going to create this object in memory and assign a variable to it so that I get a handle for that object using this variable, right? Something super basic, any Python object has this ability and ours will too, because I've"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1291.44,
+            "end": 1310.92,
+            "text": "put this object in the parentheses here, okay? All right, so now we've told Python we're creating a data type called coordinate. What are we going to fill in the body of this class? So the things we need to fill in are going to be our attributes, okay? Now again, what makes up an object?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1310.92,
+            "end": 1332.08,
+            "text": "Two things, the data that you want to represent this object with and the procedures, aka functions, aka behaviors that you'd like this object to have, okay? So the data will be two things, right? We decided that we're going to represent a coordinate using two numbers, okay? Now what about behaviors?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1332.08,
+            "end": 1356.84,
+            "text": "Behaviors will essentially be functions that work with objects of this particular type. So we're going to define them as functions, but we're going to define them in a really special way that tells Python you can only run this function on an object of type coordinate. Which makes sense, I would not like to find the distance between two integers, that's just subtraction, or I would not like to find the distance between two dictionaries, what"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1356.84,
+            "end": 1374.8,
+            "text": "does that even mean, right? So distance method that we mentioned is one thing we'd like to implement, we'll only work with objects of type coordinate, okay? So these special functions are actually called methods, okay? And I'm going to use this term a little bit today, hopefully you get used to it and then"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1374.8,
+            "end": 1396.56,
+            "text": "from now on, from next lecture on I'll just use the word methods to refer to functions that only work with objects of this type. Okay, so we so far in the previous slide had class coordinate object. Now what is the next thing you have to do? So the next thing you always have to do when you tell Python you're creating a new data"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1396.56,
+            "end": 1426.92,
+            "text": "type is to tell Python how you want to construct this data type, okay? So this is kind of a constructor function, and the way we do this is by defining, so you can see we're defining it like a function, def, but we're going to define a function that has a special name, and the name is double underscore init double underscore, okay? So that's the name of this function, and you can see it's a function, def, name, and then"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1426.92,
+            "end": 1449.8799999999999,
+            "text": "parentheses, and there's a bunch of stuff in the parentheses. The first thing will be this thing called self. So already it's going to be a little bit different than regular functions. Now, I'm going to, this is not the only time I'll explain self, I'll explain it throughout this lecture, but the basic idea of self is that it's always going to be the first parameter"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1449.8799999999999,
+            "end": 1470.76,
+            "text": "of a method, right, a function that only works with an object of this class, of this type. And the reason why we have it here is because all we're doing here is telling Python that we'd like to create this object type. We don't have an actual object to manipulate, right? I haven't created an actual object yet."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1470.76,
+            "end": 1497.68,
+            "text": "I'm just telling Python I'd like to create this object. So if I don't have an actual object created yet, I need some way to refer to an instance without actually having one yet, and that's what this self is doing, right? It's basically a variable that tells Python that this is an object of, that this is a function that only works with an object of this type, and I'm going to use this variable"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1497.68,
+            "end": 1517.72,
+            "text": "self to refer to this object, myself, my data attributes and my methods and things like that. So we'll become clear, there will be many examples, but for now it's basically a way for us to refer to an object of this type, an instance of this type without actually having created one."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1517.72,
+            "end": 1540.0,
+            "text": "Anything after self is basically parameters you'd like to create this object with. So for us, it doesn't make sense to say create this coordinate object without actually initializing its x and y values, right? When we put a coordinate object in a 2D plane, I would like to put it in that 2D plane. So it needs an initial x and an initial y value, okay?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1540.0,
+            "end": 1556.24,
+            "text": "So these parameters here will tell Python you need to pass in a value for x and y when you create your object. And then, the body of this init will have whatever code you'd like to initialize your object. Yes?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1556.24,
+            "end": 1568.68,
+            "text": "Question? The underscores is part of how you write it? The underscores is part of how you write it, so you have to have underscore, underscore, init, underscore, underscore, yeah. It's a special function."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1568.68,
+            "end": 1593.64,
+            "text": "We'll talk about the next lecture, it's called a dunder function. So the body of this function can contain a bunch of initialization codes, so anything you'd like to initialize when you create an object of this type, that's what you stick in here, okay? Usually, most of the time, 99% of the time, you want to initialize the data that makes"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1593.64,
+            "end": 1613.4,
+            "text": "up your object, right? So the data we decided makes up our object is how far you are in the x-axis and how far you are in the y-axis. So here, this data that I want every single one of my objects to have, a value for x and a value for y, is initialized using self-dot, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1613.4,
+            "end": 1633.16,
+            "text": "So self-dot of variable named x and self-dot of variable named y. And the self-dot before these variables distinguishes these variables, x and y, here, from regular variables, right? If I were to just say x equals x-val and y equals y-val, x and y will just be regular variables."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1633.16,
+            "end": 1653.92,
+            "text": "As soon as my init function terminates, those variables are gone. But because I've got self-dot x and self-dot y, this means that these values x and y will persist throughout the lifetime of my object when I create my actual object, and every single object I create will have their own x and y values. Question?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1654.88,
+            "end": 1667.92,
+            "text": "Does it have to be different to the x-val, so can it be self-dot x-val? Yeah. Good question. Does this self-dot thing have to be different? It does not have to be."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1667.92,
+            "end": 1682.5600000000002,
+            "text": "So you can have self-dot x-val equals x-val and self-dot y-val equals y-val. The reason I did it here is to showcase that they actually do not have to be the same. Yeah. They are completely different, right? So self-dot x is different than x-val."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1682.56,
+            "end": 1704.32,
+            "text": "Where it just happened to be assigning this value to be whatever is passed in. OK. So a little bit of, again, just kind of explaining what this self is in the context of a blueprint. So if we think about a blueprint in real life, right, so here I have a blueprint for a room that I might want to create."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1704.32,
+            "end": 1725.52,
+            "text": "I don't actually have this room created yet, right? It's just an idea. But what I know is that I'm going to use this blueprint, right, to have a room that contains two chairs, a coffee table, and a sofa, right? So in this blueprint, I don't have actual rooms that I've implemented this thing in."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1725.52,
+            "end": 1745.28,
+            "text": "I don't have actual rooms where I've put two chairs, chairs, a coffee table, and a sofa in. It's just an idea. But self is kind of the way that a blueprint accesses its attributes, right? So I've got, if I say self.coffee table, that means if in the future I have an actual room,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1745.28,
+            "end": 1771.64,
+            "text": "self.coffee table means I'm referring to that room's coffee table, OK? So the self is a variable that we use to refer to data or to attributes for a blueprint when I don't have actual rooms created. But once I create instances of rooms, right? So for example, here I have something called living room created, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1771.64,
+            "end": 1787.88,
+            "text": "So I've taken my blueprint, and now somebody asked me to create a room with this blueprint, right? Now I no longer use self because I have an actual room in hand. So now I would refer to coffee table in this living room as living room.coffee table, or living room's coffee table, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1787.88,
+            "end": 1808.3999999999999,
+            "text": "No longer self's coffee table. So self is only used in the context of my blueprint, OK? And to sort of bring the last point home, the idea that with the blueprint you can create many different instances, well here's a living room that I've applied my blueprint to, and here's another living room, completely different room that somebody asked me to use my blueprint"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1808.3999999999999,
+            "end": 1826.92,
+            "text": "for to create it, different chairs, different coffee tables, different colored things. These are all different instances that I use my one template, my one blueprint for the room on. So when we're defining the class, we don't have actual objects, right? Again, that's just kind of a really big idea here."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1826.92,
+            "end": 1842.6000000000001,
+            "text": "We're just telling Python, I'd like to create this object, and this is what it looks like. I'm bundling this data with these behaviors together, but I don't have actual objects of this type created yet. So let's actually create some objects. The code that does this is as follows."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1842.6000000000001,
+            "end": 1866.72,
+            "text": "So I've put the definition for my class, the constructor, the init method for my class up here just to remind us what it looks like. And with that code, we can now start to create actual objects that we can manipulate. So when we created something like L is equal to one square bracket, lists 1, 2, now I'm creating these actual coordinates in my code, using my blueprint."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1866.72,
+            "end": 1888.3999999999999,
+            "text": "So the way we do that is we invoke the name of our class. So we use a coordinate, that's what we named it, right? That's our data type, and here I'm passing in every single parameter except for self. So I initialized a coordinate object using x val and y val, so I need to put in two parameters here for x val and y val."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1888.3999999999999,
+            "end": 1912.24,
+            "text": "And self actually becomes this thing that I just created, this object. So coordinate 3 comma 4 is now an object that's being referenced by variable named c, which is why I'm not passing in self. So it's kind of weird to think about. But now I have one object in memory, it's referenced by name c, and on the next line"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1912.24,
+            "end": 1932.56,
+            "text": "I have another object in memory, right? Again, I've invoked the name of my class coordinate, this particular object, x value will be 0 and y value will be 0, so different than the one I just did on the previous line. But it'll have the same structure, right? So they will both have some x and y value, they'll just be different from each other,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1932.56,
+            "end": 1946.8000000000002,
+            "text": "right? But they'll both have x and they'll both have y. So the one I've named down here is going to be origin. So I've got two objects of type coordinate, one is referenced by name c, and the other one is referenced by name origin."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1946.8000000000002,
+            "end": 1972.8,
+            "text": "So now that I have these objects in hand, I can access any of their attributes. And Python will grab for me the attribute of that particular object. So here I've got this thing called dot notation, which we've seen before, and I'll explain it again in a couple of slides. But the dot notation tells Python to access the x data attribute of object c."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1972.8,
+            "end": 1998.4,
+            "text": "So this will grab for me the x value of c, 3, right? And the next line will grab for me the x value of origin, 0. And this is all made possible because x, and we could also access y, x and y were defined in the class definition using self dot. If I didn't use self dot, those would just be variables, and as soon as I created my"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 1998.4,
+            "end": 2016.8400000000001,
+            "text": "object, they would have gone away because that function had terminated. But in order to have these variables x and y persist throughout the lifetime of my object, I've defined them using self dot x and self dot y. So any object I've created that's of type coordinate will have some value for x and some value for y, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2016.8400000000001,
+            "end": 2029.7600000000002,
+            "text": "So we can access that value through this notation. Does that make sense so far? Is that all right? OK. So we're going to visualize this in a slightly different way."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2029.7600000000002,
+            "end": 2046.8400000000001,
+            "text": "So the exact same code as on the previous slide, we're now going to do it in this, in our little memory sort of type. So here I have c is equal to coordinate 3, 4 exactly what I had on the previous slide. So in memory, the way you think about it is, you know, as we've been thinking about other objects."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2046.8400000000001,
+            "end": 2059.4,
+            "text": "So it's not much different. We have c is our name, right? And it's bound to an object of type coordinate. It just so happens we define this object, but it's the same idea. I've got a name bound to some object."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2059.4,
+            "end": 2074.56,
+            "text": "And this object has its own x value and its own y value. So when you evaluate c dot x, Python goes into memory. It says, hey, what type is c? And it says, oh, it's a coordinate object. Does coordinate object have a data attribute named x?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2074.56,
+            "end": 2092.7599999999998,
+            "text": "Yes it does, because it looks at the init. And then it says, well, what's its value? It's 3. And so it just returns that. And so the next three lines here are slightly different from two slides ago, but very similar."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2092.7599999999998,
+            "end": 2113.84,
+            "text": "a is equal to 0 creates for me a variable named a bound to the value 0, right, just to showcase that it's exactly the same as having a variable named c bound to this object that we created. And then when I say or rig equals coordinate a comma a, Python says, all right, well, here's a name or rig for origin."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2113.84,
+            "end": 2126.0800000000004,
+            "text": "What is it bound to? Well, it's also bound to an object of type coordinate. And it's an object we define. So we defined an object of type coordinate having an x and y value. So here they are."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2126.0800000000004,
+            "end": 2137.48,
+            "text": "And they're originally 0. They're set to 0 when I created this object. So when I say or rig dot x, Python will look up or rig, it's going to say, hey, what type are you? Oh, you're a coordinate."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2137.48,
+            "end": 2150.48,
+            "text": "Do you have an x value? You do. That's what we define in the init. Let me grab that value from you. So we're just manipulating objects in memory, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2150.48,
+            "end": 2177.04,
+            "text": "Now that we've written the code to work with objects that we created, we're just creating a whole bunch of these objects in memory and then grabbing their x values and then we're going to get the distance between two objects in a bit. One more way to kind of show you that exact same code is to visualize it. So here is the code all, the entire code as you would have it in a file, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2177.04,
+            "end": 2197.2,
+            "text": "So you would have all this all together. The gray box is the definition for my object type. The blue box is me using this object that I just created. I've just separated that out just for clarity. So when I have my gray box, there's nothing to display, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2197.2,
+            "end": 2213.68,
+            "text": "It just sits in memory. And Python knows of this type of class coordinate that has two data attributes, the things that I've defined using self dot, right, x and y. When I create c is equal to coordinate 3, 4, right, visualizing what we're trying to do here."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2213.72,
+            "end": 2238.52,
+            "text": "I've got this object whose name is c and it's at 3, 4 and then I've got this object named origin and it's x and y values are 0, 0. So because I've created these objects using the same blueprint, right, the coordinate blueprint that I've defined up in the gray, that means every object that I've created, c and origin has a self dot x and self dot y value, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2238.52,
+            "end": 2257.24,
+            "text": "It just so happens that the actual values for x and y are different between these two objects, right? So when I grab origin dot x, I'm looking up origin and I'm grabbing its x value, 0, right? Just another way to visualize it. Okay."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2257.24,
+            "end": 2278.5600000000004,
+            "text": "Is everyone okay with these data attributes? All right. So now let's add a method, right? So a method, remember, is just a function that works with an object of this type, okay? So the way that we tell Python we'd like to create a method is by passing in self as"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2278.5600000000004,
+            "end": 2296.2799999999997,
+            "text": "the first parameter. So let's create this function named distance. If you look in the actual Python code for today, I've got two more functions, one to get the x value of this current object and one to get the y value, but those are not as interesting."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2296.2799999999997,
+            "end": 2316.3999999999996,
+            "text": "This distance one is interesting. So I would like to create this function that only works with an object of type coordinate. So what we've done so far is these lines up here. So now we've got df, again, it's just a function, so we've got def, name of it, distance, and then the parameters."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2316.44,
+            "end": 2339.0,
+            "text": "So again, since this is a function that only works with an object of type coordinate, I need to put self as the first parameter. And this self will help us refer to the object when I call the method on it, right? So if self is the first parameter, that means that this distance method will be called on self."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2339.0,
+            "end": 2358.6,
+            "text": "So when I have an actual object in hand that I'm calling distance on, the self parameter will take on the value that is that object. We're going to see this in the next slide. So self is the thing that I'm calling this function on. And then what other parameters do I want to give to this function?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2358.6,
+            "end": 2385.8799999999997,
+            "text": "Well, I want to find the distance between myself, so this object that I'm going to call distance on, and another coordinate object. Now, other than maybe a doc string here that says, hey, warning, other should be an object of type coordinate, there isn't really anything that enforces the type of other when you make a function call, when you make a method call, right?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2385.8799999999997,
+            "end": 2406.56,
+            "text": "So you can call this distance method with other being an integer, which is not an object of type coordinate. The code will run, but will immediately crash because of what's going on inside. So the only way this code will work is if you're calling it on an object of type coordinate for the other."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2406.56,
+            "end": 2431.68,
+            "text": "So the reason for that is because, well, when we think about grabbing the distance between two objects that are coordinates in the 2D plane, we take the difference between the x values, square that, take the difference between the y values, square that, right, Pythagoras, grab those two together, take the square root. So if I'm calling this distance method on an object of type coordinate, i.e. self, how"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2431.68,
+            "end": 2447.32,
+            "text": "do I grab myself's x value? Well, I just say self.x, right? My x value, what is it? And then I would like to subtract that from the other coordinate object's x value. What's my other coordinate object?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2447.32,
+            "end": 2474.28,
+            "text": "It's the thing that I'm passing in as a parameter, so grab their x value. So if I take self.x minus other.x, Python will grab my x value, subtract it from other's x value, square that, we do the exact same thing with y, right, grab my xy value, subtract it from other's y value, square that, and then the rest is just Pythagoras. Add those two and take the square root, I take it to the power of a half."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2474.28,
+            "end": 2504.6400000000003,
+            "text": "So this function is just a regular function other than this self being the first parameter and us working with data attributes of myself and potentially other parameters, but you can see it returns a value, it has the df, a name, and things like that. So the way we're going to use this method that we just wrote is using the dot operator. Just like we accessed a data attribute of a object that I created, I can access a procedural"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2504.6400000000003,
+            "end": 2526.96,
+            "text": "attribute, i.e. a method of an object I just created. So we use the dot operator for this. The thing before the dot is the object I would like to call the method on, dot, the name of the method I'd like to call, and in parentheses it's just a function, so I need to give it any parameters this method expects."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2527.12,
+            "end": 2549.2,
+            "text": "This should look very familiar. We introduced dot notation when we worked with lists, remember that? And I said when we worked with a list, you for now have to remember why we use this special way of writing this function, but it was the same idea. The thing before the dot was the list I wanted to apply the function to, so my list is the"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2549.2,
+            "end": 2572.48,
+            "text": "name of a list variable, I wanted to apply the function append and it happened to take an integer as a parameter. And sort here is also another one, but this one didn't take any parameters, but it's the same idea, the dot notation. So in terms of our class, here I've got two-corded objects, and I've got a dot notation being"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2572.48,
+            "end": 2602.2,
+            "text": "used here to find the distance between one object and another one. So the thing before the dot is an object I would like to use the distance method on, take one of them, c, dot distance, the name of the method I would like to call. And in parentheses, I've got another coordinate object, ORIG. So here I am using the class, and I've got actual values, actual objects that I'm manipulating,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2602.2,
+            "end": 2628.58,
+            "text": "c and ORIG. So this might look a little bit weird, but when we actually call the function, remember we omitted self when we made this function call, but that's because self implicitly becomes the thing before the dot, the thing you're calling this method on. So let's visualize that in our memory."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2628.58,
+            "end": 2648.24,
+            "text": "So here I've got my class definition for a coordinate, it has some data attributes and some procedural attributes. I've got these two objects being created, c is this object of type coordinate, ORIG is this object of type coordinate, they've got different x and y values, but they both have x and y, some x and y values."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2648.24,
+            "end": 2672.44,
+            "text": "When I make a function call to c, to, sorry, a method call on c, Python says, all right, let me look at this thing before the dot. What is it? Type coordinate, okay, then it looks at the method you're trying to call, distance. It says, hey, does coordinate have a distance method defined?"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2672.44,
+            "end": 2697.0600000000004,
+            "text": "Why yes it does, we just wrote it. And then it says, all right, well let me call this distance method, it's going to set self as c, the thing before the dot, and any other parameters will be set in order to whatever is being passed in here. So ORIG will become the other parameter from my class, from my definition for that function."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2697.0600000000004,
+            "end": 2728.82,
+            "text": "So this is just the conventional way of calling methods, and it's the way we've been working with lists and dictionaries and things like that. So again, we've got some object, the thing before the dot, some method to run, and when we call it this way, the thing before the dot becomes self in our class definition, in our method definition, and then all the other parameters become assigned one by one, everything"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2728.82,
+            "end": 2746.2200000000003,
+            "text": "except for self. Now to sort of demystify this, I would like to show you what this is actually equivalent to. So we can run the function, the method that we defined by actually passing in a value for self, if this is more, if this is clear to you."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2746.2200000000003,
+            "end": 2771.0600000000004,
+            "text": "So in that case, the thing before the dot cannot be an object, because if it is an object of the type coordinate, then Python will say, well, this is the object I'm running the distance method on. So to demystify this, you can actually invoke the name of the class, the object that you're trying to create, the name, the data type, coordinate, and then Python says, oh, I see,"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2771.0600000000004,
+            "end": 2795.78,
+            "text": "you're calling the name of the class. It's not an object, so then what do you want from me? The thing after the dot says, I would like to run this method on you, but now it needs all the parameters in the parameter list, including self. So here I would have to give it explicitly c, 0 instead of just 0, because the thing"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2795.78,
+            "end": 2815.7,
+            "text": "before the dot is the name of my class, not an actual object like it is on the side. So this is actually the conventional way to do this. This is the shorthand, the Pythonic way to do this. But this hopefully demystifies the self deal and the way we actually set that first parameter to the thing before the dot."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2815.7,
+            "end": 2828.42,
+            "text": "All right. Yes, question? Yeah, exactly. If there's more parameter, just pop in those extra ones with commas, just like a regular function."
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2828.42,
+            "end": 2844.98,
+            "text": "All right. Dot operator basically accesses either our data, c.x, or our methods, right, c.distance, whatever or whatever method name we have. So that's it for today's lecture. Next lecture we're going to build on this coordinate object by creating circles, and"
+        },
+        {
+            "number": "17",
+            "title": "Python_Classes",
+            "start": 2844.98,
+            "end": 2862.42,
+            "text": "then we'll create some fraction objects, and we'll look at some other way, some other objects that we can bundle together. Thank you. Thank you."
+        }
+    ],
+    "text": "All right, let's get started. So today, we're going to be starting a completely new set of topics, and we'll be talking about these topics for the next four lectures, and it's a big topic. The big idea we're trying to accomplish in these next four lectures is for us to start defining our own object types. And we'll be defining these object types through these things called Python classes. So today's lecture, we'll just give you a really, we'll just define a really simple object type, and then we'll build up from there on. So let's take a step back and think about particular objects, like really specific objects that we've been working with. So for example, we've been working with probably the number 1234, we've been working with the float pi 3.14159, we've been working with sequences of characters like HLLO with lists of numbers, right? So here's a list with those specific elements within it, and we've been working with dictionaries. And here's a specific dictionary with these entries. Now every one of these things up here is an object, right? We have it in our program, we can manipulate it, we can add it to other things, we can index, we can do all these things. But every one of these objects is basically has a certain type, right? We talked about this back in lecture one when I introduced types of objects. So what does that mean? Well in that lecture I said that the type of an object basically tells us the kinds of things that we can do with it, right? So the things you can do with a number are going to be different than the kinds of things you can do with strings. And we've been seeing this, you know, since that lecture up until today. Today we're going to see how we can create our own object types. So to do that we have to understand the following thing, and this is something I'll keep repeating today. Decide to create an object type, every one of these objects for example, has been created using some blueprint, right? And when you're creating these objects you need to think about two things. The first is what data will represent this object, and the second is what behaviors will this object have? Now the objects up here are pretty simple, right? The kinds of data that represents, you know, this integer is, well there's no data really, it's just the number itself. But you know, it has some operations, some things that you can do with this integer. Now the data that represents a list is going to be different than the data that represents an integer because a list is kind of made up of a sequence of numbers or, you know, objects. And then the data that makes up a dictionary is completely different than the data that makes up the list because a dictionary has entries where each entry has a key and a value pair and then you have a bunch of these entries, right? So the data representing each one of these objects is different and we're going to decide what data represents the new objects that we want to create. And of course this is something we've known from the first lecture, the kinds of ways that we can interact with these objects is also different amongst all these different object types, right? So in terms of terminology, when we create an actual object that we want to manipulate, we call it an instance of a type. So this specific number, 1234, is an instance of an integer and this specific sequence of characters, lowercase h, l, l, o, is an instance of a string. All right, so the idea of object-oriented programming is basically that everything in Python is an object and this we've talked about when we were introducing functions, we treated functions like objects. And what that means is that we can create new objects that have some type, so we actually create these very specific objects that we can manipulate and we can also destroy the objects, right? So you can create them, manipulate them and destroy them as you will, but each one of these objects has a specific type. So let's talk a little bit more about the data abstraction. So once you have an object that you'd like to create, so think of anything in the world, something, something, something, the two things that you need to think about are what is going to be the way that you represent the object in terms of data, right? And the other thing is what are the behaviors of this object? How can other programmers or other objects interact with this thing that you're creating? So when we're creating our own object type, we have to think about these data abstractions, okay? So let's take a more sort of real-life example. So let's say I have these two very specific cars that actually exist in the real world. So we can actually drive these cars around, we can manipulate them, right? They have already been created. They are actual objects, right? Well, behind the scenes, these objects were created using some blueprint, right? This blueprint is not an actual tangible thing. It's basically some abstract notion of how to create those specific objects, those specific cars. So as we're thinking about creating our own object types, we have to think about design decisions, right? If I want to create a blueprint for a car that somebody can then use to create an actual car in real life, how do I abstract the car? And as we're creating these objects ourselves, we get to make these design decisions, which is pretty cool. So if I were creating this car, right, the blueprint for a car, I would say, well, I'm going to use maybe the length of the car, the width of the car, and the height of the car, and the color of the car. And those four data attributes will represent a car object. But of course, that's my design decision, right? If you are more familiar with cars, or if you wanted to get into a more detailed description or representation, you would also have a number for how many horsepower it has, how many doors it has, maybe how many people it could fit, other things like that. But a very simple data abstraction for a car is length, width, height, and color, right? So that's data abstraction. So what data represents this object you're trying to create? Now, how about the interface? Well, in terms of the interface, we decide what are some ways that programmers can interact with the object, or other objects can interact with this object. So we could say that we could let the users change the color of the car, right? We could say that we can let the car make a noise. So honk the horn, could be maybe one thing, one function that this car could do. And if we say honk the horn, then maybe you would print something to the screen, right? Something like that. And then we can have the car drive from point A to point B, or we could have the car go in a circle, you could have the car crash on another car. And all of these behaviors are part of the interface for this particular car. But we're going to define them such that any car that we create from here on, any actual object that we create, will have all of these behaviors and all of these data attributes. So an example a little closer to home is the list, right? We've been working with lists so far. So behind the scenes, somebody created the data type list, right? So there's some code in Python that basically defines the data that makes up the list, the data attributes, how is a list described, and the behaviors, the procedures, the functions that a list can do, right? So in terms of data attributes, well, there's many design decisions that whoever decided to create this list class could have done. How could they have represented the list? Well, they could have said, I'm going to allocate sort of a contiguous block of memory, and your elements will go in that order, right, from the smallest memory value to the biggest memory value. That's one design decision. Another one could be that instead of allocating sort of a contiguous block of memory, you could say, I can allocate memories here and there, that's okay. But then each element in my list will then be represented by two things, the first being the value at that location, and the second could be maybe another integer or something that tells Python which memory location to go to to get the next element in the list. So both valid design decisions, I think Python did the second one. So that's how you represent the data that represents the list. And in terms of behaviors, well, we've already been working with lists, so we know a bunch of the behaviors that lists have, right? You can index into it, you can sort a list, you can append an item to the end of the list, you can get the maximum element within the list, all of these different procedures, functions are things that you can do with lists, right, and we've been working with them. And we've been working with lists without actually knowing the representation, how somebody decided to represent this class, which is pretty cool. So a couple more real life examples, right, if we were to think about representing, you know, one of the, each of these, so if we think about the object in elevator, right, again, it's up to us to make the design decision. It's basically a box that can change floors, right? So we could represent it using the length of width, the height. Maybe we could also represent, which are all floats or something like that. We can also represent it using the max capacity and the current floor it's at. So all five of these variables, you know, together, values together, represent my elevator, right? And again, it's my design decision to do this, yours might be different. And in terms of things that the elevator can do, well, we can change its current floor, which is basically saying, you know, change the value of the variable current floor to be something else. Add people to it, maybe checking if you're at max capacity or not, and maybe printing out a warning if you're above that, removing people, things like that. An employee is also a pretty common example of something that's typically implemented in a bunch of programming languages. So an employee, basically a person that has a salary, right, maybe works for company X. So you could represent this employee using their name, right, maybe a string for the first name, a string for the last name, and then their birth date, maybe, and then their salary, which is, you know, a float or something like that. And in terms of behaviors, what can employees do? Well, you can change their name, you can change their salary, you can maybe activate or deactivate them as current employees, things like that. A queue at a store, also a really nice example, and it kind of goes hand in hand with a stack of pancakes. How would you represent a queue at a store? Well, the representation isn't going to be a set of things. The representation could be something really simple, like just a list, right, which is fine. So maybe the list will have, you know, some strings with the names of the people who are currently in the queue at a store. But what's going to make a queue kind of special is the way that we'll be using it, right? So the representation isn't super unique, it's just a list. But the way that a queue operates will be special, because if you think about the queue, the first person who comes into the queue will be the first person out of the queue, right, a first in, first out kind of situation. So that means if you make the design decision to add new people at the end of the queue, right, so if I have a new person that gets added here, they're the newest person in. That means if I'm removing a person from the queue, I better remove the oldest one, which is going to be over at the beginning of my list, right? So the way that you use the queue will be consistent with this idea, and then you can basically simulate the queue. And the stack of pancakes is very similar, if you think about pancakes, the first one you made is the last one you eat, right? So it's a first in, last out of kind of situation. So that means that we can still represent a stack of pancakes using a list, right? So the representation, the data representation for a stack of pancakes will be the same as a queue, except that the behavior will be different, right? Because if I just made a new pancake and it goes at the end here, right, the newest one that I made is the first one that I'm going to eat. So if I add a pancake to the end of my list, I'm going to remove the pancake that I want to eat from the end of my list as well. Okay, so the idea of object-oriented programming, and the reason we're doing this is because now we're bundling basically data and behaviors into one thing. And so we can create all of these different objects that have the same type that all are going to function in the same way. We know they're going to be consistent, right? They're going to be consistent in the data that represents them, and consistent in the way that we use them, right? So the queue, right? We know for sure that the queue is going to be a first in, first out kind of situation, right? And the way we're going to implement this is using these things called Python classes. And the reason we create these Python classes is to make code that's very nicely reusable. We can create really simple Python classes that we'll see today, and then we can build upon these Python classes to create more complex classes, which we'll see on Wednesday. But the big idea here, and this is something that I was a little bit confused about when I first started learning about object-oriented programming, is you get to be in charge of the design decision, right? So you get to decide what data represents the class, and you decide what behaviors represent the class. So if you wanted to say that you represent a queue using a list, right? That's in first out. If you add items to the end, you remove items from the beginning. That's one design decision. Another design decision could be, well, you still represent it as a list, but new items get added to the front. But to be consistent with the idea of a queue, that means you remove items from the back. And then the behavior is the same, right? We're implementing a queue, no matter which one of those design decisions we've made. Okay. So as we're going through today's lecture, I want to make a note of a couple things. So I've got these little tabs up at the top here. We're going to be basically switching our brains a little bit today. We're going to be defining a Python object, right? So we're going to be writing code that tells Python, hey, I am telling you I would like to create this object type, okay? These are the data, this is the data that represents them, represents it, and these are the behaviors that represent it. So that's us implementing the class. So telling Python that we are now creating and telling you what an object of this type is and does. And the other thing is once we have a definition for this object type, we're going to actually use the type, right? We're going to create new objects of this type. So when we're creating the class, when we're telling Python that an object like this exists, we're deciding the name of our class, we're deciding what data abstracts it, we're deciding what behaviors we can do with it, right? So if you think about the list, we haven't actually seen the code to do this, but someone wrote code to define this list class. Now using the class means that we're assuming that this code already exists, right? And you're just creating a whole bunch of objects of this type. So we've been doing this definitely, right? If we think about the list class again, here, you know, for example, we created an actual object that we can manipulate, right? L is equal to 1, 2. We've also created L is equal to 3, 4, 5, and all these things, right? We're basically creating these instances that we can manipulate and use in our program to achieve something useful. And today we're going to see how we can do both of those things. I want to draw a little parallel with functions because it's going to feel very similar, right? And with functions, when we were defining a function, we were telling Python that I would like to, you know, abstract some code that does something useful using this class, using this function definition, right? So we were writing the definition for the function in this abstract way. We didn't actually run the function at that point, right? We just defined it. And so when we define a class, that's basically what we're doing. We're telling Python that we're creating this object that bundles data and behaviors together, okay? When we create instances of this data type that we're going to define, that's kind of like we called the actual function that we defined, right? So when we called the function, we were now doing something useful in our program, right? We said, here are some actual parameters I want you to run this function with. Now tell me what the output is, okay? And that's exactly what we're going to do when we create instances of the data type we're defining. We're now creating actual objects that we can manipulate and use in our class. Okay. So the object we're going to create in today's lecture is a coordinate in a 2D plane, okay? Pretty simple, pretty mathematical. So before we actually write the code, let's kind of think about what it actually means to put a coordinate in a 2D plane. So we're going to think about if we had a bunch of instances, right? If we had a bunch of coordinates in a 2D plane, what do they look like? What kind of data are we interested in, you know, grabbing from these instances? What are some things we can do with it? So here I have a point in my 2D plane. So if we think about how we look at this coordinate, well, we know how far away the coordinate is on the x-axis, and we know how far away the coordinate is on the y-axis, right? So that's one instance of a coordinate object. Now let's say we had another one, right? Here's another dot in my 2D plane. Again, this dot will also know how far away it is on the x-axis and how far away it is on the y-axis, okay? So one reasonable data abstraction for a coordinate in a 2D plane could be to say I want two numbers, one representing how far away it is on the x-axis, and one for how far away it is on the y-axis, right? That seems pretty reasonable. I don't care about color, right? Even though I colored these things, but you can imagine making a cuter version of this coordinate object that also has a color associated with it, okay? So the data that will represent my point in a coordinate plane and a 2D coordinate plane is just two numbers, right? One for the x, one for the y. Now what are some things that we can do with these coordinate objects? Certainly something really simple we can do is to say, well, point, you know, one of these points, you know, the orange one, for example, tell me how far away you are on the x-axis, or tell me how far away you're on the y-axis, right? So those two commands could return, you know, something like three, that's how far away that point is on the x-axis, or four, for how far away it is on the y-axis. Those are pretty simple things to do. One more interesting thing to do is to say, well, hey, you point orange point right over there, can you tell me how far away you are between the green point, right? So that would be the Euclidean distance between these two points. And we're going to write code that figures out how far away one coordinate object is from another coordinate object, okay? All right, so let's start defining this class coordinate. We're going to, you can see here, this is the code that implements the class. So this will tell Python that we are now creating this object type coordinate, okay? So we're not using it yet, we're not creating any objects, any object instances, we're just telling Python that we'd like to create this object type. So we start with the keyword class, right? In parallel, we started with the keyword df to define a function. Then we say the name of our object type, so this will be literally the type of the object, so coordinate, just like we had list, int, float, you know, all those things, this will be of type coordinate. And then in parentheses here, we say the parent of this class. So usually we say object until two lectures from now when we're going to see what happens when we put something else in there. But when we put an object in the parentheses there, we're telling Python that anything a generic Python object can do, our object can do as well. So something really, really basic is saying that I'm going to create this object in memory and assign a variable to it so that I get a handle for that object using this variable, right? Something super basic, any Python object has this ability and ours will too, because I've put this object in the parentheses here, okay? All right, so now we've told Python we're creating a data type called coordinate. What are we going to fill in the body of this class? So the things we need to fill in are going to be our attributes, okay? Now again, what makes up an object? Two things, the data that you want to represent this object with and the procedures, aka functions, aka behaviors that you'd like this object to have, okay? So the data will be two things, right? We decided that we're going to represent a coordinate using two numbers, okay? Now what about behaviors? Behaviors will essentially be functions that work with objects of this particular type. So we're going to define them as functions, but we're going to define them in a really special way that tells Python you can only run this function on an object of type coordinate. Which makes sense, I would not like to find the distance between two integers, that's just subtraction, or I would not like to find the distance between two dictionaries, what does that even mean, right? So distance method that we mentioned is one thing we'd like to implement, we'll only work with objects of type coordinate, okay? So these special functions are actually called methods, okay? And I'm going to use this term a little bit today, hopefully you get used to it and then from now on, from next lecture on I'll just use the word methods to refer to functions that only work with objects of this type. Okay, so we so far in the previous slide had class coordinate object. Now what is the next thing you have to do? So the next thing you always have to do when you tell Python you're creating a new data type is to tell Python how you want to construct this data type, okay? So this is kind of a constructor function, and the way we do this is by defining, so you can see we're defining it like a function, def, but we're going to define a function that has a special name, and the name is double underscore init double underscore, okay? So that's the name of this function, and you can see it's a function, def, name, and then parentheses, and there's a bunch of stuff in the parentheses. The first thing will be this thing called self. So already it's going to be a little bit different than regular functions. Now, I'm going to, this is not the only time I'll explain self, I'll explain it throughout this lecture, but the basic idea of self is that it's always going to be the first parameter of a method, right, a function that only works with an object of this class, of this type. And the reason why we have it here is because all we're doing here is telling Python that we'd like to create this object type. We don't have an actual object to manipulate, right? I haven't created an actual object yet. I'm just telling Python I'd like to create this object. So if I don't have an actual object created yet, I need some way to refer to an instance without actually having one yet, and that's what this self is doing, right? It's basically a variable that tells Python that this is an object of, that this is a function that only works with an object of this type, and I'm going to use this variable self to refer to this object, myself, my data attributes and my methods and things like that. So we'll become clear, there will be many examples, but for now it's basically a way for us to refer to an object of this type, an instance of this type without actually having created one. Anything after self is basically parameters you'd like to create this object with. So for us, it doesn't make sense to say create this coordinate object without actually initializing its x and y values, right? When we put a coordinate object in a 2D plane, I would like to put it in that 2D plane. So it needs an initial x and an initial y value, okay? So these parameters here will tell Python you need to pass in a value for x and y when you create your object. And then, the body of this init will have whatever code you'd like to initialize your object. Yes? Question? The underscores is part of how you write it? The underscores is part of how you write it, so you have to have underscore, underscore, init, underscore, underscore, yeah. It's a special function. We'll talk about the next lecture, it's called a dunder function. So the body of this function can contain a bunch of initialization codes, so anything you'd like to initialize when you create an object of this type, that's what you stick in here, okay? Usually, most of the time, 99% of the time, you want to initialize the data that makes up your object, right? So the data we decided makes up our object is how far you are in the x-axis and how far you are in the y-axis. So here, this data that I want every single one of my objects to have, a value for x and a value for y, is initialized using self-dot, right? So self-dot of variable named x and self-dot of variable named y. And the self-dot before these variables distinguishes these variables, x and y, here, from regular variables, right? If I were to just say x equals x-val and y equals y-val, x and y will just be regular variables. As soon as my init function terminates, those variables are gone. But because I've got self-dot x and self-dot y, this means that these values x and y will persist throughout the lifetime of my object when I create my actual object, and every single object I create will have their own x and y values. Question? Does it have to be different to the x-val, so can it be self-dot x-val? Yeah. Good question. Does this self-dot thing have to be different? It does not have to be. So you can have self-dot x-val equals x-val and self-dot y-val equals y-val. The reason I did it here is to showcase that they actually do not have to be the same. Yeah. They are completely different, right? So self-dot x is different than x-val. Where it just happened to be assigning this value to be whatever is passed in. OK. So a little bit of, again, just kind of explaining what this self is in the context of a blueprint. So if we think about a blueprint in real life, right, so here I have a blueprint for a room that I might want to create. I don't actually have this room created yet, right? It's just an idea. But what I know is that I'm going to use this blueprint, right, to have a room that contains two chairs, a coffee table, and a sofa, right? So in this blueprint, I don't have actual rooms that I've implemented this thing in. I don't have actual rooms where I've put two chairs, chairs, a coffee table, and a sofa in. It's just an idea. But self is kind of the way that a blueprint accesses its attributes, right? So I've got, if I say self.coffee table, that means if in the future I have an actual room, self.coffee table means I'm referring to that room's coffee table, OK? So the self is a variable that we use to refer to data or to attributes for a blueprint when I don't have actual rooms created. But once I create instances of rooms, right? So for example, here I have something called living room created, right? So I've taken my blueprint, and now somebody asked me to create a room with this blueprint, right? Now I no longer use self because I have an actual room in hand. So now I would refer to coffee table in this living room as living room.coffee table, or living room's coffee table, right? No longer self's coffee table. So self is only used in the context of my blueprint, OK? And to sort of bring the last point home, the idea that with the blueprint you can create many different instances, well here's a living room that I've applied my blueprint to, and here's another living room, completely different room that somebody asked me to use my blueprint for to create it, different chairs, different coffee tables, different colored things. These are all different instances that I use my one template, my one blueprint for the room on. So when we're defining the class, we don't have actual objects, right? Again, that's just kind of a really big idea here. We're just telling Python, I'd like to create this object, and this is what it looks like. I'm bundling this data with these behaviors together, but I don't have actual objects of this type created yet. So let's actually create some objects. The code that does this is as follows. So I've put the definition for my class, the constructor, the init method for my class up here just to remind us what it looks like. And with that code, we can now start to create actual objects that we can manipulate. So when we created something like L is equal to one square bracket, lists 1, 2, now I'm creating these actual coordinates in my code, using my blueprint. So the way we do that is we invoke the name of our class. So we use a coordinate, that's what we named it, right? That's our data type, and here I'm passing in every single parameter except for self. So I initialized a coordinate object using x val and y val, so I need to put in two parameters here for x val and y val. And self actually becomes this thing that I just created, this object. So coordinate 3 comma 4 is now an object that's being referenced by variable named c, which is why I'm not passing in self. So it's kind of weird to think about. But now I have one object in memory, it's referenced by name c, and on the next line I have another object in memory, right? Again, I've invoked the name of my class coordinate, this particular object, x value will be 0 and y value will be 0, so different than the one I just did on the previous line. But it'll have the same structure, right? So they will both have some x and y value, they'll just be different from each other, right? But they'll both have x and they'll both have y. So the one I've named down here is going to be origin. So I've got two objects of type coordinate, one is referenced by name c, and the other one is referenced by name origin. So now that I have these objects in hand, I can access any of their attributes. And Python will grab for me the attribute of that particular object. So here I've got this thing called dot notation, which we've seen before, and I'll explain it again in a couple of slides. But the dot notation tells Python to access the x data attribute of object c. So this will grab for me the x value of c, 3, right? And the next line will grab for me the x value of origin, 0. And this is all made possible because x, and we could also access y, x and y were defined in the class definition using self dot. If I didn't use self dot, those would just be variables, and as soon as I created my object, they would have gone away because that function had terminated. But in order to have these variables x and y persist throughout the lifetime of my object, I've defined them using self dot x and self dot y. So any object I've created that's of type coordinate will have some value for x and some value for y, right? So we can access that value through this notation. Does that make sense so far? Is that all right? OK. So we're going to visualize this in a slightly different way. So the exact same code as on the previous slide, we're now going to do it in this, in our little memory sort of type. So here I have c is equal to coordinate 3, 4 exactly what I had on the previous slide. So in memory, the way you think about it is, you know, as we've been thinking about other objects. So it's not much different. We have c is our name, right? And it's bound to an object of type coordinate. It just so happens we define this object, but it's the same idea. I've got a name bound to some object. And this object has its own x value and its own y value. So when you evaluate c dot x, Python goes into memory. It says, hey, what type is c? And it says, oh, it's a coordinate object. Does coordinate object have a data attribute named x? Yes it does, because it looks at the init. And then it says, well, what's its value? It's 3. And so it just returns that. And so the next three lines here are slightly different from two slides ago, but very similar. a is equal to 0 creates for me a variable named a bound to the value 0, right, just to showcase that it's exactly the same as having a variable named c bound to this object that we created. And then when I say or rig equals coordinate a comma a, Python says, all right, well, here's a name or rig for origin. What is it bound to? Well, it's also bound to an object of type coordinate. And it's an object we define. So we defined an object of type coordinate having an x and y value. So here they are. And they're originally 0. They're set to 0 when I created this object. So when I say or rig dot x, Python will look up or rig, it's going to say, hey, what type are you? Oh, you're a coordinate. Do you have an x value? You do. That's what we define in the init. Let me grab that value from you. So we're just manipulating objects in memory, right? Now that we've written the code to work with objects that we created, we're just creating a whole bunch of these objects in memory and then grabbing their x values and then we're going to get the distance between two objects in a bit. One more way to kind of show you that exact same code is to visualize it. So here is the code all, the entire code as you would have it in a file, right? So you would have all this all together. The gray box is the definition for my object type. The blue box is me using this object that I just created. I've just separated that out just for clarity. So when I have my gray box, there's nothing to display, right? It just sits in memory. And Python knows of this type of class coordinate that has two data attributes, the things that I've defined using self dot, right, x and y. When I create c is equal to coordinate 3, 4, right, visualizing what we're trying to do here. I've got this object whose name is c and it's at 3, 4 and then I've got this object named origin and it's x and y values are 0, 0. So because I've created these objects using the same blueprint, right, the coordinate blueprint that I've defined up in the gray, that means every object that I've created, c and origin has a self dot x and self dot y value, right? It just so happens that the actual values for x and y are different between these two objects, right? So when I grab origin dot x, I'm looking up origin and I'm grabbing its x value, 0, right? Just another way to visualize it. Okay. Is everyone okay with these data attributes? All right. So now let's add a method, right? So a method, remember, is just a function that works with an object of this type, okay? So the way that we tell Python we'd like to create a method is by passing in self as the first parameter. So let's create this function named distance. If you look in the actual Python code for today, I've got two more functions, one to get the x value of this current object and one to get the y value, but those are not as interesting. This distance one is interesting. So I would like to create this function that only works with an object of type coordinate. So what we've done so far is these lines up here. So now we've got df, again, it's just a function, so we've got def, name of it, distance, and then the parameters. So again, since this is a function that only works with an object of type coordinate, I need to put self as the first parameter. And this self will help us refer to the object when I call the method on it, right? So if self is the first parameter, that means that this distance method will be called on self. So when I have an actual object in hand that I'm calling distance on, the self parameter will take on the value that is that object. We're going to see this in the next slide. So self is the thing that I'm calling this function on. And then what other parameters do I want to give to this function? Well, I want to find the distance between myself, so this object that I'm going to call distance on, and another coordinate object. Now, other than maybe a doc string here that says, hey, warning, other should be an object of type coordinate, there isn't really anything that enforces the type of other when you make a function call, when you make a method call, right? So you can call this distance method with other being an integer, which is not an object of type coordinate. The code will run, but will immediately crash because of what's going on inside. So the only way this code will work is if you're calling it on an object of type coordinate for the other. So the reason for that is because, well, when we think about grabbing the distance between two objects that are coordinates in the 2D plane, we take the difference between the x values, square that, take the difference between the y values, square that, right, Pythagoras, grab those two together, take the square root. So if I'm calling this distance method on an object of type coordinate, i.e. self, how do I grab myself's x value? Well, I just say self.x, right? My x value, what is it? And then I would like to subtract that from the other coordinate object's x value. What's my other coordinate object? It's the thing that I'm passing in as a parameter, so grab their x value. So if I take self.x minus other.x, Python will grab my x value, subtract it from other's x value, square that, we do the exact same thing with y, right, grab my xy value, subtract it from other's y value, square that, and then the rest is just Pythagoras. Add those two and take the square root, I take it to the power of a half. So this function is just a regular function other than this self being the first parameter and us working with data attributes of myself and potentially other parameters, but you can see it returns a value, it has the df, a name, and things like that. So the way we're going to use this method that we just wrote is using the dot operator. Just like we accessed a data attribute of a object that I created, I can access a procedural attribute, i.e. a method of an object I just created. So we use the dot operator for this. The thing before the dot is the object I would like to call the method on, dot, the name of the method I'd like to call, and in parentheses it's just a function, so I need to give it any parameters this method expects. This should look very familiar. We introduced dot notation when we worked with lists, remember that? And I said when we worked with a list, you for now have to remember why we use this special way of writing this function, but it was the same idea. The thing before the dot was the list I wanted to apply the function to, so my list is the name of a list variable, I wanted to apply the function append and it happened to take an integer as a parameter. And sort here is also another one, but this one didn't take any parameters, but it's the same idea, the dot notation. So in terms of our class, here I've got two-corded objects, and I've got a dot notation being used here to find the distance between one object and another one. So the thing before the dot is an object I would like to use the distance method on, take one of them, c, dot distance, the name of the method I would like to call. And in parentheses, I've got another coordinate object, ORIG. So here I am using the class, and I've got actual values, actual objects that I'm manipulating, c and ORIG. So this might look a little bit weird, but when we actually call the function, remember we omitted self when we made this function call, but that's because self implicitly becomes the thing before the dot, the thing you're calling this method on. So let's visualize that in our memory. So here I've got my class definition for a coordinate, it has some data attributes and some procedural attributes. I've got these two objects being created, c is this object of type coordinate, ORIG is this object of type coordinate, they've got different x and y values, but they both have x and y, some x and y values. When I make a function call to c, to, sorry, a method call on c, Python says, all right, let me look at this thing before the dot. What is it? Type coordinate, okay, then it looks at the method you're trying to call, distance. It says, hey, does coordinate have a distance method defined? Why yes it does, we just wrote it. And then it says, all right, well let me call this distance method, it's going to set self as c, the thing before the dot, and any other parameters will be set in order to whatever is being passed in here. So ORIG will become the other parameter from my class, from my definition for that function. So this is just the conventional way of calling methods, and it's the way we've been working with lists and dictionaries and things like that. So again, we've got some object, the thing before the dot, some method to run, and when we call it this way, the thing before the dot becomes self in our class definition, in our method definition, and then all the other parameters become assigned one by one, everything except for self. Now to sort of demystify this, I would like to show you what this is actually equivalent to. So we can run the function, the method that we defined by actually passing in a value for self, if this is more, if this is clear to you. So in that case, the thing before the dot cannot be an object, because if it is an object of the type coordinate, then Python will say, well, this is the object I'm running the distance method on. So to demystify this, you can actually invoke the name of the class, the object that you're trying to create, the name, the data type, coordinate, and then Python says, oh, I see, you're calling the name of the class. It's not an object, so then what do you want from me? The thing after the dot says, I would like to run this method on you, but now it needs all the parameters in the parameter list, including self. So here I would have to give it explicitly c, 0 instead of just 0, because the thing before the dot is the name of my class, not an actual object like it is on the side. So this is actually the conventional way to do this. This is the shorthand, the Pythonic way to do this. But this hopefully demystifies the self deal and the way we actually set that first parameter to the thing before the dot. All right. Yes, question? Yeah, exactly. If there's more parameter, just pop in those extra ones with commas, just like a regular function. All right. Dot operator basically accesses either our data, c.x, or our methods, right, c.distance, whatever or whatever method name we have. So that's it for today's lecture. Next lecture we're going to build on this coordinate object by creating circles, and then we'll create some fraction objects, and we'll look at some other way, some other objects that we can bundle together. Thank you. Thank you."
+}

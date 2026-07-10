@@ -1,0 +1,957 @@
+{
+    "chunks": [
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 0.0,
+            "end": 31.36,
+            "text": "OK, so last lecture we started talking about the idea of decomposition and abstraction, and we talked a little bit about what that means and how it ties into what we've already been doing. Today we're going to do a real world example of decomposition and abstraction, and then we'll see exactly how we can achieve this in programming."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 31.36,
+            "end": 54.32,
+            "text": "So let's start by talking about an example in the real world, the smartphone. So a lot of us have it, but for a lot of us it's really just a black box, right? For me I know it is. For most of the people in the world the phone is a black box. We basically view the phone in terms of its inputs and in terms of its outputs, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 54.32,
+            "end": 76.56,
+            "text": "So the phone has some buttons, you can scroll, you can touch things, but we don't really know exactly how all of these buttons and scrolling and all these internal workings actually do their job. And in fact we don't need to know how they do their job, right? To us as the user all we really care about is the interface between us and what task"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 76.56,
+            "end": 96.48,
+            "text": "we want to achieve, OK? So what we need to know, that interface is basically the relationship between the input we give to the phone and the output we get. So when we push that button the phone turns off. When we push this other button the volume increases, OK?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 96.48,
+            "end": 117.52000000000001,
+            "text": "And so that's the idea of abstraction, right? The phone basically abstracted away all of those hardware details, all of those implementations that make it actually work for the user, right? So the user doesn't need to know how it works in order to use it. Now abstraction actually enables decomposition, what does that mean?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 117.52000000000001,
+            "end": 147.44,
+            "text": "Well once we abstract away details we can have different manufacturers working on different components of the phone to build these different components. And if different manufacturers are working to build these hundreds of distinct parts within the phone separately they need to have some way to put these parts back together. And when they're working on their pieces separately that's the idea of decomposition."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 147.44,
+            "end": 166.96,
+            "text": "How do they know that what they're working on will actually fit in with the rest of the components? Well, they use the idea of decomposition. They're basically following a specification, they're following a set of inputs that maybe come into their component and a set of outputs that maybe their component needs to give to"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 166.96,
+            "end": 185.32000000000002,
+            "text": "other components. And all these different manufacturers that are building these different parts need to know is that interface bit. They don't need to know how other manufacturers build their components. All they need to know is what functionality those other components have."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 185.32000000000002,
+            "end": 206.76,
+            "text": "And so all of these different manufacturers can build all these different components. The interfaces are going to be sort of standardized so to speak. And that's all that they care about. So once you know the interface you can come together and put all these different components together to work towards a common goal as in to make a phone work."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 206.76,
+            "end": 230.66,
+            "text": "So this is true for hardware as in the phone example but it's also true for software and that's exactly what we will be doing in this lecture on functions. We're going to achieve decomposition and abstraction in programming. So treating code as a black box and making a large program kind of splitting it up into these different self-contained parts."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 230.66,
+            "end": 250.62,
+            "text": "So in programming we want to suppress details as well. Not just in hardware like with the phone we want to suppress details in programming as well. And we do this using this idea of abstraction. So we will be writing code as we have already been doing."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 250.62,
+            "end": 270.5,
+            "text": "With the thought that the code we're writing will be written only once. We will have some functional piece of code that will do a very useful task. And then after we've written that code and debugged it and made sure it works well we'll treat that code as a black box. So from there on out as long as we know what inputs that piece of code needs and what outputs"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 270.5,
+            "end": 287.14,
+            "text": "that piece of code gives back to somebody else or to us we don't care exactly how it does it. We just care that it is there and it is available for use. So today's lecture we're going to be seeing how we can actually create these little functional pieces of code."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 287.14,
+            "end": 313.22,
+            "text": "We can then give these pieces of code to ourselves. We can definitely use these functional pieces of code that we've written or we can give them to other people so that they can use them as well. So we're going to write these functional pieces of code and we'll call them functions or procedures. And in fact we've already been using functions, believe it or not."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 313.22,
+            "end": 346.34,
+            "text": "These three are examples of functions we've already been using in Python. So max is a function so it's some useful piece of code that when we use it in this particular way it says it's taking in two inputs and it gives me back the biggest of those two inputs. The middle one, abs is the absolute value function and its input is one number, an integer and it gives back to me the absolute value of that number."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 346.34,
+            "end": 370.06,
+            "text": "And len is also a really useful one that we've been using with strings and basically its input is a string and its output is going to be how many characters are in the string. So we've already been using functions. The point of today's lecture is you're going to start to write your own functions, hopefully useful ones."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 370.06,
+            "end": 396.53999999999996,
+            "text": "So the idea of a function is that we want to abstract away exactly how that function achieves something useful, some useful task. And so the way that we're going to tell other people how to use our function is using this idea of abstraction and we capture what the function does with these things called specifications. They're also called doc strings and the doc string is kind of like a contract between somebody"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 396.53999999999996,
+            "end": 411.53999999999996,
+            "text": "who creates this useful function and somebody who wants to use the function. The person who uses the function might be you, the person who wrote it or it might be somebody else. And in the contract, the things that we're going to mention are what are the inputs to the function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 411.53999999999996,
+            "end": 432.9,
+            "text": "So in the length function, it needs a string. What is the function doing and what is the output of the function? What does the function give back to somebody who uses this function? And we haven't actually done this explicitly, but you've probably seen this as you type your code in."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 432.90000000000003,
+            "end": 455.62,
+            "text": "So here's an example of the absolute value function and it comes up with this little pop-up here whenever you type it in. So for example, abs parenthesis here or if you hover over a function in your file editor, you'll see it pop up this little text box that says the specification or the doc string. And here you see exactly sort of the signature of the function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 455.62,
+            "end": 474.90000000000003,
+            "text": "So it takes in one input, the x, the value you want to find the absolute value of, and then some text here, which is what the function does. So the specification of the doc string is literally just a multi-line comment. There's nothing special about it. As long as you kind of hit those points, the inputs, what the function does and what the"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 474.90000000000003,
+            "end": 495.74,
+            "text": "function gives back to you, you've written a good specification. Okay. Oh, so I should mention that these contracts, even though I call them contract, they're not actually enforced by Python. So it's really just up to the person who writes the code to make sure that their specification"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 495.74,
+            "end": 520.38,
+            "text": "is really detailed and your function does what you say you will, right? So if your function can take in both positive and negative integers, for example, then you better make sure that the function itself doing whatever task it needs to do can handle both positive and negative integers. So once we write these functions, we now have these little bits of code that perform some"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 520.38,
+            "end": 542.98,
+            "text": "useful task, right? Given some input, it'll perform this task and give me back some output. And now that we have these different little pieces of functionality, we can go ahead and take this large file of code, which you might, you know, write from now on and kind of see exactly which pieces of code maybe are getting repeated."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 542.98,
+            "end": 562.98,
+            "text": "That's a clue that that's something that you can kind of abstract away into a little module, a.k.a. a function. And then you can just use these functions to break up the code, a very large piece of code into smaller little self-contained modules. And then maybe the bulk of the work that the code is doing is just saying, hey, you know,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 562.98,
+            "end": 583.7,
+            "text": "this module, please give me this answer, and then this module give me this answer, and then putting those values back together again. So these reusable pieces of code are called functions or procedures. We're basically going to try to capture some sort of computation, a very useful task that you'd want to do over and over again."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 583.7,
+            "end": 605.9399999999999,
+            "text": "And we're going to see some details about how to write functions, but essentially it's just going to be code that you've already been writing, just written in a special way that makes it reusable. So we're going to have to kind of switch the way we've been thinking about code for a bit now that we're introducing functions, because right now when we've been writing"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 605.9399999999999,
+            "end": 629.14,
+            "text": "functions in a file, we basically write some code top to bottom, and then we think about that code as being executed line by line top to bottom. But now that we're creating these things called functions, little blocks of code that we can use many times in many different places in our code, we're actually going to introduce the idea of defining a function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 629.14,
+            "end": 653.46,
+            "text": "So that means we're going to write a piece of code, and all that piece of code is going to do is tell Python that this is a module or a function that exists in my program. All we're doing is defining the function, but we're not actually going to run the function when we define it. And that's kind of the difference that we're going to have to shift our thinking here."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 653.46,
+            "end": 675.46,
+            "text": "So when you define a function, you just tell Python that here is some useful piece of code that exists that does something, but it doesn't actually run until you call the function. And the cool thing about writing a function is once you wrote it once, you can make a hundred different function calls to that one piece of code that you wrote later on in your program."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 675.46,
+            "end": 694.4200000000001,
+            "text": "So you can call the function many times with different inputs to give you different outputs, but you only had to write it one time. So I would compare this to when we write code in a file. When we write code in a file, yes, we can write a whole bunch of lines, but this code isn't running as we're writing it."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 694.4200000000001,
+            "end": 716.86,
+            "text": "We have to actually push the run button to run that file. So similarly, when we're telling Python that I'm going to create this function that does something useful, it's not actually running those lines. We have to tell Python that we want to run this function. The first thing we're going to do in this lecture is just actually create a function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 716.86,
+            "end": 737.38,
+            "text": "I'm going to show you how to define a function. So tell Python that this function exists, and then we'll see how to actually run the function to give us some useful values. So the function characteristics are going to be, the function has to have a name. So just like when you create variables that store some useful value, like pi to 20 decimal"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 737.38,
+            "end": 757.7,
+            "text": "digits that you want to reuse over and over again, we're going to create a function, and that name is kind of like a handle for us to refer to this large chunk of code that does something useful for us. A function has some inputs called parameters or arguments. It could have no inputs or more or one or more."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 757.7,
+            "end": 773.3000000000001,
+            "text": "And a function should have a doc string. So this is the specification. Again, just a multi-line comment that tells the user, the person who wants to use this function, the inputs, what the function does, and what the output or the return or whatever this function will do for you."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 773.3000000000001,
+            "end": 795.2600000000001,
+            "text": "And then the body of the function is just Python code, exactly the kind of code we've already been writing, except not wrapped in a function. So if you found yourself writing a piece of code that did something useful, you can totally wrap that in a function, and we'll see how to do that today. So the body of the function is just a bunch of lines of code that do this useful task."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 795.2600000000001,
+            "end": 817.82,
+            "text": "The only difference in the body is that at some point, this function has to end. It has finished its task. It figured out a final value, this useful thing that's kind of the result of your task. And you want to give this value back to somebody who's using this function. And we do that using this return keyword, as we're going to see in the next slide."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 817.82,
+            "end": 836.02,
+            "text": "So here's an example of a really simple function. So it's just a definition. So again, these lines of code do not run. Here we're just telling Python that we're creating a function that does something. So we kick that off with the DEF define keyword."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 836.02,
+            "end": 848.7,
+            "text": "So notice it's blue. If you type it in your code, you'll notice it changes color. So DEF tells Python we're defining a function. The next is the name of the function. So this should be something descriptive, usually an action word, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 848.7,
+            "end": 864.74,
+            "text": "Because a function does something. So you want kind of like an action-y type name for your function. Then we have parentheses. And inside the parentheses, you have any of the inputs, the parameters, the arguments to the function, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 864.74,
+            "end": 881.02,
+            "text": "So what should the user give you as input to this function? And then, of course, a colon. So in that line right there, the only thing that is sort of customizable, quote, unquote, is the name of the function and the parameters. If there's zero parameters, you put nothing in there."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 881.02,
+            "end": 906.3000000000001,
+            "text": "If there's more than one, you separate them by commas. Something else should be standard, the DEF, the parentheses, and the colon at the end. Since we have a colon at the end, that means we have to indent the next bit of code. The indentation will tell Python that the rest of this is part of the function. So everything from here on out is part of the function definition."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 906.3000000000001,
+            "end": 924.34,
+            "text": "So we have our doc string, of course. You start with triple quotes, and you end it with triple quotes. And in it, you can write whatever you want. Just treat it like a comment that's on multiple lines. And you can see here, I've said that this function takes in an input i, which i restrict"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 924.34,
+            "end": 949.1,
+            "text": "to be a positive integer, and then I say what the input gives back to the user. So it will return true if i is an even number, and it will turn false otherwise. So I've hit all the points, the inputs, what the function does, and what it gives back to whoever wants this function to run. Beyond that, we have the body of the function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 949.1,
+            "end": 973.98,
+            "text": "So here, you notice, it's just lines of code that you would have written otherwise. If you were given the problem on a quiz that said, given i defined for you, write some code that prints true if the number is even and false if the number is odd, this is basically lines of code that you would type in. The only difference is this little return here."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 973.98,
+            "end": 998.62,
+            "text": "The function is some lines of code that do a task. And that task, when it finishes, has to give something back. It can't just sit there, I guess. And the thing that it gives back to whoever wants this function to run is set up by this return statement here."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 998.62,
+            "end": 1018.7,
+            "text": "So if the number is divisible by zero, we return true, and else we return false. So one of these, either true or false values, will be returned by the function. So this is kind of, you can think of it like the output of the function. OK. Questions so far, does this make sense?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1018.7,
+            "end": 1040.78,
+            "text": "Again, this is just us creating this function inside the computer, inside Python. We're not actually running these lines of code yet. OK. So if you are given sort of a larger problem, I just want to take a couple slides to talk about how you think about writing the function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1040.78,
+            "end": 1061.74,
+            "text": "This was a really easy one, so obviously it's not that hard to write. But sort of what is the thought process if you were given a larger problem, like in English or something like that, and you wanted to translate this into a piece of code that does something functionally interesting. So you think about what the problem is."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1061.74,
+            "end": 1089.98,
+            "text": "So our problem is given an integer, figure out if it's even or odd. So given this statement, you could come up with the name of this piece of code that's functionally interesting, so is underscore even is a good name. And we can also come up with the inputs for this function. So I, we are only given one number, so there's no need for this function to take in any other"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1089.98,
+            "end": 1110.74,
+            "text": "inputs. And then using that description, we can now start to fill in the doc string that says, well, our input is going to be a positive integer. We could use sort of math to figure out restrictions on the inputs, and then we can write the rest of the doc string that tells us what to return and when, what the function is doing."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1110.74,
+            "end": 1133.66,
+            "text": "And once you have that, you can just solve the problem. So for us, we solve the problem by basically saying if the remainder when we divide i by two is zero, we return true, and otherwise we return false. So that's some, that's code that you could have already written without actually this function lecture, but now we're putting it in the context of a function definition."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1133.66,
+            "end": 1157.54,
+            "text": "So we're going to be able to run this function with many different inputs to give us a bunch of different outputs, whether a bunch of these different numbers are, are even or not. So when we're writing the body of the code, the only difference is from what you've been doing is the return statement, right? Instead of printing something out to the console, we're going to return a value to somebody"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1157.54,
+            "end": 1177.46,
+            "text": "who wants to know whether the number i is even or odd. The function can also print stuff to the console, but the key thing here is you want to return a value to the user. And after you wrote code, you know, right off the bat, and you tested and made sure it works, you can improve the code a little bit."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1177.46,
+            "end": 1208.22,
+            "text": "So here we're improving it by noticing that i percent two equal equals zero here is actually already a Boolean, right? If i is even, 3 percent two equal equals zero is true, and otherwise it's already false. So this line, these four lines of code basically say if true, return true, else return false. So our improvement can just be to return whether i percent two equal equals zero right off"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1208.22,
+            "end": 1233.26,
+            "text": "the bat. So here we're going to return either true or return false based on what i is. So at this point, again, sorry, I'm stressing this enough, too much, but it's really important to understand that once we write these lines of code in the context of a function definition, these lines of code do not run."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1233.26,
+            "end": 1256.34,
+            "text": "They basically just sit in Python saying that there are these lines of code that correspond to some function object whose name is is even. That's it. So what we need to do now is to actually tell Python to run these lines of code. To do that, we make a function call."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1256.34,
+            "end": 1282.5,
+            "text": "And again, we've already been doing function calls just to functions that already exist in Python, right, just Python itself, max, absolute, len, all that stuff. But now we're making a function call to something that we wrote, right? This nice piece of code that tells us if a number, the input is even or not. So here I'm going to invoke the name of my function."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1282.5,
+            "end": 1297.98,
+            "text": "So I'm, aka, I'm going to call the name of my function. I'm basically just typing in the name of my function in the code, parentheses, and then the inputs the function expects. There's only one, right, the number I want to figure out if it's even or odd. And then that's it, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1297.98,
+            "end": 1319.18,
+            "text": "So I've got the name of my function and then all the input, the parameters that this function expects. At this point, Python goes into the function body, it runs the function, and it returns back a value. So whatever the value is associated with the return is, that value will immediately be"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1319.18,
+            "end": 1339.06,
+            "text": "given back to whoever called it. What does that mean? Well, that return value will completely replace this function call, okay? So let's think back to expressions. Do you remember when we were learning about Python expressions?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1339.06,
+            "end": 1357.46,
+            "text": "And I said you have something like object operator object, like 3 plus 2. That was an expression, and Python went in, evaluated that expression, and replaced that entire expression by the value, 5. This is exactly the same thing. In fact, functions are kind of like Python expressions."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1357.46,
+            "end": 1377.5,
+            "text": "They do something useful, right? It's just that it's not math or something like that that gets evaluated, it's a bunch of lines of code that get evaluated. But in the end, that function returns back only one value, okay? And that value replaces the entire function call."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1377.5,
+            "end": 1398.22,
+            "text": "So this entire function call is going to be basically replaced by false, right? Because it's an odd number. And the next one is going to be replaced by true, right? The return from the function. So the way that the code looks, just this definition is even, and then running a function"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1398.22,
+            "end": 1414.02,
+            "text": "call is this. This is all that we would have in our file, right? So here we have our function definition. And then at the same indentation level, we have a function call, right? Because the call is not part of the function, the call is just making use of the function"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1414.02,
+            "end": 1430.34,
+            "text": "that we wrote, okay? So what exactly happens? We'll do a little bit of step by step now going a little bit into more detail as to what exactly happens when we make the function call. So when we make the function call, so again, function definition, this just tells Python"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1430.34,
+            "end": 1453.62,
+            "text": "we have this function that does something in our program. And then here we have the function call. As soon as Python sees the function call, that's when it starts doing something useful. Up here it just sort of stores this in memory. So as soon as it sees the function call is even three, it looks at the input parameter"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1453.62,
+            "end": 1472.3799999999999,
+            "text": "to the function call. And here you see we have a value, right? It's an actual tangible object. It's not some random variable, it's not something abstract, it's a number three. The I up here from our function definition is called a formal parameter."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1472.3799999999999,
+            "end": 1484.86,
+            "text": "It's abstract, right? We wrote the body of the function assuming the user will eventually give us a value for I. But in the actual body of the function, I is just a variable we're using, kind of like in the quizzes, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1484.86,
+            "end": 1499.74,
+            "text": "For now I've been saying, you know, assume you're given some number and that's defined for you. Write the code assuming you know this number. It's the exact same thing. We write the code of the body of the function assuming we know a value for I."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1499.74,
+            "end": 1514.5,
+            "text": "So when Python sees this function call with three, it goes into the body of the function and says, all right, what are my parameters? There's only one. It's I. And it's going to map them one by one to all the actual parameters given in the function call."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1514.5,
+            "end": 1530.42,
+            "text": "So it basically just maps I to three. And then it executes the body of the function. So it replaces everywhere you see I. So it might have a longer bit of code here, but here we just have one line. It replaces I with three."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1530.42,
+            "end": 1549.38,
+            "text": "So we have 3%2 equal equal to zero. Now we have a tangible value, right, false. So this expression is replaced with false. And so this line of code here will return false. And as soon as Python sees that return value, it immediately exits the function and gives"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1549.38,
+            "end": 1565.6200000000001,
+            "text": "back the value that you're returning to whoever called it. So this entire function call here will be replaced by false. OK. That was very step by step. But does it make sense?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1565.6200000000001,
+            "end": 1582.6200000000001,
+            "text": "OK. So this is a program that doesn't do anything, right? If somebody were to write this program and run it, it doesn't actually show anything to the user. That's because in our program, it's like we had just written a line of code that said"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1582.6200000000001,
+            "end": 1600.3400000000001,
+            "text": "false. Does that get printed to the output? No, right? What we need to do is do something useful now that we have the result of a function call. So one useful thing we can do is to actually print the result of the function call."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1600.3400000000001,
+            "end": 1623.3400000000001,
+            "text": "So here we have print, and then I have my function call I had up here. I'm just sticking it inside the print statement. And Python will, as before, evaluate is even three. This is replaced with false, and this line essentially becomes print false. And so the way this looks in our actual code is this, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1623.3400000000001,
+            "end": 1644.18,
+            "text": "So here I have this is even function, the inefficient way of writing it. I've got two function calls here, but if I run the code, it doesn't print anything, right? I need to do something useful with them, and one useful thing we can do is to print the result of these function calls."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1644.18,
+            "end": 1672.2600000000002,
+            "text": "Now that I've wrapped these calls inside a print statement, I see the output in my console. So we're kind of separating ourselves when we're writing code now. One, we're defining a function, some code that does something useful. And then two, we're using this function that we wrote to make function calls. And the beauty about writing the function is we only write it once and debug it once,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1672.26,
+            "end": 1696.04,
+            "text": "but now we can run it as many times as we'd like. Without functions, we'd find ourselves copying and pasting, right? That piece of code that does something useful in many places in our code, which could lead to errors, the code is hard to modify, it's hard to debug, you might, all that stuff. Okay, I'll give you a chance to try this out for about a minute."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1696.04,
+            "end": 1714.74,
+            "text": "So let's have you write this code. So here I'm giving you the function specification. Most of the time, I'll give it to you even in quizzes. I want you to write for me a function called div underscore by. This one takes in two parameters, both integers greater than zero and d, and this function"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1714.74,
+            "end": 1742.74,
+            "text": "will return true if d divides n evenly and false if it does not divide n evenly. So if you test it out with those two values, the first one should give us false and the second one should give us true. As usual, this is down in the Python file, so we have around line 28 is where you should start typing in your code."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1742.74,
+            "end": 1785.02,
+            "text": "Does anyone have a start for me? It should be very similar to what we just, yeah. Okay, so let's run the function. Let's just do it with one. So the first one I'm expecting to print false."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1785.02,
+            "end": 1803.1000000000001,
+            "text": "It does print false, but it also prints this weird none right after it. This is something we're going to talk about next lecture. But does anyone know an improvement we can make to the code? Yes? Yes, actually, you're right."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1803.1000000000001,
+            "end": 1831.42,
+            "text": "So instead of printing true, remember it's a function, we want it to give us back the value true. So instead of printing, we'll do a return true, and we don't need the parentheses in this case, and then we'll do a return false. So now we don't have that weird none right after it."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1831.42,
+            "end": 1849.7800000000002,
+            "text": "That's something I was going to talk about next lecture. But basically, when we had prints here, what did the function return? Did it have a return statement inside it? No, right? And so if there's no return statement inside the function, Python automatically returns"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1849.7800000000002,
+            "end": 1863.38,
+            "text": "this special none. Okay, this is something we'll talk about next lecture more in detail. But yeah, the return true, return false is correct here. Yes? Do you need the if-else, or do you just need to return the if-else?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1863.38,
+            "end": 1886.6200000000001,
+            "text": "Yeah. Yeah, you don't need the if-else just like before, so we can just do return this directly, right? And we can run it with the other one. So the second one should actually return true, but it returned false."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1886.6200000000001,
+            "end": 1902.8200000000002,
+            "text": "Does anyone know the problem? Yeah? Yes, exactly. So actually, we want the remainder when we divide n by d, right? So this is just flipped around, n percent d equals zero."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1902.8200000000002,
+            "end": 1918.98,
+            "text": "Yeah. So it's a good thing we had two test cases to test for that, and you don't have to test them with such big numbers. You could obviously test them with some smaller numbers as well. So let's zoom out a little bit and talk about how exactly functions are stored in memory,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1918.98,
+            "end": 1939.74,
+            "text": "right? Because I mentioned this thing about defining a function, and that just doesn't do anything really that we can see, but what exactly happens in memory? Well, let's think about what happens when we create variables. So when we create a is equal to three, inside memory, or the program scope, again, we'll"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1939.74,
+            "end": 1958.26,
+            "text": "talk about this next lecture, but you can think of this as the memory. What happens is a becomes a variable that's bound to value three, b equals four is a variable b bound to value four, and c is going to be bound to value seven, clear, right? We already know this. What happens when we create a function?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1958.26,
+            "end": 1984.98,
+            "text": "So again, this is something I might write in a code file. The top bit is my function definition. So as soon as Python sees this DEF keyword, everything that's indented, that's part of the function definition in the body, is essentially just some code, right? To Python, it does not care at this point what that code is or what that code does."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 1984.98,
+            "end": 2008.94,
+            "text": "All it knows is that there is a function object, and functions are actually objects in Python. There is a function object whose name is even. That is all it knows when we get to this point here in the code, right after we define the function, right, before a equals. So we think about the function as kind of like a variable, quote, unquote, it's not"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2008.94,
+            "end": 2030.18,
+            "text": "actually a variable, but it's like a variable whose name is even, and it points to it's bound to some code in memory. And we don't care what that code is right now, because we might never use it. We only care what the code is when we make function calls. So down here is where the action actually happens when we make our function calls."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2030.18,
+            "end": 2048.86,
+            "text": "I have A is going to be, as usual, a variable, right? That's going to be bound to some value. So the function definition is kind of just like a black box, right? Once you wrote it once and you know it works, you don't care anymore how it actually achieves its task."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2048.86,
+            "end": 2072.58,
+            "text": "What we care is that it takes in a number and tells you whether that number is even or odd via true, false. So down here where we make our function calls, we're just using our black box, okay? And we're using the black box by making function calls. So A is going to be a variable that's bound to the value returned by is even."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2072.58,
+            "end": 2091.14,
+            "text": "So it's going to be based on the function call, false. And then here I have another function call. I'm using this useful piece of code that I wrote up here. And B is going to be a variable that's bound to true. And C is going to be a variable that's bound to true, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2091.14,
+            "end": 2114.0600000000004,
+            "text": "Does that make sense? It's kind of separating the code we write, which doesn't run until we actually make function calls. That's the thing about functions, and that's how it helps us write more robust code. So now here we can have a more complex piece of code where we're using the function that"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2114.0600000000004,
+            "end": 2131.2200000000003,
+            "text": "we wrote, okay? Not just making a function call and printing the result, but we're actually using it inside a more interesting program. So here I've got a program that will print for me the numbers between 1 and 10, and it will print whether that number is odd or even."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2131.2200000000003,
+            "end": 2151.38,
+            "text": "So if you were just to read this code, it's pretty easy to read, right? We have a loop that goes through the numbers 1 to 10, not including 10. And then I have this if is even. Well, that's cool. Here I'm using the function that I wrote kind of just in the middle of another piece of"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2151.38,
+            "end": 2164.7,
+            "text": "code, right? Which is fine, because as I said, you know, a few slides ago, function calls are basically just expressions, right? They get run. They get evaluated."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2164.9399999999996,
+            "end": 2187.2599999999998,
+            "text": "One value back out of them, and then that value replaces the function call. So that's fine. Let's use the is even result, the return from the is even method inside a conditional. If I, if calling is even with I returns true, that means if the number is even, we print that value comma even."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2187.2599999999998,
+            "end": 2204.5,
+            "text": "Else, we print that value comma odd. So here I'm not defining a function. Notice it's not wrapped in the DF or anything like that. I'm just using a function that I already wrote. So inside here, just comment that out."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2204.5,
+            "end": 2215.1,
+            "text": "This is the code we just had on the slide. So again, notice it's not with it. It's not wrapped within a function. It's just a loop that tells me the numbers one at a time, whether they're odd or even, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2215.1,
+            "end": 2231.7,
+            "text": "So prints one comma odd, yeah. What are you doing to select the, like, everything in common and make it, like, something in common? Oh, when I select everything, I just use spider's, like, ability to, so I do control one or command one, probably, on the Mac, and it just comments and uncomments things"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2231.7,
+            "end": 2244.62,
+            "text": "in batch. Yeah, very useful, yeah. And so this code is now very easy to modify, right? I can just choose a hundred, and then I can run it again, and it gives me the numbers one through a hundred odd or even."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2244.62,
+            "end": 2266.74,
+            "text": "And you can imagine using your isEven function in a more complex setting, right? And isEven is a really simple function to write, but again, you can imagine writing a more complex function, and then that complex function isn't a whole chunk of code that just gets stuck into this program, this loop. It's going to be a function that you call that you can just easily read the specification"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2266.7400000000002,
+            "end": 2293.78,
+            "text": "for, and you don't need to completely understand how it works in order to use it. Okay. So we're going to go through one other example to write a little function, and this will also showcase kind of the best practices for writing a function and writing code, especially maybe in a quiz situation or something like that, how to write incremental code, how to"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2293.78,
+            "end": 2319.66,
+            "text": "test it a little bit at a time, and so on. So the last example I want to go through is I want to write some code that adds all the odd integers between and including A and B. Might be something you're asked on a quiz. What the first thing you do when you're faced with such a task is to think about a nice name for the function, so some odd or some odds is a reasonable name."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2319.66,
+            "end": 2339.3,
+            "text": "The inputs to the function, well, I've got two end points. I want to sum odd numbers in between, so the inputs might well be my two end points. And then what is the thing your function achieves, right? Well, in the end, it's going to give me some sum. So let's call that sum a variable sum of underscore odds, and we'll return it at the end of our"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2339.3,
+            "end": 2358.5400000000004,
+            "text": "function. And in between, we're going to have some code. So first thing to do is to not write code right away when you're faced with a task, again, on a quiz or something like that. It's best to take a piece of paper, write a little bit, one example, and try to think"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2358.5400000000004,
+            "end": 2375.1000000000004,
+            "text": "about how you'd solve it, not like a human would, because for us, we would immediately know the sum, right? It's very easy for humans to identify solutions to these problems, but try to think about how you would write, what kind of a recipe would work for this? Would you loop?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2375.1000000000004,
+            "end": 2391.6600000000003,
+            "text": "Would you have a conditional? Would you use a for loop or a while loop? A bunch of other concepts that we'll learn about in the following lectures. But the key thing is to just not write code right away. So if we start with a really simple example on paper, we can say, let's choose end points"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2391.6600000000003,
+            "end": 2410.1800000000003,
+            "text": "a is 2 and b is 4. On paper, I would probably write out 2, 3, 4 in a row, right? So I know the numbers I need to look at. I would say 2 is my a, 4 is my b. I need to look at every one of these numbers one at a time, reasonable."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2410.1800000000003,
+            "end": 2424.58,
+            "text": "I can do another example, sorry, and I know what the answer should be. So I figure out what the answer should be so that when I write my code, I actually know what I'm looking for. I look at another example. Let's say a little bit more complicated, a bigger range, a is 2, b is 7."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2424.58,
+            "end": 2443.0200000000004,
+            "text": "I try to use the same strategy I used, same recipe I used to solve that simpler example in this harder one. So again, I'm going to write out all the numbers between 2 and 7, inclusive. This is my first, this is my last. And my strategy was to go through one at a time, and if it's odd, I take it to my running"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2443.0200000000004,
+            "end": 2463.8599999999997,
+            "text": "sum and add it to my running sum, and if it's even, I ignore it. And again, I know the answer for this should be 15. So with these two examples in mind, I can start writing code. But instead of writing code for the big problem that might include some nuances or some edge cases, I can actually try to solve a similar problem."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2463.8599999999997,
+            "end": 2487.1,
+            "text": "So instead of summing all the odd numbers between a and b, let's just sum all the numbers between a and b and see if we can get code right working for that. Once we do, figuring out the odd ones should be a small tweak to our code. So if we start with figuring out the sum of all the odd numbers between and including a and b, that sounds like a loop because I knew when I wrote my example on paper, I'd"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2487.1,
+            "end": 2503.36,
+            "text": "have to touch each number between and including a and b. So I know I need to loop through every one of these values. While or a for loop, your choice. In the slides, I'll do both, just to see what it looks like. So with a for loop, it's easy."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2503.36,
+            "end": 2519.86,
+            "text": "It's just for i and range a, b. But with a while loop, remember we have to initialize our loop variable if we have one, i equals a. Our loop condition is while i is less than or equal to b. So we're going to loop through while I'm looking at all these values up to and including b."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2519.86,
+            "end": 2533.5,
+            "text": "And I need to remember to increment my loop variable within the loop by one each time in this case. OK. And then what do I do within my loop? Well, remember we're solving a similar problem."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2533.5,
+            "end": 2548.5,
+            "text": "I'm going to keep a running sum. So as soon as I see a new i, I'm going to add it to my sum. I realize here, probably my ID would show me that there's an error. I didn't initialize some of odds. So I remember to initialize some of odds right before the loop."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2548.5,
+            "end": 2571.7400000000002,
+            "text": "And then this is a good place to test the code for a little bit. So we'll test it with a really simple example, 2 comma 4. OK, if we test it with 2 comma 4, the for loop gives me a 5, but the while loop gives me a 9. So you guys might have noticed what the problem is. My for loop goes through up to but not including the end variable, right, the b."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2571.7400000000002,
+            "end": 2590.0600000000004,
+            "text": "So we can add a print statement in case you didn't figure that out. And the print statement would actually tell us, right? It tells us what we're incrementing. First it's 2, then it's 3, but I never hit the 4. So the fix is to just change my end range to bb plus 1."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2590.0600000000004,
+            "end": 2605.98,
+            "text": "And then we run it again, and we see the answers match. And this solves the bigger problem. So now all we need to do is adding the nuance, the piece where we just grab the odd numbers. And here we say, well, if I'm just grabbing the odd numbers,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2605.98,
+            "end": 2626.18,
+            "text": "I only want to add i to my sum of odds when I see an odd number. So here I could use my is even function that I already wrote. I would say if not is even, or I can just do it all over again. If I percent 2 equal 1, then we do this, right? And now we can run it again."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2626.18,
+            "end": 2639.54,
+            "text": "And hopefully this now matches the example I had on paper. And it does. So the idea here is to try to solve a simpler problem first. And then as you see more nuances to the problem, add in the functionality just a little bit at a time."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2639.54,
+            "end": 2652.98,
+            "text": "So you don't actually get bogged down by a whole bunch of issues that might come up when you wrote a whole bunch of code. The last step is just to test it on the other example, just to make sure that it still works, right?"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2652.98,
+            "end": 2669.02,
+            "text": "And so if we print some of odds between 2 and 7, again, this matches what I had written down on paper. If you don't want to use print statements, the Python tutor is also a great debugging tool. So testing code often, very useful."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2669.02,
+            "end": 2686.54,
+            "text": "I think I've stressed this in previous lectures as well. Using prints or the Python tutor to debug is also very useful. I don't actually intend to go through this, you try it. But this, along with a bunch of other examples, things to try at home are in the Python file."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2686.54,
+            "end": 2700.94,
+            "text": "So just functions you can write is palindrome, this keep consonants, this first to last if. Read the function specification and try to write code that matches the specification. And as usual, the answers are in the Python file,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2700.94,
+            "end": 2715.06,
+            "text": "but please, please try to do them on your own first before looking at the answers. OK, a quick summary. Functions are very useful. It allows us to abstract certain useful tasks,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2715.06,
+            "end": 2728.82,
+            "text": "basically abstract away functionality that we might reuse many times in our program. Functions take in inputs, they have something to return. We're going to see next time what happens when we don't return anything."
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2728.82,
+            "end": 2742.7000000000003,
+            "text": "Creating a function is different than running the function. So you create the function once, but you can run it many, many times. And that's what makes functions useful. It makes code easy to write, read, debug, modify,"
+        },
+        {
+            "number": "7",
+            "title": "Decomposition_Abstraction_And_Search",
+            "start": 2742.7000000000003,
+            "end": 2744.2200000000003,
+            "text": "leads to a very nice, robust code."
+        }
+    ],
+    "text": "OK, so last lecture we started talking about the idea of decomposition and abstraction, and we talked a little bit about what that means and how it ties into what we've already been doing. Today we're going to do a real world example of decomposition and abstraction, and then we'll see exactly how we can achieve this in programming. So let's start by talking about an example in the real world, the smartphone. So a lot of us have it, but for a lot of us it's really just a black box, right? For me I know it is. For most of the people in the world the phone is a black box. We basically view the phone in terms of its inputs and in terms of its outputs, right? So the phone has some buttons, you can scroll, you can touch things, but we don't really know exactly how all of these buttons and scrolling and all these internal workings actually do their job. And in fact we don't need to know how they do their job, right? To us as the user all we really care about is the interface between us and what task we want to achieve, OK? So what we need to know, that interface is basically the relationship between the input we give to the phone and the output we get. So when we push that button the phone turns off. When we push this other button the volume increases, OK? And so that's the idea of abstraction, right? The phone basically abstracted away all of those hardware details, all of those implementations that make it actually work for the user, right? So the user doesn't need to know how it works in order to use it. Now abstraction actually enables decomposition, what does that mean? Well once we abstract away details we can have different manufacturers working on different components of the phone to build these different components. And if different manufacturers are working to build these hundreds of distinct parts within the phone separately they need to have some way to put these parts back together. And when they're working on their pieces separately that's the idea of decomposition. How do they know that what they're working on will actually fit in with the rest of the components? Well, they use the idea of decomposition. They're basically following a specification, they're following a set of inputs that maybe come into their component and a set of outputs that maybe their component needs to give to other components. And all these different manufacturers that are building these different parts need to know is that interface bit. They don't need to know how other manufacturers build their components. All they need to know is what functionality those other components have. And so all of these different manufacturers can build all these different components. The interfaces are going to be sort of standardized so to speak. And that's all that they care about. So once you know the interface you can come together and put all these different components together to work towards a common goal as in to make a phone work. So this is true for hardware as in the phone example but it's also true for software and that's exactly what we will be doing in this lecture on functions. We're going to achieve decomposition and abstraction in programming. So treating code as a black box and making a large program kind of splitting it up into these different self-contained parts. So in programming we want to suppress details as well. Not just in hardware like with the phone we want to suppress details in programming as well. And we do this using this idea of abstraction. So we will be writing code as we have already been doing. With the thought that the code we're writing will be written only once. We will have some functional piece of code that will do a very useful task. And then after we've written that code and debugged it and made sure it works well we'll treat that code as a black box. So from there on out as long as we know what inputs that piece of code needs and what outputs that piece of code gives back to somebody else or to us we don't care exactly how it does it. We just care that it is there and it is available for use. So today's lecture we're going to be seeing how we can actually create these little functional pieces of code. We can then give these pieces of code to ourselves. We can definitely use these functional pieces of code that we've written or we can give them to other people so that they can use them as well. So we're going to write these functional pieces of code and we'll call them functions or procedures. And in fact we've already been using functions, believe it or not. These three are examples of functions we've already been using in Python. So max is a function so it's some useful piece of code that when we use it in this particular way it says it's taking in two inputs and it gives me back the biggest of those two inputs. The middle one, abs is the absolute value function and its input is one number, an integer and it gives back to me the absolute value of that number. And len is also a really useful one that we've been using with strings and basically its input is a string and its output is going to be how many characters are in the string. So we've already been using functions. The point of today's lecture is you're going to start to write your own functions, hopefully useful ones. So the idea of a function is that we want to abstract away exactly how that function achieves something useful, some useful task. And so the way that we're going to tell other people how to use our function is using this idea of abstraction and we capture what the function does with these things called specifications. They're also called doc strings and the doc string is kind of like a contract between somebody who creates this useful function and somebody who wants to use the function. The person who uses the function might be you, the person who wrote it or it might be somebody else. And in the contract, the things that we're going to mention are what are the inputs to the function. So in the length function, it needs a string. What is the function doing and what is the output of the function? What does the function give back to somebody who uses this function? And we haven't actually done this explicitly, but you've probably seen this as you type your code in. So here's an example of the absolute value function and it comes up with this little pop-up here whenever you type it in. So for example, abs parenthesis here or if you hover over a function in your file editor, you'll see it pop up this little text box that says the specification or the doc string. And here you see exactly sort of the signature of the function. So it takes in one input, the x, the value you want to find the absolute value of, and then some text here, which is what the function does. So the specification of the doc string is literally just a multi-line comment. There's nothing special about it. As long as you kind of hit those points, the inputs, what the function does and what the function gives back to you, you've written a good specification. Okay. Oh, so I should mention that these contracts, even though I call them contract, they're not actually enforced by Python. So it's really just up to the person who writes the code to make sure that their specification is really detailed and your function does what you say you will, right? So if your function can take in both positive and negative integers, for example, then you better make sure that the function itself doing whatever task it needs to do can handle both positive and negative integers. So once we write these functions, we now have these little bits of code that perform some useful task, right? Given some input, it'll perform this task and give me back some output. And now that we have these different little pieces of functionality, we can go ahead and take this large file of code, which you might, you know, write from now on and kind of see exactly which pieces of code maybe are getting repeated. That's a clue that that's something that you can kind of abstract away into a little module, a.k.a. a function. And then you can just use these functions to break up the code, a very large piece of code into smaller little self-contained modules. And then maybe the bulk of the work that the code is doing is just saying, hey, you know, this module, please give me this answer, and then this module give me this answer, and then putting those values back together again. So these reusable pieces of code are called functions or procedures. We're basically going to try to capture some sort of computation, a very useful task that you'd want to do over and over again. And we're going to see some details about how to write functions, but essentially it's just going to be code that you've already been writing, just written in a special way that makes it reusable. So we're going to have to kind of switch the way we've been thinking about code for a bit now that we're introducing functions, because right now when we've been writing functions in a file, we basically write some code top to bottom, and then we think about that code as being executed line by line top to bottom. But now that we're creating these things called functions, little blocks of code that we can use many times in many different places in our code, we're actually going to introduce the idea of defining a function. So that means we're going to write a piece of code, and all that piece of code is going to do is tell Python that this is a module or a function that exists in my program. All we're doing is defining the function, but we're not actually going to run the function when we define it. And that's kind of the difference that we're going to have to shift our thinking here. So when you define a function, you just tell Python that here is some useful piece of code that exists that does something, but it doesn't actually run until you call the function. And the cool thing about writing a function is once you wrote it once, you can make a hundred different function calls to that one piece of code that you wrote later on in your program. So you can call the function many times with different inputs to give you different outputs, but you only had to write it one time. So I would compare this to when we write code in a file. When we write code in a file, yes, we can write a whole bunch of lines, but this code isn't running as we're writing it. We have to actually push the run button to run that file. So similarly, when we're telling Python that I'm going to create this function that does something useful, it's not actually running those lines. We have to tell Python that we want to run this function. The first thing we're going to do in this lecture is just actually create a function. I'm going to show you how to define a function. So tell Python that this function exists, and then we'll see how to actually run the function to give us some useful values. So the function characteristics are going to be, the function has to have a name. So just like when you create variables that store some useful value, like pi to 20 decimal digits that you want to reuse over and over again, we're going to create a function, and that name is kind of like a handle for us to refer to this large chunk of code that does something useful for us. A function has some inputs called parameters or arguments. It could have no inputs or more or one or more. And a function should have a doc string. So this is the specification. Again, just a multi-line comment that tells the user, the person who wants to use this function, the inputs, what the function does, and what the output or the return or whatever this function will do for you. And then the body of the function is just Python code, exactly the kind of code we've already been writing, except not wrapped in a function. So if you found yourself writing a piece of code that did something useful, you can totally wrap that in a function, and we'll see how to do that today. So the body of the function is just a bunch of lines of code that do this useful task. The only difference in the body is that at some point, this function has to end. It has finished its task. It figured out a final value, this useful thing that's kind of the result of your task. And you want to give this value back to somebody who's using this function. And we do that using this return keyword, as we're going to see in the next slide. So here's an example of a really simple function. So it's just a definition. So again, these lines of code do not run. Here we're just telling Python that we're creating a function that does something. So we kick that off with the DEF define keyword. So notice it's blue. If you type it in your code, you'll notice it changes color. So DEF tells Python we're defining a function. The next is the name of the function. So this should be something descriptive, usually an action word, right? Because a function does something. So you want kind of like an action-y type name for your function. Then we have parentheses. And inside the parentheses, you have any of the inputs, the parameters, the arguments to the function, right? So what should the user give you as input to this function? And then, of course, a colon. So in that line right there, the only thing that is sort of customizable, quote, unquote, is the name of the function and the parameters. If there's zero parameters, you put nothing in there. If there's more than one, you separate them by commas. Something else should be standard, the DEF, the parentheses, and the colon at the end. Since we have a colon at the end, that means we have to indent the next bit of code. The indentation will tell Python that the rest of this is part of the function. So everything from here on out is part of the function definition. So we have our doc string, of course. You start with triple quotes, and you end it with triple quotes. And in it, you can write whatever you want. Just treat it like a comment that's on multiple lines. And you can see here, I've said that this function takes in an input i, which i restrict to be a positive integer, and then I say what the input gives back to the user. So it will return true if i is an even number, and it will turn false otherwise. So I've hit all the points, the inputs, what the function does, and what it gives back to whoever wants this function to run. Beyond that, we have the body of the function. So here, you notice, it's just lines of code that you would have written otherwise. If you were given the problem on a quiz that said, given i defined for you, write some code that prints true if the number is even and false if the number is odd, this is basically lines of code that you would type in. The only difference is this little return here. The function is some lines of code that do a task. And that task, when it finishes, has to give something back. It can't just sit there, I guess. And the thing that it gives back to whoever wants this function to run is set up by this return statement here. So if the number is divisible by zero, we return true, and else we return false. So one of these, either true or false values, will be returned by the function. So this is kind of, you can think of it like the output of the function. OK. Questions so far, does this make sense? Again, this is just us creating this function inside the computer, inside Python. We're not actually running these lines of code yet. OK. So if you are given sort of a larger problem, I just want to take a couple slides to talk about how you think about writing the function. This was a really easy one, so obviously it's not that hard to write. But sort of what is the thought process if you were given a larger problem, like in English or something like that, and you wanted to translate this into a piece of code that does something functionally interesting. So you think about what the problem is. So our problem is given an integer, figure out if it's even or odd. So given this statement, you could come up with the name of this piece of code that's functionally interesting, so is underscore even is a good name. And we can also come up with the inputs for this function. So I, we are only given one number, so there's no need for this function to take in any other inputs. And then using that description, we can now start to fill in the doc string that says, well, our input is going to be a positive integer. We could use sort of math to figure out restrictions on the inputs, and then we can write the rest of the doc string that tells us what to return and when, what the function is doing. And once you have that, you can just solve the problem. So for us, we solve the problem by basically saying if the remainder when we divide i by two is zero, we return true, and otherwise we return false. So that's some, that's code that you could have already written without actually this function lecture, but now we're putting it in the context of a function definition. So we're going to be able to run this function with many different inputs to give us a bunch of different outputs, whether a bunch of these different numbers are, are even or not. So when we're writing the body of the code, the only difference is from what you've been doing is the return statement, right? Instead of printing something out to the console, we're going to return a value to somebody who wants to know whether the number i is even or odd. The function can also print stuff to the console, but the key thing here is you want to return a value to the user. And after you wrote code, you know, right off the bat, and you tested and made sure it works, you can improve the code a little bit. So here we're improving it by noticing that i percent two equal equals zero here is actually already a Boolean, right? If i is even, 3 percent two equal equals zero is true, and otherwise it's already false. So this line, these four lines of code basically say if true, return true, else return false. So our improvement can just be to return whether i percent two equal equals zero right off the bat. So here we're going to return either true or return false based on what i is. So at this point, again, sorry, I'm stressing this enough, too much, but it's really important to understand that once we write these lines of code in the context of a function definition, these lines of code do not run. They basically just sit in Python saying that there are these lines of code that correspond to some function object whose name is is even. That's it. So what we need to do now is to actually tell Python to run these lines of code. To do that, we make a function call. And again, we've already been doing function calls just to functions that already exist in Python, right, just Python itself, max, absolute, len, all that stuff. But now we're making a function call to something that we wrote, right? This nice piece of code that tells us if a number, the input is even or not. So here I'm going to invoke the name of my function. So I'm, aka, I'm going to call the name of my function. I'm basically just typing in the name of my function in the code, parentheses, and then the inputs the function expects. There's only one, right, the number I want to figure out if it's even or odd. And then that's it, right? So I've got the name of my function and then all the input, the parameters that this function expects. At this point, Python goes into the function body, it runs the function, and it returns back a value. So whatever the value is associated with the return is, that value will immediately be given back to whoever called it. What does that mean? Well, that return value will completely replace this function call, okay? So let's think back to expressions. Do you remember when we were learning about Python expressions? And I said you have something like object operator object, like 3 plus 2. That was an expression, and Python went in, evaluated that expression, and replaced that entire expression by the value, 5. This is exactly the same thing. In fact, functions are kind of like Python expressions. They do something useful, right? It's just that it's not math or something like that that gets evaluated, it's a bunch of lines of code that get evaluated. But in the end, that function returns back only one value, okay? And that value replaces the entire function call. So this entire function call is going to be basically replaced by false, right? Because it's an odd number. And the next one is going to be replaced by true, right? The return from the function. So the way that the code looks, just this definition is even, and then running a function call is this. This is all that we would have in our file, right? So here we have our function definition. And then at the same indentation level, we have a function call, right? Because the call is not part of the function, the call is just making use of the function that we wrote, okay? So what exactly happens? We'll do a little bit of step by step now going a little bit into more detail as to what exactly happens when we make the function call. So when we make the function call, so again, function definition, this just tells Python we have this function that does something in our program. And then here we have the function call. As soon as Python sees the function call, that's when it starts doing something useful. Up here it just sort of stores this in memory. So as soon as it sees the function call is even three, it looks at the input parameter to the function call. And here you see we have a value, right? It's an actual tangible object. It's not some random variable, it's not something abstract, it's a number three. The I up here from our function definition is called a formal parameter. It's abstract, right? We wrote the body of the function assuming the user will eventually give us a value for I. But in the actual body of the function, I is just a variable we're using, kind of like in the quizzes, right? For now I've been saying, you know, assume you're given some number and that's defined for you. Write the code assuming you know this number. It's the exact same thing. We write the code of the body of the function assuming we know a value for I. So when Python sees this function call with three, it goes into the body of the function and says, all right, what are my parameters? There's only one. It's I. And it's going to map them one by one to all the actual parameters given in the function call. So it basically just maps I to three. And then it executes the body of the function. So it replaces everywhere you see I. So it might have a longer bit of code here, but here we just have one line. It replaces I with three. So we have 3%2 equal equal to zero. Now we have a tangible value, right, false. So this expression is replaced with false. And so this line of code here will return false. And as soon as Python sees that return value, it immediately exits the function and gives back the value that you're returning to whoever called it. So this entire function call here will be replaced by false. OK. That was very step by step. But does it make sense? OK. So this is a program that doesn't do anything, right? If somebody were to write this program and run it, it doesn't actually show anything to the user. That's because in our program, it's like we had just written a line of code that said false. Does that get printed to the output? No, right? What we need to do is do something useful now that we have the result of a function call. So one useful thing we can do is to actually print the result of the function call. So here we have print, and then I have my function call I had up here. I'm just sticking it inside the print statement. And Python will, as before, evaluate is even three. This is replaced with false, and this line essentially becomes print false. And so the way this looks in our actual code is this, right? So here I have this is even function, the inefficient way of writing it. I've got two function calls here, but if I run the code, it doesn't print anything, right? I need to do something useful with them, and one useful thing we can do is to print the result of these function calls. Now that I've wrapped these calls inside a print statement, I see the output in my console. So we're kind of separating ourselves when we're writing code now. One, we're defining a function, some code that does something useful. And then two, we're using this function that we wrote to make function calls. And the beauty about writing the function is we only write it once and debug it once, but now we can run it as many times as we'd like. Without functions, we'd find ourselves copying and pasting, right? That piece of code that does something useful in many places in our code, which could lead to errors, the code is hard to modify, it's hard to debug, you might, all that stuff. Okay, I'll give you a chance to try this out for about a minute. So let's have you write this code. So here I'm giving you the function specification. Most of the time, I'll give it to you even in quizzes. I want you to write for me a function called div underscore by. This one takes in two parameters, both integers greater than zero and d, and this function will return true if d divides n evenly and false if it does not divide n evenly. So if you test it out with those two values, the first one should give us false and the second one should give us true. As usual, this is down in the Python file, so we have around line 28 is where you should start typing in your code. Does anyone have a start for me? It should be very similar to what we just, yeah. Okay, so let's run the function. Let's just do it with one. So the first one I'm expecting to print false. It does print false, but it also prints this weird none right after it. This is something we're going to talk about next lecture. But does anyone know an improvement we can make to the code? Yes? Yes, actually, you're right. So instead of printing true, remember it's a function, we want it to give us back the value true. So instead of printing, we'll do a return true, and we don't need the parentheses in this case, and then we'll do a return false. So now we don't have that weird none right after it. That's something I was going to talk about next lecture. But basically, when we had prints here, what did the function return? Did it have a return statement inside it? No, right? And so if there's no return statement inside the function, Python automatically returns this special none. Okay, this is something we'll talk about next lecture more in detail. But yeah, the return true, return false is correct here. Yes? Do you need the if-else, or do you just need to return the if-else? Yeah. Yeah, you don't need the if-else just like before, so we can just do return this directly, right? And we can run it with the other one. So the second one should actually return true, but it returned false. Does anyone know the problem? Yeah? Yes, exactly. So actually, we want the remainder when we divide n by d, right? So this is just flipped around, n percent d equals zero. Yeah. So it's a good thing we had two test cases to test for that, and you don't have to test them with such big numbers. You could obviously test them with some smaller numbers as well. So let's zoom out a little bit and talk about how exactly functions are stored in memory, right? Because I mentioned this thing about defining a function, and that just doesn't do anything really that we can see, but what exactly happens in memory? Well, let's think about what happens when we create variables. So when we create a is equal to three, inside memory, or the program scope, again, we'll talk about this next lecture, but you can think of this as the memory. What happens is a becomes a variable that's bound to value three, b equals four is a variable b bound to value four, and c is going to be bound to value seven, clear, right? We already know this. What happens when we create a function? So again, this is something I might write in a code file. The top bit is my function definition. So as soon as Python sees this DEF keyword, everything that's indented, that's part of the function definition in the body, is essentially just some code, right? To Python, it does not care at this point what that code is or what that code does. All it knows is that there is a function object, and functions are actually objects in Python. There is a function object whose name is even. That is all it knows when we get to this point here in the code, right after we define the function, right, before a equals. So we think about the function as kind of like a variable, quote, unquote, it's not actually a variable, but it's like a variable whose name is even, and it points to it's bound to some code in memory. And we don't care what that code is right now, because we might never use it. We only care what the code is when we make function calls. So down here is where the action actually happens when we make our function calls. I have A is going to be, as usual, a variable, right? That's going to be bound to some value. So the function definition is kind of just like a black box, right? Once you wrote it once and you know it works, you don't care anymore how it actually achieves its task. What we care is that it takes in a number and tells you whether that number is even or odd via true, false. So down here where we make our function calls, we're just using our black box, okay? And we're using the black box by making function calls. So A is going to be a variable that's bound to the value returned by is even. So it's going to be based on the function call, false. And then here I have another function call. I'm using this useful piece of code that I wrote up here. And B is going to be a variable that's bound to true. And C is going to be a variable that's bound to true, right? Does that make sense? It's kind of separating the code we write, which doesn't run until we actually make function calls. That's the thing about functions, and that's how it helps us write more robust code. So now here we can have a more complex piece of code where we're using the function that we wrote, okay? Not just making a function call and printing the result, but we're actually using it inside a more interesting program. So here I've got a program that will print for me the numbers between 1 and 10, and it will print whether that number is odd or even. So if you were just to read this code, it's pretty easy to read, right? We have a loop that goes through the numbers 1 to 10, not including 10. And then I have this if is even. Well, that's cool. Here I'm using the function that I wrote kind of just in the middle of another piece of code, right? Which is fine, because as I said, you know, a few slides ago, function calls are basically just expressions, right? They get run. They get evaluated. One value back out of them, and then that value replaces the function call. So that's fine. Let's use the is even result, the return from the is even method inside a conditional. If I, if calling is even with I returns true, that means if the number is even, we print that value comma even. Else, we print that value comma odd. So here I'm not defining a function. Notice it's not wrapped in the DF or anything like that. I'm just using a function that I already wrote. So inside here, just comment that out. This is the code we just had on the slide. So again, notice it's not with it. It's not wrapped within a function. It's just a loop that tells me the numbers one at a time, whether they're odd or even, right? So prints one comma odd, yeah. What are you doing to select the, like, everything in common and make it, like, something in common? Oh, when I select everything, I just use spider's, like, ability to, so I do control one or command one, probably, on the Mac, and it just comments and uncomments things in batch. Yeah, very useful, yeah. And so this code is now very easy to modify, right? I can just choose a hundred, and then I can run it again, and it gives me the numbers one through a hundred odd or even. And you can imagine using your isEven function in a more complex setting, right? And isEven is a really simple function to write, but again, you can imagine writing a more complex function, and then that complex function isn't a whole chunk of code that just gets stuck into this program, this loop. It's going to be a function that you call that you can just easily read the specification for, and you don't need to completely understand how it works in order to use it. Okay. So we're going to go through one other example to write a little function, and this will also showcase kind of the best practices for writing a function and writing code, especially maybe in a quiz situation or something like that, how to write incremental code, how to test it a little bit at a time, and so on. So the last example I want to go through is I want to write some code that adds all the odd integers between and including A and B. Might be something you're asked on a quiz. What the first thing you do when you're faced with such a task is to think about a nice name for the function, so some odd or some odds is a reasonable name. The inputs to the function, well, I've got two end points. I want to sum odd numbers in between, so the inputs might well be my two end points. And then what is the thing your function achieves, right? Well, in the end, it's going to give me some sum. So let's call that sum a variable sum of underscore odds, and we'll return it at the end of our function. And in between, we're going to have some code. So first thing to do is to not write code right away when you're faced with a task, again, on a quiz or something like that. It's best to take a piece of paper, write a little bit, one example, and try to think about how you'd solve it, not like a human would, because for us, we would immediately know the sum, right? It's very easy for humans to identify solutions to these problems, but try to think about how you would write, what kind of a recipe would work for this? Would you loop? Would you have a conditional? Would you use a for loop or a while loop? A bunch of other concepts that we'll learn about in the following lectures. But the key thing is to just not write code right away. So if we start with a really simple example on paper, we can say, let's choose end points a is 2 and b is 4. On paper, I would probably write out 2, 3, 4 in a row, right? So I know the numbers I need to look at. I would say 2 is my a, 4 is my b. I need to look at every one of these numbers one at a time, reasonable. I can do another example, sorry, and I know what the answer should be. So I figure out what the answer should be so that when I write my code, I actually know what I'm looking for. I look at another example. Let's say a little bit more complicated, a bigger range, a is 2, b is 7. I try to use the same strategy I used, same recipe I used to solve that simpler example in this harder one. So again, I'm going to write out all the numbers between 2 and 7, inclusive. This is my first, this is my last. And my strategy was to go through one at a time, and if it's odd, I take it to my running sum and add it to my running sum, and if it's even, I ignore it. And again, I know the answer for this should be 15. So with these two examples in mind, I can start writing code. But instead of writing code for the big problem that might include some nuances or some edge cases, I can actually try to solve a similar problem. So instead of summing all the odd numbers between a and b, let's just sum all the numbers between a and b and see if we can get code right working for that. Once we do, figuring out the odd ones should be a small tweak to our code. So if we start with figuring out the sum of all the odd numbers between and including a and b, that sounds like a loop because I knew when I wrote my example on paper, I'd have to touch each number between and including a and b. So I know I need to loop through every one of these values. While or a for loop, your choice. In the slides, I'll do both, just to see what it looks like. So with a for loop, it's easy. It's just for i and range a, b. But with a while loop, remember we have to initialize our loop variable if we have one, i equals a. Our loop condition is while i is less than or equal to b. So we're going to loop through while I'm looking at all these values up to and including b. And I need to remember to increment my loop variable within the loop by one each time in this case. OK. And then what do I do within my loop? Well, remember we're solving a similar problem. I'm going to keep a running sum. So as soon as I see a new i, I'm going to add it to my sum. I realize here, probably my ID would show me that there's an error. I didn't initialize some of odds. So I remember to initialize some of odds right before the loop. And then this is a good place to test the code for a little bit. So we'll test it with a really simple example, 2 comma 4. OK, if we test it with 2 comma 4, the for loop gives me a 5, but the while loop gives me a 9. So you guys might have noticed what the problem is. My for loop goes through up to but not including the end variable, right, the b. So we can add a print statement in case you didn't figure that out. And the print statement would actually tell us, right? It tells us what we're incrementing. First it's 2, then it's 3, but I never hit the 4. So the fix is to just change my end range to bb plus 1. And then we run it again, and we see the answers match. And this solves the bigger problem. So now all we need to do is adding the nuance, the piece where we just grab the odd numbers. And here we say, well, if I'm just grabbing the odd numbers, I only want to add i to my sum of odds when I see an odd number. So here I could use my is even function that I already wrote. I would say if not is even, or I can just do it all over again. If I percent 2 equal 1, then we do this, right? And now we can run it again. And hopefully this now matches the example I had on paper. And it does. So the idea here is to try to solve a simpler problem first. And then as you see more nuances to the problem, add in the functionality just a little bit at a time. So you don't actually get bogged down by a whole bunch of issues that might come up when you wrote a whole bunch of code. The last step is just to test it on the other example, just to make sure that it still works, right? And so if we print some of odds between 2 and 7, again, this matches what I had written down on paper. If you don't want to use print statements, the Python tutor is also a great debugging tool. So testing code often, very useful. I think I've stressed this in previous lectures as well. Using prints or the Python tutor to debug is also very useful. I don't actually intend to go through this, you try it. But this, along with a bunch of other examples, things to try at home are in the Python file. So just functions you can write is palindrome, this keep consonants, this first to last if. Read the function specification and try to write code that matches the specification. And as usual, the answers are in the Python file, but please, please try to do them on your own first before looking at the answers. OK, a quick summary. Functions are very useful. It allows us to abstract certain useful tasks, basically abstract away functionality that we might reuse many times in our program. Functions take in inputs, they have something to return. We're going to see next time what happens when we don't return anything. Creating a function is different than running the function. So you create the function once, but you can run it many, many times. And that's what makes functions useful. It makes code easy to write, read, debug, modify, leads to a very nice, robust code."
+}

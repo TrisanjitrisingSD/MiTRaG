@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+
+# Secrets
+config.py
+.env
+
+# Generated Data
+data/Embeddings.joblib
+data/New_Embeddings.joblib
+data/CombinedList_Of_Embedded_Chunks.json
+data/New_CombinedList_Of_Embedded_Chunks.json
+data/benchmark_questions.json
+
+raw_data/
+
+transcripts/Embedded_jsons/
+transcripts/New_Embedded_jsons/
+
+# Optional (if you don't want raw transcripts)
+transcripts/JSONs/
+# transcripts/newjsons/
+
+.vscode/

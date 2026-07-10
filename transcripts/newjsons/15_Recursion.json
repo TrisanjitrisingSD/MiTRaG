@@ -1,0 +1,1048 @@
+{
+    "chunks": [
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 0.0,
+            "end": 44.4,
+            "text": "All right, so let's get started on today's lecture. So today we're going to be doing one of two lectures on the topic of recursion, and you may or may not have heard of recursion. So programming technique and a way to algorithmically solve problems, it's not something that it's going to come easy because it's going to force our brain to think about problems that we've"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 44.4,
+            "end": 67.76,
+            "text": "seen in a completely different way, okay? So you don't have to use recursion if you don't want to, but there will be problems where the idea of recursion and writing recursive code is going to come a lot more naturally than writing code that we have been so far. But I'm just warning you, it's going to take a little bit of kind of forgetting everything"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 67.76,
+            "end": 87.96000000000001,
+            "text": "we've learned about loops and things like that to train our brain to think recursively for the next two lectures. To help you, we will have an interactive portion of today's lecture, so think about whether you want to come up on stage, or whatever this is, the front, and be a part of the interaction."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 87.96000000000001,
+            "end": 112.32,
+            "text": "You'll be forever immortalized on the open courseware. Awesome, I love it, on the open courseware videos. All right. So let's think about iterative algorithms that we've seen so far. So iterative algorithm basically means we are writing code that has a loop within it."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 112.32,
+            "end": 133.4,
+            "text": "So either a for loop or a while loop, writing code with these for loops or while loops lead to iterative algorithms. So things that do some task for some repetition. So the idea of an iterative algorithm is that there are some variables that capture the state of the computation."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 133.4,
+            "end": 152.84,
+            "text": "So each time through the loop, these variables will change their value, essentially capturing what the values are at each step in the loop. So when we're writing these iterative algorithms, we basically think about what is something that's changing each time through the loop, like we keep a running sum, like that's the easiest example, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 152.84,
+            "end": 170.16,
+            "text": "What is a variable that's changing each time through the loop, kind of like a counter that keeps track of how many times we've been through a loop? When do you stop? So for for loops, you stop after you've exhausted a sequence, for while loops you stopped when you have a condition that becomes false."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 170.16,
+            "end": 190.12,
+            "text": "And then at the end of the loop, you have some sort of result that you've been storing and accumulating or changing each time through the loop. So that's an iterative algorithm, and we've been working with these a lot. So to show you, we're going to go through the next few slides showing you an iterative algorithm to do multiplication."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 190.12,
+            "end": 211.60000000000002,
+            "text": "It's going to be very, very simple. But we're also then after going to look at the same problem, which is doing multiplication, but in the context of recursion. And hopefully that gives you a sense for how we think about the exact same problem we're trying to solve, multiplying two numbers together in a completely different way."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 211.60000000000002,
+            "end": 231.48000000000002,
+            "text": "So this is not the function that I want to write with iteration. I don't want to create a function named mult and then return a mult A to A star B, right? I don't want to use the built-in function. I want to assume that I don't know how to do a star, a multiplication. And so instead, what I'm going to do is I'm going to rely on, let's say I know how to"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 231.48000000000002,
+            "end": 253.48000000000002,
+            "text": "do addition. I'm going to rely on the idea of addition to actually write my multiplication function. So let's think about how to make multiplication iterative. We can have a loop, right, that adds A to itself B times, right? That is the definition of multiplication."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 253.48000000000002,
+            "end": 274.08,
+            "text": "So let's write a function that does this using a for loop. Then we'll write it using a while loop. With a for loop, we're going to write this iterative algorithm. It's capturing the state of the computation, just like we said we should. So the for loop will iterate, will have my sort of range of values being from 0 to B."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 274.08,
+            "end": 294.28,
+            "text": "So we're going to repeat this loop B times. The variable total is capturing my state of the computation, right? It's keeping track of what the total is at each step through my loop. At the end of the loop, I return the total, okay? So very, very simple iterative function here."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 294.28,
+            "end": 316.91999999999996,
+            "text": "Now let's think about another iterative solution instead of keeping a loop variable B that goes from 0 all the way up to B, or what was that, my loop variable N, I think. Instead of keeping a loop variable N that goes from 0 to B, let's work our way backward. And this time, let's use a while loop just for fun. Let's say that I'm going to start at B and count down to 0."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 316.91999999999996,
+            "end": 338.52000000000004,
+            "text": "So again, going and repeating some task B times. So what I'm going to do is I'm going to have some counter that starts at B and decreases down to 0. Again, within my loop, I have to keep track of the result. So my total in the previous code is now being called result in this code."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 338.52000000000004,
+            "end": 355.40000000000003,
+            "text": "And so what I'm going to do is my iteration will start right at 0. And then I'm going to keep adding A to itself B times. So the code looks like this. I've got my while loop this time instead of a for loop. I'm going to start out with knowing what B is."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 355.40000000000003,
+            "end": 373.52000000000004,
+            "text": "And I'm going to decrease B by 1 each time through the loop. So here I've got B equals B minus 1. So that's capturing the state of the counter at each iteration. The result, just like the total in the previous slide, is capturing the state of my sum at each time through the iteration."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 373.52000000000004,
+            "end": 396.0,
+            "text": "And at the end, I return result. So hopefully, very simple, very review code here. But now, let's look at the code in a recursive sense. So here, let's not look at the code yet. But let's think about, is there some thing that we're repeating over and over and over again?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 396.0,
+            "end": 417.32,
+            "text": "If we recognize it, we can think recursively. So let's try to figure out this recursive pattern. So I work best with actual numbers. So instead of using an abstract A and B, let's use A as 5 and B as 4 as an example. So let's say I want to use the star operator."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 417.32,
+            "end": 446.96,
+            "text": "That's basically the function I'm trying to implement, the star operator between 5 and 4. So in the iterative sense, we said that's 5 plus 5 plus 5 plus 5, adding 5 four times. The idea of recursion is that we're trying to take our original problem, which is using the star operator between two numbers, and try to solve a very similar problem, if not the same, but in a slightly changed way."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 447.92,
+            "end": 473.28000000000003,
+            "text": "So instead of saying I'm going to multiply 5 by 4, what I will do is recognize that 5 times 4, which is my original problem, can be rewritten by extracting out one of my fives. So I'm going to take a 5 out and add it to 5 times 3. So this is my recursive pattern."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 473.32000000000005,
+            "end": 495.92,
+            "text": "I'm using the star operator between 5 and some number, but if I extract a 5 out, I can use the star operator between 5 and a slightly smaller number, one less than 4. Well, what about 5 times 3? Can I do the same thing again?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 495.92,
+            "end": 513.52,
+            "text": "I can, right? For 5 times 3, I can again notice that I can extract the 5 out again, and I have 5 plus 5 times 2. And then I can do the same thing again. To figure out what 5 times 2 is, I can again extract a 5 out and be left with 5 times 1,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 513.52,
+            "end": 535.36,
+            "text": "or 5 star 1, right? And so notice the thing inside the box is, is basically me solving my original problem, which is using the star operator between 5 and some number, but that number is changing each time, you know, on each line. At some point, I can say this problem is so easy that I know the answer."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 535.36,
+            "end": 571.08,
+            "text": "So 5 star 1, so a number multiplied with 1, is just the number itself. And so at that point, I can say I don't need to continue dividing my problem into smaller and smaller pieces. So just to bring the point home, let's use parentheses to illustrate sort of which pieces I'm replacing where. So I've got my original problem, 5, applying the star operator, right, the multiplication on 5 and 4. I extract the 5 out, and I recognize that I can have 5 plus and then solving 5 star 3."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 571.08,
+            "end": 594.28,
+            "text": "I need to have some trust here, right? I don't know what 5 star 3 is, but if I decompose that problem in the exact same way, I can extract the 5 out of that, right, and add it to 5 star 2, right? So the thing in the box is our equivalent. And then, again, 5 star 2, I'm going to recognize this is the same problem I've been trying to solve."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 594.28,
+            "end": 625.04,
+            "text": "Let's apply the same solution, which is to extract a 5 out and add it to the multiplication of 5 star 1 less. So again, the two boxes are equivalent. So this idea here where we're recognizing the same problem and kind of dividing it, dividing it, dividing it, having, you know, this trust that at some point we're going to divide it so much that we've reached a fundamental fact that we can solve, is this divide step, okay?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 625.04,
+            "end": 647.48,
+            "text": "So we're going to divide it all the way up to, all the way down here where I've got 5 plus 5 star 1. At this point, I can say, well, 5 star 1 is going to be 5, okay? This is a basic fact that I can just solve. I don't need to divide this problem any further. So once I solve this fact, I can start building back up my answer, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 647.48,
+            "end": 678.52,
+            "text": "And I can start passing the answer back up the chain of multiplication calls, right? So if I'm at this step here and I figured out that this is 5 star 1, this 5 star 1 is equal to 5, I can just replace it with the 5. And then I can build up the solution to this 5 star 2, because now 5 star 2 is just 5 plus 5, okay? So this is going to be 10, right? It's just simple addition, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 678.52,
+            "end": 700.0799999999999,
+            "text": "There's no more multiplication, which is the thing that we were trying to avoid. So then the 5 star 2 gets replaced with 10, and I'm still building back up my solution until I get to the 5 star 4. So I was trying to figure out what 5 star 3 is, but before I could do that, I had to solve the rest of the two lines beneath it. But now I can finally solve it."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 700.0799999999999,
+            "end": 720.88,
+            "text": "It's just 5 plus 10, right? That's the similar problem I was trying to solve. So I can replace the 5 star 3 with 15. And finally, my original problem was trying to figure out 5 star 4, and now I can finally solve it, because I've finally built back up my solution as 5 plus 15, okay?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 720.88,
+            "end": 744.96,
+            "text": "Any questions about these steps should be pretty straightforward. I know it's a weird roundabout way of figuring out what the answer is, but what I'm trying to get at is trying to recognize the problem that we're trying to solve, and then solving a very similar problem just slightly changed. In this case, we're multiplying 5 star 1 less than what we were just trying to figure out."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 744.96,
+            "end": 771.88,
+            "text": "So in terms of the recursion for this particular problem, multiplying A with B, we recognize that A star B is going to be A plus A plus A plus A B times. If we extract an A out, just like when we extracted the 5 out and added it to something else, we'll recognize that that's just A plus A plus A plus A plus A B minus 1 times, right? Okay?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 771.88,
+            "end": 797.6400000000001,
+            "text": "Well, that A plus A plus A B minus 1 times is just our original problem, just multiplying A with B minus 1, okay? So this is my recursive step. We recognize that A star B is equal to A plus A star B minus 1. So I'm using the same operation I'm trying to find here down here in my quote-unquote solution."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 797.6400000000001,
+            "end": 818.24,
+            "text": "But this is not the end of recursion because if I just had this as my definition, then I would have infinite recursion. I don't have a way to stop. And so this recursive step in conjunction with a base case, something that we know fundamentally about the star operator,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 818.24,
+            "end": 844.0400000000001,
+            "text": "is going to give us our solution. So we knew on the previous slide when we multiply A with 1, we just get back A. So our base case, very simple case of multiplication between A and B is going to be when B is 1. And that's going to be A times B is equal to A. So these might look like the mathematical definitions that you might come up with in a math class."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 844.0400000000001,
+            "end": 867.6,
+            "text": "And we have them right here, right? So if B is not equal to 1, A times B is A plus A times B minus 1. And then the base case, right, is when B is equal to 1, A times B is equal to A. So with these two lines, we can actually come up with the code, the programming version of this function."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 867.6,
+            "end": 886.52,
+            "text": "So here, we're creating a function named multi-cur. And its parameters are going to be A and B, right? So I'm multiplying A with B. And I have to encode these two cases when B is 1 and otherwise. So we usually start with the base case."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 886.52,
+            "end": 905.24,
+            "text": "It's the simplest to think about. So when B is 1, A times B is equal to A, right? So if B is equal to 1, then what is A times B? It's just A, right? So the function can just immediately return A. Else, so that's our base case."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 905.24,
+            "end": 923.76,
+            "text": "Else, this is going to be our recursive step. We're not going to return A, but we will return this, right? A plus A star B minus 1. Well, the A is just A plus. And this, the star operator between A and B minus 1,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 923.76,
+            "end": 945.88,
+            "text": "is just the function again. Isn't that really cool? We're using the function name in the body of this function that we're defining. And it's not a problem because the parameter to the one at the bottom in the recursive step is changing, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 945.88,
+            "end": 964.24,
+            "text": "I'm not calling mult recur with A comma B again. That would be very silly of me because that would lead to infinite recursion. I'm not making any progress towards a base case. But I am calling it with B minus 1. So this function will just keep calling mult recur with A, with B, B minus 1,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 964.24,
+            "end": 981.44,
+            "text": "B minus 2, B minus 3, and so on until it gets to B as 1. And then it'll build back up the solution just like we had in the slides with all the parentheses that we were replacing. So let's step through the Python tutor. And I will show you how it actually looks when we make all these function calls."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 981.44,
+            "end": 999.4000000000001,
+            "text": "And then we'll do another example. So here I've got mult recur with A is, I think I ran it, yep, with 5 and 4. Just like the one we've been looking at. So this is going to be my main function. It makes a function call to mult recur."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 999.4399999999999,
+            "end": 1020.0799999999999,
+            "text": "Excuse me, 5 comma 4. So my A is 5 and my B is 4. This little blue thing here is one function environment. Like when I draw boxes on my slides that are orange, they do them in blue. Okay, now in this function call, what do we do?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1020.0799999999999,
+            "end": 1038.56,
+            "text": "Is B1? No, so we go in the else case and we return 5 plus, what happens next? Does anyone know? Yeah? Yes, mult recur will run again with A is 5 and B is 3."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1038.56,
+            "end": 1057.28,
+            "text": "Yes, mult recur will run again with A is 5 and B is 3, exactly. It is a function call, right? So as a function call, we are going to create a new environment. So here's, boom, another box. My previous box is currently hung up."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1058.48,
+            "end": 1078.04,
+            "text": "Right? It cannot finish because it's trying to figure out what 5 plus the result of this function call is, but this one's not done yet, right? It's still figuring out its result. So we've put that one on hold and now we're trying to figure out mult recur 5 comma 3."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1078.04,
+            "end": 1104.88,
+            "text": "Well, what is mult recur 5 comma 3? It's going to be B is not 1. So this one will also go in the else and it'll return 5 plus, what? Exactly, 5, the function call when B becomes 2, exactly. But notice, it is another function call, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1104.88,
+            "end": 1126.16,
+            "text": "So here I have, boom, another box. Now I've got two function calls, this original one back here, which was waiting on this one that I've highlighted here. But now this one that I've highlighted here had to make another function call down here. So I've got currently three function calls in the works that are trying to figure"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1126.16,
+            "end": 1147.48,
+            "text": "out what their results are, all right? Finally, this mult recur 5 comma 2 is going to make another function call. So it's B is not 1, so we're going to go into the else. And what is its else going to say? We're going to return 5 plus and it's another function call."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1149.28,
+            "end": 1177.68,
+            "text": "So now I'm four function calls deep and I haven't done any sort of visible work, right? I've just kept kind of kicking the can down the road to try to figure out what the values are and everybody's waiting for somebody else to finally return a value. Okay, so this first one is waiting for the one right underneath it to return a value, but this one is waiting for the one underneath it to return a value,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1177.68,
+            "end": 1191.6399999999999,
+            "text": "and this one is waiting for the one underneath it to return a value. That's the chain of calls. What's this last one going to do? Is it going to make another function environment? No, it's going to return A, which is 5."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1194.6399999999999,
+            "end": 1220.3200000000002,
+            "text": "Okay, there's my return value 5. So this one will return the 5 to whoever called it, and whoever called it was this one here, molt recur 5 comma 2, right? 5 comma 2 was trying to figure out what 5 plus this bottom function call was, okay? Well, now it can figure out that it's going to be 5 plus 5, so its return will be 10."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1220.3200000000002,
+            "end": 1246.8400000000001,
+            "text": "This one returns a value up one level to whoever called it, and that was molt recur 5 comma 3, and now molt recur 5 comma 3 can finish its job. It was trying to figure out what 5 plus its function call was, which is we figured out is 10. So this one can figure out it's 15. And finally, this last value can return back up to the original function call 5 comma 4,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1246.8400000000001,
+            "end": 1271.12,
+            "text": "and 5 comma 4 will return 5 plus the 15 that got returned, which is 20. Okay, um, questions about what just happened? Does everything make sense? All right. Okay, so let's look at one more example. Um, I mean, we'll look at a few more examples this lecture,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1271.12,
+            "end": 1290.3999999999999,
+            "text": "but let's look at a real-world example for now. Um, this one will hopefully illustrate the difference between iterative algorithms and recursive algorithms in a more real-life setting. So let's assume that, um, in this real-world setting, a student asks for a regrade for an exam."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1291.24,
+            "end": 1304.2,
+            "text": "In an iterative setting, we have basically one function call, right? Regrade or whatever you want to call it. There's my student. How is the student going to iteratively get the regrade?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1304.2,
+            "end": 1322.16,
+            "text": "Well, the student will be in charge of basically looping through each staff member, right? So the student goes to the instructor and says, can I have a regrade, please? Okay. The instructor may have graded one problem, maybe they didn't, but they will regrade the problem that,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1322.16,
+            "end": 1335.92,
+            "text": "you know, maybe they were in charge of. Then the student will go to the next person on staff, the TA. Can I have a regrade, please? Let's say the TA maybe regrades the problem they were in charge of, maybe they didn't, but in any case,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1335.92,
+            "end": 1350.32,
+            "text": "they'll give the score back or they'll answer, you know, the student's request. The student then goes to the next person on staff, the lab assistant, can I have a regrade, please? The lab assistant might regrade the problem they were in charge of,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1350.32,
+            "end": 1365.84,
+            "text": "you know, whatever, gives the grade back to the student. The student is keeping track of all these regrades scores that they're getting to kind of figure out what their new total score is. And finally, the student might go to the grader, who did probably most of the work,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1366.1599999999999,
+            "end": 1384.8799999999999,
+            "text": "asks for the regrade, the grader will dutifully agree to do the regrade and pass back the values. So here, notice the student is in charge of iteratively going to every single person on staff and getting the result back, and the student is keeping track of what their new score is."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1384.8799999999999,
+            "end": 1400.28,
+            "text": "Obviously, the staff members will too for the purposes of assigning grades, but the student is as well, right? So the student's basically adding up all these values, but there is only one function call. So I've denoted the function call using just this black circle here."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1400.28,
+            "end": 1413.48,
+            "text": "Okay, so that's iteration, right? We know how to do that. We've been doing this for a really long time in this class, but now let's look at the same problem recursively. So in recursion, we've got these two steps, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1413.48,
+            "end": 1436.64,
+            "text": "There's the problem of decreasing our original problem into smaller problems, right, until we reach some sort of base case. And then at that point, we have the task of building back up our answer. So in the recursive setting, again, I've got my one function call to regrade on behalf of the student,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1436.64,
+            "end": 1454.96,
+            "text": "but the student will only interact with one person, maybe the instructor, okay? The student will not interact with anybody else in staff. The student will just go up to the instructor and say, hey, I would like your regrade for this exam. Okay, now, the student is going to wait, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1454.96,
+            "end": 1470.2,
+            "text": "The instructor is also a function call to regrade. So maybe the instructor didn't do any of the grading, but the instructor will make their own function call to the TA. Can you please regrade this exam, right? The TA may be graded one problem."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1470.2,
+            "end": 1486.2,
+            "text": "They'll keep track of the problem they need to grade, but there are other problems that need to be graded. So the TA will then ask, make their own function call to the lab assistant. Maybe the lab assistant graded some problems. And then the lab assistant will also make further the request sort of passing"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1486.2,
+            "end": 1505.8400000000001,
+            "text": "along the function call to the grader. So we have the task of doing the regrading as a function being passed along all of the staff members, okay? When we reach the base case, which is the last, the grader that needs, that probably knows, or probably graded the last question,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1505.84,
+            "end": 1520.3999999999999,
+            "text": "we've got the answer being passed back up the chain of function calls, right? So the grader will say, all right, I've graded my problem. There's nobody else I need to ask. So here's my score. So this score is being passed back up the chain of function calls to the lab"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1520.3999999999999,
+            "end": 1536.12,
+            "text": "assistant. The lab assistant will take that score and add it to their score, passes it back up the chain of function calls to the teaching assistant. The teaching assistant adds that score to their score. Maybe they graded a problem, maybe they didn't."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1536.12,
+            "end": 1552.72,
+            "text": "But anyway, they're compiling the results little by little back up until it passes it to the instructor, and then the instructor says, here you go, this is your score. So you see the difference, right? The student is the iteration, right? They ask everybody on staff, so they interact with everybody on staff."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1552.72,
+            "end": 1568.44,
+            "text": "But in recursion, the student is basically hung up waiting for an answer until we've gone down all these chain of function calls, and the answer has been built back up. So the student is not keeping track of the answer at all. They only get the final answer at the end."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1571.04,
+            "end": 1582.88,
+            "text": "Would that help at all? I've refined this example a couple of times. Hopefully this is good. So the big idea in recursion here is I've got these quote unquote earlier function calls, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1582.88,
+            "end": 1600.38,
+            "text": "The ones I've made way back at the beginning, these function calls are just waiting on results to come back, right? They're not doing any useful work at the beginning. They only do useful work when they're assembling the results after getting a return back from later function calls."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1601.94,
+            "end": 1617.46,
+            "text": "So hopefully that gives you a sense of how we can apply recursion. Now, what exactly is recursion? So algorithmically, it's a way for us to come up with some solutions to some problems in this divide and conquer approach, or decrease and conquer approach, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1617.46,
+            "end": 1639.46,
+            "text": "You have your original problem, you divide it so much into the same problem just slightly changed until you reach a base case. That base case can kick off the conquer step and start passing back a value that you can start assembling from your earlier function calls, okay? Now, semantically, as we saw in the example where we multiplied the functions,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1639.46,
+            "end": 1657.22,
+            "text": "we've got a function that calls itself. Obviously, it's not calling itself with the exact same parameters, because that would lead to infinite recursion and that's not what we want. We're going to call ourselves with a slight change in our parameters in such a way that we will reach our base case, okay?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1657.22,
+            "end": 1674.7,
+            "text": "And once we reach the base case, then again, we kick off the conquer step and we can start reassembling back. And you saw how the function calls do that when they help each other back up. Okay, I'm going to give you a couple of minutes to try this. So complete the function that calculates n to the power of p for these variables."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1674.74,
+            "end": 1693.54,
+            "text": "So if you come up with the mathematical definition, it will be a pretty straight translation to code. I did include two base cases here. So maybe a base case is when n is zero and another base case is when n is one. Figure out what you should return and then how to write this recursive step."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1693.54,
+            "end": 1716.6200000000001,
+            "text": "So I've got line 50 ish is where I can type in the code. All right, what's my first base case? Yeah. Yeah, if p is equal to zero, then we can return one."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1716.6200000000001,
+            "end": 1734.02,
+            "text": "Oops, just one time. That's another base case. P is one. We can return n, awesome. How about my recursive step?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1740.22,
+            "end": 1759.9,
+            "text": "Yep, we can return n times like this. Now let's assume I don't know how to do star star. How do you rewrite this in terms of the thing we're trying to write? There was a solution back there. How are the score recurrent?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1759.9,
+            "end": 1776.42,
+            "text": "Yep, we can do that too. Yep, exactly. So here we're assuming that we don't know the star star operator, right? Otherwise, this would be a very easy function to write. We are trying to define the star star operator ourselves using this function in power recur."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1776.42,
+            "end": 1797.34,
+            "text": "So we're just going to call it again down here with n and p minus one. So if we run it, this will give us eight. Is that, yeah? What is the necessity of having that p equals one of the cases that we're having to do? Yes, great question."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1797.34,
+            "end": 1814.02,
+            "text": "What is the necessity of this? There is no necessity. I actually just included it there to just show you how we can have two base cases. So in this particular case, we would actually never hit this one if the n is greater than one because we always stop here."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1814.58,
+            "end": 1835.54,
+            "text": "If the user gives us zero, we would just return that one. But it would work if we completely removed that as well. Yeah, great question. Okay, let's look at one more example. And this one is the one that I'm going to ask for some participation."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1835.54,
+            "end": 1854.7,
+            "text": "I would like four of you to come down with me. But before we do that, let's think about factorial. So the definition of n factorial is n times n minus one times n minus two times n minus three down to one. What is a base case? What is the simplest thing that we know the factorial of?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1854.7,
+            "end": 1872.18,
+            "text": "You guys tell me. What is n- what is zero factorial? One. Good. I chose one, but both could work. Yeah. If n is equal to zero, we can also return one or we can do n is equal to one return one."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1872.18,
+            "end": 1895.9,
+            "text": "What's our recursive step? Do you recognize the recursive pattern here? n factorial equals n times n minus one factorial. Right? If we extract the first n out, n minus one times n minus two times n minus three and so on is just n minus one factorial."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1895.9,
+            "end": 1911.86,
+            "text": "And so our recursive step just says it's n times the same function, factorial with n minus one. Is everyone okay with that? Cool. Okay. So let's look through this example with some participation."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1911.86,
+            "end": 1923.98,
+            "text": "So four people. One. Yes. And you'll be on OCW forever, you guys. Two. Yep. Two more. Yes. Thank you. Thank you. Awesome."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1923.98,
+            "end": 1942.9,
+            "text": "Okay. And I'll have you guys stand right here. I'll ask you guys to come in one at a time as we are working through this exam. So we're just going to demonstrate once again what happens when we make function calls. You want to just stand right here beside behind my computer."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1942.9,
+            "end": 1960.22,
+            "text": "Thank you. Yeah, behind my computer. Cool. Okay. Perfect. Okay. So I'll just stand here. So I am going to be the main program, right? I am, you run this code."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1960.22,
+            "end": 1980.46,
+            "text": "I am going to be the main program. I am going to keep track of the variables and everything that's in this global scope. Okay. So in the global scope, just like we have it in the past, I've got a definition for my factorial function here."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1980.46,
+            "end": 1992.86,
+            "text": "Okay. And this is just some code. At this point, I've just defined it. I don't care what it actually is. But I have one function call. So my one and only job is to print the result of factorial 4."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 1992.86,
+            "end": 2006.06,
+            "text": "I have a pretty easy job. So what happens, you guys, audience tell me what happens when I've got factorial 4. What is this? Do I just know right off the bat what factorial 4 is?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2006.06,
+            "end": 2025.38,
+            "text": "No. It is a function call, right? So as a function call, what do I need to do? Exactly. I need to create an environment. Okay. So you'll be my first environment. Hello, my name is, you can put it on there."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2025.38,
+            "end": 2039.3,
+            "text": "Hello, my name is, and then you can step right over there. So you are my first function call. Your name is fact for factorial. Awesome. So I have just called you. What is your job?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2039.3,
+            "end": 2052.22,
+            "text": "So you guys tell me what is factorial 4's job is from running the code? Are they going to do the if or the else? The else. So this is your job. You keep track of that. Your n is going to be 4,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2052.22,
+            "end": 2064.66,
+            "text": "and your job is to return 4 times factorial of 3. Do you know what factorial of 3 is right now? No. So what do you need to do? Yes, please call somebody else. Who are you going to call?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2064.66,
+            "end": 2085.1400000000003,
+            "text": "Next. What is your name going to be? Your name is also factorial, exactly, and you are going to be called with n is equal to 3. So you can stand right beside factorial of 4. Very nice. So now notice we've got two function calls."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2085.1400000000003,
+            "end": 2098.3,
+            "text": "Both of their names are factorial, right? But they are completely separate function calls. They are completely in different environments. They have their own n values. They have their own jobs to do, right?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2098.42,
+            "end": 2114.38,
+            "text": "Just because their name is factorial for both of them, does not mean that they'll interfere with each other's variables, right? Very, very important point to make. Factorial 3. Do you know what factorial 2 is? No. So what do you need to do?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2114.38,
+            "end": 2127.5,
+            "text": "Exactly. Who are you going to call? Here you go. What is your name going to be? Factorial at 2. Yes, we are at 2. Exactly. So you are factorial."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2127.5,
+            "end": 2140.6600000000003,
+            "text": "Your name is also factorial, and you are going to be called with n is equal to 2. Again, now I have three factorial calls. They're all to the name factorial, but they're all independent function calls."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2140.6600000000003,
+            "end": 2152.46,
+            "text": "So your job is to return 2 times factorial of 1. Do you know what factorial of 1 is? Yes. Wait, no. As a human, you do. But as factorial, you do not."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2152.46,
+            "end": 2161.26,
+            "text": "What do you need to do? Oh, call her. Exactly. Here you go. Your name is also factorial. You can stand beside our lovely other factorials."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2161.26,
+            "end": 2178.3,
+            "text": "So your job, audience, I've already given away, your last job is to return 1. OK, excellent. So here is your return value. Now, factorial of 1."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2178.3,
+            "end": 2191.1,
+            "text": "Are you going to return that value to me? Which one will you return it to? Exactly. So factorial with n is equal to 2 can now replace their factorial 1 function with 1."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2191.1,
+            "end": 2202.2999999999997,
+            "text": "So what is your return value going to be, factorial of 2? I got it right. 2, exactly. So where do you pass your value along to? OK, now, one thing we forgot."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2202.2999999999997,
+            "end": 2215.1000000000004,
+            "text": "As soon as you made the return value, you disappear. You had a very simple job, I'm sorry. But it was really important. You were our base case. Without you, we would have had infinite recursion."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2215.1000000000004,
+            "end": 2224.6600000000003,
+            "text": "OK, so you've passed along your value. So as a function that's done its job, what do you do? Disappear, exactly. Thank you. All right, factorial of, where are we?"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2224.6600000000003,
+            "end": 2232.2200000000003,
+            "text": "3, exactly. What is your value going to be now? 6, exactly. So here's your return value. You give it to me."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2232.2200000000003,
+            "end": 2240.42,
+            "text": "There you go. And as, exactly, very good. We disappear. So we've got three function calls that disappeared as soon as they returned a value."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2240.46,
+            "end": 2251.02,
+            "text": "And finally, 4 times 6, 24. And who do you give your value? Which I just gave you, sorry. Yeah, that was confusing. Thank you so much, you guys."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2251.02,
+            "end": 2269.98,
+            "text": "That illustrated a couple of things you guys can head back. Thank you so much. So we illustrated a couple of things here. I'm going to, I can do it on the slides as well, just to bring the point home."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2269.98,
+            "end": 2282.58,
+            "text": "But let's go through it. So I've got factorial of 4. Every time I make a function call, even though it's the same name, all factorial, it's a completely separate environment."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2282.58,
+            "end": 2301.14,
+            "text": "Happens to have the same name, but they're just in charge of doing their own job. So here I've got factorial of 4 calling 4 times factorial of 3. As soon as I see factorial of 3, this creates another environment. This is going to be returning 3 times factorial of 2."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2301.14,
+            "end": 2316.5,
+            "text": "Again, another environment. This returns 2 times factorial of 1 and a final environment. Our most important environment is that last one with the base case. It allows us to kickstart our conquer step."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2316.5,
+            "end": 2332.3399999999997,
+            "text": "So this base step will return the value 1 to whoever called it. Again, we're not skipping around. We only return the value to the function that called us. And I know it gets really confusing because everything is called fact in this particular case."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2332.3399999999997,
+            "end": 2347.54,
+            "text": "But we just have to remember which function called us. And so we return the 1 back up here. This becomes 2 times 1. And they can finish their job. So notice at this point, we were 1, 2, 3, 4 functions just"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2347.54,
+            "end": 2362.38,
+            "text": "kind of hung up and waiting for values to be passed back to us. But now we can finally finish our jobs one by one. So this one returns a 2. This one returns the 6. This one returns the 24."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2362.38,
+            "end": 2378.5,
+            "text": "And the 24 gets printed out. So big idea here. We've got each function call, even though it has the same name, is completely separate. Completely independent environment"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2378.5,
+            "end": 2389.58,
+            "text": "with their own parameters. Those parameters can change within those environments. And that's totally OK. They won't interfere with any parameters in any other environments."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2392.38,
+            "end": 2406.78,
+            "text": "All right. So let's do the Python tutor link. And then again, we can just do it one more time just to show you what this looks like in terms of the Python tutor. So here, I've got my factorial with n is equal to 4."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2406.78,
+            "end": 2419.7400000000002,
+            "text": "Calls n is equal to 3. Calls factorial with n is equal to 2. Calls factorial with n is equal to 1. At this point, just like with the multiplication, I've got all these factorials in the works."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2419.7400000000002,
+            "end": 2433.5,
+            "text": "But we can start returning values back to whoever called us until we get back to the original function call. OK. So this is another recap of the observations that we've seen."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2433.5,
+            "end": 2446.78,
+            "text": "Each different function call has its own environment. The variables within these environments are specific to those environments. They don't interfere with each other. And the flow of control."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2446.78,
+            "end": 2457.26,
+            "text": "So when we make a function call, all we know is the function that we call next. We don't skip around. All we know is who we call next and who we need to give the value back up to."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2458.1000000000004,
+            "end": 2475.98,
+            "text": "Right. One last thing I wanted to point out. So here, I've got the code for factorial, the iterative version, and the recursive version. So the one on the right is what we already wrote."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2475.98,
+            "end": 2493.62,
+            "text": "So it's factorial recursive. And the one on the left is the iterative version. So I personally think the one on the right is more readable because it's very similar to the way that we would write the expression mathematically."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2493.62,
+            "end": 2507.78,
+            "text": "But if you had a little bit of time to think about it, you can just as easily come up with code that does the exact same job iteratively. So remember, in iteration, we've got our loop. There's no other function calls."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2507.78,
+            "end": 2519.2599999999998,
+            "text": "We have a loop that iterates some number of times. There's some sort of loop variable or loop counter. And there is a state variable that keeps track of the answer of interest. In this particular case, the product"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2519.2599999999998,
+            "end": 2535.2599999999998,
+            "text": "from one all the way up to an including it. So I want to end today's lecture with just a couple of observations. So today, we saw some really simple examples of recursion. But I think it outlined some really, really tricky ideas"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2535.2599999999998,
+            "end": 2545.54,
+            "text": "that people usually have trouble grasping when you first see recursion. And that's because you basically write a function in terms of itself. And that can be a little bit confusing."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2545.54,
+            "end": 2558.46,
+            "text": "So of course, we applied recursion to some really, really simple things. We did multiplication. And we did factorial. Depending on how you feel, the recursive version"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2558.46,
+            "end": 2570.58,
+            "text": "or the iterative version might be more intuitive for you. And certainly for these examples, you did not need to write them recursively. There's a lot of code out there that you actually don't need to implement recursively."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2570.58,
+            "end": 2583.22,
+            "text": "The iterative solution is far more intuitive, especially since you guys were first introduced to iteration. You introduced for loops and while loops back in lecture three or something like that. So that's the first thing you saw."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2583.22,
+            "end": 2599.3799999999997,
+            "text": "That's usually the first thing that's going to be your go-to. But there are several problems that are more intuitive to write using recursion. So a couple of examples where recursion is more intuitive is any time when you need to repeat a task for which you"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2599.3799999999997,
+            "end": 2613.18,
+            "text": "don't know how deep you need to go. In which case, the recursive calls will take care of making calls to itself, to itself, to itself, to itself until it reaches the base case. You don't need to think about that in your iteration."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2613.18,
+            "end": 2632.42,
+            "text": "So an example of that is this kind of classic one where we have a file inside a file system. Someone, if we're looking for a pset.txt, we can have a student whose pset.txt is straight under their users slash pset.txt folder."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2632.46,
+            "end": 2648.54,
+            "text": "But we might have another person whose pset.txt is going to be within their users, their documents, their schools, their MIT, their classes, their 6100L, their pset1 slash pset.txt. So that uncertainty for how far deep"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2648.54,
+            "end": 2659.58,
+            "text": "you need to search the file system in order to get to the file of interest is a perfect place to apply recursion. Another one is where you have an expression. If you're building your own calculator and code"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2659.58,
+            "end": 2674.94,
+            "text": "and you have order of operations using parentheses, again, you don't know how many parentheses you might need to have a loop go through in order to get to that base expression, to figure out the one that you need to do first."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2674.94,
+            "end": 2689.7000000000003,
+            "text": "And so that's another case where using recursion is very useful. So in the next lecture, what we're going to do is a recap of recursion using another example, Fibonacci sequence."
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2689.7000000000003,
+            "end": 2703.34,
+            "text": "And then we're going to start looking at recursion applied to lists. And specifically, if we have lists within lists, within lists, within lists, and we don't know how many nested lists we might have,"
+        },
+        {
+            "number": "15",
+            "title": "Recursion",
+            "start": 2703.34,
+            "end": 2707.54,
+            "text": "recursion is going to be a perfect example for that. OK."
+        }
+    ],
+    "text": "All right, so let's get started on today's lecture. So today we're going to be doing one of two lectures on the topic of recursion, and you may or may not have heard of recursion. So programming technique and a way to algorithmically solve problems, it's not something that it's going to come easy because it's going to force our brain to think about problems that we've seen in a completely different way, okay? So you don't have to use recursion if you don't want to, but there will be problems where the idea of recursion and writing recursive code is going to come a lot more naturally than writing code that we have been so far. But I'm just warning you, it's going to take a little bit of kind of forgetting everything we've learned about loops and things like that to train our brain to think recursively for the next two lectures. To help you, we will have an interactive portion of today's lecture, so think about whether you want to come up on stage, or whatever this is, the front, and be a part of the interaction. You'll be forever immortalized on the open courseware. Awesome, I love it, on the open courseware videos. All right. So let's think about iterative algorithms that we've seen so far. So iterative algorithm basically means we are writing code that has a loop within it. So either a for loop or a while loop, writing code with these for loops or while loops lead to iterative algorithms. So things that do some task for some repetition. So the idea of an iterative algorithm is that there are some variables that capture the state of the computation. So each time through the loop, these variables will change their value, essentially capturing what the values are at each step in the loop. So when we're writing these iterative algorithms, we basically think about what is something that's changing each time through the loop, like we keep a running sum, like that's the easiest example, right? What is a variable that's changing each time through the loop, kind of like a counter that keeps track of how many times we've been through a loop? When do you stop? So for for loops, you stop after you've exhausted a sequence, for while loops you stopped when you have a condition that becomes false. And then at the end of the loop, you have some sort of result that you've been storing and accumulating or changing each time through the loop. So that's an iterative algorithm, and we've been working with these a lot. So to show you, we're going to go through the next few slides showing you an iterative algorithm to do multiplication. It's going to be very, very simple. But we're also then after going to look at the same problem, which is doing multiplication, but in the context of recursion. And hopefully that gives you a sense for how we think about the exact same problem we're trying to solve, multiplying two numbers together in a completely different way. So this is not the function that I want to write with iteration. I don't want to create a function named mult and then return a mult A to A star B, right? I don't want to use the built-in function. I want to assume that I don't know how to do a star, a multiplication. And so instead, what I'm going to do is I'm going to rely on, let's say I know how to do addition. I'm going to rely on the idea of addition to actually write my multiplication function. So let's think about how to make multiplication iterative. We can have a loop, right, that adds A to itself B times, right? That is the definition of multiplication. So let's write a function that does this using a for loop. Then we'll write it using a while loop. With a for loop, we're going to write this iterative algorithm. It's capturing the state of the computation, just like we said we should. So the for loop will iterate, will have my sort of range of values being from 0 to B. So we're going to repeat this loop B times. The variable total is capturing my state of the computation, right? It's keeping track of what the total is at each step through my loop. At the end of the loop, I return the total, okay? So very, very simple iterative function here. Now let's think about another iterative solution instead of keeping a loop variable B that goes from 0 all the way up to B, or what was that, my loop variable N, I think. Instead of keeping a loop variable N that goes from 0 to B, let's work our way backward. And this time, let's use a while loop just for fun. Let's say that I'm going to start at B and count down to 0. So again, going and repeating some task B times. So what I'm going to do is I'm going to have some counter that starts at B and decreases down to 0. Again, within my loop, I have to keep track of the result. So my total in the previous code is now being called result in this code. And so what I'm going to do is my iteration will start right at 0. And then I'm going to keep adding A to itself B times. So the code looks like this. I've got my while loop this time instead of a for loop. I'm going to start out with knowing what B is. And I'm going to decrease B by 1 each time through the loop. So here I've got B equals B minus 1. So that's capturing the state of the counter at each iteration. The result, just like the total in the previous slide, is capturing the state of my sum at each time through the iteration. And at the end, I return result. So hopefully, very simple, very review code here. But now, let's look at the code in a recursive sense. So here, let's not look at the code yet. But let's think about, is there some thing that we're repeating over and over and over again? If we recognize it, we can think recursively. So let's try to figure out this recursive pattern. So I work best with actual numbers. So instead of using an abstract A and B, let's use A as 5 and B as 4 as an example. So let's say I want to use the star operator. That's basically the function I'm trying to implement, the star operator between 5 and 4. So in the iterative sense, we said that's 5 plus 5 plus 5 plus 5, adding 5 four times. The idea of recursion is that we're trying to take our original problem, which is using the star operator between two numbers, and try to solve a very similar problem, if not the same, but in a slightly changed way. So instead of saying I'm going to multiply 5 by 4, what I will do is recognize that 5 times 4, which is my original problem, can be rewritten by extracting out one of my fives. So I'm going to take a 5 out and add it to 5 times 3. So this is my recursive pattern. I'm using the star operator between 5 and some number, but if I extract a 5 out, I can use the star operator between 5 and a slightly smaller number, one less than 4. Well, what about 5 times 3? Can I do the same thing again? I can, right? For 5 times 3, I can again notice that I can extract the 5 out again, and I have 5 plus 5 times 2. And then I can do the same thing again. To figure out what 5 times 2 is, I can again extract a 5 out and be left with 5 times 1, or 5 star 1, right? And so notice the thing inside the box is, is basically me solving my original problem, which is using the star operator between 5 and some number, but that number is changing each time, you know, on each line. At some point, I can say this problem is so easy that I know the answer. So 5 star 1, so a number multiplied with 1, is just the number itself. And so at that point, I can say I don't need to continue dividing my problem into smaller and smaller pieces. So just to bring the point home, let's use parentheses to illustrate sort of which pieces I'm replacing where. So I've got my original problem, 5, applying the star operator, right, the multiplication on 5 and 4. I extract the 5 out, and I recognize that I can have 5 plus and then solving 5 star 3. I need to have some trust here, right? I don't know what 5 star 3 is, but if I decompose that problem in the exact same way, I can extract the 5 out of that, right, and add it to 5 star 2, right? So the thing in the box is our equivalent. And then, again, 5 star 2, I'm going to recognize this is the same problem I've been trying to solve. Let's apply the same solution, which is to extract a 5 out and add it to the multiplication of 5 star 1 less. So again, the two boxes are equivalent. So this idea here where we're recognizing the same problem and kind of dividing it, dividing it, dividing it, having, you know, this trust that at some point we're going to divide it so much that we've reached a fundamental fact that we can solve, is this divide step, okay? So we're going to divide it all the way up to, all the way down here where I've got 5 plus 5 star 1. At this point, I can say, well, 5 star 1 is going to be 5, okay? This is a basic fact that I can just solve. I don't need to divide this problem any further. So once I solve this fact, I can start building back up my answer, right? And I can start passing the answer back up the chain of multiplication calls, right? So if I'm at this step here and I figured out that this is 5 star 1, this 5 star 1 is equal to 5, I can just replace it with the 5. And then I can build up the solution to this 5 star 2, because now 5 star 2 is just 5 plus 5, okay? So this is going to be 10, right? It's just simple addition, right? There's no more multiplication, which is the thing that we were trying to avoid. So then the 5 star 2 gets replaced with 10, and I'm still building back up my solution until I get to the 5 star 4. So I was trying to figure out what 5 star 3 is, but before I could do that, I had to solve the rest of the two lines beneath it. But now I can finally solve it. It's just 5 plus 10, right? That's the similar problem I was trying to solve. So I can replace the 5 star 3 with 15. And finally, my original problem was trying to figure out 5 star 4, and now I can finally solve it, because I've finally built back up my solution as 5 plus 15, okay? Any questions about these steps should be pretty straightforward. I know it's a weird roundabout way of figuring out what the answer is, but what I'm trying to get at is trying to recognize the problem that we're trying to solve, and then solving a very similar problem just slightly changed. In this case, we're multiplying 5 star 1 less than what we were just trying to figure out. So in terms of the recursion for this particular problem, multiplying A with B, we recognize that A star B is going to be A plus A plus A plus A B times. If we extract an A out, just like when we extracted the 5 out and added it to something else, we'll recognize that that's just A plus A plus A plus A plus A B minus 1 times, right? Okay? Well, that A plus A plus A B minus 1 times is just our original problem, just multiplying A with B minus 1, okay? So this is my recursive step. We recognize that A star B is equal to A plus A star B minus 1. So I'm using the same operation I'm trying to find here down here in my quote-unquote solution. But this is not the end of recursion because if I just had this as my definition, then I would have infinite recursion. I don't have a way to stop. And so this recursive step in conjunction with a base case, something that we know fundamentally about the star operator, is going to give us our solution. So we knew on the previous slide when we multiply A with 1, we just get back A. So our base case, very simple case of multiplication between A and B is going to be when B is 1. And that's going to be A times B is equal to A. So these might look like the mathematical definitions that you might come up with in a math class. And we have them right here, right? So if B is not equal to 1, A times B is A plus A times B minus 1. And then the base case, right, is when B is equal to 1, A times B is equal to A. So with these two lines, we can actually come up with the code, the programming version of this function. So here, we're creating a function named multi-cur. And its parameters are going to be A and B, right? So I'm multiplying A with B. And I have to encode these two cases when B is 1 and otherwise. So we usually start with the base case. It's the simplest to think about. So when B is 1, A times B is equal to A, right? So if B is equal to 1, then what is A times B? It's just A, right? So the function can just immediately return A. Else, so that's our base case. Else, this is going to be our recursive step. We're not going to return A, but we will return this, right? A plus A star B minus 1. Well, the A is just A plus. And this, the star operator between A and B minus 1, is just the function again. Isn't that really cool? We're using the function name in the body of this function that we're defining. And it's not a problem because the parameter to the one at the bottom in the recursive step is changing, right? I'm not calling mult recur with A comma B again. That would be very silly of me because that would lead to infinite recursion. I'm not making any progress towards a base case. But I am calling it with B minus 1. So this function will just keep calling mult recur with A, with B, B minus 1, B minus 2, B minus 3, and so on until it gets to B as 1. And then it'll build back up the solution just like we had in the slides with all the parentheses that we were replacing. So let's step through the Python tutor. And I will show you how it actually looks when we make all these function calls. And then we'll do another example. So here I've got mult recur with A is, I think I ran it, yep, with 5 and 4. Just like the one we've been looking at. So this is going to be my main function. It makes a function call to mult recur. Excuse me, 5 comma 4. So my A is 5 and my B is 4. This little blue thing here is one function environment. Like when I draw boxes on my slides that are orange, they do them in blue. Okay, now in this function call, what do we do? Is B1? No, so we go in the else case and we return 5 plus, what happens next? Does anyone know? Yeah? Yes, mult recur will run again with A is 5 and B is 3. Yes, mult recur will run again with A is 5 and B is 3, exactly. It is a function call, right? So as a function call, we are going to create a new environment. So here's, boom, another box. My previous box is currently hung up. Right? It cannot finish because it's trying to figure out what 5 plus the result of this function call is, but this one's not done yet, right? It's still figuring out its result. So we've put that one on hold and now we're trying to figure out mult recur 5 comma 3. Well, what is mult recur 5 comma 3? It's going to be B is not 1. So this one will also go in the else and it'll return 5 plus, what? Exactly, 5, the function call when B becomes 2, exactly. But notice, it is another function call, right? So here I have, boom, another box. Now I've got two function calls, this original one back here, which was waiting on this one that I've highlighted here. But now this one that I've highlighted here had to make another function call down here. So I've got currently three function calls in the works that are trying to figure out what their results are, all right? Finally, this mult recur 5 comma 2 is going to make another function call. So it's B is not 1, so we're going to go into the else. And what is its else going to say? We're going to return 5 plus and it's another function call. So now I'm four function calls deep and I haven't done any sort of visible work, right? I've just kept kind of kicking the can down the road to try to figure out what the values are and everybody's waiting for somebody else to finally return a value. Okay, so this first one is waiting for the one right underneath it to return a value, but this one is waiting for the one underneath it to return a value, and this one is waiting for the one underneath it to return a value. That's the chain of calls. What's this last one going to do? Is it going to make another function environment? No, it's going to return A, which is 5. Okay, there's my return value 5. So this one will return the 5 to whoever called it, and whoever called it was this one here, molt recur 5 comma 2, right? 5 comma 2 was trying to figure out what 5 plus this bottom function call was, okay? Well, now it can figure out that it's going to be 5 plus 5, so its return will be 10. This one returns a value up one level to whoever called it, and that was molt recur 5 comma 3, and now molt recur 5 comma 3 can finish its job. It was trying to figure out what 5 plus its function call was, which is we figured out is 10. So this one can figure out it's 15. And finally, this last value can return back up to the original function call 5 comma 4, and 5 comma 4 will return 5 plus the 15 that got returned, which is 20. Okay, um, questions about what just happened? Does everything make sense? All right. Okay, so let's look at one more example. Um, I mean, we'll look at a few more examples this lecture, but let's look at a real-world example for now. Um, this one will hopefully illustrate the difference between iterative algorithms and recursive algorithms in a more real-life setting. So let's assume that, um, in this real-world setting, a student asks for a regrade for an exam. In an iterative setting, we have basically one function call, right? Regrade or whatever you want to call it. There's my student. How is the student going to iteratively get the regrade? Well, the student will be in charge of basically looping through each staff member, right? So the student goes to the instructor and says, can I have a regrade, please? Okay. The instructor may have graded one problem, maybe they didn't, but they will regrade the problem that, you know, maybe they were in charge of. Then the student will go to the next person on staff, the TA. Can I have a regrade, please? Let's say the TA maybe regrades the problem they were in charge of, maybe they didn't, but in any case, they'll give the score back or they'll answer, you know, the student's request. The student then goes to the next person on staff, the lab assistant, can I have a regrade, please? The lab assistant might regrade the problem they were in charge of, you know, whatever, gives the grade back to the student. The student is keeping track of all these regrades scores that they're getting to kind of figure out what their new total score is. And finally, the student might go to the grader, who did probably most of the work, asks for the regrade, the grader will dutifully agree to do the regrade and pass back the values. So here, notice the student is in charge of iteratively going to every single person on staff and getting the result back, and the student is keeping track of what their new score is. Obviously, the staff members will too for the purposes of assigning grades, but the student is as well, right? So the student's basically adding up all these values, but there is only one function call. So I've denoted the function call using just this black circle here. Okay, so that's iteration, right? We know how to do that. We've been doing this for a really long time in this class, but now let's look at the same problem recursively. So in recursion, we've got these two steps, right? There's the problem of decreasing our original problem into smaller problems, right, until we reach some sort of base case. And then at that point, we have the task of building back up our answer. So in the recursive setting, again, I've got my one function call to regrade on behalf of the student, but the student will only interact with one person, maybe the instructor, okay? The student will not interact with anybody else in staff. The student will just go up to the instructor and say, hey, I would like your regrade for this exam. Okay, now, the student is going to wait, right? The instructor is also a function call to regrade. So maybe the instructor didn't do any of the grading, but the instructor will make their own function call to the TA. Can you please regrade this exam, right? The TA may be graded one problem. They'll keep track of the problem they need to grade, but there are other problems that need to be graded. So the TA will then ask, make their own function call to the lab assistant. Maybe the lab assistant graded some problems. And then the lab assistant will also make further the request sort of passing along the function call to the grader. So we have the task of doing the regrading as a function being passed along all of the staff members, okay? When we reach the base case, which is the last, the grader that needs, that probably knows, or probably graded the last question, we've got the answer being passed back up the chain of function calls, right? So the grader will say, all right, I've graded my problem. There's nobody else I need to ask. So here's my score. So this score is being passed back up the chain of function calls to the lab assistant. The lab assistant will take that score and add it to their score, passes it back up the chain of function calls to the teaching assistant. The teaching assistant adds that score to their score. Maybe they graded a problem, maybe they didn't. But anyway, they're compiling the results little by little back up until it passes it to the instructor, and then the instructor says, here you go, this is your score. So you see the difference, right? The student is the iteration, right? They ask everybody on staff, so they interact with everybody on staff. But in recursion, the student is basically hung up waiting for an answer until we've gone down all these chain of function calls, and the answer has been built back up. So the student is not keeping track of the answer at all. They only get the final answer at the end. Would that help at all? I've refined this example a couple of times. Hopefully this is good. So the big idea in recursion here is I've got these quote unquote earlier function calls, right? The ones I've made way back at the beginning, these function calls are just waiting on results to come back, right? They're not doing any useful work at the beginning. They only do useful work when they're assembling the results after getting a return back from later function calls. So hopefully that gives you a sense of how we can apply recursion. Now, what exactly is recursion? So algorithmically, it's a way for us to come up with some solutions to some problems in this divide and conquer approach, or decrease and conquer approach, right? You have your original problem, you divide it so much into the same problem just slightly changed until you reach a base case. That base case can kick off the conquer step and start passing back a value that you can start assembling from your earlier function calls, okay? Now, semantically, as we saw in the example where we multiplied the functions, we've got a function that calls itself. Obviously, it's not calling itself with the exact same parameters, because that would lead to infinite recursion and that's not what we want. We're going to call ourselves with a slight change in our parameters in such a way that we will reach our base case, okay? And once we reach the base case, then again, we kick off the conquer step and we can start reassembling back. And you saw how the function calls do that when they help each other back up. Okay, I'm going to give you a couple of minutes to try this. So complete the function that calculates n to the power of p for these variables. So if you come up with the mathematical definition, it will be a pretty straight translation to code. I did include two base cases here. So maybe a base case is when n is zero and another base case is when n is one. Figure out what you should return and then how to write this recursive step. So I've got line 50 ish is where I can type in the code. All right, what's my first base case? Yeah. Yeah, if p is equal to zero, then we can return one. Oops, just one time. That's another base case. P is one. We can return n, awesome. How about my recursive step? Yep, we can return n times like this. Now let's assume I don't know how to do star star. How do you rewrite this in terms of the thing we're trying to write? There was a solution back there. How are the score recurrent? Yep, we can do that too. Yep, exactly. So here we're assuming that we don't know the star star operator, right? Otherwise, this would be a very easy function to write. We are trying to define the star star operator ourselves using this function in power recur. So we're just going to call it again down here with n and p minus one. So if we run it, this will give us eight. Is that, yeah? What is the necessity of having that p equals one of the cases that we're having to do? Yes, great question. What is the necessity of this? There is no necessity. I actually just included it there to just show you how we can have two base cases. So in this particular case, we would actually never hit this one if the n is greater than one because we always stop here. If the user gives us zero, we would just return that one. But it would work if we completely removed that as well. Yeah, great question. Okay, let's look at one more example. And this one is the one that I'm going to ask for some participation. I would like four of you to come down with me. But before we do that, let's think about factorial. So the definition of n factorial is n times n minus one times n minus two times n minus three down to one. What is a base case? What is the simplest thing that we know the factorial of? You guys tell me. What is n- what is zero factorial? One. Good. I chose one, but both could work. Yeah. If n is equal to zero, we can also return one or we can do n is equal to one return one. What's our recursive step? Do you recognize the recursive pattern here? n factorial equals n times n minus one factorial. Right? If we extract the first n out, n minus one times n minus two times n minus three and so on is just n minus one factorial. And so our recursive step just says it's n times the same function, factorial with n minus one. Is everyone okay with that? Cool. Okay. So let's look through this example with some participation. So four people. One. Yes. And you'll be on OCW forever, you guys. Two. Yep. Two more. Yes. Thank you. Thank you. Awesome. Okay. And I'll have you guys stand right here. I'll ask you guys to come in one at a time as we are working through this exam. So we're just going to demonstrate once again what happens when we make function calls. You want to just stand right here beside behind my computer. Thank you. Yeah, behind my computer. Cool. Okay. Perfect. Okay. So I'll just stand here. So I am going to be the main program, right? I am, you run this code. I am going to be the main program. I am going to keep track of the variables and everything that's in this global scope. Okay. So in the global scope, just like we have it in the past, I've got a definition for my factorial function here. Okay. And this is just some code. At this point, I've just defined it. I don't care what it actually is. But I have one function call. So my one and only job is to print the result of factorial 4. I have a pretty easy job. So what happens, you guys, audience tell me what happens when I've got factorial 4. What is this? Do I just know right off the bat what factorial 4 is? No. It is a function call, right? So as a function call, what do I need to do? Exactly. I need to create an environment. Okay. So you'll be my first environment. Hello, my name is, you can put it on there. Hello, my name is, and then you can step right over there. So you are my first function call. Your name is fact for factorial. Awesome. So I have just called you. What is your job? So you guys tell me what is factorial 4's job is from running the code? Are they going to do the if or the else? The else. So this is your job. You keep track of that. Your n is going to be 4, and your job is to return 4 times factorial of 3. Do you know what factorial of 3 is right now? No. So what do you need to do? Yes, please call somebody else. Who are you going to call? Next. What is your name going to be? Your name is also factorial, exactly, and you are going to be called with n is equal to 3. So you can stand right beside factorial of 4. Very nice. So now notice we've got two function calls. Both of their names are factorial, right? But they are completely separate function calls. They are completely in different environments. They have their own n values. They have their own jobs to do, right? Just because their name is factorial for both of them, does not mean that they'll interfere with each other's variables, right? Very, very important point to make. Factorial 3. Do you know what factorial 2 is? No. So what do you need to do? Exactly. Who are you going to call? Here you go. What is your name going to be? Factorial at 2. Yes, we are at 2. Exactly. So you are factorial. Your name is also factorial, and you are going to be called with n is equal to 2. Again, now I have three factorial calls. They're all to the name factorial, but they're all independent function calls. So your job is to return 2 times factorial of 1. Do you know what factorial of 1 is? Yes. Wait, no. As a human, you do. But as factorial, you do not. What do you need to do? Oh, call her. Exactly. Here you go. Your name is also factorial. You can stand beside our lovely other factorials. So your job, audience, I've already given away, your last job is to return 1. OK, excellent. So here is your return value. Now, factorial of 1. Are you going to return that value to me? Which one will you return it to? Exactly. So factorial with n is equal to 2 can now replace their factorial 1 function with 1. So what is your return value going to be, factorial of 2? I got it right. 2, exactly. So where do you pass your value along to? OK, now, one thing we forgot. As soon as you made the return value, you disappear. You had a very simple job, I'm sorry. But it was really important. You were our base case. Without you, we would have had infinite recursion. OK, so you've passed along your value. So as a function that's done its job, what do you do? Disappear, exactly. Thank you. All right, factorial of, where are we? 3, exactly. What is your value going to be now? 6, exactly. So here's your return value. You give it to me. There you go. And as, exactly, very good. We disappear. So we've got three function calls that disappeared as soon as they returned a value. And finally, 4 times 6, 24. And who do you give your value? Which I just gave you, sorry. Yeah, that was confusing. Thank you so much, you guys. That illustrated a couple of things you guys can head back. Thank you so much. So we illustrated a couple of things here. I'm going to, I can do it on the slides as well, just to bring the point home. But let's go through it. So I've got factorial of 4. Every time I make a function call, even though it's the same name, all factorial, it's a completely separate environment. Happens to have the same name, but they're just in charge of doing their own job. So here I've got factorial of 4 calling 4 times factorial of 3. As soon as I see factorial of 3, this creates another environment. This is going to be returning 3 times factorial of 2. Again, another environment. This returns 2 times factorial of 1 and a final environment. Our most important environment is that last one with the base case. It allows us to kickstart our conquer step. So this base step will return the value 1 to whoever called it. Again, we're not skipping around. We only return the value to the function that called us. And I know it gets really confusing because everything is called fact in this particular case. But we just have to remember which function called us. And so we return the 1 back up here. This becomes 2 times 1. And they can finish their job. So notice at this point, we were 1, 2, 3, 4 functions just kind of hung up and waiting for values to be passed back to us. But now we can finally finish our jobs one by one. So this one returns a 2. This one returns the 6. This one returns the 24. And the 24 gets printed out. So big idea here. We've got each function call, even though it has the same name, is completely separate. Completely independent environment with their own parameters. Those parameters can change within those environments. And that's totally OK. They won't interfere with any parameters in any other environments. All right. So let's do the Python tutor link. And then again, we can just do it one more time just to show you what this looks like in terms of the Python tutor. So here, I've got my factorial with n is equal to 4. Calls n is equal to 3. Calls factorial with n is equal to 2. Calls factorial with n is equal to 1. At this point, just like with the multiplication, I've got all these factorials in the works. But we can start returning values back to whoever called us until we get back to the original function call. OK. So this is another recap of the observations that we've seen. Each different function call has its own environment. The variables within these environments are specific to those environments. They don't interfere with each other. And the flow of control. So when we make a function call, all we know is the function that we call next. We don't skip around. All we know is who we call next and who we need to give the value back up to. Right. One last thing I wanted to point out. So here, I've got the code for factorial, the iterative version, and the recursive version. So the one on the right is what we already wrote. So it's factorial recursive. And the one on the left is the iterative version. So I personally think the one on the right is more readable because it's very similar to the way that we would write the expression mathematically. But if you had a little bit of time to think about it, you can just as easily come up with code that does the exact same job iteratively. So remember, in iteration, we've got our loop. There's no other function calls. We have a loop that iterates some number of times. There's some sort of loop variable or loop counter. And there is a state variable that keeps track of the answer of interest. In this particular case, the product from one all the way up to an including it. So I want to end today's lecture with just a couple of observations. So today, we saw some really simple examples of recursion. But I think it outlined some really, really tricky ideas that people usually have trouble grasping when you first see recursion. And that's because you basically write a function in terms of itself. And that can be a little bit confusing. So of course, we applied recursion to some really, really simple things. We did multiplication. And we did factorial. Depending on how you feel, the recursive version or the iterative version might be more intuitive for you. And certainly for these examples, you did not need to write them recursively. There's a lot of code out there that you actually don't need to implement recursively. The iterative solution is far more intuitive, especially since you guys were first introduced to iteration. You introduced for loops and while loops back in lecture three or something like that. So that's the first thing you saw. That's usually the first thing that's going to be your go-to. But there are several problems that are more intuitive to write using recursion. So a couple of examples where recursion is more intuitive is any time when you need to repeat a task for which you don't know how deep you need to go. In which case, the recursive calls will take care of making calls to itself, to itself, to itself, to itself until it reaches the base case. You don't need to think about that in your iteration. So an example of that is this kind of classic one where we have a file inside a file system. Someone, if we're looking for a pset.txt, we can have a student whose pset.txt is straight under their users slash pset.txt folder. But we might have another person whose pset.txt is going to be within their users, their documents, their schools, their MIT, their classes, their 6100L, their pset1 slash pset.txt. So that uncertainty for how far deep you need to search the file system in order to get to the file of interest is a perfect place to apply recursion. Another one is where you have an expression. If you're building your own calculator and code and you have order of operations using parentheses, again, you don't know how many parentheses you might need to have a loop go through in order to get to that base expression, to figure out the one that you need to do first. And so that's another case where using recursion is very useful. So in the next lecture, what we're going to do is a recap of recursion using another example, Fibonacci sequence. And then we're going to start looking at recursion applied to lists. And specifically, if we have lists within lists, within lists, within lists, and we don't know how many nested lists we might have, recursion is going to be a perfect example for that. OK."
+}

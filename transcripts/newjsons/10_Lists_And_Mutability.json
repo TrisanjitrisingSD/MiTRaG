@@ -1,0 +1,1839 @@
+{
+    "chunks": [
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 0.0,
+            "end": 27.6,
+            "text": "All right, so hello, everyone. Let's get started. This is lecture 10. So last lecture, we introduced two new data types. We talked about a data type called a tuple and a data type called a list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 27.6,
+            "end": 46.16,
+            "text": "So today, we're not going to talk about tuples anymore because they were pretty straightforward. A lot of operations you could do with strings, you could do with tuples. They were immutable objects. That means once you created them in memory, you couldn't do anything to change them. And so they were, I guess, pretty boring except that you could populate tuples with objects"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 46.16,
+            "end": 64.67999999999999,
+            "text": "that were of any type. So you could populate a tuple with integers and floats and booleans and other tuples all at the same time. We introduced lists last time as well as something that was really similar to tuples and strings in terms of manipulations."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 64.67999999999999,
+            "end": 85.16,
+            "text": "Lists were also nice because you could populate them, again, with any kind of data objects, just like you could tuples. Today what we're going to focus on, though, is the idea of mutability when talking about lists, which is something new we have never talked about this idea before. And so this lecture is going to be pretty heavy on kind of that idea and a little bit"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 85.16,
+            "end": 106.88,
+            "text": "heavy on syntax and things like that to kind of remind you of how to manipulate these compound data types. So please, if there's any questions, feel free to stop me and then I can go over what I just talked about if there was anything confusing. So this slide is basically a copy of the slide we had on lists last lecture."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 106.88,
+            "end": 120.76,
+            "text": "It shows a bunch of different, oops, a bunch of different operations that you can do with lists. Very similar to operations that you can do with strings, right? So here I'm just creating an empty list. I'm creating a list with a bunch of elements in it."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 120.76,
+            "end": 139.96,
+            "text": "So here we can see that this list contains four elements and they are all of different types, right? This is an integer, this is a string, this is an integer, and this is another list. And that's totally okay to do with these data types. Doing all of these operations, getting the length, indexing, slicing, concatenation,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 140.0,
+            "end": 167.08,
+            "text": "getting the max, all that should be a review as well as iterating a for loop over the elements in a list directly. So just like we iterated a for loop over characters in a string, this loop basically makes e, our loop variable take on the value of every single element in our list l. What's new, the bolded thing here is something we haven't been able to do before and this"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 167.08,
+            "end": 188.12,
+            "text": "basically goes into memory and changes the element at index 3 and l. So that's kind of how we read that. And it changes that element to have the value on the right hand side. So this is kind of, I mean we read it in the same way as we do other assignment statements. We look at the right hand side and we evaluate that."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 188.12,
+            "end": 206.52,
+            "text": "In this case it's only a 10. But the left hand side looks different, right? It's not a variable name as we have seen before. But in fact, it's referencing the item in list named l at index 3. So that would be index 0, 1, 2, 3."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 206.52,
+            "end": 235.51999999999998,
+            "text": "This line of code down there, l square brackets 3 equals 10, basically replaces this entire element here with the number 10, OK? So on the next few slides, we're going to talk about what exactly this means inside memory. Because it's different than what we've been doing before. So what exactly happens when we go into a mutable object like a list"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 235.51999999999998,
+            "end": 253.07999999999998,
+            "text": "and we change an element using this exact syntax, all right? Well, let's draw our memory diagrams the way we have been in the past. Here's a little cloud representing the memory. l equals 2, 4, 3 creates this list for me in memory. This list object."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 253.07999999999998,
+            "end": 276.76,
+            "text": "And l is the name that I'm referencing to this list object, right? So I'm basically binding the name l to that object in memory. l square brackets 1 equals 5 tells Python to follow the name l to the object in memory. And then look up the index in the square brackets. In this case, index 1, so that's 0, 1, this 4."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 276.76,
+            "end": 302.12,
+            "text": "And take the element at this location and override it to be whatever the right-hand side says. So the right-hand side says 5, so basically we're going into memory and changing that middle element, OK? So this is different than strings and tuples. We were not allowed to do anything like this with strings and tuples. So let's look at an example on the next slide about what this means."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 302.12,
+            "end": 330.84000000000003,
+            "text": "But the idea here I'm trying to get at is this object that we have changed one of the elements for which we've changed one of the elements, we've changed the object itself. We didn't make a new copy. We didn't kind of make a version of that object. We have changed the object itself. So let's see maybe similar code that you might think does the same thing except with tuples."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 330.84000000000003,
+            "end": 354.44000000000005,
+            "text": "All right, so the first two lines of code are going to be the same. We've got L in memory being the object 2, 4, 3, or L being the name bound to the object 2, 4, 3. L square brackets 1, so L at index 1 equals 5 changes that middle element to be A5, OK? Same as the previous slide. Now what if we had these two lines of code?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 354.44000000000005,
+            "end": 382.16,
+            "text": "T is going to be a variable name that's bound to the tuple 2, 4, 3. So notice this is now the tuple denoted in parentheses. If I say T is equal to 2, 5, 3, what happens? Basically, with this line, I am creating a new object in memory, OK? So there's my new object, and I'm taking the name T and I'm binding it to this new object, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 382.16,
+            "end": 398.96,
+            "text": "The old object 2, 4, 3 as a tuple still remains in memory. I have not modified that object at all. It's still there. I've just lost the binding to it. So the name T is separate from the actual object in memory, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 398.96,
+            "end": 422.92,
+            "text": "In terms of tuples, what that means for us is we can never change the tuple object in memory once we've created it. But with lists using this specific operation, this one right here, L square brackets 1 equals 5, this does allow us to go into memory and literally change that object, right? That is associated with the name L. Is everyone OK with this slide?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 422.92,
+            "end": 442.16,
+            "text": "Does this make sense? This showcases the difference, right? So we need to think about what is the name of the object versus the object itself in memory. OK, so that shows you how to create a list and then go ahead and change elements to different values within that list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 442.16,
+            "end": 465.71999999999997,
+            "text": "But now that we have a list object, right, that we can mutate, other operations we can do with it is to, let's say, add more items to the end of the list. So we can make the list bigger, right? We can mutate the object by doing that using this append function. Now, I'm going to talk about the syntax of the append function in a little bit."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 465.71999999999997,
+            "end": 491.36,
+            "text": "But basically, if I want to mutate L to add an item to the end of it, I have to use the syntax. There isn't a different form, a different function to do this. So this specific syntax has to be used. Append is basically the function name, OK? Element is going to be the parameter, the thing that I want to add on to the end of my list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 491.36,
+            "end": 514.92,
+            "text": "And L, the thing before the dot, is going to be the object I want to add the element to the end of the list, right? So L, in this case, I'm using it generically. But you can imagine creating a list of employees in your company, right? Then you might name that list employees. In that case, we would say employees dot append, you know, Anna or whatever, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 514.92,
+            "end": 537.5600000000001,
+            "text": "So that L is just kind of generic for now, but it gets replaced with whatever variable name your list is. So this operation basically mutates the list, OK? So it mutates it to be one extra element longer. And the element you're adding to the end of the list, to the right-hand side of the list, is going to be whatever is in the parentheses to append."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 537.5600000000001,
+            "end": 558.32,
+            "text": "So let's look at an example. So we're going to create L is equal to 2, 1, 3 in memory. And then let's say we do L dot append 5, all right? Well, this line of code says look up L. It's this object in memory here, 2, 1, 3, and add the object 5 to the end of it."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 558.32,
+            "end": 568.5600000000001,
+            "text": "So I'm going to add the 5 to the end of the list. Now it's no longer 3 elements long. It's 4 elements long. And again, I didn't make a copy. I didn't preserve the original list with just 2, 1, 3 in it."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 568.5600000000001,
+            "end": 591.76,
+            "text": "I have literally changed this list in memory. That's referenced by L. Now this function, append, is being used basically for its side effect. And the side effect here is mutating the list. After the function adds the 5, in this particular case,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 591.76,
+            "end": 604.84,
+            "text": "to the end of the list, the function doesn't need to return anything back. It's basically done its job to do the mutation. And so functions like append, and we're going to see other functions later,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 604.84,
+            "end": 626.04,
+            "text": "don't have any return value. So one really common mistake, as we're learning about mutable objects and using these functions that mutate, is to say, well, I'm going to do L.append5 and save this, the result of this function, back into the variable named L."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 626.04,
+            "end": 635.8399999999999,
+            "text": "And this would be incorrect. So let's see if we do this line of code, what exactly will happen. So it's an assignment. So the first thing we do is we look at the right-hand side,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 635.8399999999999,
+            "end": 648.7600000000001,
+            "text": "and we evaluate that. Well, the right-hand side basically says L.append5, which is exactly the same as the previous line. So we're going to put another five to the end of our currently mutated list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 648.7600000000001,
+            "end": 664.6,
+            "text": "just kind of going with these operations in order. And then I said this function, this append function, has done its job to mutate the list by adding a five to the end of it, so it returns nothing. There's nothing of value that it could return because it already"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 664.6,
+            "end": 679.8,
+            "text": "did its job of mutation. So it actually returns none. So the assignment, the equal sign, then basically says, take the name L and bind it to the return of this function, L.append5."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 679.8,
+            "end": 700.36,
+            "text": "Well, the return of the function is none, so basically now we're losing the binding from 213.55, which was our mutated list, and rebinding it to the return none. So that is an incorrect way to do the mutation of adding an item to the end of the list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 700.4,
+            "end": 714.48,
+            "text": "Everyone OK with that so far? Yes, OK, excellent. So what should we have done instead? Sorry, yes, be careful about the append operation. You're doing a mutation, and you return none as a result."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 714.48,
+            "end": 731.0,
+            "text": "So you do not want to resave this to any variable. So instead, what we would do is we would just do the operation. There's nothing to save, nothing to save in any return variable. So if you wanted to add two 5s to the end of that list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 731.0,
+            "end": 749.4,
+            "text": "you would just say L.append5 again, and L would then have been mutated to be 213.55. And so in your code, if you just print L in between these append, if you printed L in between, after the first append 5, it would print this, 213.5."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 749.4,
+            "end": 764.8000000000001,
+            "text": "And then if we print L after the second append 5, it would print 213.55, because it's an ongoing operation. It's mutating this list. And now you're doing operations on the newly mutated list. Everyone, yeah?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 764.8000000000001,
+            "end": 785.48,
+            "text": "For the element, can you only use one integer or can you do 5,5? For the element, do you have to do one integer or can you use 5,5? So the append only works with one thing. So if you wanted to append a tuple, you could append one tuple object that has many things in it,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 785.48,
+            "end": 799.1400000000001,
+            "text": "but it would just append that one tuple. We're going to see, towards the end of this lecture, an operation that allows us to extend the list by a bunch of items. But there is a way just not with append. Yeah?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 799.1400000000001,
+            "end": 814.84,
+            "text": "Why does the other thing return none in there? So the other thing, so this operation always returns none. L.append5 or whatever, the append always returns none. But here, it's just sitting on a line by itself. We're not saving it back to anything."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 814.84,
+            "end": 834.2,
+            "text": "In the previous one, we took the return and saved it back into L. And that's why we lost the binding to the actual list. So what we usually say is that we use append and a bunch of these other mutable functions for their side effects. And the side effect in this case is"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 834.2,
+            "end": 856.72,
+            "text": "to mutate the object that I'm calling the append on, right? In this case, the list named L. So let's have you think about this problem. And while you do it, and then we can write it on the board together. So as we go through these lines of code, one at a time,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 856.72,
+            "end": 868.44,
+            "text": "what will the values of the lists become? So L1 is the string, right? L2 is me. L3 is do. What is L4 going to be, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 868.44,
+            "end": 885.44,
+            "text": "With that line, L4 equals L1 plus L2. Anyone know? What's the type? It's concatenation, right? So concatenation with lists is like concatenation with strings."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 885.44,
+            "end": 892.02,
+            "text": "Yes? Yep. What are the elements in it? Uh, the rate? Yep."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 895.52,
+            "end": 907.5600000000001,
+            "text": "Yep. Exactly. I'm not going to do the strings, but you know what I mean. All right. So L4 with that line is just these two elements in a new list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 907.5600000000001,
+            "end": 919.92,
+            "text": "Now what happens to, with the next line, L3 dot append L4? Which one gets mutated? L3 or L4? L3 gets mutated. Exactly."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 919.92,
+            "end": 939.28,
+            "text": "And what does it get mutated to? So L3 originally has do in it. What am I adding to the end of L3? It's just the range unit that they're a little like question. Exactly."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 939.28,
+            "end": 945.48,
+            "text": "Yes. I'm adding one item, right? And it's linked to the question that was here. What am I appending? I'm appending one item."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 945.48,
+            "end": 960.16,
+            "text": "It's whatever L4 is. And L4 is this list. So I'm going to be adding Ray and me within my list here. And I've got to close this list here. So this is one item, one object, one element."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 960.16,
+            "end": 972.16,
+            "text": "And this is another element right here. It just happens to be a list. OK? What about the next line? L equals L1 dot append 3."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 972.16,
+            "end": 985.16,
+            "text": "What is the right-hand side going to give me? Am I mutating L1 or L3? Yes. And what am I mutating L1 to be? L1 is originally Ray."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 985.16,
+            "end": 1000.9599999999999,
+            "text": "And what am I adding to the end of it? Yeah, exactly. This L3, which is this big thing here, right? So it's a list with two elements, the first one being a string, and the second one"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1000.9599999999999,
+            "end": 1012.12,
+            "text": "being another list like that. So that's the right-hand side. And then what is the left-hand side going to be? What is L going to be? No, exactly."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1012.12,
+            "end": 1025.06,
+            "text": "Yeah. Exactly. OK. So now that we've introduced mutable objects, we have to be careful about what functions we're using."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1025.06,
+            "end": 1037.06,
+            "text": "Some of them mutate the list and don't return anything. Append is one of them. And we're going to see a few more in today's lecture. So these functions are just being used for their side effect."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1037.06,
+            "end": 1045.14,
+            "text": "They mutate the thing you're calling the function on. And that's it. They don't need to return. They don't return anything. They don't need to return anything."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1045.14,
+            "end": 1064.3400000000001,
+            "text": "They have done their job purely by the mutation aspect of it. So I want to just quickly make an aside on this dot notation that we've introduced with this append function. This is something we haven't actually seen before."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1064.3400000000001,
+            "end": 1076.0600000000002,
+            "text": "But it's something that we will learn about in the future when we create our own object types. So right now, we're using object types as somebody else wrote, like a list or a tuple or something like that."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1076.0600000000002,
+            "end": 1089.74,
+            "text": "But in a future class, we're going to learn how to create our own object types. And when we do, we're going to use this dot notation a lot. But for now, you basically just kind of have to remember which functions use dot notation"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1089.74,
+            "end": 1102.42,
+            "text": "and which don't. But I'll give you a little bit of intuition for what this dot notation actually means. So everything in Python is an object. And when we have objects in Python,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1102.42,
+            "end": 1116.94,
+            "text": "the idea here is that the objects that you have have data associated with them. So what makes up the object? And they have certain behaviors. So we touched upon this on maybe the first lecture"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1116.94,
+            "end": 1129.58,
+            "text": "where we said things you can do with integers are different than the things you can do with strings. That's pretty clear. And that's different than the things you can do with lists."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1129.58,
+            "end": 1140.74,
+            "text": "And so the kinds of things that you could do with each one of these object types differs depending on the type. And at its core, really everything can be written in terms of this dot notation."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1140.74,
+            "end": 1153.54,
+            "text": "But some of the more common operations, like getting the length of something or adding two numbers together, are actually, we do them in this shorthand notation, like using the plus operator or using the length."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1153.58,
+            "end": 1166.8,
+            "text": "But at their core, really, we can take all of those operations and convert them to a dot notation. We're not doing this today, but that's what we can do. And so when we see this dot notation, the way we usually read it is we say, well,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1166.8,
+            "end": 1179.34,
+            "text": "what's to the left of the dot? It's going to be our object, the thing that we want to do an operation on. In this particular case, it's a list named L, but it could be a list named employees or words"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1179.34,
+            "end": 1196.6599999999999,
+            "text": "or whatever book or whatever the list name is. The dot then comes for the dot notation. And then the thing on the right-hand side is going to be the operation that you want to perform on the object to the left of the dot."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1196.6599999999999,
+            "end": 1212.22,
+            "text": "So the operation, if you basically cover up L dot, the operation looks just like a function. It's append, parentheses, some parameters. And so the operation is basically just a function that you want to run on an object of type list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1212.22,
+            "end": 1224.22,
+            "text": "this specific object named L. And you can see it has a name, append, and it has parameters or arguments. In this case, it's the thing you want to add to the end of the list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1224.22,
+            "end": 1237.7,
+            "text": "So again, unfortunately, at this point in the class, you just have to kind of remember which functions are dot notation and which ones are not. But it will become clear what this dot notation actually means towards the end of the class."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1238.38,
+            "end": 1251.78,
+            "text": "So let's have you work on this little code here. It's going to use append, obviously, and it's going to have you create a list. So the name of the function you should make here is called makeorderedlist, and it takes in one parameter,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1251.78,
+            "end": 1266.54,
+            "text": "an integer n. It's positive. And I want you to create for me a list that has all of the integers from 0 all the way up to an including n inside that list, in order."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1266.58,
+            "end": 1287.62,
+            "text": "So as an example, down in here, around 34, right? If we call makeorderedlist with 6, it's going to create for us this list inside the function and return this list. All right, so a couple minutes to work on that,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1287.62,
+            "end": 1304.42,
+            "text": "and then we can write it together. All right, what's the first thing we should do here? Or how would you approach this problem? Yes. You want to create an empty list?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1304.42,
+            "end": 1318.8600000000001,
+            "text": "What do you want to name it? You named it list. List is an OK name, but notice list is also the name of the type of the object. So I would refrain from naming anything, things"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1318.8600000000001,
+            "end": 1331.18,
+            "text": "that change color. So we can use l or my list or whatever, something else. My list is an empty list, all right? So it's originally empty, and now we need to populate it with some stuff."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1334.5800000000002,
+            "end": 1349.98,
+            "text": "You want to go on? Make a for loop. That goes over what? Yep, 0 to n plus 1, exactly, because we need our boundary to go up to an including n."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1349.98,
+            "end": 1366.1000000000001,
+            "text": "Perfect. So now that I've got i changing to be 0, then 1, then 2, then 3, what do I need to do to my list? Yeah, exactly, append i. So my list is the name of the list I've created."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1366.1000000000001,
+            "end": 1380.8200000000002,
+            "text": "Append i, OK? The last thing, return the list, right? So return my list. So run it. Perfect."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1380.82,
+            "end": 1394.86,
+            "text": "If we change this to 2, it still works. So just testing it out with a couple different inputs, just to make sure it works. Questions about this code? Is it produced?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1394.86,
+            "end": 1404.86,
+            "text": "Yeah? Is the 0 necessary in the range or does it default to 0? The 0 is not necessary in the range. Yeah, it defaults to 0, exactly. OK."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1406.42,
+            "end": 1416.86,
+            "text": "We're not done yet. You have more writing to do. So let's write a slightly different function now called removeLM. It takes in two parameters."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1416.86,
+            "end": 1428.3,
+            "text": "The first one is a list, right? And the second one is going to be just some variable. It could be an integer. It could be a string. It could be whatever."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1429.3,
+            "end": 1448.7,
+            "text": "And what the function should do is create a new list, populate it with the same elements of L in the same order, but exclude the ones that are equal to E. So you don't want to include the ones that are equal to E. Otherwise, keep everything in the original list L"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1448.7,
+            "end": 1470.6200000000001,
+            "text": "in the same order. So as an example here, we've got if our input list is 1, 2, 2, 2, 2, and I call the function with L and 2, the list that this function returns should just contain one element in it, just the 1, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1473.8200000000002,
+            "end": 1499.1000000000001,
+            "text": "So try your code for the next couple of minutes around line 50, and then we can write it together. All right. How can we start? Yes?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1499.1000000000001,
+            "end": 1507.9,
+            "text": "I created a new list. Yep. What did you name it? Cool. What did you make it be equal?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1507.9,
+            "end": 1527.42,
+            "text": "Empty list, OK? Yep, so for I in L, OK. And at this point, I would make a note for myself, because you use I, which in my brain means index. But I would make a note for myself"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1527.42,
+            "end": 1540.9,
+            "text": "that I is maybe 1, then 2, then 2, then 2, just according to this first example. So if I'm reading the code, I would just, I will remember that it's not the index. But go on."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1540.9,
+            "end": 1553.44,
+            "text": "So for I in L directly. Not in. Like this? Yep. OK."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1556.94,
+            "end": 1569.5800000000002,
+            "text": "Then you list those of 10 lines. Yeah. OK. And then let's return your list. OK."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1569.5800000000002,
+            "end": 1585.22,
+            "text": "Let's try it. Yeah. So E is not a list. E is going to be an element, right? So that's my bad."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1585.22,
+            "end": 1602.7800000000002,
+            "text": "I should have put this in here. E is like an object or something. It could be a list, but then I would be looking for that exact list as a sub-element. So maybe we think of E as an object like 5"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1602.7800000000002,
+            "end": 1618.6200000000001,
+            "text": "or something like that. Yeah. Not equal to E. Right? So if I'm just looking for that element directly, I want I to be not equal to E. In which case,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1618.6200000000001,
+            "end": 1633.74,
+            "text": "I keep the element in my new list. So if we run that, that gives me 1. According to this, looks like it's correct. And then we can run it with these other two cases. So here I'm removing the element 1, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1633.74,
+            "end": 1653.14,
+            "text": "So I'm going to keep 2, 2, 2 as my returned list. And here I'm removing 0, which doesn't exist in my list at all. So it should just keep, and it does, my original list unchanged. Any questions about this example? Anyone try it a different way?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1658.3,
+            "end": 1676.6200000000001,
+            "text": "OK. All right. So other useful list operations, we can convert strings to lists, and then lists back to strings. And this is very useful when you're"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1676.6200000000001,
+            "end": 1692.38,
+            "text": "reading in text or something like that to a function. It's going to be useful for problem set 3, so on and so on. So let's first see how we can take a string, S, and convert it to a list. So if we just cast S to a list, the way"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1692.42,
+            "end": 1709.6200000000001,
+            "text": "we used to cast the number 5 to a float, we would just say float parentheses 5. Well, we can take a list and cast it to a list by saying list parentheses S. And if we cast it like this, Python takes every single character in S"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1709.6200000000001,
+            "end": 1726.5400000000002,
+            "text": "and makes it be a separate element in a list. So you can see here I've got the string i, heart, CS, and u. It makes for me a list where every single character, including the space and all the special characters, becomes a separate entry in my list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1726.5400000000002,
+            "end": 1739.66,
+            "text": "That's not that useful. I mean, it can be, but it's not that useful. What is more useful is to take an input string and split it on a particular character. So one very common character that we would split on"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1739.66,
+            "end": 1753.18,
+            "text": "is the space. And if we do something like that, it basically extracts from us from our string all of the individual words, which is pretty useful. So here I've got S.split."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1753.18,
+            "end": 1767.3799999999999,
+            "text": "And in parentheses, I've got the character I want to split on, in this particular case, a space. So if I take S and I split on the space, Python will go from the beginning of the list to the first space, make that be one element in a list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1767.3799999999999,
+            "end": 1780.54,
+            "text": "It'll go from the first space to the next space in my string and make that be the next element in the list, and so on and so on until it gets to the end of the list and makes that last bit the last element in my list. So here, when I've split on the space,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1780.54,
+            "end": 1799.06,
+            "text": "I've got three base words, quote unquote words. I, heart, is going to be one, and there it is as my first entry. Cs is in between these two spaces, and that's my next entry, and you question mark is my last entry here."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1799.06,
+            "end": 1814.46,
+            "text": "So this is a very useful function. We can, of course, split on any character we'd like. So here I am splitting on the less than character. There's only one, so if I split on the less than character, one element in my resulting list is just the capital I,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1814.46,
+            "end": 1838.74,
+            "text": "and the remaining element in my resulting list is the three space, Cs, and U, and there it is right there. All right, so once we have a list, we can also go backward. We can take this list and convert it back to strings. So we use this join function here,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1838.74,
+            "end": 1857.3400000000001,
+            "text": "and the thing before the dot is going to be what character you want to join the list elements with, and this is the list you want to join back into a string. So let's look at an example. So let's say I have list L that has three entries in it, A, B, and C."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1857.3400000000001,
+            "end": 1872.1000000000001,
+            "text": "If I join on the empty string, so here this is just quote, quote, right beside each other. There's no space or anything in there. That's going to take from me all the elements in the list L and join them together as one, nothing in between the A or B,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1872.1000000000001,
+            "end": 1887.8600000000001,
+            "text": "A, B, and C. And this operation here will basically make for me A, B, the string A, B, C. If I join on an underscore, you might have guessed, it'll join A, B, and C with an underscore in between each character."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1887.8600000000001,
+            "end": 1899.94,
+            "text": "So there it is, A underscore, B underscore, C. You can join on any character you'd like. I don't know if you can join on multiple characters, but I don't see why not. You could try this out on your own."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1899.94,
+            "end": 1919.78,
+            "text": "Join only works with lists that contain only string elements. So if we try to join a list that has just integers or floats or booleans, anything that doesn't contain a string in it, then you will get an error, because it's basically trying to put all these back into a big string."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1919.78,
+            "end": 1931.82,
+            "text": "If you wanted to join non-string elements, you would have to basically loop through and cast every one of these to a string first, and then join them together. So if you want to join 1, 2, 3, you"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1931.82,
+            "end": 1949.9,
+            "text": "would have cast them to strings, and then you could join them to make the string 1, 2, 3. OK, so let's have you work on this example. So here, we're going to try to split the input. So here is a function called count words."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1949.9,
+            "end": 1964.3400000000001,
+            "text": "It takes in one input sen for sentence. And I wanted to use something that's not s, just to make it clear that the thing before the dot isn't always s. It's whatever object you want to split or join or whatever."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1964.3400000000001,
+            "end": 1982.46,
+            "text": "So this function is going to return how many words are in s, quote unquote words in this case, because I'm just interested in the elements or the characters between spaces and between the start and the end of a word. So if it's a number, I still count that as a word."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1982.46,
+            "end": 1998.3,
+            "text": "If it's a special character dot exclamation point, I would still count that as a word as well. So this should be just a couple lines of code down around 99. So I'll give you about a minute to work on it, and then we can write it together."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 1998.3,
+            "end": 2022.82,
+            "text": "OK, so thoughts on how we can do this? L1 equals sen dot split, yep. Uh, yep, sorry, parentheses space, yep. And then return the length of L1. Yep, and then we can return the length of L1."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2022.82,
+            "end": 2037.82,
+            "text": "Perfect. Let's run it on these two examples, and should print 3 and 12 and it does. So notice how easy this was with lists, right? Because lists are data structure, that's just kind of naturally iterative."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2037.82,
+            "end": 2053.06,
+            "text": "And so running len on this split string, which gave us a list, is really easy, right? It's a two line piece of code. Without lists, you could imagine creating variables that keep track of where you see the first space, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2053.06,
+            "end": 2066.42,
+            "text": "And then iterating through one character at a time, and if it's a space, keep track of the fact that you saw a space, and then look for the next space, right? And then resetting things every time you see a space. And that would be really, really tedious."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2066.42,
+            "end": 2081.7000000000003,
+            "text": "It would be a really good quiz one question, but not once we've introduced lists, because it becomes really, really easy to do it with lists. OK. All right."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2081.7000000000003,
+            "end": 2100.46,
+            "text": "So now that we have lists, we can do other really interesting and useful operations to mutate the list. So we saw the dot notation on a list to do append. So basically to add an item to the end of our list. That was useful."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2100.46,
+            "end": 2120.26,
+            "text": "Other things we can do in terms of mutating the list is to sort a list and reverse a list. And these are also very useful operations on lists. So the first two here, sort and reverse, is a notation for how we sort a list and how we reverse a list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2120.3,
+            "end": 2141.26,
+            "text": "And these will mutate the list that you call the functions on. So if I have list 427 here, and I call l.sort, and I print l as the next line after this, l will have changed in memory to be 2, 4, and 7 in that order. It didn't make a copy for me."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2141.26,
+            "end": 2156.14,
+            "text": "It didn't preserve the original order. It changed that list to be now in sorted order. Reverse similarly. So if we do l.reverse on 427, it will reverse all the elements. So the one at the end becomes at the beginning."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2156.14,
+            "end": 2171.38,
+            "text": "The one second last is the second one. The third last is the third element in the list, and so on. And again, this mutates my list. So I would have lost my original order with this command, l.reverse, and with l.sort, of course."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2171.38,
+            "end": 2183.82,
+            "text": "Now, there are many situations where you want to preserve the original order. I don't know, maybe like the order that people joined a company, or the order that people joined a grocery queue, I don't know, things like that."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2183.82,
+            "end": 2201.42,
+            "text": "You might want to preserve that original order, but you might also get maybe the sorted names of people for a function that does something with those sorted names. In that case, you don't want to call sort on your original list because you would lose the original order."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2201.42,
+            "end": 2217.7,
+            "text": "You could, of course, make a copy, or you could call this sorted function. And the sorted function is going to keep my original list, l, intact in the same order that I had created it in. But it would return for me."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2217.7,
+            "end": 2232.74,
+            "text": "So this function will actually make a copy and return for me the sorted version of l. And l remains unchanged. So this function does not do any mutation. We have to take the return and save it into a new variable,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2232.7400000000002,
+            "end": 2247.98,
+            "text": "this case I called it l new. So it might be a little bit sort of hard to keep straight in your mind, whether to use sort or sorted. You could, of course, always try it in the console to see which one does what."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2247.98,
+            "end": 2265.7400000000002,
+            "text": "The way I sort of remember and think about it is the sort, to me, feels like a command. It's like sort this list, mutate this list and sort it. Whereas sorted is more of a request can you please get me the sorted version of l?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2265.7400000000002,
+            "end": 2279.02,
+            "text": "And so that's kind of how I keep things in my mind as to whether I'm calling sort to do the mutation or asking to get the sorted version of the list. Yes? What is it sorting by?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2279.02,
+            "end": 2298.5,
+            "text": "It is sorting it by whatever the built in sort is for those particular object types. So in the case of integers, it's just increasing order. In the case of strings, it'll be alphabetical. You can choose different sorting functions,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2298.5,
+            "end": 2308.82,
+            "text": "but we don't get into that. Yeah? Do they want to do the same all the time? That's a good question. I think they do in order for it to work."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2308.82,
+            "end": 2325.3,
+            "text": "So we can try like l equals one, and then we can give it a tuple or something. And then we can ask sort l. So in this case, it doesn't know how to resolve, it's trying to do behind the scenes less than"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2325.3,
+            "end": 2335.18,
+            "text": "to figure out which one's bigger than which. And in this case, it doesn't know how to resolve how do you choose whether the tuple's bigger than an integer, yeah. But you can imagine, again, as I mentioned,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2335.18,
+            "end": 2347.98,
+            "text": "this is not something we do, but you could write your own sorting function where depending on the type, you would decide which one is bigger. So yes, question."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2348.54,
+            "end": 2360.22,
+            "text": "You just wanted that like l.so without parentheses. Yeah. So you would just do l.sort without parentheses, but l has to be a list that contains things that can be sorted, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2360.22,
+            "end": 2371.98,
+            "text": "So all integers, all strings or something like that. So let's look at the memory diagram for how this would look, just to kind of bring the point home about objects that are being mutated."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2371.98,
+            "end": 2389.22,
+            "text": "So original l is 9603. So in memory, I've got the name l bound to 9603. Again, let's do an append just for fun. l.append5 is going to add a five to the end of that list and append, sort, and reverse"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2389.22,
+            "end": 2402.9,
+            "text": "will all be used for a side effect, right? That means they're gonna be mutating the object, whereas sorted will not do a mutation. So let's do an append to the end. That's going to put a five at the end of the list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2402.94,
+            "end": 2415.7400000000002,
+            "text": "something we already know how it works. Now let's do a equals sorted l. So again, it's an equality, right? So the thing on the right hand side is going to be the function"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2415.7400000000002,
+            "end": 2426.62,
+            "text": "that returns for me the sorted version of l. So it's going to create a new object. However it does the sort, it's going to create for me a new list that contains that sorted order."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2426.62,
+            "end": 2442.92,
+            "text": "The original l, notice in memory, remains unchanged. So if I wanna reference l in my program from here on out, it will use this unchanged l. So now the return of sorted is this list and I bind it to a."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2442.92,
+            "end": 2460.64,
+            "text": "So name a now points to the sorted list version. All right, now what if I do this line here, b equals l.sort. Again, let's look at the right hand side. l.sort is going to mutate l."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2461.0,
+            "end": 2475.52,
+            "text": "So this function itself will go and change l to be the l's object, the object that l points to to be the sorted list. But it's not done. This function is being used for a side effect."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2475.52,
+            "end": 2486.8399999999997,
+            "text": "So what is the return from it? None, right? It's like the append. So this example here will make b point to the return of that function, which is just none."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2492.0,
+            "end": 2505.3199999999997,
+            "text": "Now please don't ever do this. All you would have to do to sort l is to just on a line by itself, say l.sort. I just did this to kind of show you again that if you do l equals l.sort, bad things will happen."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2505.3199999999997,
+            "end": 2522.3999999999996,
+            "text": "You're gonna reassign l to be none. In this case, I saved it under a different variable, but it's an easy mistake to make. Okay, and then what about the last one here, l.reverse? Again, I'm going to go and grab the object pointed to by l"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2522.3999999999996,
+            "end": 2538.68,
+            "text": "and I'm gonna reverse all the elements. So here, doing l.sort and then l.reverse right afterward makes my list be in reverse sorted order, so biggest number to smallest number. So with that command there, I've got 96530"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2538.68,
+            "end": 2559.88,
+            "text": "instead of 03569. And again, sort and reverse changed my list l directly. So I've lost that initial order of 9603 that I had up here. One last point I wanna make. I know we've usually seen functions"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2559.88,
+            "end": 2575.7999999999997,
+            "text": "that take in parameters, right? Sort and reverse are still functions. And they just happen to not need any parameters, right? You call them on the object l using this dot notation. So in effect, it does have sort of a quote unquote parameter,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2575.7999999999997,
+            "end": 2585.88,
+            "text": "the thing before the dot, but it doesn't take anything else in their own respective parentheses, right? But they do still need the parentheses there because they are functions, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2585.88,
+            "end": 2598.84,
+            "text": "They are operations that will do something for us. Okay, questions about this? Is it okay? Okay, very good. Because now you get a chance to try it out."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2598.84,
+            "end": 2609.84,
+            "text": "So let's have you do something similar to what we did last time. Take in a parameter sen, which is a string representing a sentence. I want you to figure out all the words quote unquote"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2609.84,
+            "end": 2629.1600000000003,
+            "text": "in the same manner that we did before in the previous example, but now return from your list with these words in sorted order. So if the input was look at this photograph as my sentence, then I would return a list which has at, look, photograph,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2629.1600000000003,
+            "end": 2657.4,
+            "text": "and this as my three, or as my four elements in that order. So here, start writing it down on line 134. Okay, what is the solution? What do you have so far? Yes?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2657.4,
+            "end": 2670.1200000000003,
+            "text": "L equals sen dot split with the parentheses. L equals sen dot split, and we split on a space? Got it? Okay. And then L dot sort parentheses with nothing at them."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2670.1200000000003,
+            "end": 2682.84,
+            "text": "Got it? And then return L. Return L. Perfect. Okay, let's see if that worked with our two examples. Yep, there's my first one, there's my second one."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2683.04,
+            "end": 2696.92,
+            "text": "Anybody do it a different way? Did anyone use sorted? Yeah? Return sorted parentheses L. Um, return sorted parentheses L."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2696.92,
+            "end": 2712.0,
+            "text": "Yeah. Is that how you'd- Yeah, just consider L, it's sen dot split. Yep, we could do it all in one. Perfect. Yeah, this could be a one-liner for sure. Um, yeah, so this, uh,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2712.0,
+            "end": 2731.68,
+            "text": "works because this thing here creates for me a new object. I could have saved it in a different variable and then return that variable, but this does it all in one. So just for completion's sake, if we comment out the other solution, this way still works."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2734.48,
+            "end": 2755.36,
+            "text": "Question so far. Okay. All right. So what we've seen so far is a bunch of these functions, built-in functions, right, that have these side effects. They mutate the input, uh, the input list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2755.36,
+            "end": 2774.32,
+            "text": "So we can actually write our own functions that have a side effect, where if we pass in a parameter that's a list, we can have our functions mutate that list however we'd like. So let's go through this example. Let's say we were given the task of writing"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2774.32,
+            "end": 2792.48,
+            "text": "a function that takes in an input list L and, and mutates the list L such that each element in L is changed to be the element square, right? So two, four, two, three, and four as an input list becomes four, nine, 16."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2792.48,
+            "end": 2807.24,
+            "text": "And I'm mutating that list. I'm not creating a new list and returning the new list. I want to actually mutate the input list L. So if we were faced with this task, the way that we would kind of go about it,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2807.24,
+            "end": 2823.4,
+            "text": "maybe based on what we've learned so far is to say, well, I'm going to iterate through each element in L because that's a very pythonic way to do this, right? So I'm grabbing the element in the list L. But then I would be stuck because the syntax for"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2823.4,
+            "end": 2843.0400000000004,
+            "text": "changing an element at a particular location, right, is L at i equals, you know, whatever the change thing is. But my loop variable is iterating through the element directly. So what's my index in this particular case? I don't have it in hand, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2843.0400000000004,
+            "end": 2859.36,
+            "text": "I have the element, but I don't have the index. So what are some solutions? Well, a first solution could be right before the loop to create a new variable that keeps track of the index, right? So you make i equals 0 right before the for loop."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2859.36,
+            "end": 2873.2799999999997,
+            "text": "And inside the for loop, you increment i each time. Now you're keeping track of the index yourself. Option two is to change what we iterate over. So instead of iterating through each element in L directly, let's iterate over the index."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2873.2799999999997,
+            "end": 2895.64,
+            "text": "So iterate over range length L. In that case, the range length L basically becomes range 5 or 20 or whatever the length of my list is. And the last option is to try to use this thing called enumerate, which is a Python keyword, I guess, Python function."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2897.36,
+            "end": 2919.08,
+            "text": "And the syntax for that would be for tuple i comma e in enumerate L. So I'm basically wrapping L inside this enumerate function. And Python each time through the loop makes this little tuple i comma e be the index and the element at each location, each time through the loop."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2919.08,
+            "end": 2939.12,
+            "text": "And so it gives you a two for one kind of deal here using this enumerate function. I'm not going to go over option one or option three. I do encourage you to try to look these up or try to implement them yourself. But I will go over option two in these slides. So if I were to iterate over the index directly,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2939.12,
+            "end": 2964.72,
+            "text": "the way I do it is I have to change the loop variable, right? For i in, and then the thing I want to loop over is all of the indexes, indices, right? So I want to get the numbers 0, 1, 2, 3, 4, all the way up to the, but not including the length of L, right? So once I have this index in hand, I can do something like this very easily, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2964.72,
+            "end": 2987.7599999999998,
+            "text": "Because this i here is going to be my index, right? And the thing on the right hand side is just going to be a matter of grabbing the element at that index and squaring it, okay? So here, L square brackets i on the right hand side grabs for me the element at index i. So what's the value of that element at that particular location?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 2987.7599999999998,
+            "end": 3008.12,
+            "text": "23, whatever, square it, so star star two squares it. And then the thing on the left hand side is the syntax for changing the element at a particular location, right? We saw this way back on slide two. So with this line of code, Python goes through each element in the list and"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3008.12,
+            "end": 3032.04,
+            "text": "squares it and saves it back into that same list. No new list is created, it's mutating the original list, right? No return, nothing to return, this function will return none because it does its job of doing the mutation. So if we go through an example, suppose that L is 234, what is this loop going to do?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3032.04,
+            "end": 3051.6,
+            "text": "So i, the first time through the loop, will be zero. And then that first time through the loop, it will mutate i. So it says L square bracket zero equals whatever the element at zero is, the two squared. So L square bracket zero will be changed to four, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3051.6,
+            "end": 3071.72,
+            "text": "So we've mutated the first, the element at index zero to be a four and everything else is the same. Next time through the loop, I'm mutating the list that I had just mutated, right? So the first element is still the mutated value four. But now I'm gonna change my element at index one to be three squared, nine."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3071.72,
+            "end": 3092.96,
+            "text": "Last time through the loop, all the elements up to index two are gonna be the mutated elements, so four and nine. And then the last time through the loop, I'm mutating the six, the four to be 16. The square version of that. Okay, so to check that we did the mutation correctly,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3092.96,
+            "end": 3114.04,
+            "text": "what we would do is we would create an input list, I called it ln. And I've set it to 234, my example. If I print before the function call, the value of ln, it's 2, 3, 4 as expected, it shouldn't be anything different than that. Then I make a function call to the function that we just wrote."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3114.04,
+            "end": 3139.0,
+            "text": "Note, I'm not returning anything here, so I'm not saving the function call to any variable, right? If I print ln after the function call, it will print the mutated list. So this ln here, and here, and here is the same object. Nothing was returned, this function here has nothing to assign its return to."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3139.0,
+            "end": 3162.32,
+            "text": "If we assigned it to something, that variable would be none. Just like the append, just like the sort, just like the reverse. All right, so when you're writing, yeah, question. So we created a function where we don't have a return, and it doesn't say none. We created a function, it doesn't have a return."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3162.32,
+            "end": 3189.48,
+            "text": "It doesn't say none because we didn't save the function call to any variable, right? If we said, like, A equals this function call, if we print A, it would show none, yeah. Okay, so when we're writing functions that mutate input lists, the two likely things you're gonna have to do, and it depends on what your function's actually doing. But most likely, you're gonna have to iterate over the length of the list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3189.48,
+            "end": 3209.68,
+            "text": "So for i in range length l, to grab the index as well as the element, to be able to grab the index as well as the element. And these functions, I mean, they could do other stuff, but if you're using them for mutation and things like that, they're going to return none. So when you make function calls to them, those function calls will likely just be on a line"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3209.68,
+            "end": 3234.96,
+            "text": "without saving the return to any variable, right? Okay, so we've talked about mutable objects. They're very, very useful. Places where they're useful, or the reason that they're useful is because they allow you to have basically large databases of objects, like employees in a company, list of all"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3234.96,
+            "end": 3255.28,
+            "text": "the students at MIT, things like that. And if you want to make a change to something about that list, like a student changes their name or their address or something like that, with tuples, you'd have to make a new copy of that entire list. So it could be very space and efficient because every time a student changes their address"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3255.28,
+            "end": 3274.96,
+            "text": "or their name or something about themselves or their grades or something like that, you're making a new copy of this potentially thousands long data structure. Lists don't have that issue. With lists, you're just mutating the object in place and you're done. No extra copies are being made, so it's a very efficient data structure."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3274.96,
+            "end": 3292.36,
+            "text": "But with lists come some unexpected challenges, and we're going to go through three tricky examples today. In the next lecture, we're going to see tricky example number four. And these three tricky examples involve looping over the list in one way or another, over the range of the length of the list or through the list directly."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3292.36,
+            "end": 3323.0800000000004,
+            "text": "So let's look at the first example. In this code down here, we're going to loop over the range of the length of the l. And then what we're going to do is append the loop variable i to the end of my list. Now what does range length l do? So remember, the thing that our for loop iterates over is a sequence of values."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3323.08,
+            "end": 3345.16,
+            "text": "Now range some number creates for us a tuple-like object. Not a tuple specifically, but you can think of it like a tuple. So range four, the length of this particular list, would create for us in memory something like a tuple, the sequence 0, 1, 2, 3. And this is the sequence that the loop variable i will go over."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3345.16,
+            "end": 3369.1200000000003,
+            "text": "First it'll be 0, then it'll be 1, then it'll be 2, then it'll be 3. So when we iterate through the sequence, Python says, OK, the first time I encounter this for loop, I'm going to save this sequence I need to iterate over as an object in memory. And then I'm going to have my loop variable iterate over each one of these elements. The thing I'm doing is appending i to the end of a list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3369.1200000000003,
+            "end": 3391.56,
+            "text": "So the first time through the list, I'm going to append a 0 to the end, so the 0 being this loop variable here. Next time through the list, I'm appending the 1 to the list I just mutated. Next time I'm appending the 2 to the list I just mutated. And last time through the list, I'm appending the 3 to the list I just mutated."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3391.56,
+            "end": 3411.52,
+            "text": "And we finish. We've gone through four times. We've appended four items to the end of the list, 0, 1, 2, and 3. The elements of my sequence that I'm iterating over. Let's look at the memory diagram."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3411.52,
+            "end": 3430.04,
+            "text": "So originally L is 1, 2, 3, 4. What exactly happens when we first encounter range length L? That gets put as a variable, this tuple-like thing. I made it be a tuple, but it's not exactly a tuple in memory. And this i will iterate through each one of these values in my sequence."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3430.04,
+            "end": 3457.32,
+            "text": "This is the sequence of values that I'm going to iterate over. So the first time through the loop, Python has i pointing to 0 here. And so what's it doing inside the loop? It's going to append the 0 to the end of L. Then it's going to print L, sorry. And then next time through the loop, the loop variable increments by 1."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3457.32,
+            "end": 3469.88,
+            "text": "So we've already looked at the 0. Now we're going to do the 1. So the loop variable i is now 1. So we're going to append the loop variable 1 to the end of L, print L. Loop variable becomes 2."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3469.88,
+            "end": 3492.56,
+            "text": "Append the loop variable to the end of L. So now it has a 2. Print L. And then the last time we append the loop variable 3 to the end of the list L and print L. Pretty straightforward. The code terminates because we've created this original tuple-like object. Which tells Python what values you need to iterate over."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3492.56,
+            "end": 3510.8,
+            "text": "This is your sequence of values to go through. So that's basically what I said. So let's look at a slightly different example. So in this case, instead of iterating over the range length L, let's iterate over the elements in L directly."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3510.8,
+            "end": 3533.76,
+            "text": "So for E in L. Now to keep things sort of in parallel to what we had done before, let's create a loop variable i equals 0 before the for loop. And let's increment it by 1 each time through the loop. So we're going to still append 0, then 1, then 2, then 3 to the end of our list. So in this particular case, we start out with the memory diagram like this."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3533.76,
+            "end": 3553.64,
+            "text": "So we have L pointing to 1, 2, 3, 4. Loop variable i is going to be 0 originally. And E will first point to the first element in the list. That's what the for loop over the elements in the list does. So going into the list, we say L dot append i."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3553.64,
+            "end": 3566.2400000000002,
+            "text": "So at the end of L, I'm going to mutate it to contain a 0. Good. I increment i by 1. Good. I print L. Okay, good."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3566.2400000000002,
+            "end": 3580.04,
+            "text": "And then the next time through the loop, Python says, all right, what's the next element in my sequence? Well, I looked at the one first. Now let me look at the two. All right, now I'm looking at the two as my next element in the sequence."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3580.04,
+            "end": 3597.52,
+            "text": "I'm going to append i to the end of the list, right? So I'm going to append 1 to the end of L. Increment i by 1 to be 2, print L. Okay, next value in my sequence. E increments to the next element in the sequence, the 3."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3599.28,
+            "end": 3612.68,
+            "text": "We append i to the end of the list. We append 2 to the end of L. Increment i by 1, print L. What do you notice? Is this code going to terminate?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3612.68,
+            "end": 3632.16,
+            "text": "No, because our loop variable will always be four elements away from the list, the end of the list, right? As I'm adding an item to the end of my list, the loop variable iterates to the next item. But then I'm adding another item to the end of my list, and my loop variable iterates. And so we're always going to be four behind the end of the list."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3632.16,
+            "end": 3652.36,
+            "text": "So this code will actually never stop. Okay, all right. So the difference here is what I'm iterating over. In the previous example, as soon as Python saw range, length, whatever, it made this predefined sequence of values it needed to iterate over."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3652.36,
+            "end": 3669.0800000000004,
+            "text": "But here, it doesn't do that because it's iterating over my object L. There's no predefined sequence to create. It's supposed to iterate over L directly. So that's the difference between these two. All right, so now I'm going to show you, before I do the last tricky example involving"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3669.0800000000004,
+            "end": 3689.2000000000003,
+            "text": "concatenation, I wanted to mention one thing, which is there was a question earlier. How do we actually add more than one item to the end of our list? And we do that using this extend operation. And this extend operation is kind of like a pen, but we are going to add all of the elements of some list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3689.2000000000003,
+            "end": 3707.4,
+            "text": "as the parameter, to the end of our list L. So in effect, we're mutating L to be extended by all the elements in some underscore list. So here's an example. First, let's do concatenation just to remind ourselves what it does. So L1 is 2, 1, 3 in memory."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3707.4,
+            "end": 3725.04,
+            "text": "L2 is 4, 5, 6 in memory. L3 is going to be L1 concatenated with L2. Pretty straightforward, it's concatenation. So Python creates for me a new object, which is all the objects in L1 and L2 put together as this completely new object bound to the name L3."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3725.04,
+            "end": 3746.72,
+            "text": "So L1 and L2 remain unchanged, no problems there. But the extend is going to mutate, notice the dot notation format of extend. It's going to mutate L1 to be extended by all the elements in this list. So it's going to add a 0 and a 6 to the end of L1."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3747.7200000000003,
+            "end": 3770.44,
+            "text": "So here it is. I've got L1 mutated to be 2, 1, 3, and then 0 and then 6. So just to bring the point home, the thing we're extending by is all of the elements of this list in the parameter, right? So in this particular case, L2.extend will be extended by how many elements?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3770.44,
+            "end": 3779.92,
+            "text": "Two or four? Yeah. I see two. Exactly. It'll be extended by two elements."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3779.92,
+            "end": 3798.76,
+            "text": "At the top level, this list has two elements in it, a list and then another list. So this command here will extend L2 by these two elements specifically. 1, 2 as a list and 3, 4 as a list, right? But these are individual objects. They're single objects that are lists."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3798.76,
+            "end": 3824.36,
+            "text": "They happen to have a bunch of elements as part of the list, but they are two objects. Yeah. When we extended by 0, 6, there's no brackets because we're extending it by the elements of this top-level list. So it's two integers, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3824.36,
+            "end": 3848.2000000000003,
+            "text": "And here, we're extending it by the elements of this top-level list, so in the sense that the outermost parentheses, which are actually, they are lists, right? So that introduces extend. We're not actually going to use extend for this particular example, but I did want to mention it."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3848.2000000000003,
+            "end": 3868.4,
+            "text": "In this example, we're going to use the plus, the concatenation operator to create for us this new object and bind it to L again. So let's see what this is going to do. First, I'm going to actually tell you the answer, and then we'll do the memory diagram again to bring the point home."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3868.4,
+            "end": 3891.08,
+            "text": "So this loop will, again, loop through all the elements in L. Originally, it's 1, 2, 3, 4 in a list, all right? So what is the actual loop going to do? It's going to take whatever is in L, double it, right? So originally, L is 1, 2, 3, 4."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3891.08,
+            "end": 3911.52,
+            "text": "The first time through the loop is going to create a new object, which is just L, 1, 2, 3, 4, doubled, right? I've concatenated L with itself. And then I'm going to save it in my new, as this new object with the name L again. That's the first time through the loop."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3911.52,
+            "end": 3934.12,
+            "text": "Second time through the loop, I'm going to take whatever L was mutated, or whatever L was before, sorry, not mutated, but whatever L was before. So it's 1, 2, 3, 4, 1, 2, 3, 4, double that, and save it under the name L. Second time through the loop. Now, third time through the loop, I'm going to take whatever L is right now."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3934.12,
+            "end": 3966.0800000000004,
+            "text": "So these two rows of 1, 2, 3, 4, 1, 2, 3, 4, double that, and save it under the name L. And then the last time through the loop, I'm going to take whatever L was before, so these four rows of 1, 2, 3, 4, 1, 2, 3, 4, double those, and save that as the new L. And that's it. This code does not go to infinity."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3966.0800000000004,
+            "end": 3981.72,
+            "text": "Now, let's see why exactly that is. So this will help. Originally, I've got L is 1, 2, 3, 4, right? So that's straightforward. My loop variable E goes through each element in this object, right?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3981.72,
+            "end": 3998.8,
+            "text": "So first, it's going to point to the 1, so far the same. L equals L plus L. Let's look at the right-hand side first, OK? This creates for me a new object, right? Remember, concatenation creates for me a new object. It doesn't mutate anything."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 3998.8,
+            "end": 4018.12,
+            "text": "So in memory, I'm going to get 1, 2, 3, 4, 1, 2, 3, 4, right? I've doubled L, L with itself. What is L equals going to do? Remember, we did a slide like this, very similar to this. It's like when we reassigned the tuple."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4018.12,
+            "end": 4037.04,
+            "text": "The L equals will actually take the binding from my original object and put it on the new object that I had just created, right? Exactly that memory diagram with the tuple, right? I had happened to have the same name, but it's pointing to a new object, same here."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4037.04,
+            "end": 4050.0,
+            "text": "I happened to have the same name, L, but it's now pointing this new object. The old object, this thing that I'm iterating over, I've lost the binding to it. And really, the only way I can even"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4050.0,
+            "end": 4060.2799999999997,
+            "text": "reference that old object is through this E, because that E is still going to go through this old object elements. So that's the first time. Yes, question."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4060.5600000000004,
+            "end": 4078.76,
+            "text": "Why does E not get rebounded because you defined it before you changed it? Yes, you defined E to be the object in memory, not the name L. So E is bound to the object in memory that's this thing here. That's why it was so important to kind of separate ourselves"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4078.76,
+            "end": 4091.96,
+            "text": "from the object in memory versus the name we give an object, because that name can change to anything, just a bunch of other stuff. But the object itself remains in memory. So then this becomes pretty straightforward."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4091.96,
+            "end": 4105.2,
+            "text": "If you understand that piece, the first time through the loop, I've got L assigned to this new object here. I've lost the binding to my original list that I'm iterating over. So when I print L, I print this."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4105.2,
+            "end": 4121.6,
+            "text": "Next time, E increases to the next element in my sequence. L will double what it currently is. So it's currently this thing here. It's going to double to that. And I'm going to lose the binding from the original,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4121.6,
+            "end": 4132.84,
+            "text": "or not the original, but this thing that I had just bounded to to bind it to the next object that I had just created. And then that's the second time through the loop. It looks like this."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4132.84,
+            "end": 4154.320000000001,
+            "text": "Third time through the loop, E increments by 1 to the next value in my sequence. I'm going to take L plus L, so double that previous data object, take the binding from that previous object to the new one, increment E by 1 more."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4154.320000000001,
+            "end": 4167.6,
+            "text": "And this will be the last time E is going to change, because after this, E will have gone through all the elements in its sequence. It's gone through the end of that list. So the last time through the loop, I've doubled that L."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4167.6,
+            "end": 4179.32,
+            "text": "And I've lost the binding from the previous one, made it to the new one, and then that's it. It's done. Questions? Is it straightforward?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4179.32,
+            "end": 4187.12,
+            "text": "Does the picture help? All that? OK. OK. One more thing I want to mention,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4187.12,
+            "end": 4203.52,
+            "text": "and this is kind of a preview of what we're going to do next time. One very useful operation that you might want to do is to take a list and remove all of its elements. But not, yeah, go ahead. Sorry, Jason, why is E like, because usually it"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4203.52,
+            "end": 4217.6,
+            "text": "like stops with one last one? Oh, here it's, that's in range. So here it's just iterating through all the elements in the sequence, right, going to everyone. So one useful operation we might want to do"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4217.6,
+            "end": 4230.96,
+            "text": "is to remove all the elements in the list, but not, sorry, but by mutating the list. So we want to keep our original list object. We just want to basically clear it out of all of its elements."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4230.96,
+            "end": 4251.28,
+            "text": "And so the command for that has a pretty nice name. It's called clear. So if you want to take a list L and clear it, so to remove all the elements inside it, you say L dot clear. And that mutates my original list L to be empty."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4251.28,
+            "end": 4265.84,
+            "text": "So one thing that might help with this mutation lecture and figuring out which object is which and whether you've created a new object or not is to figure out, is to ask, how do I know that this object is the object that I'm mutating?"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4265.84,
+            "end": 4285.6,
+            "text": "And to do that, we're actually going to use this function called ID. And ID lets us kind of get the memory location or memory object or the ID of the object itself in memory. So the code on the left is code that takes in a list L."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4285.6,
+            "end": 4300.96,
+            "text": "We get its ID to see what is this object in memory, what's its number, append an 8 to it. We're going to see that the ID of this is going to be the same as the ID of this because we're mutating L. We're not changing it."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4300.96,
+            "end": 4315.400000000001,
+            "text": "We're not creating a new object. And then lastly, we're going to clear it and check the ID again. And you're going to see that the ID is exactly the same in all of these different cases. So I'm doing this in the console just to show you real quick."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4315.44,
+            "end": 4337.28,
+            "text": "So here I have 4, 5, 6 as my L. Here's L, 4, 5, 6. The ID of it is this number here. We could just look at the last three digits or whatever, 808. Let's append an item to the end of our list. L, mutated to contain that item."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4337.28,
+            "end": 4354.5199999999995,
+            "text": "The ID of L remains the same and is an 808. It's the exact same object in memory. We've mutated it. L.clear, L, empty list. I've removed all the elements of L. And the ID of L"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4354.5199999999995,
+            "end": 4375.48,
+            "text": "will show me that it's this exact same object. I'm just mutating this same object in memory. Let's do that again, except in the new version, instead of using L.clear, I will say L is equal to the empty list. And this is also a really common mistake to make."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4375.48,
+            "end": 4388.12,
+            "text": "So here I have L is 4, 5, 6. Again, this is my L. Let's get the ID of L. It's going to be a new one, because I've reassigned L to this new list. So this one ends in 3, 1, 2."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4388.12,
+            "end": 4405.76,
+            "text": "Again, let's do an append just for fun. The ID of L is going to be, again, 3, 1, 2. But now if I say L is equal to the empty list, this is exactly the same as the situations we've seen before with the tuple and with that tricky example,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4405.76,
+            "end": 4417.64,
+            "text": "number 3. When I say L is equal to the empty list, Python takes my name L and assigns it to this object that is the empty list. My original object, 4, 5, 6, 8, is still in memory."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4417.64,
+            "end": 4435.280000000001,
+            "text": "I've just lost the binding to it. So here's L. It's an empty list. But the ID of L is now going to be different. Originally, I was working with this list at ID 3, 1, 2. But after I said L is equal to the empty list,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4435.280000000001,
+            "end": 4450.68,
+            "text": "I've lost the binding from that old list and rebound my name L to this new empty list. And you can see this using this ID. Just pretty cool. OK, quick summary."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4450.68,
+            "end": 4464.76,
+            "text": "So we saw lists and tuples as a way for us to create these compound data structures that can contain any kind of object as their elements. Tuples are immutable. So for things that don't change, they're very useful,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4464.76,
+            "end": 4477.360000000001,
+            "text": "like country, latitude, longitude, those things won't change. Or the word that appears on a page number or a line number or something like that. Lists are immutable objects."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4477.360000000001,
+            "end": 4488.120000000001,
+            "text": "So you use them in situations where you need that dynamic aspect. So if you want to maintain a list of employees, you want to maintain a list of students, list of grocery items, or things in your fridge,"
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4488.120000000001,
+            "end": 4503.320000000001,
+            "text": "those are really good situations where you'd want to list because things are constantly changing. You don't want to make copies of everything all the time because it becomes very inefficient to do so. So next lecture, we will continue with tricky examples."
+        },
+        {
+            "number": "10",
+            "title": "Lists_And_Mutability",
+            "start": 4503.320000000001,
+            "end": 4507.000000000001,
+            "text": "And we'll also have a quiz. Remember, quizzes are now on Monday."
+        }
+    ],
+    "text": "All right, so hello, everyone. Let's get started. This is lecture 10. So last lecture, we introduced two new data types. We talked about a data type called a tuple and a data type called a list. So today, we're not going to talk about tuples anymore because they were pretty straightforward. A lot of operations you could do with strings, you could do with tuples. They were immutable objects. That means once you created them in memory, you couldn't do anything to change them. And so they were, I guess, pretty boring except that you could populate tuples with objects that were of any type. So you could populate a tuple with integers and floats and booleans and other tuples all at the same time. We introduced lists last time as well as something that was really similar to tuples and strings in terms of manipulations. Lists were also nice because you could populate them, again, with any kind of data objects, just like you could tuples. Today what we're going to focus on, though, is the idea of mutability when talking about lists, which is something new we have never talked about this idea before. And so this lecture is going to be pretty heavy on kind of that idea and a little bit heavy on syntax and things like that to kind of remind you of how to manipulate these compound data types. So please, if there's any questions, feel free to stop me and then I can go over what I just talked about if there was anything confusing. So this slide is basically a copy of the slide we had on lists last lecture. It shows a bunch of different, oops, a bunch of different operations that you can do with lists. Very similar to operations that you can do with strings, right? So here I'm just creating an empty list. I'm creating a list with a bunch of elements in it. So here we can see that this list contains four elements and they are all of different types, right? This is an integer, this is a string, this is an integer, and this is another list. And that's totally okay to do with these data types. Doing all of these operations, getting the length, indexing, slicing, concatenation, getting the max, all that should be a review as well as iterating a for loop over the elements in a list directly. So just like we iterated a for loop over characters in a string, this loop basically makes e, our loop variable take on the value of every single element in our list l. What's new, the bolded thing here is something we haven't been able to do before and this basically goes into memory and changes the element at index 3 and l. So that's kind of how we read that. And it changes that element to have the value on the right hand side. So this is kind of, I mean we read it in the same way as we do other assignment statements. We look at the right hand side and we evaluate that. In this case it's only a 10. But the left hand side looks different, right? It's not a variable name as we have seen before. But in fact, it's referencing the item in list named l at index 3. So that would be index 0, 1, 2, 3. This line of code down there, l square brackets 3 equals 10, basically replaces this entire element here with the number 10, OK? So on the next few slides, we're going to talk about what exactly this means inside memory. Because it's different than what we've been doing before. So what exactly happens when we go into a mutable object like a list and we change an element using this exact syntax, all right? Well, let's draw our memory diagrams the way we have been in the past. Here's a little cloud representing the memory. l equals 2, 4, 3 creates this list for me in memory. This list object. And l is the name that I'm referencing to this list object, right? So I'm basically binding the name l to that object in memory. l square brackets 1 equals 5 tells Python to follow the name l to the object in memory. And then look up the index in the square brackets. In this case, index 1, so that's 0, 1, this 4. And take the element at this location and override it to be whatever the right-hand side says. So the right-hand side says 5, so basically we're going into memory and changing that middle element, OK? So this is different than strings and tuples. We were not allowed to do anything like this with strings and tuples. So let's look at an example on the next slide about what this means. But the idea here I'm trying to get at is this object that we have changed one of the elements for which we've changed one of the elements, we've changed the object itself. We didn't make a new copy. We didn't kind of make a version of that object. We have changed the object itself. So let's see maybe similar code that you might think does the same thing except with tuples. All right, so the first two lines of code are going to be the same. We've got L in memory being the object 2, 4, 3, or L being the name bound to the object 2, 4, 3. L square brackets 1, so L at index 1 equals 5 changes that middle element to be A5, OK? Same as the previous slide. Now what if we had these two lines of code? T is going to be a variable name that's bound to the tuple 2, 4, 3. So notice this is now the tuple denoted in parentheses. If I say T is equal to 2, 5, 3, what happens? Basically, with this line, I am creating a new object in memory, OK? So there's my new object, and I'm taking the name T and I'm binding it to this new object, right? The old object 2, 4, 3 as a tuple still remains in memory. I have not modified that object at all. It's still there. I've just lost the binding to it. So the name T is separate from the actual object in memory, right? In terms of tuples, what that means for us is we can never change the tuple object in memory once we've created it. But with lists using this specific operation, this one right here, L square brackets 1 equals 5, this does allow us to go into memory and literally change that object, right? That is associated with the name L. Is everyone OK with this slide? Does this make sense? This showcases the difference, right? So we need to think about what is the name of the object versus the object itself in memory. OK, so that shows you how to create a list and then go ahead and change elements to different values within that list. But now that we have a list object, right, that we can mutate, other operations we can do with it is to, let's say, add more items to the end of the list. So we can make the list bigger, right? We can mutate the object by doing that using this append function. Now, I'm going to talk about the syntax of the append function in a little bit. But basically, if I want to mutate L to add an item to the end of it, I have to use the syntax. There isn't a different form, a different function to do this. So this specific syntax has to be used. Append is basically the function name, OK? Element is going to be the parameter, the thing that I want to add on to the end of my list. And L, the thing before the dot, is going to be the object I want to add the element to the end of the list, right? So L, in this case, I'm using it generically. But you can imagine creating a list of employees in your company, right? Then you might name that list employees. In that case, we would say employees dot append, you know, Anna or whatever, right? So that L is just kind of generic for now, but it gets replaced with whatever variable name your list is. So this operation basically mutates the list, OK? So it mutates it to be one extra element longer. And the element you're adding to the end of the list, to the right-hand side of the list, is going to be whatever is in the parentheses to append. So let's look at an example. So we're going to create L is equal to 2, 1, 3 in memory. And then let's say we do L dot append 5, all right? Well, this line of code says look up L. It's this object in memory here, 2, 1, 3, and add the object 5 to the end of it. So I'm going to add the 5 to the end of the list. Now it's no longer 3 elements long. It's 4 elements long. And again, I didn't make a copy. I didn't preserve the original list with just 2, 1, 3 in it. I have literally changed this list in memory. That's referenced by L. Now this function, append, is being used basically for its side effect. And the side effect here is mutating the list. After the function adds the 5, in this particular case, to the end of the list, the function doesn't need to return anything back. It's basically done its job to do the mutation. And so functions like append, and we're going to see other functions later, don't have any return value. So one really common mistake, as we're learning about mutable objects and using these functions that mutate, is to say, well, I'm going to do L.append5 and save this, the result of this function, back into the variable named L. And this would be incorrect. So let's see if we do this line of code, what exactly will happen. So it's an assignment. So the first thing we do is we look at the right-hand side, and we evaluate that. Well, the right-hand side basically says L.append5, which is exactly the same as the previous line. So we're going to put another five to the end of our currently mutated list, just kind of going with these operations in order. And then I said this function, this append function, has done its job to mutate the list by adding a five to the end of it, so it returns nothing. There's nothing of value that it could return because it already did its job of mutation. So it actually returns none. So the assignment, the equal sign, then basically says, take the name L and bind it to the return of this function, L.append5. Well, the return of the function is none, so basically now we're losing the binding from 213.55, which was our mutated list, and rebinding it to the return none. So that is an incorrect way to do the mutation of adding an item to the end of the list. Everyone OK with that so far? Yes, OK, excellent. So what should we have done instead? Sorry, yes, be careful about the append operation. You're doing a mutation, and you return none as a result. So you do not want to resave this to any variable. So instead, what we would do is we would just do the operation. There's nothing to save, nothing to save in any return variable. So if you wanted to add two 5s to the end of that list, you would just say L.append5 again, and L would then have been mutated to be 213.55. And so in your code, if you just print L in between these append, if you printed L in between, after the first append 5, it would print this, 213.5. And then if we print L after the second append 5, it would print 213.55, because it's an ongoing operation. It's mutating this list. And now you're doing operations on the newly mutated list. Everyone, yeah? For the element, can you only use one integer or can you do 5,5? For the element, do you have to do one integer or can you use 5,5? So the append only works with one thing. So if you wanted to append a tuple, you could append one tuple object that has many things in it, but it would just append that one tuple. We're going to see, towards the end of this lecture, an operation that allows us to extend the list by a bunch of items. But there is a way just not with append. Yeah? Why does the other thing return none in there? So the other thing, so this operation always returns none. L.append5 or whatever, the append always returns none. But here, it's just sitting on a line by itself. We're not saving it back to anything. In the previous one, we took the return and saved it back into L. And that's why we lost the binding to the actual list. So what we usually say is that we use append and a bunch of these other mutable functions for their side effects. And the side effect in this case is to mutate the object that I'm calling the append on, right? In this case, the list named L. So let's have you think about this problem. And while you do it, and then we can write it on the board together. So as we go through these lines of code, one at a time, what will the values of the lists become? So L1 is the string, right? L2 is me. L3 is do. What is L4 going to be, right? With that line, L4 equals L1 plus L2. Anyone know? What's the type? It's concatenation, right? So concatenation with lists is like concatenation with strings. Yes? Yep. What are the elements in it? Uh, the rate? Yep. Yep. Exactly. I'm not going to do the strings, but you know what I mean. All right. So L4 with that line is just these two elements in a new list. Now what happens to, with the next line, L3 dot append L4? Which one gets mutated? L3 or L4? L3 gets mutated. Exactly. And what does it get mutated to? So L3 originally has do in it. What am I adding to the end of L3? It's just the range unit that they're a little like question. Exactly. Yes. I'm adding one item, right? And it's linked to the question that was here. What am I appending? I'm appending one item. It's whatever L4 is. And L4 is this list. So I'm going to be adding Ray and me within my list here. And I've got to close this list here. So this is one item, one object, one element. And this is another element right here. It just happens to be a list. OK? What about the next line? L equals L1 dot append 3. What is the right-hand side going to give me? Am I mutating L1 or L3? Yes. And what am I mutating L1 to be? L1 is originally Ray. And what am I adding to the end of it? Yeah, exactly. This L3, which is this big thing here, right? So it's a list with two elements, the first one being a string, and the second one being another list like that. So that's the right-hand side. And then what is the left-hand side going to be? What is L going to be? No, exactly. Yeah. Exactly. OK. So now that we've introduced mutable objects, we have to be careful about what functions we're using. Some of them mutate the list and don't return anything. Append is one of them. And we're going to see a few more in today's lecture. So these functions are just being used for their side effect. They mutate the thing you're calling the function on. And that's it. They don't need to return. They don't return anything. They don't need to return anything. They have done their job purely by the mutation aspect of it. So I want to just quickly make an aside on this dot notation that we've introduced with this append function. This is something we haven't actually seen before. But it's something that we will learn about in the future when we create our own object types. So right now, we're using object types as somebody else wrote, like a list or a tuple or something like that. But in a future class, we're going to learn how to create our own object types. And when we do, we're going to use this dot notation a lot. But for now, you basically just kind of have to remember which functions use dot notation and which don't. But I'll give you a little bit of intuition for what this dot notation actually means. So everything in Python is an object. And when we have objects in Python, the idea here is that the objects that you have have data associated with them. So what makes up the object? And they have certain behaviors. So we touched upon this on maybe the first lecture where we said things you can do with integers are different than the things you can do with strings. That's pretty clear. And that's different than the things you can do with lists. And so the kinds of things that you could do with each one of these object types differs depending on the type. And at its core, really everything can be written in terms of this dot notation. But some of the more common operations, like getting the length of something or adding two numbers together, are actually, we do them in this shorthand notation, like using the plus operator or using the length. But at their core, really, we can take all of those operations and convert them to a dot notation. We're not doing this today, but that's what we can do. And so when we see this dot notation, the way we usually read it is we say, well, what's to the left of the dot? It's going to be our object, the thing that we want to do an operation on. In this particular case, it's a list named L, but it could be a list named employees or words or whatever book or whatever the list name is. The dot then comes for the dot notation. And then the thing on the right-hand side is going to be the operation that you want to perform on the object to the left of the dot. So the operation, if you basically cover up L dot, the operation looks just like a function. It's append, parentheses, some parameters. And so the operation is basically just a function that you want to run on an object of type list, this specific object named L. And you can see it has a name, append, and it has parameters or arguments. In this case, it's the thing you want to add to the end of the list. So again, unfortunately, at this point in the class, you just have to kind of remember which functions are dot notation and which ones are not. But it will become clear what this dot notation actually means towards the end of the class. So let's have you work on this little code here. It's going to use append, obviously, and it's going to have you create a list. So the name of the function you should make here is called makeorderedlist, and it takes in one parameter, an integer n. It's positive. And I want you to create for me a list that has all of the integers from 0 all the way up to an including n inside that list, in order. So as an example, down in here, around 34, right? If we call makeorderedlist with 6, it's going to create for us this list inside the function and return this list. All right, so a couple minutes to work on that, and then we can write it together. All right, what's the first thing we should do here? Or how would you approach this problem? Yes. You want to create an empty list? What do you want to name it? You named it list. List is an OK name, but notice list is also the name of the type of the object. So I would refrain from naming anything, things that change color. So we can use l or my list or whatever, something else. My list is an empty list, all right? So it's originally empty, and now we need to populate it with some stuff. You want to go on? Make a for loop. That goes over what? Yep, 0 to n plus 1, exactly, because we need our boundary to go up to an including n. Perfect. So now that I've got i changing to be 0, then 1, then 2, then 3, what do I need to do to my list? Yeah, exactly, append i. So my list is the name of the list I've created. Append i, OK? The last thing, return the list, right? So return my list. So run it. Perfect. If we change this to 2, it still works. So just testing it out with a couple different inputs, just to make sure it works. Questions about this code? Is it produced? Yeah? Is the 0 necessary in the range or does it default to 0? The 0 is not necessary in the range. Yeah, it defaults to 0, exactly. OK. We're not done yet. You have more writing to do. So let's write a slightly different function now called removeLM. It takes in two parameters. The first one is a list, right? And the second one is going to be just some variable. It could be an integer. It could be a string. It could be whatever. And what the function should do is create a new list, populate it with the same elements of L in the same order, but exclude the ones that are equal to E. So you don't want to include the ones that are equal to E. Otherwise, keep everything in the original list L in the same order. So as an example here, we've got if our input list is 1, 2, 2, 2, 2, and I call the function with L and 2, the list that this function returns should just contain one element in it, just the 1, right? So try your code for the next couple of minutes around line 50, and then we can write it together. All right. How can we start? Yes? I created a new list. Yep. What did you name it? Cool. What did you make it be equal? Empty list, OK? Yep, so for I in L, OK. And at this point, I would make a note for myself, because you use I, which in my brain means index. But I would make a note for myself that I is maybe 1, then 2, then 2, then 2, just according to this first example. So if I'm reading the code, I would just, I will remember that it's not the index. But go on. So for I in L directly. Not in. Like this? Yep. OK. Then you list those of 10 lines. Yeah. OK. And then let's return your list. OK. Let's try it. Yeah. So E is not a list. E is going to be an element, right? So that's my bad. I should have put this in here. E is like an object or something. It could be a list, but then I would be looking for that exact list as a sub-element. So maybe we think of E as an object like 5 or something like that. Yeah. Not equal to E. Right? So if I'm just looking for that element directly, I want I to be not equal to E. In which case, I keep the element in my new list. So if we run that, that gives me 1. According to this, looks like it's correct. And then we can run it with these other two cases. So here I'm removing the element 1, right? So I'm going to keep 2, 2, 2 as my returned list. And here I'm removing 0, which doesn't exist in my list at all. So it should just keep, and it does, my original list unchanged. Any questions about this example? Anyone try it a different way? OK. All right. So other useful list operations, we can convert strings to lists, and then lists back to strings. And this is very useful when you're reading in text or something like that to a function. It's going to be useful for problem set 3, so on and so on. So let's first see how we can take a string, S, and convert it to a list. So if we just cast S to a list, the way we used to cast the number 5 to a float, we would just say float parentheses 5. Well, we can take a list and cast it to a list by saying list parentheses S. And if we cast it like this, Python takes every single character in S and makes it be a separate element in a list. So you can see here I've got the string i, heart, CS, and u. It makes for me a list where every single character, including the space and all the special characters, becomes a separate entry in my list. That's not that useful. I mean, it can be, but it's not that useful. What is more useful is to take an input string and split it on a particular character. So one very common character that we would split on is the space. And if we do something like that, it basically extracts from us from our string all of the individual words, which is pretty useful. So here I've got S.split. And in parentheses, I've got the character I want to split on, in this particular case, a space. So if I take S and I split on the space, Python will go from the beginning of the list to the first space, make that be one element in a list. It'll go from the first space to the next space in my string and make that be the next element in the list, and so on and so on until it gets to the end of the list and makes that last bit the last element in my list. So here, when I've split on the space, I've got three base words, quote unquote words. I, heart, is going to be one, and there it is as my first entry. Cs is in between these two spaces, and that's my next entry, and you question mark is my last entry here. So this is a very useful function. We can, of course, split on any character we'd like. So here I am splitting on the less than character. There's only one, so if I split on the less than character, one element in my resulting list is just the capital I, and the remaining element in my resulting list is the three space, Cs, and U, and there it is right there. All right, so once we have a list, we can also go backward. We can take this list and convert it back to strings. So we use this join function here, and the thing before the dot is going to be what character you want to join the list elements with, and this is the list you want to join back into a string. So let's look at an example. So let's say I have list L that has three entries in it, A, B, and C. If I join on the empty string, so here this is just quote, quote, right beside each other. There's no space or anything in there. That's going to take from me all the elements in the list L and join them together as one, nothing in between the A or B, A, B, and C. And this operation here will basically make for me A, B, the string A, B, C. If I join on an underscore, you might have guessed, it'll join A, B, and C with an underscore in between each character. So there it is, A underscore, B underscore, C. You can join on any character you'd like. I don't know if you can join on multiple characters, but I don't see why not. You could try this out on your own. Join only works with lists that contain only string elements. So if we try to join a list that has just integers or floats or booleans, anything that doesn't contain a string in it, then you will get an error, because it's basically trying to put all these back into a big string. If you wanted to join non-string elements, you would have to basically loop through and cast every one of these to a string first, and then join them together. So if you want to join 1, 2, 3, you would have cast them to strings, and then you could join them to make the string 1, 2, 3. OK, so let's have you work on this example. So here, we're going to try to split the input. So here is a function called count words. It takes in one input sen for sentence. And I wanted to use something that's not s, just to make it clear that the thing before the dot isn't always s. It's whatever object you want to split or join or whatever. So this function is going to return how many words are in s, quote unquote words in this case, because I'm just interested in the elements or the characters between spaces and between the start and the end of a word. So if it's a number, I still count that as a word. If it's a special character dot exclamation point, I would still count that as a word as well. So this should be just a couple lines of code down around 99. So I'll give you about a minute to work on it, and then we can write it together. OK, so thoughts on how we can do this? L1 equals sen dot split, yep. Uh, yep, sorry, parentheses space, yep. And then return the length of L1. Yep, and then we can return the length of L1. Perfect. Let's run it on these two examples, and should print 3 and 12 and it does. So notice how easy this was with lists, right? Because lists are data structure, that's just kind of naturally iterative. And so running len on this split string, which gave us a list, is really easy, right? It's a two line piece of code. Without lists, you could imagine creating variables that keep track of where you see the first space, right? And then iterating through one character at a time, and if it's a space, keep track of the fact that you saw a space, and then look for the next space, right? And then resetting things every time you see a space. And that would be really, really tedious. It would be a really good quiz one question, but not once we've introduced lists, because it becomes really, really easy to do it with lists. OK. All right. So now that we have lists, we can do other really interesting and useful operations to mutate the list. So we saw the dot notation on a list to do append. So basically to add an item to the end of our list. That was useful. Other things we can do in terms of mutating the list is to sort a list and reverse a list. And these are also very useful operations on lists. So the first two here, sort and reverse, is a notation for how we sort a list and how we reverse a list. And these will mutate the list that you call the functions on. So if I have list 427 here, and I call l.sort, and I print l as the next line after this, l will have changed in memory to be 2, 4, and 7 in that order. It didn't make a copy for me. It didn't preserve the original order. It changed that list to be now in sorted order. Reverse similarly. So if we do l.reverse on 427, it will reverse all the elements. So the one at the end becomes at the beginning. The one second last is the second one. The third last is the third element in the list, and so on. And again, this mutates my list. So I would have lost my original order with this command, l.reverse, and with l.sort, of course. Now, there are many situations where you want to preserve the original order. I don't know, maybe like the order that people joined a company, or the order that people joined a grocery queue, I don't know, things like that. You might want to preserve that original order, but you might also get maybe the sorted names of people for a function that does something with those sorted names. In that case, you don't want to call sort on your original list because you would lose the original order. You could, of course, make a copy, or you could call this sorted function. And the sorted function is going to keep my original list, l, intact in the same order that I had created it in. But it would return for me. So this function will actually make a copy and return for me the sorted version of l. And l remains unchanged. So this function does not do any mutation. We have to take the return and save it into a new variable, this case I called it l new. So it might be a little bit sort of hard to keep straight in your mind, whether to use sort or sorted. You could, of course, always try it in the console to see which one does what. The way I sort of remember and think about it is the sort, to me, feels like a command. It's like sort this list, mutate this list and sort it. Whereas sorted is more of a request can you please get me the sorted version of l? And so that's kind of how I keep things in my mind as to whether I'm calling sort to do the mutation or asking to get the sorted version of the list. Yes? What is it sorting by? It is sorting it by whatever the built in sort is for those particular object types. So in the case of integers, it's just increasing order. In the case of strings, it'll be alphabetical. You can choose different sorting functions, but we don't get into that. Yeah? Do they want to do the same all the time? That's a good question. I think they do in order for it to work. So we can try like l equals one, and then we can give it a tuple or something. And then we can ask sort l. So in this case, it doesn't know how to resolve, it's trying to do behind the scenes less than to figure out which one's bigger than which. And in this case, it doesn't know how to resolve how do you choose whether the tuple's bigger than an integer, yeah. But you can imagine, again, as I mentioned, this is not something we do, but you could write your own sorting function where depending on the type, you would decide which one is bigger. So yes, question. You just wanted that like l.so without parentheses. Yeah. So you would just do l.sort without parentheses, but l has to be a list that contains things that can be sorted, right? So all integers, all strings or something like that. So let's look at the memory diagram for how this would look, just to kind of bring the point home about objects that are being mutated. So original l is 9603. So in memory, I've got the name l bound to 9603. Again, let's do an append just for fun. l.append5 is going to add a five to the end of that list and append, sort, and reverse will all be used for a side effect, right? That means they're gonna be mutating the object, whereas sorted will not do a mutation. So let's do an append to the end. That's going to put a five at the end of the list, something we already know how it works. Now let's do a equals sorted l. So again, it's an equality, right? So the thing on the right hand side is going to be the function that returns for me the sorted version of l. So it's going to create a new object. However it does the sort, it's going to create for me a new list that contains that sorted order. The original l, notice in memory, remains unchanged. So if I wanna reference l in my program from here on out, it will use this unchanged l. So now the return of sorted is this list and I bind it to a. So name a now points to the sorted list version. All right, now what if I do this line here, b equals l.sort. Again, let's look at the right hand side. l.sort is going to mutate l. So this function itself will go and change l to be the l's object, the object that l points to to be the sorted list. But it's not done. This function is being used for a side effect. So what is the return from it? None, right? It's like the append. So this example here will make b point to the return of that function, which is just none. Now please don't ever do this. All you would have to do to sort l is to just on a line by itself, say l.sort. I just did this to kind of show you again that if you do l equals l.sort, bad things will happen. You're gonna reassign l to be none. In this case, I saved it under a different variable, but it's an easy mistake to make. Okay, and then what about the last one here, l.reverse? Again, I'm going to go and grab the object pointed to by l and I'm gonna reverse all the elements. So here, doing l.sort and then l.reverse right afterward makes my list be in reverse sorted order, so biggest number to smallest number. So with that command there, I've got 96530 instead of 03569. And again, sort and reverse changed my list l directly. So I've lost that initial order of 9603 that I had up here. One last point I wanna make. I know we've usually seen functions that take in parameters, right? Sort and reverse are still functions. And they just happen to not need any parameters, right? You call them on the object l using this dot notation. So in effect, it does have sort of a quote unquote parameter, the thing before the dot, but it doesn't take anything else in their own respective parentheses, right? But they do still need the parentheses there because they are functions, right? They are operations that will do something for us. Okay, questions about this? Is it okay? Okay, very good. Because now you get a chance to try it out. So let's have you do something similar to what we did last time. Take in a parameter sen, which is a string representing a sentence. I want you to figure out all the words quote unquote in the same manner that we did before in the previous example, but now return from your list with these words in sorted order. So if the input was look at this photograph as my sentence, then I would return a list which has at, look, photograph, and this as my three, or as my four elements in that order. So here, start writing it down on line 134. Okay, what is the solution? What do you have so far? Yes? L equals sen dot split with the parentheses. L equals sen dot split, and we split on a space? Got it? Okay. And then L dot sort parentheses with nothing at them. Got it? And then return L. Return L. Perfect. Okay, let's see if that worked with our two examples. Yep, there's my first one, there's my second one. Anybody do it a different way? Did anyone use sorted? Yeah? Return sorted parentheses L. Um, return sorted parentheses L. Yeah. Is that how you'd- Yeah, just consider L, it's sen dot split. Yep, we could do it all in one. Perfect. Yeah, this could be a one-liner for sure. Um, yeah, so this, uh, works because this thing here creates for me a new object. I could have saved it in a different variable and then return that variable, but this does it all in one. So just for completion's sake, if we comment out the other solution, this way still works. Question so far. Okay. All right. So what we've seen so far is a bunch of these functions, built-in functions, right, that have these side effects. They mutate the input, uh, the input list. So we can actually write our own functions that have a side effect, where if we pass in a parameter that's a list, we can have our functions mutate that list however we'd like. So let's go through this example. Let's say we were given the task of writing a function that takes in an input list L and, and mutates the list L such that each element in L is changed to be the element square, right? So two, four, two, three, and four as an input list becomes four, nine, 16. And I'm mutating that list. I'm not creating a new list and returning the new list. I want to actually mutate the input list L. So if we were faced with this task, the way that we would kind of go about it, maybe based on what we've learned so far is to say, well, I'm going to iterate through each element in L because that's a very pythonic way to do this, right? So I'm grabbing the element in the list L. But then I would be stuck because the syntax for changing an element at a particular location, right, is L at i equals, you know, whatever the change thing is. But my loop variable is iterating through the element directly. So what's my index in this particular case? I don't have it in hand, right? I have the element, but I don't have the index. So what are some solutions? Well, a first solution could be right before the loop to create a new variable that keeps track of the index, right? So you make i equals 0 right before the for loop. And inside the for loop, you increment i each time. Now you're keeping track of the index yourself. Option two is to change what we iterate over. So instead of iterating through each element in L directly, let's iterate over the index. So iterate over range length L. In that case, the range length L basically becomes range 5 or 20 or whatever the length of my list is. And the last option is to try to use this thing called enumerate, which is a Python keyword, I guess, Python function. And the syntax for that would be for tuple i comma e in enumerate L. So I'm basically wrapping L inside this enumerate function. And Python each time through the loop makes this little tuple i comma e be the index and the element at each location, each time through the loop. And so it gives you a two for one kind of deal here using this enumerate function. I'm not going to go over option one or option three. I do encourage you to try to look these up or try to implement them yourself. But I will go over option two in these slides. So if I were to iterate over the index directly, the way I do it is I have to change the loop variable, right? For i in, and then the thing I want to loop over is all of the indexes, indices, right? So I want to get the numbers 0, 1, 2, 3, 4, all the way up to the, but not including the length of L, right? So once I have this index in hand, I can do something like this very easily, right? Because this i here is going to be my index, right? And the thing on the right hand side is just going to be a matter of grabbing the element at that index and squaring it, okay? So here, L square brackets i on the right hand side grabs for me the element at index i. So what's the value of that element at that particular location? 23, whatever, square it, so star star two squares it. And then the thing on the left hand side is the syntax for changing the element at a particular location, right? We saw this way back on slide two. So with this line of code, Python goes through each element in the list and squares it and saves it back into that same list. No new list is created, it's mutating the original list, right? No return, nothing to return, this function will return none because it does its job of doing the mutation. So if we go through an example, suppose that L is 234, what is this loop going to do? So i, the first time through the loop, will be zero. And then that first time through the loop, it will mutate i. So it says L square bracket zero equals whatever the element at zero is, the two squared. So L square bracket zero will be changed to four, right? So we've mutated the first, the element at index zero to be a four and everything else is the same. Next time through the loop, I'm mutating the list that I had just mutated, right? So the first element is still the mutated value four. But now I'm gonna change my element at index one to be three squared, nine. Last time through the loop, all the elements up to index two are gonna be the mutated elements, so four and nine. And then the last time through the loop, I'm mutating the six, the four to be 16. The square version of that. Okay, so to check that we did the mutation correctly, what we would do is we would create an input list, I called it ln. And I've set it to 234, my example. If I print before the function call, the value of ln, it's 2, 3, 4 as expected, it shouldn't be anything different than that. Then I make a function call to the function that we just wrote. Note, I'm not returning anything here, so I'm not saving the function call to any variable, right? If I print ln after the function call, it will print the mutated list. So this ln here, and here, and here is the same object. Nothing was returned, this function here has nothing to assign its return to. If we assigned it to something, that variable would be none. Just like the append, just like the sort, just like the reverse. All right, so when you're writing, yeah, question. So we created a function where we don't have a return, and it doesn't say none. We created a function, it doesn't have a return. It doesn't say none because we didn't save the function call to any variable, right? If we said, like, A equals this function call, if we print A, it would show none, yeah. Okay, so when we're writing functions that mutate input lists, the two likely things you're gonna have to do, and it depends on what your function's actually doing. But most likely, you're gonna have to iterate over the length of the list. So for i in range length l, to grab the index as well as the element, to be able to grab the index as well as the element. And these functions, I mean, they could do other stuff, but if you're using them for mutation and things like that, they're going to return none. So when you make function calls to them, those function calls will likely just be on a line without saving the return to any variable, right? Okay, so we've talked about mutable objects. They're very, very useful. Places where they're useful, or the reason that they're useful is because they allow you to have basically large databases of objects, like employees in a company, list of all the students at MIT, things like that. And if you want to make a change to something about that list, like a student changes their name or their address or something like that, with tuples, you'd have to make a new copy of that entire list. So it could be very space and efficient because every time a student changes their address or their name or something about themselves or their grades or something like that, you're making a new copy of this potentially thousands long data structure. Lists don't have that issue. With lists, you're just mutating the object in place and you're done. No extra copies are being made, so it's a very efficient data structure. But with lists come some unexpected challenges, and we're going to go through three tricky examples today. In the next lecture, we're going to see tricky example number four. And these three tricky examples involve looping over the list in one way or another, over the range of the length of the list or through the list directly. So let's look at the first example. In this code down here, we're going to loop over the range of the length of the l. And then what we're going to do is append the loop variable i to the end of my list. Now what does range length l do? So remember, the thing that our for loop iterates over is a sequence of values. Now range some number creates for us a tuple-like object. Not a tuple specifically, but you can think of it like a tuple. So range four, the length of this particular list, would create for us in memory something like a tuple, the sequence 0, 1, 2, 3. And this is the sequence that the loop variable i will go over. First it'll be 0, then it'll be 1, then it'll be 2, then it'll be 3. So when we iterate through the sequence, Python says, OK, the first time I encounter this for loop, I'm going to save this sequence I need to iterate over as an object in memory. And then I'm going to have my loop variable iterate over each one of these elements. The thing I'm doing is appending i to the end of a list. So the first time through the list, I'm going to append a 0 to the end, so the 0 being this loop variable here. Next time through the list, I'm appending the 1 to the list I just mutated. Next time I'm appending the 2 to the list I just mutated. And last time through the list, I'm appending the 3 to the list I just mutated. And we finish. We've gone through four times. We've appended four items to the end of the list, 0, 1, 2, and 3. The elements of my sequence that I'm iterating over. Let's look at the memory diagram. So originally L is 1, 2, 3, 4. What exactly happens when we first encounter range length L? That gets put as a variable, this tuple-like thing. I made it be a tuple, but it's not exactly a tuple in memory. And this i will iterate through each one of these values in my sequence. This is the sequence of values that I'm going to iterate over. So the first time through the loop, Python has i pointing to 0 here. And so what's it doing inside the loop? It's going to append the 0 to the end of L. Then it's going to print L, sorry. And then next time through the loop, the loop variable increments by 1. So we've already looked at the 0. Now we're going to do the 1. So the loop variable i is now 1. So we're going to append the loop variable 1 to the end of L, print L. Loop variable becomes 2. Append the loop variable to the end of L. So now it has a 2. Print L. And then the last time we append the loop variable 3 to the end of the list L and print L. Pretty straightforward. The code terminates because we've created this original tuple-like object. Which tells Python what values you need to iterate over. This is your sequence of values to go through. So that's basically what I said. So let's look at a slightly different example. So in this case, instead of iterating over the range length L, let's iterate over the elements in L directly. So for E in L. Now to keep things sort of in parallel to what we had done before, let's create a loop variable i equals 0 before the for loop. And let's increment it by 1 each time through the loop. So we're going to still append 0, then 1, then 2, then 3 to the end of our list. So in this particular case, we start out with the memory diagram like this. So we have L pointing to 1, 2, 3, 4. Loop variable i is going to be 0 originally. And E will first point to the first element in the list. That's what the for loop over the elements in the list does. So going into the list, we say L dot append i. So at the end of L, I'm going to mutate it to contain a 0. Good. I increment i by 1. Good. I print L. Okay, good. And then the next time through the loop, Python says, all right, what's the next element in my sequence? Well, I looked at the one first. Now let me look at the two. All right, now I'm looking at the two as my next element in the sequence. I'm going to append i to the end of the list, right? So I'm going to append 1 to the end of L. Increment i by 1 to be 2, print L. Okay, next value in my sequence. E increments to the next element in the sequence, the 3. We append i to the end of the list. We append 2 to the end of L. Increment i by 1, print L. What do you notice? Is this code going to terminate? No, because our loop variable will always be four elements away from the list, the end of the list, right? As I'm adding an item to the end of my list, the loop variable iterates to the next item. But then I'm adding another item to the end of my list, and my loop variable iterates. And so we're always going to be four behind the end of the list. So this code will actually never stop. Okay, all right. So the difference here is what I'm iterating over. In the previous example, as soon as Python saw range, length, whatever, it made this predefined sequence of values it needed to iterate over. But here, it doesn't do that because it's iterating over my object L. There's no predefined sequence to create. It's supposed to iterate over L directly. So that's the difference between these two. All right, so now I'm going to show you, before I do the last tricky example involving concatenation, I wanted to mention one thing, which is there was a question earlier. How do we actually add more than one item to the end of our list? And we do that using this extend operation. And this extend operation is kind of like a pen, but we are going to add all of the elements of some list, as the parameter, to the end of our list L. So in effect, we're mutating L to be extended by all the elements in some underscore list. So here's an example. First, let's do concatenation just to remind ourselves what it does. So L1 is 2, 1, 3 in memory. L2 is 4, 5, 6 in memory. L3 is going to be L1 concatenated with L2. Pretty straightforward, it's concatenation. So Python creates for me a new object, which is all the objects in L1 and L2 put together as this completely new object bound to the name L3. So L1 and L2 remain unchanged, no problems there. But the extend is going to mutate, notice the dot notation format of extend. It's going to mutate L1 to be extended by all the elements in this list. So it's going to add a 0 and a 6 to the end of L1. So here it is. I've got L1 mutated to be 2, 1, 3, and then 0 and then 6. So just to bring the point home, the thing we're extending by is all of the elements of this list in the parameter, right? So in this particular case, L2.extend will be extended by how many elements? Two or four? Yeah. I see two. Exactly. It'll be extended by two elements. At the top level, this list has two elements in it, a list and then another list. So this command here will extend L2 by these two elements specifically. 1, 2 as a list and 3, 4 as a list, right? But these are individual objects. They're single objects that are lists. They happen to have a bunch of elements as part of the list, but they are two objects. Yeah. When we extended by 0, 6, there's no brackets because we're extending it by the elements of this top-level list. So it's two integers, right? And here, we're extending it by the elements of this top-level list, so in the sense that the outermost parentheses, which are actually, they are lists, right? So that introduces extend. We're not actually going to use extend for this particular example, but I did want to mention it. In this example, we're going to use the plus, the concatenation operator to create for us this new object and bind it to L again. So let's see what this is going to do. First, I'm going to actually tell you the answer, and then we'll do the memory diagram again to bring the point home. So this loop will, again, loop through all the elements in L. Originally, it's 1, 2, 3, 4 in a list, all right? So what is the actual loop going to do? It's going to take whatever is in L, double it, right? So originally, L is 1, 2, 3, 4. The first time through the loop is going to create a new object, which is just L, 1, 2, 3, 4, doubled, right? I've concatenated L with itself. And then I'm going to save it in my new, as this new object with the name L again. That's the first time through the loop. Second time through the loop, I'm going to take whatever L was mutated, or whatever L was before, sorry, not mutated, but whatever L was before. So it's 1, 2, 3, 4, 1, 2, 3, 4, double that, and save it under the name L. Second time through the loop. Now, third time through the loop, I'm going to take whatever L is right now. So these two rows of 1, 2, 3, 4, 1, 2, 3, 4, double that, and save it under the name L. And then the last time through the loop, I'm going to take whatever L was before, so these four rows of 1, 2, 3, 4, 1, 2, 3, 4, double those, and save that as the new L. And that's it. This code does not go to infinity. Now, let's see why exactly that is. So this will help. Originally, I've got L is 1, 2, 3, 4, right? So that's straightforward. My loop variable E goes through each element in this object, right? So first, it's going to point to the 1, so far the same. L equals L plus L. Let's look at the right-hand side first, OK? This creates for me a new object, right? Remember, concatenation creates for me a new object. It doesn't mutate anything. So in memory, I'm going to get 1, 2, 3, 4, 1, 2, 3, 4, right? I've doubled L, L with itself. What is L equals going to do? Remember, we did a slide like this, very similar to this. It's like when we reassigned the tuple. The L equals will actually take the binding from my original object and put it on the new object that I had just created, right? Exactly that memory diagram with the tuple, right? I had happened to have the same name, but it's pointing to a new object, same here. I happened to have the same name, L, but it's now pointing this new object. The old object, this thing that I'm iterating over, I've lost the binding to it. And really, the only way I can even reference that old object is through this E, because that E is still going to go through this old object elements. So that's the first time. Yes, question. Why does E not get rebounded because you defined it before you changed it? Yes, you defined E to be the object in memory, not the name L. So E is bound to the object in memory that's this thing here. That's why it was so important to kind of separate ourselves from the object in memory versus the name we give an object, because that name can change to anything, just a bunch of other stuff. But the object itself remains in memory. So then this becomes pretty straightforward. If you understand that piece, the first time through the loop, I've got L assigned to this new object here. I've lost the binding to my original list that I'm iterating over. So when I print L, I print this. Next time, E increases to the next element in my sequence. L will double what it currently is. So it's currently this thing here. It's going to double to that. And I'm going to lose the binding from the original, or not the original, but this thing that I had just bounded to to bind it to the next object that I had just created. And then that's the second time through the loop. It looks like this. Third time through the loop, E increments by 1 to the next value in my sequence. I'm going to take L plus L, so double that previous data object, take the binding from that previous object to the new one, increment E by 1 more. And this will be the last time E is going to change, because after this, E will have gone through all the elements in its sequence. It's gone through the end of that list. So the last time through the loop, I've doubled that L. And I've lost the binding from the previous one, made it to the new one, and then that's it. It's done. Questions? Is it straightforward? Does the picture help? All that? OK. OK. One more thing I want to mention, and this is kind of a preview of what we're going to do next time. One very useful operation that you might want to do is to take a list and remove all of its elements. But not, yeah, go ahead. Sorry, Jason, why is E like, because usually it like stops with one last one? Oh, here it's, that's in range. So here it's just iterating through all the elements in the sequence, right, going to everyone. So one useful operation we might want to do is to remove all the elements in the list, but not, sorry, but by mutating the list. So we want to keep our original list object. We just want to basically clear it out of all of its elements. And so the command for that has a pretty nice name. It's called clear. So if you want to take a list L and clear it, so to remove all the elements inside it, you say L dot clear. And that mutates my original list L to be empty. So one thing that might help with this mutation lecture and figuring out which object is which and whether you've created a new object or not is to figure out, is to ask, how do I know that this object is the object that I'm mutating? And to do that, we're actually going to use this function called ID. And ID lets us kind of get the memory location or memory object or the ID of the object itself in memory. So the code on the left is code that takes in a list L. We get its ID to see what is this object in memory, what's its number, append an 8 to it. We're going to see that the ID of this is going to be the same as the ID of this because we're mutating L. We're not changing it. We're not creating a new object. And then lastly, we're going to clear it and check the ID again. And you're going to see that the ID is exactly the same in all of these different cases. So I'm doing this in the console just to show you real quick. So here I have 4, 5, 6 as my L. Here's L, 4, 5, 6. The ID of it is this number here. We could just look at the last three digits or whatever, 808. Let's append an item to the end of our list. L, mutated to contain that item. The ID of L remains the same and is an 808. It's the exact same object in memory. We've mutated it. L.clear, L, empty list. I've removed all the elements of L. And the ID of L will show me that it's this exact same object. I'm just mutating this same object in memory. Let's do that again, except in the new version, instead of using L.clear, I will say L is equal to the empty list. And this is also a really common mistake to make. So here I have L is 4, 5, 6. Again, this is my L. Let's get the ID of L. It's going to be a new one, because I've reassigned L to this new list. So this one ends in 3, 1, 2. Again, let's do an append just for fun. The ID of L is going to be, again, 3, 1, 2. But now if I say L is equal to the empty list, this is exactly the same as the situations we've seen before with the tuple and with that tricky example, number 3. When I say L is equal to the empty list, Python takes my name L and assigns it to this object that is the empty list. My original object, 4, 5, 6, 8, is still in memory. I've just lost the binding to it. So here's L. It's an empty list. But the ID of L is now going to be different. Originally, I was working with this list at ID 3, 1, 2. But after I said L is equal to the empty list, I've lost the binding from that old list and rebound my name L to this new empty list. And you can see this using this ID. Just pretty cool. OK, quick summary. So we saw lists and tuples as a way for us to create these compound data structures that can contain any kind of object as their elements. Tuples are immutable. So for things that don't change, they're very useful, like country, latitude, longitude, those things won't change. Or the word that appears on a page number or a line number or something like that. Lists are immutable objects. So you use them in situations where you need that dynamic aspect. So if you want to maintain a list of employees, you want to maintain a list of students, list of grocery items, or things in your fridge, those are really good situations where you'd want to list because things are constantly changing. You don't want to make copies of everything all the time because it becomes very inefficient to do so. So next lecture, we will continue with tricky examples. And we'll also have a quiz. Remember, quizzes are now on Monday."
+}

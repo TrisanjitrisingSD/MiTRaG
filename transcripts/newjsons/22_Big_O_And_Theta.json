@@ -1,0 +1,1608 @@
+{
+    "chunks": [
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 0.0,
+            "end": 35.0,
+            "text": "All right, let's get started. Last lecture, we began talking about an entirely new topic in computer science, and we have begun learning about how to figure out the runtime of our programs, right? So we did, we looked at how to actually time the program by figuring out exactly how long it takes, and then how to count the number of operations in the program."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 35.0,
+            "end": 58.839999999999996,
+            "text": "Today, we're going to do very same thing to begin with. So for the first half of the lecture, we'll time a bunch of programs and then we'll count the number of operations just like before, but we're going to do them in the context of slightly different, slightly more interesting programs or functions involving just pure numbers as our parameters, and then functions that involve lists as our parameters."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 58.839999999999996,
+            "end": 79.2,
+            "text": "That'll be the first half of the lecture, and then from there on, we're going to look at the idea of order of growth, which is kind of what we're building up this set of lectures to. And then the order of growth, there'll be a little bit of math, a little bit of graphing, but not too much, and then we're just going to see how to actually evaluate the order"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 79.2,
+            "end": 93.24000000000001,
+            "text": "of growth of functions from there on out. Okay. So let's begin by just figuring out the runtime of our programs. This was a really quick and easy way for us to figure out exactly how long our programs take."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 93.24000000000001,
+            "end": 125.2,
+            "text": "So last lecture, we imported this time module, and we're doing that again this time, but instead of actually running the time function that we had seen last lecture here, instead of running the time function, which gave us this sort of global absolute time since some date in the past, we're going to run this slightly different function called performance counter, and this is what is typically used in the real world to figure out how long an"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 125.2,
+            "end": 148.39999999999998,
+            "text": "actual program or function takes to run. The reason we're using this is because it's more accurate. So the time.time function that we used last lecture gave us maybe precision to one times ten to negative three, or something very big like that. The performance counter can actually give us precision to something that's a lot smaller,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 148.39999999999998,
+            "end": 165.68,
+            "text": "so maybe one times ten to negative eight, or something very small. So we'll be able to see the timings of some functions that were basically zero in the last lecture. Okay. So just a quick review of how we actually get the time that a function takes to run."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 165.68,
+            "end": 188.92000000000002,
+            "text": "We run this performance counter time, and this one gives us not an absolute time, but more of a shorter time frame, not from some time in the past, and the performance counter is very useful when we're getting these DTs, right, the difference in some times. So we're running the performance counter to get the quote unquote starting time. We run the function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 188.92000000000002,
+            "end": 206.56,
+            "text": "We run the performance counter again to get the quote unquote stopping time, subtract the starting time to get the DT. So and then we will print that time to see how long the function actually takes to run. Yeah, that's what I said. Okay."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 206.56,
+            "end": 228.88,
+            "text": "So we're going to look at two different functions than last time, but they're going to have sort of the same overarching themes that we saw last lecture. So the first function we're going to look at is called convert to kilometers, taking in some miles and returns the value in kilometers. And the second function is a function named compound."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 228.88,
+            "end": 248.72,
+            "text": "So this one should seem very familiar. It will bring flashbacks to problem set one. It's a function that takes in a monthly investment, an interest rate for the month, and some number of months to invest that much. And it returns how much money you've made over those number of months."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 248.72,
+            "end": 265.15999999999997,
+            "text": "So you can see here you have a total initialized, a loop that goes through that many months, and it updates the total based on the interest rate and how much money you have there right now, plus whatever you've invested for that month. Okay. So the three questions we're going to answer, just like we answered last lecture, is how"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 265.15999999999997,
+            "end": 284.84000000000003,
+            "text": "long in actual seconds does it take to run these functions? Which input parameters does the function actually depend on? Do these two functions actually run for different amounts of time? And sort of what is that difference? Does one run in 12 seconds and the other one run in 0.5?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 284.84000000000003,
+            "end": 300.40000000000003,
+            "text": "What is the actual time that it takes for them to run? So this is our code. So these are the two functions before we go on. Let me just show you how we're creating the inputs. So just like before, we're creating a list of all of the different inputs we're going"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 300.40000000000003,
+            "end": 322.44,
+            "text": "to run the function with. So here I've got this ln that will contain the numbers 1, 10, 100, 1,000, and so on. And these are going to be the parameters to my function, one at a time, of course. And then I've got my loop here for each one of those inputs, 1, 10, 100, 1,000, I'm just going to run my function, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 322.44,
+            "end": 344.76,
+            "text": "So here I'm measuring the time it takes, and then I'm going to report the time that it took to run the program. And just for fun, I'm also going to report how many times this program could run in one second, because for me, it was a little bit hard to read 1 times 10, negative 8 or something like that."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 344.76,
+            "end": 367.76000000000005,
+            "text": "But it was a lot easier for me to see this big number for how many times that function could have run in one second. So here I've got convert to kilometers. So I'm going to run it, and we're going to see, it's this right here, how long the function actually took."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 367.76000000000005,
+            "end": 383.8,
+            "text": "So last time we ran a program that was really simple like this, all of it basically said it took zero seconds, right? It was just so fast that that time dot time function wasn't able to pick up that precise time difference. But this performance counter can, right, which is a lot nicer."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 383.8,
+            "end": 402.40000000000003,
+            "text": "So now we see that no matter what the input, it looks like the time is pretty much the same, right? 3 times 10 to the negative 7 seconds, no matter what the input is. That was expected. Now what about the compound function?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 402.40000000000003,
+            "end": 425.08,
+            "text": "This one's going to be a little bit more interesting, because there are actually three parameters to this function, right? So what we're going to do is change each one and see which one of those parameters actually has an effect on the runtime. So here, this bit, is going to fix my interest rate, and fix the number of months, and I'm"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 425.08,
+            "end": 446.36,
+            "text": "going to change the amount I invest every month, okay? So if I run that, that was pretty fast. Again, we look at the results here, and no matter how much I invest every month, it looks like the program doesn't really change how long it takes to run, right? It's always about 1 times 10 to the negative 6 seconds to run, all right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 446.36,
+            "end": 476.2,
+            "text": "What if I change the interest rate? So this one was a little bit harder to change, but I settled on this as the thing I'm varying. Sorry, I'm varying it in this way, so it's going to be 1.1, or 1.01, or 1.001. That's what I'm going to invest, the interest rate for whatever I'm going to invest in, and I'm going to fix $10 as my investment per month, and fix the 12 months again."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 476.2,
+            "end": 497.52000000000004,
+            "text": "So if I run that, same deal. It looks like changing this investment isn't really making much of a difference in how long it takes the program to run, all right? One last parameter to try. So now I'm going to fix the initial investment to $10 a month, and I'm going to fix my interest"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 497.52000000000004,
+            "end": 519.24,
+            "text": "rate to this per month, and I'm going to vary how many months I'm going to invest this. So again, this n will be 1, 10, 100, 1,000, 10,000, and so on. So let's see what this is going to do. Already it's doing something different than the other two because it hasn't finished running yet, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 519.24,
+            "end": 539.16,
+            "text": "So it's still working on this last one down here. But we can see that more interesting things are happening now, right? So here I've got, initially it's a little bit hard to tell for those small numbers, which is fine, but luckily we're able to run it for a bunch of inputs. So starting from about here, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 539.16,
+            "end": 567.04,
+            "text": "When I start investing my money over 1,000 months, 10,000 months, 100,000 months, and so on, it looks like we can kind of see a pattern. For 1,000 months, the program takes about 5 times 10 to negative 5 seconds to run. If I increase the number of months by 10, it takes 5 times 10 to the negative 4 seconds to run, and then as my input increases by 10, the number of months, my time to run seems"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 567.04,
+            "end": 588.8000000000001,
+            "text": "to increase by 10 as well, right? So 0.005, 0.05, 0.7, 0.8, something like that. Okay, so this is from a previous run. Of course, each run will be different, because we're just purely grabbing the time that the program took to run."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 588.8000000000001,
+            "end": 608.12,
+            "text": "So the actual time will be different, but a few things to notice. So Python actually reported the time it took the program to run in scientific notation, which is kind of cool. So this is 4.3 times 10 to the negative 6, so it knew how to show it to me like that. It doesn't have a bunch of zeros in there."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 608.12,
+            "end": 629.0400000000001,
+            "text": "And then the observation, as you might have guessed, for this convert to kilometers was independent. So this is the kilometers, not the compound function. But then the compound function here, this is again from a previous run, we can make a few observations."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 629.04,
+            "end": 657.5999999999999,
+            "text": "So the first was that the time only actually changed with the input when we changed n months. When we changed the initial investment or the interest rate, the program just basically took the same amount of time to run. So it was only n months that actually made a difference for us. Second observation, again something we noticed, is as we increase the number of runs by 10,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 657.6,
+            "end": 689.36,
+            "text": "the time it takes the program to run also increases by 10, something we talked about. And the last observation is that we have this relationship very apparent as the input is really big. As the input is small, I think I mentioned this last time, if for some reason my computer updates or decides to dedicate some resources to running an app in the background for whatever"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 689.36,
+            "end": 711.04,
+            "text": "reason, as it's trying to figure out the compound function with an input of 1, this number could be changed dramatically. Because 2 times 10 to the negative 6 can be affected a lot by just a little bit of time dedicated to something else. Whereas 4 seconds or 14 seconds, if my computer dedicates a little bit of time to something"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 711.04,
+            "end": 737.88,
+            "text": "else, that 4 or 14 won't be affected as much. So when the numbers are big, that's when we can see the behavior of our function a lot more clearly, not when the numbers are small. So now I'd like to look at some more functions. These functions are going to have the input being a list, as opposed to just numbers."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 737.88,
+            "end": 755.08,
+            "text": "We've seen a bunch of examples with numbers, but let's see what happens when my input is a list. So here's a very simple function. It takes in a list l, and it sums all of the elements in the list l. So we've seen this a bunch of times already."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 755.08,
+            "end": 775.4,
+            "text": "We initialize a total to be 0, we iterate through each element in l, and we keep our running total by just adding the element to that total. Pretty simple, and we return it. Now, how do we actually run this function with a whole bunch of different inputs? Well, that's what we're going to see next."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 775.4,
+            "end": 798.8800000000001,
+            "text": "So this bit here is exactly the same as before. It's actually creating for us the list of 1, 10, 100, 1,000, 10,000, and so on. But clearly, the number 10 cannot be an input to this function, because this function is expecting a list. So l cannot be 10."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 798.8800000000001,
+            "end": 820.8800000000001,
+            "text": "It needs to be a list with some things in it. So instead, what we're going to do out of that number, 1, 10, 100, 1,000, and so on, we're actually going to make a list with just some random dummy numbers in it. I don't actually care what these numbers are. So let's just make them be the numbers 0 to 9, 0 to 99, 0 to 999."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 820.8800000000001,
+            "end": 833.8000000000001,
+            "text": "And in effect, each one of these lists will then have one element in it, 10 elements in it, 100 elements in it, 1,000 elements in it, and so on. Everyone OK with that? So the input is now different. It needs to be a list."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 833.8000000000001,
+            "end": 850.8800000000001,
+            "text": "We're just creating a bunch of lists of varying lengths. So the relationship between these lengths are that the lists are 10 times as big as the previous list. So then now I have my input list here. I do the exact same thing as before."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 850.8800000000001,
+            "end": 869.36,
+            "text": "Not yet. I run the performance counter to create my starting time. I run my function, and I get the dt. And I report the exact same thing as before. So let's run that down here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 873.08,
+            "end": 888.4000000000001,
+            "text": "Running, running, running. Again, we have to wait a little bit. It looks like it's working, but it's just getting slower and slower, which is fine. So what do we notice? So when we had one element in my list, it took 1 times 10 to negative 5 seconds to run."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 888.4000000000001,
+            "end": 911.3600000000001,
+            "text": "When I had 10, it took 1 times 10 to negative 6 seconds to run. It was actually shorter to have more elements in it. See this is what I mean when it's very unpredictable for low numbers. But as we get to lists of length 1,000, 10,000, 100,000, a million, and so on, we can start to see the pattern."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 911.3600000000001,
+            "end": 931.96,
+            "text": "So with 10,000, it took 4 times 10 to negative 4 seconds to run. With 100,000, it took 4 times 10 to negative 3 seconds to run. And then as the input increases by 10, that is the length of my list increases by 10, it looks like the program takes 10 times as long to run. A very similar thing as before."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 931.96,
+            "end": 957.36,
+            "text": "So the first observation that we can make out of this function is that the size of the input, obviously, is now the length of our list. It's not just the number 10 or the number 1,000. It's a list of length 10 or a list of length 1,000. Second observation is that, again, just like in the previous case, the average time increases"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 957.36,
+            "end": 979.56,
+            "text": "by 10 as the length of our list increases by 10. Again, very good. And just like before, this relationship between the size and time is more predictable for large sizes than it was for small sizes. As we just saw here, which will surprise me a little bit as well, is if for a list that's"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 979.56,
+            "end": 1000.8399999999999,
+            "text": "longer, it took a shorter amount of time to run, which is counterintuitive. But again, that's probably because my computer did something here to take a little bit longer to run. And then the last observation, this is compared to the compound function, where we changed the number of months."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1000.8399999999999,
+            "end": 1034.28,
+            "text": "It looks like the time that this program actually takes to run is pretty comparable, just in terms of pure seconds, is comparable to how long it took for the compound to run. So here, when my input was 100 million, it took about eight seconds to run. And when my list had 100 million elements in it, it took about seven seconds to run. And then 10 times faster going when we decreased our input by 10."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1034.28,
+            "end": 1047.92,
+            "text": "So already, we're starting to see something that we're going to get. Yeah. Go ahead. What is the sum of function? Oh, sum of is just this function that I wrote here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1047.92,
+            "end": 1060.92,
+            "text": "Yep. Did I name it something differently in here? No. Yeah. So already, we're starting to get at this idea where I have two functions that do wildly"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1060.92,
+            "end": 1073.44,
+            "text": "different things. Right? One sums the elements in a list. The other one just loops over some number of months and does some calculation. But it looks like they're sort of in terms of just algorithmically wise."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1073.44,
+            "end": 1084.84,
+            "text": "They are very similar. They take similar amounts of time. They increase at the same rate. And basically, they just have a for loop, right? Or some sort of loop that iterates through the input and does something."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1084.84,
+            "end": 1105.8,
+            "text": "So algorithmically, we want to consider both of these functions the same, even though they implement completely different things. Other questions before we go on to another list function? OK. So let's look at a slightly different problem dealing with lists."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1105.8,
+            "end": 1125.12,
+            "text": "So this function, or these three functions, deal with finding an element in a list. And we're going to compare the runtimes of these three functions. So the first function is going to be a very brute-forcey method to find the element in a list. Was there a question?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1125.12,
+            "end": 1133.12,
+            "text": "Yeah. Yeah. Oh, wait a minute. You're running out of time. All right."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1133.12,
+            "end": 1157.6000000000001,
+            "text": "No worries. So the first function will do a brute-force search to find an element x right here, one of my parameters, within a list l, the other one of my parameters. Basically given a list of a bunch of elements, this function will just painstakingly look at each element one at a time and ask whether that element is the one that I'm looking"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1157.6000000000001,
+            "end": 1173.1999999999998,
+            "text": "for. All right. So starting over here, the beginning of my list, and going to the end of my list. That's what is in does. The next one, binary search, also looks for an element in a list, making sure that the"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1173.1999999999998,
+            "end": 1191.6799999999998,
+            "text": "list is ordered. But the way that it's going to do it is in a slightly smarter way. So I'm actually going to draw my list this way. So each one of these is going to be elements in my list. So this is going to do a bisection search to find the element in the list."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1191.68,
+            "end": 1215.3200000000002,
+            "text": "So again, we're looking for element x within this list l. And remember, bisection search, we start with a beginning endpoint and an ending endpoint. And our first guess for the element, or whatever we're looking for, is to just say, what's the, is it the middle element? All right."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1215.3200000000002,
+            "end": 1226.44,
+            "text": "So look at the element in the middle and ask, are you the one I'm looking for? In this particular case, you look at the element in the middle and you say, are you the x I'm looking for? Right? Good."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1226.44,
+            "end": 1252.36,
+            "text": "So that's this one right here. So the midpoint calculation is right here, right? The reason why we're doing slash slash for integer division is in the case where I have a list where I would actually look at the midpoint here, right? I can't ask Python for the element at index 3.5, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1252.36,
+            "end": 1264.68,
+            "text": "It doesn't work like that. So I'm just going to round down. You could also round up. If you wanted to, I just made the choice to round down, just so I'm actually grabbing the element at an integer index, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1264.68,
+            "end": 1291.0,
+            "text": "So I've grabbed my middle element and then I ask, are you the one I'm looking for? And if not, I ask whether this one is too low or too high. And then if it's too low, then I know I need to search this part of my list. And if it's too high, I need to search this part of my list, right? So that's what this little if-else is doing, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1291.0,
+            "end": 1312.28,
+            "text": "And when I make my decision as to which side to look at, then I reset my endpoints. And I do the process all over again by asking the midpoint there, are you the one I'm looking for? So on and so on. So this does a bisection search, also called binary search for the element in a list."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1312.28,
+            "end": 1333.76,
+            "text": "And the last way for us to search whether an element is in a list is one that we've already been doing. It's this little one-liner here is x in L, so using the keyword in, right? So that's, I call that the built-in function, the built-in operator in. OK."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1333.76,
+            "end": 1359.52,
+            "text": "So it would be unfair if we just asked Python to figure out or to just pick a random number and ask whether that element was the one we're looking for, OK? So instead, what we're going to do is to kind of take an average for each one of these three functions just to make it fair. So we're going to say, when we're searching for an element in the list, I'm going to say"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1359.52,
+            "end": 1381.96,
+            "text": "that I'm going to take the average of the case when the element is the first one in the list. And I can find it maybe right away in this case, or maybe not right away in this case. The average with that, plus when the element is the last one in the list, and plus when the element is the middle one in my list, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1381.96,
+            "end": 1402.4,
+            "text": "So in that way, we're actually kind of covering all our bases, kind of best case, worst case, medium case scenarios, right? So each one of these three functions will be run with that in mind. So that's these three functions. So this is my brute force is in."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1402.4,
+            "end": 1426.3200000000002,
+            "text": "This is my binary search. And the in, obviously I'm just going to type in in when I run it. So I'll just show you for one of them. So we're going to uncomment this entire bit here and run it. But you can see here, so instead of just running the performance counter and making one function"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1426.3200000000002,
+            "end": 1450.72,
+            "text": "call, I'm actually going to run three function calls, iterated over this little loop, where I'm looking for the element at the zeroth location, the element at the halfway location, and the element at the end of my list. And I'm just averaging those down here, the time it takes to find those three. Does that make sense?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1450.72,
+            "end": 1464.24,
+            "text": "OK. All right. So this is a lot to look at. Luckily I'm going to summarize it in the next few slides. So we don't have to stare at that Python screen there."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1464.24,
+            "end": 1477.3600000000001,
+            "text": "OK. So we have three functions to run. Let's first look at how each of these three functions did individually. And then we can start comparing them to each other. So the first function we ran was the isIn."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1477.3600000000001,
+            "end": 1504.3200000000002,
+            "text": "So remember, this was the brute force one. We're painstakingly going through each element and asking if it's the one we're looking for. So no smart way about that, just brute force your way through. We notice that as the input list grows by 10, the time it takes to find the element in the list, whether it's the first one, last one, or in the middle, on average also grows"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1504.3200000000002,
+            "end": 1517.12,
+            "text": "by 10. OK. All right. Next. Let's look at the built-in function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1517.12,
+            "end": 1538.6,
+            "text": "We'll worry about the binary one later. The built-in function, so just using the in operator, and you see this was down here, so this in. So basically the function I'm running is purely just asking whether x is in L, right? And that returns true or false."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1538.6,
+            "end": 1565.96,
+            "text": "So I didn't need to make a function for that, but that built-in in operator also has a very similar trend, right? As the length of my list increases by 10, the time it takes for my program to run is also 10 times as long, right? I went 0.05 to 0.5, and the next one would be 5 and so on, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1565.96,
+            "end": 1591.2400000000002,
+            "text": "OK. So those seem to be doing approximately the same sort of, they have the same performance. Now what about the bisection search or binary search? Well this one is not so clear, right? If we look at the input, right, the input clearly increases by 10 from here to here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1591.2400000000002,
+            "end": 1611.24,
+            "text": "The time increases 9 times in the negative 6 to 1.1 times in the negative 5, right? And so the factor, how many more times it took, is very unclear, right? It's not quite 1. If it was 1, that meant it's independent, right? It's constant."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1611.24,
+            "end": 1627.8400000000001,
+            "text": "It doesn't matter what the input size is, it's always going to give us this amount. It's always going to run in this amount of time. So it's not quite 1, so it's almost independent of size, but it's not linear, right? Like the other two functions were, right? It's not 10 when the input grows by 10."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1627.8400000000001,
+            "end": 1650.0800000000002,
+            "text": "So we're not quite sure what this function is, right? But clearly it's not as bad as the other two, but not as good as no relation, okay? Observation, that was observation 3. Observation 4 will now compare the function that we wrote that is in this one here to the binary search, this one down here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1650.08,
+            "end": 1684.5600000000002,
+            "text": "Well, binary search was orders of magnitude faster than brute force, right? Brute force, when the input was, what is this, 10 million or 100 million, I'm not sure. When the input was 100 million, brute force took 1.6 seconds. But the bisection search, the binary search, took 0.0001 seconds. So it's not like we went from 1.5 seconds to 1.2 seconds or 2.5 seconds."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1684.5600000000002,
+            "end": 1703.0800000000002,
+            "text": "We were orders of magnitude faster, right? 10 to the negative 5, right? So there's a really big difference between this algorithm, the one that brute forces its way through, and between this algorithm that does something smart about removing half of the search space with each loop, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1703.0800000000002,
+            "end": 1728.72,
+            "text": "All right, so that's important to know. And lastly, just kind of comparing pure time that it takes these programs to run, let's compare the function that we wrote, the one that loops one at a time through this list, and the built-in infunction. The built-in infunction, while it's still the same sort of, has the same relationship,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1728.72,
+            "end": 1756.5600000000002,
+            "text": "linear, right, with the input size, it seems to do a lot better consistently by about 10 times as fast, right? So when our function took 0.1 seconds, the built-in one took 0.05 seconds. When our function took 1 second, the built-in function took 0.5 seconds. So consistently, it's just faster to use the built-in infunction than to make our own."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1756.5600000000002,
+            "end": 1776.24,
+            "text": "All right, questions about any of these observations? Do they make sense? Are they interesting? OK, so what do we see? Just a quick recap of those three functions, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1776.24,
+            "end": 1792.56,
+            "text": "The first one we saw is linear in the size of the argument, so when the input list size increases by 10, the program takes 10 times as long to run. But this other one is something less than linear, but not constant. So we're not quite sure what it is. All right, we'll come back to this in a little bit."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1792.56,
+            "end": 1813.84,
+            "text": "We'll end up plotting some of these runtimes, so we'll actually be able to see the relationship in a few slides. The next thing I actually want to do is do one more sort of function. This one is called the diameter, right? And I'll explain what it's doing, because it looks a little bit scary."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1813.84,
+            "end": 1835.36,
+            "text": "But suppose we actually have some points in a 2D plane, right? So it looks like this. Basically, what this function is going to do is it's going to figure out the biggest distance between all of these points. So the distance between these two points is something."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1835.36,
+            "end": 1853.2800000000002,
+            "text": "The distance between these two points is something else. Which two points yield the biggest distance, right? That's what this function aims to tell us, and what that distance is. So the way it works is it has nested four loops. So this is different than what we've seen so far, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1853.2800000000002,
+            "end": 1872.4,
+            "text": "We saw an example of this last lecture, but now we're seeing it in the context of something actually useful. So in this particular case, we're going to create an input list. So again, our input list will just have some dummy values in it. I don't actually care what these numbers are."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1872.4,
+            "end": 1898.72,
+            "text": "I just want to populate a whole bunch of points in a 2D plane. So what we're going to do is pretty much just iterate from numbers 0 to 9, 0 to 99, 0 to 999, and so on, just like we did before. And to get us a little coordinate in the 2D plane based on those numbers, I'm just going to take the cosine of that number comma the sine of that number."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1898.72,
+            "end": 1930.4,
+            "text": "So that together, so like cosine of 1 or whatever, sine of 1 will be this point here. Set up as a tuple. And then this one might be cosine of 5 comma sine of 5, something like that. So I'm just making a whole bunch of coordinates in a 2D plane, ensuring that I have n coordinates. OK, now the loop, sorry, there's going to be two loops."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1930.4,
+            "end": 1950.4,
+            "text": "The outer loop will basically take us through each of these elements. I have 5 in this particular case. And the inner loop will go through every other element. But notice it starts from i plus 1. And I'll tell you why that is instead of starting from 0."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1950.4,
+            "end": 1970.64,
+            "text": "So let's just walk through. Let's say we start out with this element. This little guy is our first element in our outer for loop. So right now, we've grabbed the first element in our outer for loop. And what we're going to do is figure out the distance between it and everybody else."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1970.64,
+            "end": 1990.08,
+            "text": "So now we're iterating through the inner for loop, going through each element except for myself. So I'm going to get the distance between this one and this one. Since it's the first one, obviously it's the biggest one. But then I'm going to get the distance between this one and this one. And I'm going to say, are you bigger than this one?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 1990.08,
+            "end": 2006.24,
+            "text": "It looks like no. So we're still keeping this one as our longest one. Then I'm going to grab the distance between this and this one and this and this one. And as I'm going through, this little if statement here keeps track of the farthest one. So the one that has the biggest magnitude."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2006.24,
+            "end": 2027.64,
+            "text": "In this case, that's probably the first one we looked at. And after I've gone through each element, each other element, I've concluded my first iteration in my outer for loop. So now the outer for loop goes to the next element in the list. Let's say it's this one."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2027.64,
+            "end": 2042.2,
+            "text": "It doesn't actually matter. This one, we'll look at the distance between itself and everybody else except for the one we already looked at. Because we already know this distance. We kept track of it already when we iterated through this one."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2042.24,
+            "end": 2061.04,
+            "text": "So as I'm going through my outer for loop keeping track of this point here, it figures out the distance between this one, this one, which is suddenly bigger than that one, which we had kept track of, and then this one right here. All right, good. So now we're still keeping track of the biggest distance we've seen."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2061.04,
+            "end": 2070.56,
+            "text": "It's probably this one here. And I've concluded the second iteration of my outer for loop. And now I go to the next element. Let's say it's this one. It doesn't matter again."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2070.56,
+            "end": 2087.84,
+            "text": "Now this one is going to get the distance between itself and everybody else except for the two that we've already seen, this one and this one. So that's why our inner loop starts at i plus 1. So this one will get the distance between itself and this one all the way back there and this one all the way over here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2087.84,
+            "end": 2103.8,
+            "text": "And then next iteration in the outer for loop takes a look at this one, let's say. And it finds the distance between itself and everybody else. But you know what? There's only one left, that one there. And then the last time through, this one doesn't even get a chance to find the distance between"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2103.8,
+            "end": 2130.7599999999998,
+            "text": "itself and anybody else because everybody else already found the distance between it. And so in this way, we're basically finding all the possible pairs of all of these points in this 2D plane and keeping track of the longest, of the biggest distance. So in terms of the input list, the way that looks like, this i plus 1 business here, the outer loop basically says, I'm going to start with u and I'm going to get the difference"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2130.7599999999998,
+            "end": 2150.12,
+            "text": "between u and the element at index 1, the element at index 2, and the element at index 3. This outer for loop is done. Next we're going to get the distance between this one and everybody else, right? So obviously not the element at index 0 because we already know that distance."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2150.12,
+            "end": 2164.96,
+            "text": "So we're going to get the distance between element at index 1 and index 2 and index 3. And then we're done. And then the last loop, outer loop, gets the distance between element at index 2 and index 3. And then it's done, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2164.96,
+            "end": 2190.08,
+            "text": "So just these, the two nested loops just does all of this until it finds all of these pairs. It basically pairs up everybody together. OK, so if we run it, what are we going to see? So my input for this particular function, you'll notice first of all, is going to be"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2190.08,
+            "end": 2214.04,
+            "text": "much, much smaller than the inputs for everything we've done so far, right? Some of the inputs we had seen in the past were a million, 10 million, 100 million. In this particular case, I'm only going to go up to 6,000 because it's just going to take way too long to run if I make it go for any, much, any longer than that. So what do we see already?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2214.04,
+            "end": 2242.72,
+            "text": "We've got 100 points, so 100 of these, right? Finding the maximum distance between a bunch of these pairs took about 0.03 seconds. If we doubled that to 200 points, it took 0.01 seconds. If we doubled that to 400 points, it took 0.05 seconds and so on and so on. So just like before, let's take a look at the big numbers to see our trend."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2242.7200000000003,
+            "end": 2271.8,
+            "text": "So as the numbers increase by 2, if my input increases by 2, it looks like the time that it takes for me to find out the biggest distance increases by 4. So my input increases by 2, the time increases by 4. And I'm not going to run this, but you can make a new list on your own and change this to be inputs that are multiples of 10, increasing by 10 each time."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2271.8,
+            "end": 2296.48,
+            "text": "And you'll see a very similar pattern where the time it takes to run that program will be about 100 times as slow. So the relationship there is a n squared kind of relationship. So a few observations here as well. First one I already mentioned is this program just takes a lot longer to run in general."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2296.48,
+            "end": 2320.0,
+            "text": "So here we were able with the compound and with finding whether an element is in a list and getting the sum of all the elements in a list, we were able to run 100 million, a list with 100 million elements and it still took about one-something seconds. Whereas with this diameter function, we can barely get to 6,000 and it's already taking 14 seconds."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2320.0,
+            "end": 2343.52,
+            "text": "So just way, way, way slower program in general. And then the relationship seems to be an n squared kind of relationship relating the input to how long the program takes. So let's actually plot, well I already did this, but here are the relationships for these sort of three types of algorithms that we've seen so far."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2343.52,
+            "end": 2373.68,
+            "text": "So this is the finding the element in a list, those three versions, sorry, those two versions that we saw, and this is the diameter function. So if we plot how long it takes the program to run when the input is this size, we can see that there is a linear relationship. So the time it takes for the program to run is linear in the input."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2373.68,
+            "end": 2395.1600000000003,
+            "text": "The diameter, we'll talk about the binary search in a bit, the diameter, we again notice this just by looking at the pure numbers, but it's a lot easier to see it visually. This is on the x-axis the size of the problem, so how many points we actually are finding the diameter between, and how long it actually takes the program to run, and the relationship is quadratic."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2395.1600000000003,
+            "end": 2417.44,
+            "text": "Now that we plot it, we clearly see the quadratic relationship. And then this binary search, we were very unsure of what it was, right? It wasn't quite constant, it definitely wasn't linear, but now that we've plotted it, so this is the input size, and this is how long it actually takes the program to run, you can see it drastically increases when the input size is very small, but then it kind"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2417.44,
+            "end": 2441.2400000000002,
+            "text": "of sort of asymptotically reaches some sort of value. It's actually a logarithmic relationship. All right, last thing I wanted to mention about timing before we move on to counting is just pure running, just purely running these functions on different computers will just give us different values just right off the bat."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2441.6000000000004,
+            "end": 2468.0400000000004,
+            "text": "For my, on this newer-ish computer, how long did it take to run this compound? Well, no, what it took, like three seconds or something, one point something seconds. On an older laptop, it took 663 seconds. On an even older desktop, it took 1226 seconds. So just purely timing things, the machine you're running it on is going to make a difference."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2468.0400000000004,
+            "end": 2487.7200000000003,
+            "text": "And then that's fine, right? It's important to know how long it takes, but if you're just looking at the relationship between input and how long the program takes to run, that's the same. So it doesn't matter what machine you're running it on. When you increase the input by 10, the program will take 10 times as long to run, no matter"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2487.7200000000003,
+            "end": 2507.2000000000003,
+            "text": "whether you run it on a fast laptop, old laptop, or a super old desktop. So just timing a program is really important, right? You'd like to know whether the program you wrote, you're going to have to wait a month for it to finish or a couple of minutes for it to finish. That's an important thing to know."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2507.2000000000003,
+            "end": 2524.7200000000003,
+            "text": "But what we're going to get at towards the end of this lecture is something that's complementary and that's this idea of asymptotic complexity. So kind of mathematically saying, you know what, this program is not going to be that bad to run, right? You're not going to have to wait for months to run without actually running it, of course."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2524.7200000000003,
+            "end": 2539.6800000000003,
+            "text": "So you'd be able to glance at a program and say, this one is reasonable to run. And so we're going to do that in terms of this idea of order of growth, which we'll get at in a little bit. Okay. Any questions on timing before we get to counting?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2539.6800000000003,
+            "end": 2557.6800000000003,
+            "text": "Oh, yeah. Yes. Can you assume that all built-in functions are optimal in terms of running time? Yes. Better than when we write them?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2557.6800000000003,
+            "end": 2577.1600000000003,
+            "text": "Yes, in Python. And then, of course, in other languages, you know, there would be, there would maybe take advantage of other speed-ups as well, like putting things in memory efficiently. But yeah, generally it's better to run something that's already been made than to make it yourself. Yeah."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2577.1600000000003,
+            "end": 2591.04,
+            "text": "Okay. So now, what we're going to do is we're going to count operations, just like we did last lecture. Generally timing is nice, but it doesn't give us a nice relationship besides us spotting it."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2591.04,
+            "end": 2602.2799999999997,
+            "text": "Right? There's no formula. There's no relationship that relates the input to how long it takes the program to run. Counting will get us a little bit closer to that. And we saw that last lecture."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2602.2799999999997,
+            "end": 2626.0,
+            "text": "Let me remind you the idea of counting. So the idea of counting is that we're going to take a bunch of these operations, like mathematical operations, comparisons, indexing into something, assigning a value to a variable. All of these things, right, when we run them, yes, they might run for different amounts of time."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2626.0,
+            "end": 2644.4,
+            "text": "One times ten negative nine versus two times ten negative nine, something like that. But that's very, that's not a very big difference. And so what we're going to say is that every one of these operations will consider to be constant, right? They will take one unit of time."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2644.4,
+            "end": 2672.08,
+            "text": "So if we say that, we can actually come up with a relationship that tells us, according to, that relates the input, to how many operations this program will run. So here in the convert to kilometers, what do we have? We have one multiplication. And you know, just for the heck of it, this lecture, let's say the return also counts"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2672.08,
+            "end": 2690.1200000000003,
+            "text": "as an operation. So in this convert to kilometer function, we have two operations. Notice that it's not really related to the input at all. So then the amount of operations that this program takes to run is always two. It matches what our timing said, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2690.1200000000003,
+            "end": 2719.08,
+            "text": "It basically didn't matter what the input was. It always took approximately the same amount of time to run. The sum of function, so it takes an input list and it gets the sum of all the elements. This one we'll do, we'll have one operation for doing this assignment. It'll have one operation for grabbing an element in my list l and assigning it to i."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2719.08,
+            "end": 2742.08,
+            "text": "It'll have two operations for this total plus equals i, right? However, total plus i on the right-hand side is one operation, and total equals that is my second operation, so that's two operations. And then, let's not forget our for loop, that's kind of the important part of this function. How many times will these three operations repeat, this one plus these two?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2742.08,
+            "end": 2768.52,
+            "text": "Well, it's going to repeat however many elements I have in l, so length l times. And then again, let's say we count the return, the return will also be one operation. So the total number of operations for this sum of function will be one for the total equals zero plus length of l times three, because there's three operations being done for each length of l, plus another one for the return, so that's going to be three length"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2768.52,
+            "end": 2787.6,
+            "text": "l plus two. That's a nice little formula that relates how many units of time we'll have to wait depending on the size of the list. That's pretty cool. So the way that we're going to count the number of operations, again, I'm going to do it slightly"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2787.6,
+            "end": 2804.56,
+            "text": "differently in the last lecture, just to show you that there is another way to do it. So this is our function is in, it's going to count how many operations we have, and I'm going to use something called a global variable, and I'll show you again the difference between them. So it's just these three lines that I added."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2804.7599999999998,
+            "end": 2833.72,
+            "text": "You should never, ever use global variables in your programs, except in this situation. The idea of global variables is that you can define variables just in the main program, outside of any functions, and you can access those variables within some function, purely by saying, you know, if we define count out here, right, before this function definition, count equals zero or whatever, inside of any function, we can say, hey Python, I would"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2833.76,
+            "end": 2856.96,
+            "text": "like to access this variable that I defined outside of this function. You say that, you tell Python using global, and then the name of that variable. And Python will grab that variable that's basically, quote, unquote, shared across the entire program, and modify that variable, right? So in there's, in essence, we're basically saying this is now a shared variable."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2856.96,
+            "end": 2877.04,
+            "text": "If I modify it within this counter, within this function, it'll be, you know, obviously modified for everything else. It's very tempting to use global variables, because, you know, all the variables you could ever want to create are going to be accessible by everybody, right? No need to pass in parameters, no need to do, but it's very, very bad programming."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2877.04,
+            "end": 2903.64,
+            "text": "So we won't ever do it, except in this particular case, because we'd like to keep a counter of things that are happening, or for debugging purposes and things like that. So the count variable will keep track of, it'll just increment in key places, where we have these constant unit of times happening. So I've got count plus equals one here, because I've got my return value."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2903.64,
+            "end": 2936.2400000000002,
+            "text": "I've got count plus equals two here, because I grab an element from L, and I do the equality check here, and then that's it. Okay, oops, sorry. So if I run that, let's do it here, what are we going to see? Well, I didn't actually do how much more it ran, but we can see the relationship, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2936.2400000000002,
+            "end": 2957.6,
+            "text": "We go nine to 37, to 307, to 307, to 307, and so on. So again, the same relationship, where we increase the input by 10, the number of operations we do is 10 times as more, exactly like the formula said it would be. What about the binary search? So again, we're going to use this global variable, and we're going to have the counter"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2957.6,
+            "end": 2982.2,
+            "text": "keep track of all of these operations. So this count incrementing by three accounts for setting the low to zero, setting the high to this thing, and grabbing this actual value of length. Incrementing the count within this while loop will keep track of this subtraction as one operation, and the test, that is greater than one is another operation."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 2982.2,
+            "end": 3006.68,
+            "text": "Counting increasing by three here accounts for high plus low, the integer division, and assigning that value back to mid. Now, plus three here accounts for indexing into this L, the less than or equal check, and then either doing this reassignment of low or this reassignment of high. So that's three operations."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3006.68,
+            "end": 3036.92,
+            "text": "And then lastly, count increases by three once more because I've got these operations here, so indexing into low, checking for equality, and then doing the return. So the actual number of operations will be kept track of in, right, by the counter. So all we're doing is just kind of reporting how many times, how many operations we've done. So as we increase the input by 10, just like with timing, we can't quite tell what the"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3036.92,
+            "end": 3060.92,
+            "text": "relationship is, right? Again, it's like one point something, right, with each run, all right? So these are the results. So the observation one, as I mentioned, when we increase the input by 10, this brute force, I erased it, but the brute force is in function also, does 10 times as many operations."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3060.92,
+            "end": 3085.4,
+            "text": "The binary search, again, we don't know what rate it is at, but we can plot them. So here I have the plots, just like when I plotted the input size versus how long the program actually took to run. I'm now plotting the input size versus actually just the number of operations being done. So the is in function, that brute force way of finding whether an element is on a list"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3085.4,
+            "end": 3115.84,
+            "text": "grows linearly, no surprise there, and how lucky for us, the binary search matches, the graph matches the one that we had for timing, right? So as I increase my size in the binary search method, the number of operations that I do is logarithmic in time, just like we saw in the actual timing. So timing and counting are really nice, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3115.84,
+            "end": 3141.66,
+            "text": "Timing gives us pure number of seconds or months or whatever we need to wait for this program to finish, but counting gives us a nice little formula that relates the input to the number of operations that you have to do. You might have noticed, I briefly touched upon this, that throughout this entire lecture and last lecture, we basically just saw something like three different algorithms, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3141.66,
+            "end": 3168.14,
+            "text": "We saw something that's constant, something that's linear, something that's quadratic, and something that's binary, logarithmic in this particular case, right? So that's four different algorithms, but we saw way more functions run, right? So what we'd like to do is evaluate the algorithms, not the different implementations, right? And what we'd like to do is evaluate these algorithms as the input gets really, really"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3168.14,
+            "end": 3189.44,
+            "text": "big. So what we're going to do is figure out a relationship between the program's runtime and the input, but what we're going to do is focus on the biggest terms that contribute to the program's runtime, right? So we saw these examples last time, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3189.44,
+            "end": 3208.82,
+            "text": "This mySum, which basically summed all the elements, sorry, all the numbers from zero to x, and this silly square function that had nested loops, kind of like this diameter one, right? We were able to say something like, you know, when the input increases by 10, the program is 10 times as long to run, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3208.82,
+            "end": 3233.48,
+            "text": "So the efficiency of that program was on the order of x. When the input increased by x, the program took x times as long to run. The square had a similar, we could have said it in a similar way, right? When the input increases by x, the program took x squared as long to run. So I don't actually care, right, about all of these differences in the exact timings."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3233.48,
+            "end": 3257.72,
+            "text": "One times 10 to the negative six, 1.3 times 10 to the negative six, I don't care. What I do care is the order of growth. How does the program run in relation to the input, okay? And I care about that when the input is really, really big. So what we're gonna do is express the program's runtime in an order of not exact kind of relationship."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3257.72,
+            "end": 3285.68,
+            "text": "So while counting was really nice, right, it told us a nice relationship between the input and the number of operations. When the input is really, really big, like 3x plus 4, when x is really, really big, I don't care that the number of operations is 3x plus 4, right? Because when x is really, really big, that plus 4 might as well be plus 0."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3285.68,
+            "end": 3305.44,
+            "text": "And that 3x is basically like x when the input is really, really big, right? So that's what we're gonna try to do, right? Now before we do that, we need to decide what to measure, right? Because when we write functions, we're going to have functions that have a whole bunch of inputs, potentially, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3305.44,
+            "end": 3327.0,
+            "text": "So the input could be an integer, like in convert to kilometers. It could be a list, in which case we would be interested in maybe the length of the list. And if you have many parameters, you'd have to decide, right? What is the parameter that contributes to the growth of this function? So here's an example."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3327.0,
+            "end": 3341.2400000000002,
+            "text": "This is our isInFunction. It looks for an element E in list L, right? So there's two parameters to this one. We can ask, does the program take longer to run as E increases, right? It's one of the parameters."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3341.2400000000002,
+            "end": 3356.44,
+            "text": "Let's see what happens as we make E bigger. So we can look at a little example. If we find out whether 0 is in this list containing 1, 2, 3, or whether 1,000 is in the list 1, 2, 3, does the program take longer to run? No, exactly."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3356.44,
+            "end": 3381.1600000000003,
+            "text": "So E is not really relevant in my runtime sort of calculation here, all right? Well let's consider L now. When we say L is going to change, it could change in two ways, right? The elements in L could have different values, right? Or the list length itself could be different."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3381.1600000000003,
+            "end": 3400.36,
+            "text": "So in this particular function, let's say that the elements in L are small numbers versus big numbers, OK? That's certainly something that could happen. And certainly with some functions, that's going to make a difference. So let's say in this particular function, if the elements in L are big versus small,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3400.36,
+            "end": 3413.88,
+            "text": "is it going to make an impact on my runtime? Well, here's a little example. Let's say I'm looking for the number 0 inside a list with 1, 2, 3, and the number 0 inside a list with 1,000, 2,000, and 3,000. Is that going to make a difference?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3413.88,
+            "end": 3434.1600000000003,
+            "text": "No, right? So the size of the elements themselves don't really matter. And one last thing to ask ourselves is what about the length of the list? So if L has different lengths, will this make a difference in our runtime, right? So if I'm looking for 0 in a list of three elements, or 0 in a list with 10 elements"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3434.1600000000003,
+            "end": 3453.5600000000004,
+            "text": "where clearly that 0 is nowhere to be found, is that length list that's going to have a difference? Yeah, in this case, it will, exactly. So here in this particular function, the input I'd be interested in sort of reporting the runtime from is the length of the list, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3453.5600000000004,
+            "end": 3473.1200000000003,
+            "text": "Not the elements in the list, not E itself, but the length of the list, OK? So the last thing that I'll mention is for this particular class, we're going to talk about the worst case scenario. So you might have noticed in this previous example here, right? I always looked for an element that wasn't even in the list, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3473.1200000000003,
+            "end": 3495.92,
+            "text": "So when you're faced with a function, you ask yourself, this particular class at least, what is the worst case scenario? And finding out whether a function's in a list, the worst case scenario for us is if it's not in the list at all, right? So that's sort of another aspect of runtime that we won't talk about, because for us,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3495.92,
+            "end": 3512.48,
+            "text": "we're always interested in the worst case. But there are certainly analyses where you could look at the best case scenario, which is, well, the element is the first one in the list, right? In that case, you're always going to find it right away, so it's constant. Or an average case scenario, which is kind of what people do in the real world, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3512.48,
+            "end": 3529.2000000000003,
+            "text": "You're not always encountering the worst case. But for us, we're going to look at the worst case scenario. So our goal is going to be to describe how the runtime grows as the size of the input grows in a really general way. So we're not going to be interested in figuring out the exact number of operations."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3529.2000000000003,
+            "end": 3548.1600000000003,
+            "text": "No 3x plus 2 kind of deal here. We're just going to focus on terms that grow the fastest. We're going to eliminate any sort of additive, multiplicative constants, and things like that. So we're just going to focus on terms that grow the fastest. And that will give us our order of growth."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3548.16,
+            "end": 3565.7999999999997,
+            "text": "So the way we're going to denote the order of growth is using this notation called big O and big theta. Now, warning, we're going to have some math coming our way. It's going to be like three slides of just pure math, OK? You can sit back."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3565.7999999999997,
+            "end": 3590.4,
+            "text": "You won't need to know the details. But it will motivate us to kind of give us the idea about this asymptotic order of growth. So this is the mathematical definition of big O. So what we would like to do, there will be a drawing going. So what we would like to do is figure out an upper bound for our function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3590.4,
+            "end": 3610.0800000000004,
+            "text": "So the function might look like this. And I know this is just an F, but we relate this to our class by saying, you know what, if we did the order of calculation, sorry, the number of operations analysis for a function, we could basically come up with something like this, right? We came up with 3x plus 2."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3610.0800000000004,
+            "end": 3639.4,
+            "text": "We could come up with 3x squared plus 20x plus 1 for some random function that we wrote, right? So that we consider the function. Now, the big O is going to be the upper bound on this function. So if I plot this function in my xy axis, this is what it looks like. The big O will be some other function that's going to upper bound this one, the blue one, OK?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3639.4,
+            "end": 3666.2400000000002,
+            "text": "And it's going to upper bound it for all values beyond some x, right? So for all values beyond some x, some number on the x axis, some crossover point, this big O of g, this g will always be bigger than my F. That's the idea here. So clearly, x is not going to upper bound it, right? Because after this crossover point, x will be below my function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3666.2400000000002,
+            "end": 3681.92,
+            "text": "No matter how big, how big of a constant I tack onto that x. I could have 1,000x. That's still not going to upper bound my little blue line here. So what we're going to do is we're going to increase the exponential there. So let's take x squared."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3681.92,
+            "end": 3698.96,
+            "text": "Well, x squared is getting closer. It looks like they're both quadratics. But this orange line is not above the blue line for some crossover point. 2x getting closer. 3x getting closer."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3698.96,
+            "end": 3725.48,
+            "text": "4x is an upper bound on my F. Because after this little crossover point here at about 20, my orange line, the g, will be always above my blue line, my F, right? So far so good? Just visually speaking, yeah. The orange one below it there, does that matter?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3725.48,
+            "end": 3739.7599999999998,
+            "text": "Yeah, the orange one is below it. That's totally fine. Because what we're interested in is the behavior when the input is really big. So that's why I don't care about weird stuff happening down there. All I care about is when my x is super big."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3740.7200000000003,
+            "end": 3769.96,
+            "text": "So now I found this g. So I can say that after this point, 20, my orange line will always be above my blue. So I can say that my F is big O of x squared. Because I don't care about this 4 so much, because it's just a multiplicative constant. Because this 4x is always greater than my function,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3769.96,
+            "end": 3792.48,
+            "text": "for all x greater than this crossover point here. That's it. That's the definition, right? So the g here is basically this function without the multiplicative constant in front of it. OK, so I say 3x squared plus 20x plus 1 is big O of x squared."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3792.48,
+            "end": 3812.72,
+            "text": "So generally speaking, that was just an example. Generally speaking, the big O is an upper bound on my function. And this is now just using variables like constants and things like that. But it's exactly the same situation that we had from before. So I'm going to try to map the blue to the blue and the orange to the orange and the purple"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3812.72,
+            "end": 3841.4,
+            "text": "to the purple to help you kind of match up what we saw in the previous slide. So basically, we say that our function F is big O of this orange g. If we can find some blue constant, where this constant was this 4 here, where that constant multiplied by g, the x squared, is greater than my function for all values beyond that crossover point."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3841.44,
+            "end": 3867.6,
+            "text": "So I found my 4, because 4x squared is always greater than my function beyond 21. That's what we saw in the picture. So then we can say that my function F is big O of g of x, where that g is x squared, just matched it. So in terms of the picture here, this is kind of a little zoom in of what happens."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3867.6,
+            "end": 3886.84,
+            "text": "Anything can happen down here. But beyond the crossover point, which is here, in the big picture, beyond that crossover point, my orange is always greater than my blue. So what does this mean? We're going to talk about this in a few slides, but you might have thought about this."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3886.84,
+            "end": 3911.12,
+            "text": "I can actually pick any function that grows faster than 3x squared. I can pick x factorial. X factorial grows super fast, or 2 to the x. That also grows super fast. All of those functions that grow way faster than mine are also upper bounds on this function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3911.12,
+            "end": 3935.6400000000003,
+            "text": "OK, so that's big O. It's just an upper bound. Then what is theta? For the reason I just stated, I said x factorial, 2 to the x. All of these functions that grow much faster than my function are all upper bounds. And that's not really helpful for us when we say, oh, this function is big O of whatever."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3935.6400000000003,
+            "end": 3966.4,
+            "text": "Because you can just pick something that grows ludicrously fast and has no meaning. So instead, what we usually report is the theta, which is actually an upper bound and a lower bound for our function. So using the exact same reasoning, we're going to find some constant tacked on to that g of x such that that function is always underneath our function."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3966.4,
+            "end": 3986.1600000000003,
+            "text": "So again, I'll put up a lot of math. But basically, these first two lines here, this one here, there exists blah, blah, blah, blah, blah, that first here, this is the big O definition. So we've already know what that means. All we're going to do is tack on another condition, which is that we can find another constant"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 3986.1600000000003,
+            "end": 4009.9600000000005,
+            "text": "for that same g where that function beyond some crossover point is always below my blue line. So here's an example. For x squared, we saw that it grew faster than 3x squared beyond the crossover point. Well, we could say 2x squared will always grow slower than its own crossover point."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4010.96,
+            "end": 4036.8,
+            "text": "So the constant 4 was the same as we had seen before. But this constant 2 now becomes a lower bound. So I'm basically trying to have that same g, both upper bound and lower bound, my blue function. And that's the definition of theta."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4036.8,
+            "end": 4060.7200000000003,
+            "text": "So now I can no longer say that 2 to the x, an exponential, both upper bounds and lower bounds, because that 2 to the x will grow faster than my function no matter what constant attack on to it. So now what we see is that really the g of x is going to be the term that grows the fastest. It's just going to be that term here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4060.7200000000003,
+            "end": 4080.5600000000004,
+            "text": "It's going to be the thing without the fastest growing term in my function without the constant on it. So yes, we will never remember all that, but we're going to do a bunch of exercises and you're going to see just how easy it is to figure out the order of growth. But I will mention this just again, because it's very important."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4080.5600000000004,
+            "end": 4099.12,
+            "text": "So when we're talking about upper bounds, you can pick any function that grows faster than yours. f of x, this 3x squared thing, is o of x squared, yes, but it's also o of x cubed, o of x to the 5, o of x to the 100, o of 2 to the x, o of x factorial, all of those things that grow much faster."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4099.12,
+            "end": 4125.88,
+            "text": "But my f of x is only 1 theta, and it's theta of x squared. And that's the term that grows the fastest in my function here. So when we look at a function based on the number of operations or however you know you're given the function, when we look at the order of growth of the function, we just focus on the dominant term."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4125.88,
+            "end": 4139.68,
+            "text": "So in the first one, the input here is n, and the function is n squared plus 2n plus 2. Which one of these is the dominant term? You tell me. Yes, exactly, n squared."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4139.68,
+            "end": 4153.84,
+            "text": "So this function is just going to be theta of n squared. That's it. How about in the next one? What's the dominant term here? Yeah, exactly, 3x squared."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4153.84,
+            "end": 4174.92,
+            "text": "Even though 100,000x is going to be huge for a while, and this constant is also going to be huge for a while, as x gets really, really big, this 3x squared, and in fact just x squared, will kind of take over everything else. So this next one is theta of x squared. How about the next one?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4174.92,
+            "end": 4197.76,
+            "text": "That's the term that grows the fastest here. Yeah, exactly, a, log is slower growth. So this theta of this function is just theta of a. So notice what we're doing here is just focusing on the dominant term. We're going to drop the multiplicative constants, drop every other term, and relate the theta"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4197.76,
+            "end": 4212.96,
+            "text": "in terms of the input. So I don't just use theta of n all the time. In the previous one, it's tempting to say the first one's theta of n squared, the next one's theta of n squared, the last one's theta of n. But n is not always the input to your function, if it is great."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4212.96,
+            "end": 4229.92,
+            "text": "If it's not, you always have to relate it according to the input of the function. Maybe it's length l, maybe it's something else. OK, so let's have you try a couple more. What is the theta of the first one here? That's the term that grows the fastest."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4229.92,
+            "end": 4240.24,
+            "text": "Yeah, theta of x. Next one. And cubed. Exactly, theta of n cubed. Yeah, I told you this is going to be so easy."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4240.24,
+            "end": 4254.76,
+            "text": "I know that math was scary. How about the next one? That's the term that grows the fastest, but then it's theta of, drop any multiplicative constants, and it's just theta of y. The last one is going to be tricky."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4254.76,
+            "end": 4282.160000000001,
+            "text": "What is the theta if the variable is only b? Yeah, 2 to the b. What about if the variable is only a? A cubed, exactly. And if my function is both a function of a and b and a plus a cubed, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4282.160000000001,
+            "end": 4301.08,
+            "text": "Because both will contribute to the runtime of this function, right? Not just the b. Right, so if this function, whatever this crazy function is that I wrote that takes so long to run, had both inputs b and a as its parameters, the theta for that function is both, is in terms of both b and a, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4301.08,
+            "end": 4309.12,
+            "text": "The dominant terms of each. Yeah. Don't you worry about negative coefficients? No. No need to worry about negative coefficients."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4309.12,
+            "end": 4315.12,
+            "text": "Oh, but x would have a negative. Yeah. Yeah. Yeah. Yeah, question."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4315.12,
+            "end": 4351.04,
+            "text": "Oh, some different variable that's not even here. Yeah, if the parameter, the function was c, let's say for this last one, but the formula was this, then the theta would be just constant, theta of 1. Because it doesn't even depend on these variables, so these are just considered constant time. That's a great question, yeah."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4351.04,
+            "end": 4371.84,
+            "text": "If the parameter was c or something else. Okay, so now we can actually look at functions that we write, and we do the exact same thing. We can first start out with just saying how many operations does this function take, come up with that relationship, and just theta of that, right? Just like we did on the previous slide."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4371.84,
+            "end": 4386.56,
+            "text": "So here's a function that calculates the factorial. What do we have here? Well, we've got, this is constant here, right? We've got just one while loop where there's five things going on here. There's the comparison."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4386.56,
+            "end": 4405.32,
+            "text": "There's this times equals, which is two operations. This minus equals, it's two operations. So this function is just 5n plus 2, by the same analysis we did a few slides ago, right? So if we say what's the theta of this function, well, what's the theta of this thing 5n plus 2?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4405.32,
+            "end": 4425.32,
+            "text": "Super easy, right? It's just theta of n. And in this case, the parameter to our function is truly n. When we have functions that are slightly more complex, and we've got things that are in series, like for example here, I've got two four loops, one right after the other."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4425.32,
+            "end": 4445.32,
+            "text": "We basically use this law of addition to take care of that. So that means we figure out what the theta is for the first four loop, the theta for the next four loop, and we just add those two, uh, thetas together, okay? So the first four loop here is theta of n, because it's something that depends on parameter n."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4445.32,
+            "end": 4463.32,
+            "text": "And the next four loop here is theta of n squared, right? And this, this, uh, because the parameter here is n times n. The stuff inside the four loops are constant, so they don't contribute anything to our thetas, right? There's no more things to multiply the complexity there."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4463.32,
+            "end": 4481.08,
+            "text": "So that if this is my entire function here, the theta for this function is theta of n plus theta of n squared, right? And the law of addition just says theta of n plus theta of n squared is just theta of sticking those two inside as, as part of my function, n plus n squared. And we know how to do that."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4481.08,
+            "end": 4503.4,
+            "text": "That just simplifies to the dominant term, which is n squared, okay? So that's the law of addition. So that's when we have loops or things like that in series. What about when we have loops that are nested, right? Then we use the law of multiplication, because for each one of these things, we're gonna have"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4503.4,
+            "end": 4524.2,
+            "text": "to do this that many times, right? So in this particular case, we need to be careful. The outer four loop is gonna be theta of n. And the inner four loop is also theta of n. Even though I'm dividing n by 2, right, 0.5 times n is still theta of n, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4524.2,
+            "end": 4546.2,
+            "text": "That multiplicative constant in front of that n is 0.5, which is just, you know, it's just, it still leads me to be theta of n. The print is constant, so there's nothing else to multiply there. So the law of multiplication just says theta of n times theta of n is theta of n squared inside there."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4546.2,
+            "end": 4566.84,
+            "text": "Okay, so let's look at this program. What is the theta for this? Well, we could do it sort of in very grave detail. We've got x as our parameter, so we only count loops and things like that that are a function of x."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4566.84,
+            "end": 4583.200000000001,
+            "text": "If I had a loop that was a function of, I don't know, n or something, that doesn't count, because it's not a function of my input. So only look at things that are a function of x. I've got one outer four loop that goes through x times. So that's theta of x."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4583.200000000001,
+            "end": 4608.72,
+            "text": "I've got an inner four loop that starts from i and goes to x. It's a little bit tricky, but in the end, overall, it's going to be theta of x, because it's going to be the first time it's going to go through x times. The next time it's going to go x minus 1, then x minus 2, then x minus 3. So we're effectively just kind of adding over all of these runs, x plus, sorry, 1 plus 2"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4608.72,
+            "end": 4623.040000000001,
+            "text": "plus 3 plus 4 plus 5 all the way up to x. And that's just some function of x, right? It's definitely not going to be constant. So the inner loop is also theta of x. Everything else is theta of 1, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4623.040000000001,
+            "end": 4650.16,
+            "text": "There's nothing else that depends on x. So this whole function is going to be theta of 1 for this assignment here, theta of x times theta of x for this nested loop here, and theta of 1 for this return down here. So overall, it's just going to be theta of, right, so that's that. And so overall, it's just going to be theta of x squared, just by the laws of multiplication"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4650.16,
+            "end": 4673.2,
+            "text": "and addition. All right, think about this, and then tell me what you think it is. What do you guys think it is? Yeah, theta of length of L, absolutely right. So this is constant, this stuff inside the loop is constant, the return is constant."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4673.2,
+            "end": 4695.36,
+            "text": "The only thing that depends on L is the length of the list, right, this loop. So the answer is theta of length L, perfect. How about this one? So here we're assuming all the inputs are the same length. Yeah, theta of length of, pick your favorite one."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4695.36,
+            "end": 4709.96,
+            "text": "Theta of length L is reasonable. You could also say theta of length L1 or theta of length L2. Because these are two loops that are in series, right? So this one just loops through the length of L. But inside, we're not doing anything that costs more than just constant time, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4709.96,
+            "end": 4729.6,
+            "text": "Here, we're just comparing two numbers, like 3 and 2. We're just assigning something to true. So nothing else really depends on the lengths of the list. So this is theta of length L, this is plus theta of length L, so that's just theta of length L. All right, so we saw a bunch of different algorithms, right?"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4729.6,
+            "end": 4749.88,
+            "text": "Sorry, no, we didn't say a bunch of, we saw a bunch of different programs. But we could kind of classify them all into one of these categories, right? And this is all, basically all the different algorithms that you could ever write in general, right? So something that's constant, theta of 1."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4749.88,
+            "end": 4764.639999999999,
+            "text": "Something that's logarithmic is theta log n. Something that's linear, we saw many of these is theta of n. Something that's log linear, we haven't seen any yet. But that's theta of n log n. Theta of n to some constant, like n squared and cubed is polynomial."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4764.639999999999,
+            "end": 4785.5199999999995,
+            "text": "And theta of some constant to the n, like 2 to the n, 3 to the n, is exponential. And when we're writing our programs, you can do a quick analysis of the program that you just wrote. Look at the loops, look at to see how efficient you wrote it. And you could basically classify your program into one of these categories, right? If you had nested loops that both depend on the input,"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4785.56,
+            "end": 4799.280000000001,
+            "text": "you probably wrote a polynomial type algorithm. If you just had one loop that depended on the input, you probably wrote a linear time algorithm, right? And when we write these algorithms at a first pass, we want to be somewhere up here."
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4799.280000000001,
+            "end": 4820.320000000001,
+            "text": "You don't want to do anything that's polynomial or definitely not exponential because things get slow really quickly with those numbers, right? So we never, ever want to be in that situation, although sometimes it's unavoidable. So that's all I've got. Next lecture, we will be going through a bunch of those different complexity classes"
+        },
+        {
+            "number": "22",
+            "title": "Big_O_And_Theta",
+            "start": 4820.320000000001,
+            "end": 4826.960000000001,
+            "text": "and looking at different programs that land in those classes, right? Especially the logarithmic and the log-liners, all right?"
+        }
+    ],
+    "text": "All right, let's get started. Last lecture, we began talking about an entirely new topic in computer science, and we have begun learning about how to figure out the runtime of our programs, right? So we did, we looked at how to actually time the program by figuring out exactly how long it takes, and then how to count the number of operations in the program. Today, we're going to do very same thing to begin with. So for the first half of the lecture, we'll time a bunch of programs and then we'll count the number of operations just like before, but we're going to do them in the context of slightly different, slightly more interesting programs or functions involving just pure numbers as our parameters, and then functions that involve lists as our parameters. That'll be the first half of the lecture, and then from there on, we're going to look at the idea of order of growth, which is kind of what we're building up this set of lectures to. And then the order of growth, there'll be a little bit of math, a little bit of graphing, but not too much, and then we're just going to see how to actually evaluate the order of growth of functions from there on out. Okay. So let's begin by just figuring out the runtime of our programs. This was a really quick and easy way for us to figure out exactly how long our programs take. So last lecture, we imported this time module, and we're doing that again this time, but instead of actually running the time function that we had seen last lecture here, instead of running the time function, which gave us this sort of global absolute time since some date in the past, we're going to run this slightly different function called performance counter, and this is what is typically used in the real world to figure out how long an actual program or function takes to run. The reason we're using this is because it's more accurate. So the time.time function that we used last lecture gave us maybe precision to one times ten to negative three, or something very big like that. The performance counter can actually give us precision to something that's a lot smaller, so maybe one times ten to negative eight, or something very small. So we'll be able to see the timings of some functions that were basically zero in the last lecture. Okay. So just a quick review of how we actually get the time that a function takes to run. We run this performance counter time, and this one gives us not an absolute time, but more of a shorter time frame, not from some time in the past, and the performance counter is very useful when we're getting these DTs, right, the difference in some times. So we're running the performance counter to get the quote unquote starting time. We run the function. We run the performance counter again to get the quote unquote stopping time, subtract the starting time to get the DT. So and then we will print that time to see how long the function actually takes to run. Yeah, that's what I said. Okay. So we're going to look at two different functions than last time, but they're going to have sort of the same overarching themes that we saw last lecture. So the first function we're going to look at is called convert to kilometers, taking in some miles and returns the value in kilometers. And the second function is a function named compound. So this one should seem very familiar. It will bring flashbacks to problem set one. It's a function that takes in a monthly investment, an interest rate for the month, and some number of months to invest that much. And it returns how much money you've made over those number of months. So you can see here you have a total initialized, a loop that goes through that many months, and it updates the total based on the interest rate and how much money you have there right now, plus whatever you've invested for that month. Okay. So the three questions we're going to answer, just like we answered last lecture, is how long in actual seconds does it take to run these functions? Which input parameters does the function actually depend on? Do these two functions actually run for different amounts of time? And sort of what is that difference? Does one run in 12 seconds and the other one run in 0.5? What is the actual time that it takes for them to run? So this is our code. So these are the two functions before we go on. Let me just show you how we're creating the inputs. So just like before, we're creating a list of all of the different inputs we're going to run the function with. So here I've got this ln that will contain the numbers 1, 10, 100, 1,000, and so on. And these are going to be the parameters to my function, one at a time, of course. And then I've got my loop here for each one of those inputs, 1, 10, 100, 1,000, I'm just going to run my function, right? So here I'm measuring the time it takes, and then I'm going to report the time that it took to run the program. And just for fun, I'm also going to report how many times this program could run in one second, because for me, it was a little bit hard to read 1 times 10, negative 8 or something like that. But it was a lot easier for me to see this big number for how many times that function could have run in one second. So here I've got convert to kilometers. So I'm going to run it, and we're going to see, it's this right here, how long the function actually took. So last time we ran a program that was really simple like this, all of it basically said it took zero seconds, right? It was just so fast that that time dot time function wasn't able to pick up that precise time difference. But this performance counter can, right, which is a lot nicer. So now we see that no matter what the input, it looks like the time is pretty much the same, right? 3 times 10 to the negative 7 seconds, no matter what the input is. That was expected. Now what about the compound function? This one's going to be a little bit more interesting, because there are actually three parameters to this function, right? So what we're going to do is change each one and see which one of those parameters actually has an effect on the runtime. So here, this bit, is going to fix my interest rate, and fix the number of months, and I'm going to change the amount I invest every month, okay? So if I run that, that was pretty fast. Again, we look at the results here, and no matter how much I invest every month, it looks like the program doesn't really change how long it takes to run, right? It's always about 1 times 10 to the negative 6 seconds to run, all right? What if I change the interest rate? So this one was a little bit harder to change, but I settled on this as the thing I'm varying. Sorry, I'm varying it in this way, so it's going to be 1.1, or 1.01, or 1.001. That's what I'm going to invest, the interest rate for whatever I'm going to invest in, and I'm going to fix $10 as my investment per month, and fix the 12 months again. So if I run that, same deal. It looks like changing this investment isn't really making much of a difference in how long it takes the program to run, all right? One last parameter to try. So now I'm going to fix the initial investment to $10 a month, and I'm going to fix my interest rate to this per month, and I'm going to vary how many months I'm going to invest this. So again, this n will be 1, 10, 100, 1,000, 10,000, and so on. So let's see what this is going to do. Already it's doing something different than the other two because it hasn't finished running yet, right? So it's still working on this last one down here. But we can see that more interesting things are happening now, right? So here I've got, initially it's a little bit hard to tell for those small numbers, which is fine, but luckily we're able to run it for a bunch of inputs. So starting from about here, right? When I start investing my money over 1,000 months, 10,000 months, 100,000 months, and so on, it looks like we can kind of see a pattern. For 1,000 months, the program takes about 5 times 10 to negative 5 seconds to run. If I increase the number of months by 10, it takes 5 times 10 to the negative 4 seconds to run, and then as my input increases by 10, the number of months, my time to run seems to increase by 10 as well, right? So 0.005, 0.05, 0.7, 0.8, something like that. Okay, so this is from a previous run. Of course, each run will be different, because we're just purely grabbing the time that the program took to run. So the actual time will be different, but a few things to notice. So Python actually reported the time it took the program to run in scientific notation, which is kind of cool. So this is 4.3 times 10 to the negative 6, so it knew how to show it to me like that. It doesn't have a bunch of zeros in there. And then the observation, as you might have guessed, for this convert to kilometers was independent. So this is the kilometers, not the compound function. But then the compound function here, this is again from a previous run, we can make a few observations. So the first was that the time only actually changed with the input when we changed n months. When we changed the initial investment or the interest rate, the program just basically took the same amount of time to run. So it was only n months that actually made a difference for us. Second observation, again something we noticed, is as we increase the number of runs by 10, the time it takes the program to run also increases by 10, something we talked about. And the last observation is that we have this relationship very apparent as the input is really big. As the input is small, I think I mentioned this last time, if for some reason my computer updates or decides to dedicate some resources to running an app in the background for whatever reason, as it's trying to figure out the compound function with an input of 1, this number could be changed dramatically. Because 2 times 10 to the negative 6 can be affected a lot by just a little bit of time dedicated to something else. Whereas 4 seconds or 14 seconds, if my computer dedicates a little bit of time to something else, that 4 or 14 won't be affected as much. So when the numbers are big, that's when we can see the behavior of our function a lot more clearly, not when the numbers are small. So now I'd like to look at some more functions. These functions are going to have the input being a list, as opposed to just numbers. We've seen a bunch of examples with numbers, but let's see what happens when my input is a list. So here's a very simple function. It takes in a list l, and it sums all of the elements in the list l. So we've seen this a bunch of times already. We initialize a total to be 0, we iterate through each element in l, and we keep our running total by just adding the element to that total. Pretty simple, and we return it. Now, how do we actually run this function with a whole bunch of different inputs? Well, that's what we're going to see next. So this bit here is exactly the same as before. It's actually creating for us the list of 1, 10, 100, 1,000, 10,000, and so on. But clearly, the number 10 cannot be an input to this function, because this function is expecting a list. So l cannot be 10. It needs to be a list with some things in it. So instead, what we're going to do out of that number, 1, 10, 100, 1,000, and so on, we're actually going to make a list with just some random dummy numbers in it. I don't actually care what these numbers are. So let's just make them be the numbers 0 to 9, 0 to 99, 0 to 999. And in effect, each one of these lists will then have one element in it, 10 elements in it, 100 elements in it, 1,000 elements in it, and so on. Everyone OK with that? So the input is now different. It needs to be a list. We're just creating a bunch of lists of varying lengths. So the relationship between these lengths are that the lists are 10 times as big as the previous list. So then now I have my input list here. I do the exact same thing as before. Not yet. I run the performance counter to create my starting time. I run my function, and I get the dt. And I report the exact same thing as before. So let's run that down here. Running, running, running. Again, we have to wait a little bit. It looks like it's working, but it's just getting slower and slower, which is fine. So what do we notice? So when we had one element in my list, it took 1 times 10 to negative 5 seconds to run. When I had 10, it took 1 times 10 to negative 6 seconds to run. It was actually shorter to have more elements in it. See this is what I mean when it's very unpredictable for low numbers. But as we get to lists of length 1,000, 10,000, 100,000, a million, and so on, we can start to see the pattern. So with 10,000, it took 4 times 10 to negative 4 seconds to run. With 100,000, it took 4 times 10 to negative 3 seconds to run. And then as the input increases by 10, that is the length of my list increases by 10, it looks like the program takes 10 times as long to run. A very similar thing as before. So the first observation that we can make out of this function is that the size of the input, obviously, is now the length of our list. It's not just the number 10 or the number 1,000. It's a list of length 10 or a list of length 1,000. Second observation is that, again, just like in the previous case, the average time increases by 10 as the length of our list increases by 10. Again, very good. And just like before, this relationship between the size and time is more predictable for large sizes than it was for small sizes. As we just saw here, which will surprise me a little bit as well, is if for a list that's longer, it took a shorter amount of time to run, which is counterintuitive. But again, that's probably because my computer did something here to take a little bit longer to run. And then the last observation, this is compared to the compound function, where we changed the number of months. It looks like the time that this program actually takes to run is pretty comparable, just in terms of pure seconds, is comparable to how long it took for the compound to run. So here, when my input was 100 million, it took about eight seconds to run. And when my list had 100 million elements in it, it took about seven seconds to run. And then 10 times faster going when we decreased our input by 10. So already, we're starting to see something that we're going to get. Yeah. Go ahead. What is the sum of function? Oh, sum of is just this function that I wrote here. Yep. Did I name it something differently in here? No. Yeah. So already, we're starting to get at this idea where I have two functions that do wildly different things. Right? One sums the elements in a list. The other one just loops over some number of months and does some calculation. But it looks like they're sort of in terms of just algorithmically wise. They are very similar. They take similar amounts of time. They increase at the same rate. And basically, they just have a for loop, right? Or some sort of loop that iterates through the input and does something. So algorithmically, we want to consider both of these functions the same, even though they implement completely different things. Other questions before we go on to another list function? OK. So let's look at a slightly different problem dealing with lists. So this function, or these three functions, deal with finding an element in a list. And we're going to compare the runtimes of these three functions. So the first function is going to be a very brute-forcey method to find the element in a list. Was there a question? Yeah. Yeah. Oh, wait a minute. You're running out of time. All right. No worries. So the first function will do a brute-force search to find an element x right here, one of my parameters, within a list l, the other one of my parameters. Basically given a list of a bunch of elements, this function will just painstakingly look at each element one at a time and ask whether that element is the one that I'm looking for. All right. So starting over here, the beginning of my list, and going to the end of my list. That's what is in does. The next one, binary search, also looks for an element in a list, making sure that the list is ordered. But the way that it's going to do it is in a slightly smarter way. So I'm actually going to draw my list this way. So each one of these is going to be elements in my list. So this is going to do a bisection search to find the element in the list. So again, we're looking for element x within this list l. And remember, bisection search, we start with a beginning endpoint and an ending endpoint. And our first guess for the element, or whatever we're looking for, is to just say, what's the, is it the middle element? All right. So look at the element in the middle and ask, are you the one I'm looking for? In this particular case, you look at the element in the middle and you say, are you the x I'm looking for? Right? Good. So that's this one right here. So the midpoint calculation is right here, right? The reason why we're doing slash slash for integer division is in the case where I have a list where I would actually look at the midpoint here, right? I can't ask Python for the element at index 3.5, right? It doesn't work like that. So I'm just going to round down. You could also round up. If you wanted to, I just made the choice to round down, just so I'm actually grabbing the element at an integer index, right? So I've grabbed my middle element and then I ask, are you the one I'm looking for? And if not, I ask whether this one is too low or too high. And then if it's too low, then I know I need to search this part of my list. And if it's too high, I need to search this part of my list, right? So that's what this little if-else is doing, right? And when I make my decision as to which side to look at, then I reset my endpoints. And I do the process all over again by asking the midpoint there, are you the one I'm looking for? So on and so on. So this does a bisection search, also called binary search for the element in a list. And the last way for us to search whether an element is in a list is one that we've already been doing. It's this little one-liner here is x in L, so using the keyword in, right? So that's, I call that the built-in function, the built-in operator in. OK. So it would be unfair if we just asked Python to figure out or to just pick a random number and ask whether that element was the one we're looking for, OK? So instead, what we're going to do is to kind of take an average for each one of these three functions just to make it fair. So we're going to say, when we're searching for an element in the list, I'm going to say that I'm going to take the average of the case when the element is the first one in the list. And I can find it maybe right away in this case, or maybe not right away in this case. The average with that, plus when the element is the last one in the list, and plus when the element is the middle one in my list, right? So in that way, we're actually kind of covering all our bases, kind of best case, worst case, medium case scenarios, right? So each one of these three functions will be run with that in mind. So that's these three functions. So this is my brute force is in. This is my binary search. And the in, obviously I'm just going to type in in when I run it. So I'll just show you for one of them. So we're going to uncomment this entire bit here and run it. But you can see here, so instead of just running the performance counter and making one function call, I'm actually going to run three function calls, iterated over this little loop, where I'm looking for the element at the zeroth location, the element at the halfway location, and the element at the end of my list. And I'm just averaging those down here, the time it takes to find those three. Does that make sense? OK. All right. So this is a lot to look at. Luckily I'm going to summarize it in the next few slides. So we don't have to stare at that Python screen there. OK. So we have three functions to run. Let's first look at how each of these three functions did individually. And then we can start comparing them to each other. So the first function we ran was the isIn. So remember, this was the brute force one. We're painstakingly going through each element and asking if it's the one we're looking for. So no smart way about that, just brute force your way through. We notice that as the input list grows by 10, the time it takes to find the element in the list, whether it's the first one, last one, or in the middle, on average also grows by 10. OK. All right. Next. Let's look at the built-in function. We'll worry about the binary one later. The built-in function, so just using the in operator, and you see this was down here, so this in. So basically the function I'm running is purely just asking whether x is in L, right? And that returns true or false. So I didn't need to make a function for that, but that built-in in operator also has a very similar trend, right? As the length of my list increases by 10, the time it takes for my program to run is also 10 times as long, right? I went 0.05 to 0.5, and the next one would be 5 and so on, right? OK. So those seem to be doing approximately the same sort of, they have the same performance. Now what about the bisection search or binary search? Well this one is not so clear, right? If we look at the input, right, the input clearly increases by 10 from here to here. The time increases 9 times in the negative 6 to 1.1 times in the negative 5, right? And so the factor, how many more times it took, is very unclear, right? It's not quite 1. If it was 1, that meant it's independent, right? It's constant. It doesn't matter what the input size is, it's always going to give us this amount. It's always going to run in this amount of time. So it's not quite 1, so it's almost independent of size, but it's not linear, right? Like the other two functions were, right? It's not 10 when the input grows by 10. So we're not quite sure what this function is, right? But clearly it's not as bad as the other two, but not as good as no relation, okay? Observation, that was observation 3. Observation 4 will now compare the function that we wrote that is in this one here to the binary search, this one down here. Well, binary search was orders of magnitude faster than brute force, right? Brute force, when the input was, what is this, 10 million or 100 million, I'm not sure. When the input was 100 million, brute force took 1.6 seconds. But the bisection search, the binary search, took 0.0001 seconds. So it's not like we went from 1.5 seconds to 1.2 seconds or 2.5 seconds. We were orders of magnitude faster, right? 10 to the negative 5, right? So there's a really big difference between this algorithm, the one that brute forces its way through, and between this algorithm that does something smart about removing half of the search space with each loop, right? All right, so that's important to know. And lastly, just kind of comparing pure time that it takes these programs to run, let's compare the function that we wrote, the one that loops one at a time through this list, and the built-in infunction. The built-in infunction, while it's still the same sort of, has the same relationship, linear, right, with the input size, it seems to do a lot better consistently by about 10 times as fast, right? So when our function took 0.1 seconds, the built-in one took 0.05 seconds. When our function took 1 second, the built-in function took 0.5 seconds. So consistently, it's just faster to use the built-in infunction than to make our own. All right, questions about any of these observations? Do they make sense? Are they interesting? OK, so what do we see? Just a quick recap of those three functions, right? The first one we saw is linear in the size of the argument, so when the input list size increases by 10, the program takes 10 times as long to run. But this other one is something less than linear, but not constant. So we're not quite sure what it is. All right, we'll come back to this in a little bit. We'll end up plotting some of these runtimes, so we'll actually be able to see the relationship in a few slides. The next thing I actually want to do is do one more sort of function. This one is called the diameter, right? And I'll explain what it's doing, because it looks a little bit scary. But suppose we actually have some points in a 2D plane, right? So it looks like this. Basically, what this function is going to do is it's going to figure out the biggest distance between all of these points. So the distance between these two points is something. The distance between these two points is something else. Which two points yield the biggest distance, right? That's what this function aims to tell us, and what that distance is. So the way it works is it has nested four loops. So this is different than what we've seen so far, right? We saw an example of this last lecture, but now we're seeing it in the context of something actually useful. So in this particular case, we're going to create an input list. So again, our input list will just have some dummy values in it. I don't actually care what these numbers are. I just want to populate a whole bunch of points in a 2D plane. So what we're going to do is pretty much just iterate from numbers 0 to 9, 0 to 99, 0 to 999, and so on, just like we did before. And to get us a little coordinate in the 2D plane based on those numbers, I'm just going to take the cosine of that number comma the sine of that number. So that together, so like cosine of 1 or whatever, sine of 1 will be this point here. Set up as a tuple. And then this one might be cosine of 5 comma sine of 5, something like that. So I'm just making a whole bunch of coordinates in a 2D plane, ensuring that I have n coordinates. OK, now the loop, sorry, there's going to be two loops. The outer loop will basically take us through each of these elements. I have 5 in this particular case. And the inner loop will go through every other element. But notice it starts from i plus 1. And I'll tell you why that is instead of starting from 0. So let's just walk through. Let's say we start out with this element. This little guy is our first element in our outer for loop. So right now, we've grabbed the first element in our outer for loop. And what we're going to do is figure out the distance between it and everybody else. So now we're iterating through the inner for loop, going through each element except for myself. So I'm going to get the distance between this one and this one. Since it's the first one, obviously it's the biggest one. But then I'm going to get the distance between this one and this one. And I'm going to say, are you bigger than this one? It looks like no. So we're still keeping this one as our longest one. Then I'm going to grab the distance between this and this one and this and this one. And as I'm going through, this little if statement here keeps track of the farthest one. So the one that has the biggest magnitude. In this case, that's probably the first one we looked at. And after I've gone through each element, each other element, I've concluded my first iteration in my outer for loop. So now the outer for loop goes to the next element in the list. Let's say it's this one. It doesn't actually matter. This one, we'll look at the distance between itself and everybody else except for the one we already looked at. Because we already know this distance. We kept track of it already when we iterated through this one. So as I'm going through my outer for loop keeping track of this point here, it figures out the distance between this one, this one, which is suddenly bigger than that one, which we had kept track of, and then this one right here. All right, good. So now we're still keeping track of the biggest distance we've seen. It's probably this one here. And I've concluded the second iteration of my outer for loop. And now I go to the next element. Let's say it's this one. It doesn't matter again. Now this one is going to get the distance between itself and everybody else except for the two that we've already seen, this one and this one. So that's why our inner loop starts at i plus 1. So this one will get the distance between itself and this one all the way back there and this one all the way over here. And then next iteration in the outer for loop takes a look at this one, let's say. And it finds the distance between itself and everybody else. But you know what? There's only one left, that one there. And then the last time through, this one doesn't even get a chance to find the distance between itself and anybody else because everybody else already found the distance between it. And so in this way, we're basically finding all the possible pairs of all of these points in this 2D plane and keeping track of the longest, of the biggest distance. So in terms of the input list, the way that looks like, this i plus 1 business here, the outer loop basically says, I'm going to start with u and I'm going to get the difference between u and the element at index 1, the element at index 2, and the element at index 3. This outer for loop is done. Next we're going to get the distance between this one and everybody else, right? So obviously not the element at index 0 because we already know that distance. So we're going to get the distance between element at index 1 and index 2 and index 3. And then we're done. And then the last loop, outer loop, gets the distance between element at index 2 and index 3. And then it's done, right? So just these, the two nested loops just does all of this until it finds all of these pairs. It basically pairs up everybody together. OK, so if we run it, what are we going to see? So my input for this particular function, you'll notice first of all, is going to be much, much smaller than the inputs for everything we've done so far, right? Some of the inputs we had seen in the past were a million, 10 million, 100 million. In this particular case, I'm only going to go up to 6,000 because it's just going to take way too long to run if I make it go for any, much, any longer than that. So what do we see already? We've got 100 points, so 100 of these, right? Finding the maximum distance between a bunch of these pairs took about 0.03 seconds. If we doubled that to 200 points, it took 0.01 seconds. If we doubled that to 400 points, it took 0.05 seconds and so on and so on. So just like before, let's take a look at the big numbers to see our trend. So as the numbers increase by 2, if my input increases by 2, it looks like the time that it takes for me to find out the biggest distance increases by 4. So my input increases by 2, the time increases by 4. And I'm not going to run this, but you can make a new list on your own and change this to be inputs that are multiples of 10, increasing by 10 each time. And you'll see a very similar pattern where the time it takes to run that program will be about 100 times as slow. So the relationship there is a n squared kind of relationship. So a few observations here as well. First one I already mentioned is this program just takes a lot longer to run in general. So here we were able with the compound and with finding whether an element is in a list and getting the sum of all the elements in a list, we were able to run 100 million, a list with 100 million elements and it still took about one-something seconds. Whereas with this diameter function, we can barely get to 6,000 and it's already taking 14 seconds. So just way, way, way slower program in general. And then the relationship seems to be an n squared kind of relationship relating the input to how long the program takes. So let's actually plot, well I already did this, but here are the relationships for these sort of three types of algorithms that we've seen so far. So this is the finding the element in a list, those three versions, sorry, those two versions that we saw, and this is the diameter function. So if we plot how long it takes the program to run when the input is this size, we can see that there is a linear relationship. So the time it takes for the program to run is linear in the input. The diameter, we'll talk about the binary search in a bit, the diameter, we again notice this just by looking at the pure numbers, but it's a lot easier to see it visually. This is on the x-axis the size of the problem, so how many points we actually are finding the diameter between, and how long it actually takes the program to run, and the relationship is quadratic. Now that we plot it, we clearly see the quadratic relationship. And then this binary search, we were very unsure of what it was, right? It wasn't quite constant, it definitely wasn't linear, but now that we've plotted it, so this is the input size, and this is how long it actually takes the program to run, you can see it drastically increases when the input size is very small, but then it kind of sort of asymptotically reaches some sort of value. It's actually a logarithmic relationship. All right, last thing I wanted to mention about timing before we move on to counting is just pure running, just purely running these functions on different computers will just give us different values just right off the bat. For my, on this newer-ish computer, how long did it take to run this compound? Well, no, what it took, like three seconds or something, one point something seconds. On an older laptop, it took 663 seconds. On an even older desktop, it took 1226 seconds. So just purely timing things, the machine you're running it on is going to make a difference. And then that's fine, right? It's important to know how long it takes, but if you're just looking at the relationship between input and how long the program takes to run, that's the same. So it doesn't matter what machine you're running it on. When you increase the input by 10, the program will take 10 times as long to run, no matter whether you run it on a fast laptop, old laptop, or a super old desktop. So just timing a program is really important, right? You'd like to know whether the program you wrote, you're going to have to wait a month for it to finish or a couple of minutes for it to finish. That's an important thing to know. But what we're going to get at towards the end of this lecture is something that's complementary and that's this idea of asymptotic complexity. So kind of mathematically saying, you know what, this program is not going to be that bad to run, right? You're not going to have to wait for months to run without actually running it, of course. So you'd be able to glance at a program and say, this one is reasonable to run. And so we're going to do that in terms of this idea of order of growth, which we'll get at in a little bit. Okay. Any questions on timing before we get to counting? Oh, yeah. Yes. Can you assume that all built-in functions are optimal in terms of running time? Yes. Better than when we write them? Yes, in Python. And then, of course, in other languages, you know, there would be, there would maybe take advantage of other speed-ups as well, like putting things in memory efficiently. But yeah, generally it's better to run something that's already been made than to make it yourself. Yeah. Okay. So now, what we're going to do is we're going to count operations, just like we did last lecture. Generally timing is nice, but it doesn't give us a nice relationship besides us spotting it. Right? There's no formula. There's no relationship that relates the input to how long it takes the program to run. Counting will get us a little bit closer to that. And we saw that last lecture. Let me remind you the idea of counting. So the idea of counting is that we're going to take a bunch of these operations, like mathematical operations, comparisons, indexing into something, assigning a value to a variable. All of these things, right, when we run them, yes, they might run for different amounts of time. One times ten negative nine versus two times ten negative nine, something like that. But that's very, that's not a very big difference. And so what we're going to say is that every one of these operations will consider to be constant, right? They will take one unit of time. So if we say that, we can actually come up with a relationship that tells us, according to, that relates the input, to how many operations this program will run. So here in the convert to kilometers, what do we have? We have one multiplication. And you know, just for the heck of it, this lecture, let's say the return also counts as an operation. So in this convert to kilometer function, we have two operations. Notice that it's not really related to the input at all. So then the amount of operations that this program takes to run is always two. It matches what our timing said, right? It basically didn't matter what the input was. It always took approximately the same amount of time to run. The sum of function, so it takes an input list and it gets the sum of all the elements. This one we'll do, we'll have one operation for doing this assignment. It'll have one operation for grabbing an element in my list l and assigning it to i. It'll have two operations for this total plus equals i, right? However, total plus i on the right-hand side is one operation, and total equals that is my second operation, so that's two operations. And then, let's not forget our for loop, that's kind of the important part of this function. How many times will these three operations repeat, this one plus these two? Well, it's going to repeat however many elements I have in l, so length l times. And then again, let's say we count the return, the return will also be one operation. So the total number of operations for this sum of function will be one for the total equals zero plus length of l times three, because there's three operations being done for each length of l, plus another one for the return, so that's going to be three length l plus two. That's a nice little formula that relates how many units of time we'll have to wait depending on the size of the list. That's pretty cool. So the way that we're going to count the number of operations, again, I'm going to do it slightly differently in the last lecture, just to show you that there is another way to do it. So this is our function is in, it's going to count how many operations we have, and I'm going to use something called a global variable, and I'll show you again the difference between them. So it's just these three lines that I added. You should never, ever use global variables in your programs, except in this situation. The idea of global variables is that you can define variables just in the main program, outside of any functions, and you can access those variables within some function, purely by saying, you know, if we define count out here, right, before this function definition, count equals zero or whatever, inside of any function, we can say, hey Python, I would like to access this variable that I defined outside of this function. You say that, you tell Python using global, and then the name of that variable. And Python will grab that variable that's basically, quote, unquote, shared across the entire program, and modify that variable, right? So in there's, in essence, we're basically saying this is now a shared variable. If I modify it within this counter, within this function, it'll be, you know, obviously modified for everything else. It's very tempting to use global variables, because, you know, all the variables you could ever want to create are going to be accessible by everybody, right? No need to pass in parameters, no need to do, but it's very, very bad programming. So we won't ever do it, except in this particular case, because we'd like to keep a counter of things that are happening, or for debugging purposes and things like that. So the count variable will keep track of, it'll just increment in key places, where we have these constant unit of times happening. So I've got count plus equals one here, because I've got my return value. I've got count plus equals two here, because I grab an element from L, and I do the equality check here, and then that's it. Okay, oops, sorry. So if I run that, let's do it here, what are we going to see? Well, I didn't actually do how much more it ran, but we can see the relationship, right? We go nine to 37, to 307, to 307, to 307, and so on. So again, the same relationship, where we increase the input by 10, the number of operations we do is 10 times as more, exactly like the formula said it would be. What about the binary search? So again, we're going to use this global variable, and we're going to have the counter keep track of all of these operations. So this count incrementing by three accounts for setting the low to zero, setting the high to this thing, and grabbing this actual value of length. Incrementing the count within this while loop will keep track of this subtraction as one operation, and the test, that is greater than one is another operation. Counting increasing by three here accounts for high plus low, the integer division, and assigning that value back to mid. Now, plus three here accounts for indexing into this L, the less than or equal check, and then either doing this reassignment of low or this reassignment of high. So that's three operations. And then lastly, count increases by three once more because I've got these operations here, so indexing into low, checking for equality, and then doing the return. So the actual number of operations will be kept track of in, right, by the counter. So all we're doing is just kind of reporting how many times, how many operations we've done. So as we increase the input by 10, just like with timing, we can't quite tell what the relationship is, right? Again, it's like one point something, right, with each run, all right? So these are the results. So the observation one, as I mentioned, when we increase the input by 10, this brute force, I erased it, but the brute force is in function also, does 10 times as many operations. The binary search, again, we don't know what rate it is at, but we can plot them. So here I have the plots, just like when I plotted the input size versus how long the program actually took to run. I'm now plotting the input size versus actually just the number of operations being done. So the is in function, that brute force way of finding whether an element is on a list grows linearly, no surprise there, and how lucky for us, the binary search matches, the graph matches the one that we had for timing, right? So as I increase my size in the binary search method, the number of operations that I do is logarithmic in time, just like we saw in the actual timing. So timing and counting are really nice, right? Timing gives us pure number of seconds or months or whatever we need to wait for this program to finish, but counting gives us a nice little formula that relates the input to the number of operations that you have to do. You might have noticed, I briefly touched upon this, that throughout this entire lecture and last lecture, we basically just saw something like three different algorithms, right? We saw something that's constant, something that's linear, something that's quadratic, and something that's binary, logarithmic in this particular case, right? So that's four different algorithms, but we saw way more functions run, right? So what we'd like to do is evaluate the algorithms, not the different implementations, right? And what we'd like to do is evaluate these algorithms as the input gets really, really big. So what we're going to do is figure out a relationship between the program's runtime and the input, but what we're going to do is focus on the biggest terms that contribute to the program's runtime, right? So we saw these examples last time, right? This mySum, which basically summed all the elements, sorry, all the numbers from zero to x, and this silly square function that had nested loops, kind of like this diameter one, right? We were able to say something like, you know, when the input increases by 10, the program is 10 times as long to run, right? So the efficiency of that program was on the order of x. When the input increased by x, the program took x times as long to run. The square had a similar, we could have said it in a similar way, right? When the input increases by x, the program took x squared as long to run. So I don't actually care, right, about all of these differences in the exact timings. One times 10 to the negative six, 1.3 times 10 to the negative six, I don't care. What I do care is the order of growth. How does the program run in relation to the input, okay? And I care about that when the input is really, really big. So what we're gonna do is express the program's runtime in an order of not exact kind of relationship. So while counting was really nice, right, it told us a nice relationship between the input and the number of operations. When the input is really, really big, like 3x plus 4, when x is really, really big, I don't care that the number of operations is 3x plus 4, right? Because when x is really, really big, that plus 4 might as well be plus 0. And that 3x is basically like x when the input is really, really big, right? So that's what we're gonna try to do, right? Now before we do that, we need to decide what to measure, right? Because when we write functions, we're going to have functions that have a whole bunch of inputs, potentially, right? So the input could be an integer, like in convert to kilometers. It could be a list, in which case we would be interested in maybe the length of the list. And if you have many parameters, you'd have to decide, right? What is the parameter that contributes to the growth of this function? So here's an example. This is our isInFunction. It looks for an element E in list L, right? So there's two parameters to this one. We can ask, does the program take longer to run as E increases, right? It's one of the parameters. Let's see what happens as we make E bigger. So we can look at a little example. If we find out whether 0 is in this list containing 1, 2, 3, or whether 1,000 is in the list 1, 2, 3, does the program take longer to run? No, exactly. So E is not really relevant in my runtime sort of calculation here, all right? Well let's consider L now. When we say L is going to change, it could change in two ways, right? The elements in L could have different values, right? Or the list length itself could be different. So in this particular function, let's say that the elements in L are small numbers versus big numbers, OK? That's certainly something that could happen. And certainly with some functions, that's going to make a difference. So let's say in this particular function, if the elements in L are big versus small, is it going to make an impact on my runtime? Well, here's a little example. Let's say I'm looking for the number 0 inside a list with 1, 2, 3, and the number 0 inside a list with 1,000, 2,000, and 3,000. Is that going to make a difference? No, right? So the size of the elements themselves don't really matter. And one last thing to ask ourselves is what about the length of the list? So if L has different lengths, will this make a difference in our runtime, right? So if I'm looking for 0 in a list of three elements, or 0 in a list with 10 elements where clearly that 0 is nowhere to be found, is that length list that's going to have a difference? Yeah, in this case, it will, exactly. So here in this particular function, the input I'd be interested in sort of reporting the runtime from is the length of the list, right? Not the elements in the list, not E itself, but the length of the list, OK? So the last thing that I'll mention is for this particular class, we're going to talk about the worst case scenario. So you might have noticed in this previous example here, right? I always looked for an element that wasn't even in the list, right? So when you're faced with a function, you ask yourself, this particular class at least, what is the worst case scenario? And finding out whether a function's in a list, the worst case scenario for us is if it's not in the list at all, right? So that's sort of another aspect of runtime that we won't talk about, because for us, we're always interested in the worst case. But there are certainly analyses where you could look at the best case scenario, which is, well, the element is the first one in the list, right? In that case, you're always going to find it right away, so it's constant. Or an average case scenario, which is kind of what people do in the real world, right? You're not always encountering the worst case. But for us, we're going to look at the worst case scenario. So our goal is going to be to describe how the runtime grows as the size of the input grows in a really general way. So we're not going to be interested in figuring out the exact number of operations. No 3x plus 2 kind of deal here. We're just going to focus on terms that grow the fastest. We're going to eliminate any sort of additive, multiplicative constants, and things like that. So we're just going to focus on terms that grow the fastest. And that will give us our order of growth. So the way we're going to denote the order of growth is using this notation called big O and big theta. Now, warning, we're going to have some math coming our way. It's going to be like three slides of just pure math, OK? You can sit back. You won't need to know the details. But it will motivate us to kind of give us the idea about this asymptotic order of growth. So this is the mathematical definition of big O. So what we would like to do, there will be a drawing going. So what we would like to do is figure out an upper bound for our function. So the function might look like this. And I know this is just an F, but we relate this to our class by saying, you know what, if we did the order of calculation, sorry, the number of operations analysis for a function, we could basically come up with something like this, right? We came up with 3x plus 2. We could come up with 3x squared plus 20x plus 1 for some random function that we wrote, right? So that we consider the function. Now, the big O is going to be the upper bound on this function. So if I plot this function in my xy axis, this is what it looks like. The big O will be some other function that's going to upper bound this one, the blue one, OK? And it's going to upper bound it for all values beyond some x, right? So for all values beyond some x, some number on the x axis, some crossover point, this big O of g, this g will always be bigger than my F. That's the idea here. So clearly, x is not going to upper bound it, right? Because after this crossover point, x will be below my function. No matter how big, how big of a constant I tack onto that x. I could have 1,000x. That's still not going to upper bound my little blue line here. So what we're going to do is we're going to increase the exponential there. So let's take x squared. Well, x squared is getting closer. It looks like they're both quadratics. But this orange line is not above the blue line for some crossover point. 2x getting closer. 3x getting closer. 4x is an upper bound on my F. Because after this little crossover point here at about 20, my orange line, the g, will be always above my blue line, my F, right? So far so good? Just visually speaking, yeah. The orange one below it there, does that matter? Yeah, the orange one is below it. That's totally fine. Because what we're interested in is the behavior when the input is really big. So that's why I don't care about weird stuff happening down there. All I care about is when my x is super big. So now I found this g. So I can say that after this point, 20, my orange line will always be above my blue. So I can say that my F is big O of x squared. Because I don't care about this 4 so much, because it's just a multiplicative constant. Because this 4x is always greater than my function, for all x greater than this crossover point here. That's it. That's the definition, right? So the g here is basically this function without the multiplicative constant in front of it. OK, so I say 3x squared plus 20x plus 1 is big O of x squared. So generally speaking, that was just an example. Generally speaking, the big O is an upper bound on my function. And this is now just using variables like constants and things like that. But it's exactly the same situation that we had from before. So I'm going to try to map the blue to the blue and the orange to the orange and the purple to the purple to help you kind of match up what we saw in the previous slide. So basically, we say that our function F is big O of this orange g. If we can find some blue constant, where this constant was this 4 here, where that constant multiplied by g, the x squared, is greater than my function for all values beyond that crossover point. So I found my 4, because 4x squared is always greater than my function beyond 21. That's what we saw in the picture. So then we can say that my function F is big O of g of x, where that g is x squared, just matched it. So in terms of the picture here, this is kind of a little zoom in of what happens. Anything can happen down here. But beyond the crossover point, which is here, in the big picture, beyond that crossover point, my orange is always greater than my blue. So what does this mean? We're going to talk about this in a few slides, but you might have thought about this. I can actually pick any function that grows faster than 3x squared. I can pick x factorial. X factorial grows super fast, or 2 to the x. That also grows super fast. All of those functions that grow way faster than mine are also upper bounds on this function. OK, so that's big O. It's just an upper bound. Then what is theta? For the reason I just stated, I said x factorial, 2 to the x. All of these functions that grow much faster than my function are all upper bounds. And that's not really helpful for us when we say, oh, this function is big O of whatever. Because you can just pick something that grows ludicrously fast and has no meaning. So instead, what we usually report is the theta, which is actually an upper bound and a lower bound for our function. So using the exact same reasoning, we're going to find some constant tacked on to that g of x such that that function is always underneath our function. So again, I'll put up a lot of math. But basically, these first two lines here, this one here, there exists blah, blah, blah, blah, blah, that first here, this is the big O definition. So we've already know what that means. All we're going to do is tack on another condition, which is that we can find another constant for that same g where that function beyond some crossover point is always below my blue line. So here's an example. For x squared, we saw that it grew faster than 3x squared beyond the crossover point. Well, we could say 2x squared will always grow slower than its own crossover point. So the constant 4 was the same as we had seen before. But this constant 2 now becomes a lower bound. So I'm basically trying to have that same g, both upper bound and lower bound, my blue function. And that's the definition of theta. So now I can no longer say that 2 to the x, an exponential, both upper bounds and lower bounds, because that 2 to the x will grow faster than my function no matter what constant attack on to it. So now what we see is that really the g of x is going to be the term that grows the fastest. It's just going to be that term here. It's going to be the thing without the fastest growing term in my function without the constant on it. So yes, we will never remember all that, but we're going to do a bunch of exercises and you're going to see just how easy it is to figure out the order of growth. But I will mention this just again, because it's very important. So when we're talking about upper bounds, you can pick any function that grows faster than yours. f of x, this 3x squared thing, is o of x squared, yes, but it's also o of x cubed, o of x to the 5, o of x to the 100, o of 2 to the x, o of x factorial, all of those things that grow much faster. But my f of x is only 1 theta, and it's theta of x squared. And that's the term that grows the fastest in my function here. So when we look at a function based on the number of operations or however you know you're given the function, when we look at the order of growth of the function, we just focus on the dominant term. So in the first one, the input here is n, and the function is n squared plus 2n plus 2. Which one of these is the dominant term? You tell me. Yes, exactly, n squared. So this function is just going to be theta of n squared. That's it. How about in the next one? What's the dominant term here? Yeah, exactly, 3x squared. Even though 100,000x is going to be huge for a while, and this constant is also going to be huge for a while, as x gets really, really big, this 3x squared, and in fact just x squared, will kind of take over everything else. So this next one is theta of x squared. How about the next one? That's the term that grows the fastest here. Yeah, exactly, a, log is slower growth. So this theta of this function is just theta of a. So notice what we're doing here is just focusing on the dominant term. We're going to drop the multiplicative constants, drop every other term, and relate the theta in terms of the input. So I don't just use theta of n all the time. In the previous one, it's tempting to say the first one's theta of n squared, the next one's theta of n squared, the last one's theta of n. But n is not always the input to your function, if it is great. If it's not, you always have to relate it according to the input of the function. Maybe it's length l, maybe it's something else. OK, so let's have you try a couple more. What is the theta of the first one here? That's the term that grows the fastest. Yeah, theta of x. Next one. And cubed. Exactly, theta of n cubed. Yeah, I told you this is going to be so easy. I know that math was scary. How about the next one? That's the term that grows the fastest, but then it's theta of, drop any multiplicative constants, and it's just theta of y. The last one is going to be tricky. What is the theta if the variable is only b? Yeah, 2 to the b. What about if the variable is only a? A cubed, exactly. And if my function is both a function of a and b and a plus a cubed, right? Because both will contribute to the runtime of this function, right? Not just the b. Right, so if this function, whatever this crazy function is that I wrote that takes so long to run, had both inputs b and a as its parameters, the theta for that function is both, is in terms of both b and a, right? The dominant terms of each. Yeah. Don't you worry about negative coefficients? No. No need to worry about negative coefficients. Oh, but x would have a negative. Yeah. Yeah. Yeah. Yeah, question. Oh, some different variable that's not even here. Yeah, if the parameter, the function was c, let's say for this last one, but the formula was this, then the theta would be just constant, theta of 1. Because it doesn't even depend on these variables, so these are just considered constant time. That's a great question, yeah. If the parameter was c or something else. Okay, so now we can actually look at functions that we write, and we do the exact same thing. We can first start out with just saying how many operations does this function take, come up with that relationship, and just theta of that, right? Just like we did on the previous slide. So here's a function that calculates the factorial. What do we have here? Well, we've got, this is constant here, right? We've got just one while loop where there's five things going on here. There's the comparison. There's this times equals, which is two operations. This minus equals, it's two operations. So this function is just 5n plus 2, by the same analysis we did a few slides ago, right? So if we say what's the theta of this function, well, what's the theta of this thing 5n plus 2? Super easy, right? It's just theta of n. And in this case, the parameter to our function is truly n. When we have functions that are slightly more complex, and we've got things that are in series, like for example here, I've got two four loops, one right after the other. We basically use this law of addition to take care of that. So that means we figure out what the theta is for the first four loop, the theta for the next four loop, and we just add those two, uh, thetas together, okay? So the first four loop here is theta of n, because it's something that depends on parameter n. And the next four loop here is theta of n squared, right? And this, this, uh, because the parameter here is n times n. The stuff inside the four loops are constant, so they don't contribute anything to our thetas, right? There's no more things to multiply the complexity there. So that if this is my entire function here, the theta for this function is theta of n plus theta of n squared, right? And the law of addition just says theta of n plus theta of n squared is just theta of sticking those two inside as, as part of my function, n plus n squared. And we know how to do that. That just simplifies to the dominant term, which is n squared, okay? So that's the law of addition. So that's when we have loops or things like that in series. What about when we have loops that are nested, right? Then we use the law of multiplication, because for each one of these things, we're gonna have to do this that many times, right? So in this particular case, we need to be careful. The outer four loop is gonna be theta of n. And the inner four loop is also theta of n. Even though I'm dividing n by 2, right, 0.5 times n is still theta of n, right? That multiplicative constant in front of that n is 0.5, which is just, you know, it's just, it still leads me to be theta of n. The print is constant, so there's nothing else to multiply there. So the law of multiplication just says theta of n times theta of n is theta of n squared inside there. Okay, so let's look at this program. What is the theta for this? Well, we could do it sort of in very grave detail. We've got x as our parameter, so we only count loops and things like that that are a function of x. If I had a loop that was a function of, I don't know, n or something, that doesn't count, because it's not a function of my input. So only look at things that are a function of x. I've got one outer four loop that goes through x times. So that's theta of x. I've got an inner four loop that starts from i and goes to x. It's a little bit tricky, but in the end, overall, it's going to be theta of x, because it's going to be the first time it's going to go through x times. The next time it's going to go x minus 1, then x minus 2, then x minus 3. So we're effectively just kind of adding over all of these runs, x plus, sorry, 1 plus 2 plus 3 plus 4 plus 5 all the way up to x. And that's just some function of x, right? It's definitely not going to be constant. So the inner loop is also theta of x. Everything else is theta of 1, right? There's nothing else that depends on x. So this whole function is going to be theta of 1 for this assignment here, theta of x times theta of x for this nested loop here, and theta of 1 for this return down here. So overall, it's just going to be theta of, right, so that's that. And so overall, it's just going to be theta of x squared, just by the laws of multiplication and addition. All right, think about this, and then tell me what you think it is. What do you guys think it is? Yeah, theta of length of L, absolutely right. So this is constant, this stuff inside the loop is constant, the return is constant. The only thing that depends on L is the length of the list, right, this loop. So the answer is theta of length L, perfect. How about this one? So here we're assuming all the inputs are the same length. Yeah, theta of length of, pick your favorite one. Theta of length L is reasonable. You could also say theta of length L1 or theta of length L2. Because these are two loops that are in series, right? So this one just loops through the length of L. But inside, we're not doing anything that costs more than just constant time, right? Here, we're just comparing two numbers, like 3 and 2. We're just assigning something to true. So nothing else really depends on the lengths of the list. So this is theta of length L, this is plus theta of length L, so that's just theta of length L. All right, so we saw a bunch of different algorithms, right? Sorry, no, we didn't say a bunch of, we saw a bunch of different programs. But we could kind of classify them all into one of these categories, right? And this is all, basically all the different algorithms that you could ever write in general, right? So something that's constant, theta of 1. Something that's logarithmic is theta log n. Something that's linear, we saw many of these is theta of n. Something that's log linear, we haven't seen any yet. But that's theta of n log n. Theta of n to some constant, like n squared and cubed is polynomial. And theta of some constant to the n, like 2 to the n, 3 to the n, is exponential. And when we're writing our programs, you can do a quick analysis of the program that you just wrote. Look at the loops, look at to see how efficient you wrote it. And you could basically classify your program into one of these categories, right? If you had nested loops that both depend on the input, you probably wrote a polynomial type algorithm. If you just had one loop that depended on the input, you probably wrote a linear time algorithm, right? And when we write these algorithms at a first pass, we want to be somewhere up here. You don't want to do anything that's polynomial or definitely not exponential because things get slow really quickly with those numbers, right? So we never, ever want to be in that situation, although sometimes it's unavoidable. So that's all I've got. Next lecture, we will be going through a bunch of those different complexity classes and looking at different programs that land in those classes, right? Especially the logarithmic and the log-liners, all right?"
+}

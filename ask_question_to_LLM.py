@@ -44,6 +44,6 @@ def ask_llm(question):
         # answer = llama_answer(prompt) not possible during deployment 
         answer="Server is Busy With Other Query"
         return {
-            "answer":e,
+            "answer":"Quota Exhausted for retrival,Plz try again later",
             "model":"Gemini"
         }

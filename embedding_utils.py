@@ -1,8 +1,11 @@
-import requests
 from google import genai
-import config
 from google.genai import types
-client=genai.Client(api_key=config.API_KEY_FOR_QUESTION_EMBEDDING)
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+client=genai.Client(api_key=os.getenv("API_KEY_FOR_QUESTION_EMBEDDING"))
 
 def create_embedding(text):
     # r = requests.post(

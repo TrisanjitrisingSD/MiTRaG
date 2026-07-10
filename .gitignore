@@ -3,7 +3,6 @@ __pycache__/
 *.pyc
 
 # Secrets
-config.py
 .env
 
 # Generated Data

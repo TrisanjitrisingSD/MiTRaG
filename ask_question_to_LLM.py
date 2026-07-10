@@ -1,6 +1,8 @@
 from google import genai
-import config
-client=genai.Client(api_key=config.API_KEY)
+from dotenv import load_dotenv
+import os
+load_dotenv()
+client=genai.Client(api_key=os.getenv("API_KEY"))
 import requests
 from create_prompt import prompt_create
 

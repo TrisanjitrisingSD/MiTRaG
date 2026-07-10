@@ -1158,7 +1158,7 @@ as a single semantic unit, providing richer context to the language model.
 
 ✔ Better scalability for future datasets
 
-For detailed experimental data, see `comparison_results.csv`. 
+For detailed experimental data, see [comparison_results.csv](comparison_results.csv).
 
 # Evaluation
 

@@ -1547,16 +1547,15 @@ Features include:
 - Professional chat bubbles
 
 ---
+
 # User Interface
 
 <p align="center">
-<img src="Interface1.png" width="95%">
+  <img src="Interface1.png" width="95%">
 </p>
 
 <p align="center">
-<img src="Interface2.png" width="95%>
-<br></br>
-<br></br>
+  <img src="Interface2.png" width="95%">
 </p>
 
 ---

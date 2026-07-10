@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+jinja2
+python-dotenv
+google-generativeai
+numpy
+pandas
+joblib
+requests
+markdown

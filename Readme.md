@@ -1375,7 +1375,7 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-(Though I Don't Have requirement.txt)
+
 ---
 
 # Environment Variables

@@ -39,9 +39,9 @@ def ask_llm(question):
 
     except Exception as e:
         print("Gemini Error",e)
-        answer = llama_answer(prompt)
-
+        # answer = llama_answer(prompt) not possible during deployment 
+        answer="Server is Busy With Other Query"
         return {
             "answer":answer,
-            "model":"LLAMA"
+            "model":"Gemini"
         }

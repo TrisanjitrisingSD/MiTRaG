@@ -19,8 +19,9 @@ def create_embedding(text):
         }
     )
     return r.json()["embedding"]
+    
 
-
+   
 # for querying to the LLM
 
 def inference(prompt):
@@ -44,7 +45,7 @@ def gemini_inference(prompt):
 
     return responsE.text
 
-df=joblib.load('New_Embeddings.joblib')
+df=joblib.load('data/New_Embeddings.joblib')
 
 incoming_query=input("Enter your query: ")
 question_embedding=create_embedding(incoming_query)
@@ -89,5 +90,5 @@ except Exception as e:
 with open("response.txt", "w", encoding="utf-8") as f:
     f.write(f"Response from LLAMA:\n{response1}\n\n")
     f.write(f"Response from Gemini:\n{response2}")
-
+print(response1)
 print("Query is Done")

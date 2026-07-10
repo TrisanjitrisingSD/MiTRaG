@@ -8,3 +8,4 @@ pandas
 joblib
 requests
 markdown
+scikit-learn

@@ -9,7 +9,7 @@ from create_prompt import prompt_create
 
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("API_KEY_FOR_QUESTION_EMBEDDING")
+    api_key=os.getenv("API_KEY_FOR_QUESTION")
 )
 
 def llama_answer(prompt):
@@ -35,7 +35,7 @@ def gemini_answer(prompt):
 
 def nvidia_answer(prompt):
    response = client.chat.completions.create(
-    model="meta/llama-3.3-70b-instruct",
+    model="meta/llama-3.2-3b-instruct",
     messages=[
         {
             "role": "system",
@@ -47,7 +47,7 @@ def nvidia_answer(prompt):
         }
     ],
     temperature=0.2,
-    max_tokens=1024,
+    max_tokens=512,
    )
    answer = response.choices[0].message.content
    return answer
@@ -55,10 +55,10 @@ def nvidia_answer(prompt):
 def ask_llm(question):
     prompt=prompt_create(question)
     try:
-        answer=gemini_answer(prompt)
+        answer=nvidia_answer(prompt)
         return {
             "answer":answer,
-            "model":"Gemini"
+            "model":"Nvidia"
         }
     except Exception as e:
         print("Gemini Error",e)

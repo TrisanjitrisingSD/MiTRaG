@@ -10,3 +10,4 @@ requests
 markdown
 scikit-learn
 openai
+qdrant-client

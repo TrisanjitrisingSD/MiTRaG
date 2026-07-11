@@ -7,8 +7,11 @@ import requests
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from google import genai
-import config
-client=genai.Client(api_key=config.API_KEY)
+from dotenv import load_dotenv
+
+load_dotenv()
+
+client=genai.Client(os.getenv("API_GEMINI_EMBEDDING"))
 
 def create_embedding(text):
     r = requests.post(

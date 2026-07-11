@@ -74,6 +74,11 @@ def nvidia_answer(prompt):
 
 def ask_llm(question):
     q = question.lower().strip()
+    if q=="ok":
+        return{
+            "answer":"Yeah!!",
+            "model":"System"
+        }
     if q=="thanks" or q=="thank you" or q=="Thanks" or q=="thanku":
             return{
                 "answer":"Mention not!But ask me questions from the MIT OpenCourseWare only,I am not here for Casual Chat.",

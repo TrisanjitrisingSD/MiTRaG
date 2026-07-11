@@ -55,10 +55,10 @@ def nvidia_answer(prompt):
 def ask_llm(question):
     prompt=prompt_create(question)
     try:
-        answer=nvidia_answer(prompt)
+        answer=gemini_answer(prompt)
         return {
             "answer":answer,
-            "model":"Nvidia"
+            "model":"Gemini"
         }
     except Exception as e:
         print("Gemini Error",e)

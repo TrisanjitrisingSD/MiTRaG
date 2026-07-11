@@ -22,5 +22,5 @@ transcripts/New_Embedded_jsons/
 # Optional (if you don't want raw transcripts)
 transcripts/JSONs/
 # transcripts/newjsons/
-
+test.py
 .vscode/

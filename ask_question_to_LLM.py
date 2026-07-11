@@ -9,8 +9,28 @@ from create_prompt import prompt_create
 
 client = OpenAI(
     base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("API_KEY_FOR_QUESTION")
+    api_key=os.getenv("API_KEY_FOR_QUESTION"),
+    timeout=30
 )
+GENERAL_CHAT = {
+    "what's your name",
+    "what is your name",
+    "who are you",
+    "how are you",
+    "who made you",
+    "tell me a joke",
+    "good morning",
+    "good evening",
+    "good night",
+    "hello",
+    "hi",
+    "hey",
+    "thanks",
+    "thank you",
+    "thanku",
+    "bye",
+    "goodbye"
+}
 
 def llama_answer(prompt):
     r = requests.post(
@@ -34,8 +54,8 @@ def gemini_answer(prompt):
     return responsE.text
 
 def nvidia_answer(prompt):
-   response = client.chat.completions.create(
-    model="meta/llama-3.2-3b-instruct",
+    response = client.chat.completions.create(
+    model="meta/llama-3.1-8b-instruct",
     messages=[
         {
             "role": "system",
@@ -47,13 +67,31 @@ def nvidia_answer(prompt):
         }
     ],
     temperature=0.2,
-    max_tokens=512,
+    max_tokens=1024,
    )
-   answer = response.choices[0].message.content
-   return answer
+    answer = response.choices[0].message.content
+    return answer
 
 def ask_llm(question):
+    q = question.lower().strip()
+    if q=="thanks" or q=="thank you" or q=="Thanks" or q=="thanku":
+            return{
+                "answer":"Mention not!But ask me questions from the MIT OpenCourseWare only,I am not here for Casual Chat.",
+                "model":"System"
+            }
+    if q in GENERAL_CHAT:
+        return {
+        "answer": "Hi! I'm MiTRaG, an AI tutor for the MIT OpenCourseWare Python Programming course. Feel free to ask me anything related to Python.",
+        "model": "System"
+        }
     prompt=prompt_create(question)
+    prompt = prompt_create(question)
+
+    if prompt is None:
+        return {
+            "answer": "I can only answer questions related to the MIT OpenCourseWare Python Programming course.",
+            "model": "System"
+        }
     try:
         answer=gemini_answer(prompt)
         return {
@@ -79,3 +117,5 @@ def ask_llm(question):
                 "answer":"Quota Exhausted for retrieval,Plz try again later",
                 "model":"Nvidia"
             }
+        
+      

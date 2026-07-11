@@ -7,11 +7,24 @@ import json
 load_dotenv()
 
 client = QdrantClient(
-    url=os.getenv("QUAD_URL"),      
+    url=os.getenv("QUAD_URL"),
     api_key=os.getenv("QUAD_API_KEY")
 )
 
 COLLECTION_NAME = "mitrag"
+
+
+def format_time(seconds):
+    seconds = int(seconds)
+
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+
+    if hours:
+        return f"{hours:02}:{minutes:02}:{secs:02}"
+    else:
+        return f"{minutes:02}:{secs:02}"
 
 
 def prompt_create(question):
@@ -21,7 +34,7 @@ def prompt_create(question):
     results = client.query_points(
         collection_name=COLLECTION_NAME,
         query=question_embedding,
-        limit=30
+        limit=50
     )
 
     retrieved = []
@@ -29,83 +42,70 @@ def prompt_create(question):
     for hit in results.points:
 
         retrieved.append({
-            "title": hit.payload["title"],
+            "title": hit.payload["title"].replace("_", " "),
             "number": hit.payload["number"],
             "text": hit.payload["text"],
-            "start": hit.payload["start"],
-            "end": hit.payload["end"]
+            "start": format_time(hit.payload["start"]),
+            "end": format_time(hit.payload["end"])
         })
-
+        if not results.points:
+            return None
+        best_score = results.points[0].score
+        if best_score < 0.30:
+            return None
     prompt = f"""
-    You are an AI Teaching Assistant for the MIT OpenCourseWare Python Programming course.
+        You are an AI Teaching Assistant for the MIT OpenCourseWare Python Programming course.
 
-    Below is the retrieved course material that you should use to answer the user's question.
+        Below is the retrieved course material that you should use to answer the user's question.
 
-    Retrieved Course Content:
-    {json.dumps(retrieved, indent=2)}
+        Retrieved Course Content:
 
-    ------------------------------------------------------------
+        {json.dumps(retrieved, indent=2)}
 
-    User Question:
-    {question}
+        ------------------------------------------------------------
 
-    ------------------------------------------------------------
+        User Question:
 
-    Instructions:
+        {question}
 
-    - Answer ONLY using the information available in the retrieved course content.
-    - If the question is outside the scope of the MIT Python course and if it is not simple greetings or "ok" or "Thanks", politely reply:
-    "I can only answer questions related to the MIT OpenCourseWare Python Programming course."
-    otherwise reply "If you have further queries, feel free to ask. Thanks"
-    - Explain concepts in a beginner-friendly and conversational manner.
-    - Keep the explanation concise (around 150-250 words unless the user asks for more detail).
-    - Do NOT mention transcript chunks, JSON, retrieved context, embeddings, or internal implementation.
-    - Do NOT ask follow-up or counter questions.
-    - Avoid unnecessary repetition.
-    - Use Markdown formatting.
-    - Use short paragraphs (2-3 lines maximum).
-    - Use bullet points wherever appropriate.
-    - Use emojis only for section headings (avoid excessive emojis).
+        ------------------------------------------------------------
 
-    If code is helpful, include a short Python example.
+        Instructions:
 
-    At the end, add a section exactly like this:
+        - Answer ONLY using the retrieved course content.
+        - If the question is outside the MIT Python course (excluding greetings like "Hi", "Thanks", "OK"), reply:
 
-    ---
+        "I can only answer questions related to the MIT OpenCourseWare Python Programming course."
+         And Donot answer anything,if this happens 
 
-    ## 📚 Related Lectures
+        - For greetings or thanks, politely reply:
+        "If you have further queries, feel free to ask. Thanks."
 
-    🎥 **Lecture <number> – <title>**
-    ⏱ <start time> – <end time>
+        - Explain concepts in a beginner-friendly manner.
+        - Keep answers concise (150–250 words unless asked otherwise).
+        - Never mention transcript chunks, embeddings, retrieval, JSON, or internal implementation.
+        - Do not ask follow-up questions.
+        - Use Markdown.
+        - Use short paragraphs.
+        - Use bullet points where appropriate.
+        - Include a short Python example whenever useful.
 
-    (Include at most 3 lectures.)
+        At the end include:
 
-    Only include lectures that are directly relevant to the answer.
+        ---
 
-    Convert timestamps into MM:SS or HH:MM:SS format.
+        ## 📚 Related Lectures
 
-    ------------------------------------------------------------
+        🎥 **Lecture <number> – <title>**
+        ⏱ <start> – <end>
 
-    Example output:
+        Include at most 3 lectures.
 
-    # 🔁 Recursion
+        Use ONLY the lectures present in the retrieved course content.
+        Do NOT invent lecture names or timestamps.
+        The timestamps are already formatted. Copy them exactly.
 
-    Recursion is a programming technique where a function solves a problem by calling itself with a smaller version of the same problem.
+        ------------------------------------------------------------
+        """
 
-    Every recursive function has two essential parts:
-
-    - **Base Case** – Stops the recursion.
-    - **Recursive Case** – Calls itself with a smaller input.
-
-    Example:
-
-    ```python
-    def factorial(n):
-        if n == 0:
-            return 1
-        return n * factorial(n - 1)"""
-    
     return prompt
-
-
-# print(prompt_create("Who is Napolean?")) # testing purpose

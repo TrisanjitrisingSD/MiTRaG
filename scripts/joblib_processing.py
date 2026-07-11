@@ -4,10 +4,10 @@ import pandas as pd
 
 
 data=[]
-with open('New_CombinedList_Of_Embedded_Chunks.json', 'r') as f:
+with open('data/New_CombinedList_Of_Embedded_Chunks.json', 'r') as f:
     data = json.load(f)
 
 
 df = pd.DataFrame.from_records(data)
 
-joblib.dump(df,'New_Embeddings.joblib')
+joblib.dump(df,'data/New_Embeddings.joblib')

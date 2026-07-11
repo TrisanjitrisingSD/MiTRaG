@@ -11,7 +11,7 @@ data/Embeddings.joblib
 data/CombinedList_Of_Embedded_Chunks.json
 data/New_CombinedList_Of_Embedded_Chunks.json
 data/benchmark_questions.json
-
+data/New_Embeddings.joblib
 raw_data/
 
 prompt.txt

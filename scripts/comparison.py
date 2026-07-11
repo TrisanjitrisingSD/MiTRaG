@@ -6,8 +6,8 @@ import json
 from sklearn.metrics.pairwise import cosine_similarity
 from embedding_utils import create_embedding
 
-OLD_FILE = "Embeddings.joblib"
-NEW_FILE = "New_Embeddings.joblib"
+OLD_FILE = "data/Embeddings.joblib"
+NEW_FILE = "data/New_Embeddings.joblib"
 
 TOP_K = 50
 
@@ -51,7 +51,7 @@ def main():
     old_df = joblib.load(OLD_FILE)
     new_df = joblib.load(NEW_FILE)
 
-    with open("benchmark_questions.json", "r", encoding="utf-8") as f:
+    with open("data/benchmark_questions.json", "r", encoding="utf-8") as f:
         benchmark = json.load(f)
 
     results = []

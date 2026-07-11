@@ -11,6 +11,8 @@ df=joblib.load('data/New_Embeddings.joblib')
 
 def prompt_create(question):
     question_embedding=create_embedding(question)
+    # print(len(question_embedding))
+    # print(np.vstack(df["embedding"]).shape)
     similarity_scores = cosine_similarity(np.vstack(df['embedding']),[question_embedding]).flatten()
 
     top_results=50
@@ -91,3 +93,4 @@ def prompt_create(question):
 
     return prompt;        
 
+print(prompt_create("What is Recursion?"))

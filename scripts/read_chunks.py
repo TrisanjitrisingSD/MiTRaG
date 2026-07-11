@@ -1,39 +1,73 @@
 import os
 import json
-import requests
+from openai import OpenAI
+from tqdm import tqdm
+from dotenv import load_dotenv
+load_dotenv()
+client = OpenAI(
+  api_key=os.getenv("API_KEY_FOR_QUESTION_EMBEDDING"),
+  base_url="https://integrate.api.nvidia.com/v1"
+)
 
-def create_embedding(text_list,batch_size=100):
+
+# def create_embedding(text_list,batch_size=100):
+#     embeddings = []
+#     for i in range(0, len(text_list), batch_size):
+#         r = requests.post("http://localhost:11434/api/embed", json={
+#             "model": "bge-m3",
+#             "input": text_list[i:i + batch_size]
+#         })
+#         response = r.json()
+#         if "embeddings" not in response:
+#             raise RuntimeError(
+#                 f"Batch {i//batch_size + 1} failed.\n"
+#                 f"Status: {r.status_code}\n"
+#                 f"Response: {response}"
+#             )
+#         embeddings.extend(response["embeddings"])
+#     return embeddings
+
+
+def create_embedding(text_list):
+
     embeddings = []
-    for i in range(0, len(text_list), batch_size):
-        r = requests.post("http://localhost:11434/api/embed", json={
-            "model": "bge-m3",
-            "input": text_list[i:i + batch_size]
-        })
-        # print("Status:", r.status_code)
-        response = r.json()
-        if "embeddings" not in response:
-            raise RuntimeError(
-                f"Batch {i//batch_size + 1} failed.\n"
-                f"Status: {r.status_code}\n"
-                f"Response: {response}"
-            )
-        # print(response)
-        embeddings.extend(response["embeddings"])
+
+    for text in tqdm(text_list, desc="Generating Embeddings"):
+
+        response = client.embeddings.create(
+
+            input=text,
+
+            model="nvidia/nv-embed-v1",
+
+            encoding_format="float",
+
+            extra_body={
+
+                "input_type": "passage",
+                "truncate": "NONE"
+
+            }
+
+        )
+
+        embeddings.append(response.data[0].embedding)
+
     return embeddings
 
 
 # a = create_embedding("Cat sat on the mat")
 # print(a)
-jsons=sorted(os.listdir("newjsons"))
-my_dict = []
+jsons=sorted(os.listdir("transcripts/newjsons"))
 chunk_id=0
 fileName=""
 processed=False
 for json_file in jsons:
-    with open(f"newjsons/{json_file}", "r") as f:
+    my_dict = []
+    with open(f"transcripts/newjsons/{json_file}", "r") as f:
         data = json.load(f)
     fileName=f"lecture_{json_file.split('_')[0]}.json"    
-    if(os.path.exists(f"New_Embedded_jsons/{fileName}")):
+    if(os.path.exists(f"transcripts/New_Embedded_jsons/{fileName}")):
         print(f"File {fileName} already exists with {len(data['chunks'])} chunks. Skipping.")
         chunk_id += len(data['chunks'])
         continue
@@ -41,7 +75,7 @@ for json_file in jsons:
     processed=True
     # embeddings = create_embedding([chunk['text'] for chunk in data['chunks']])   
     texts=[chunk['text'] for chunk in data['chunks']]
-    embeddings = create_embedding(texts,batch_size=100) 
+    embeddings = create_embedding(texts) 
     assert len(embeddings) == len(texts), (
     f"Expected {len(texts)} embeddings, got {len(embeddings)}"
     )
@@ -50,9 +84,12 @@ for json_file in jsons:
         chunk['embedding'] = embeddings[i]
         my_dict.append(chunk)
         chunk_id += 1  
-    print(f"Processed {len(data['chunks'])} chunks from {json_file}")   
+    print(f"Processed {len(data['chunks'])} chunks from {json_file}") 
+    with open(f"transcripts/New_Embedded_jsons/{fileName}", "w") as f:
+        json.dump(my_dict, f)
+    print("completed") 
 if processed:
-    with open(f"New_Embedded_jsons/{fileName}", "w") as f:
+    with open(f"transcripts/New_Embedded_jsons/{fileName}", "w") as f:
         json.dump(my_dict, f)
     print("completed")
 else:

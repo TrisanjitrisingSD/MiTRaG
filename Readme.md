@@ -18,6 +18,7 @@ An intelligent AI Teaching Assistant powered by **Retrieval-Augmented Generation
 ![RAG](https://img.shields.io/badge/Architecture-RAG-success)
 ![Embeddings](https://img.shields.io/badge/Embeddings-bge--m3-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
+![Qdrant Cloud](https://img.shields.io/badge/Qdrant%20Cloud-Vector%20DB-731842?logo=qdrant)
 
 </div>
 

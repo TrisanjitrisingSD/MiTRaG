@@ -30,7 +30,7 @@ def create_embedding(text):
 #     return result.embeddings[0].values
     res=client.embeddings.create(
         input=text,
-        model="nvidia/nv-embed-v1",
+        model="nvidia/nemotron-3-embed-1b",
         encoding_format="float",
         extra_body={"input_type": "query", "truncate": "NONE"}
        )

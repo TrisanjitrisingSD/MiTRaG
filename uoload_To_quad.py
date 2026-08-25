@@ -15,16 +15,16 @@ client = QdrantClient(
 COLLECTION_NAME = "mitrag"
 
 # Load dataframe
-df = joblib.load("data/New_Embeddings.joblib")
+df = joblib.load("data/Nemotron_New_Embeddings.joblib")
 
-print(df.shape)
-
+# print(df.shape)
+# print(len(df.iloc[0]["embedding"]))
 # Create collection (only once)
 try:
     client.create_collection(
         collection_name=COLLECTION_NAME,
         vectors_config=VectorParams(
-            size=4096,
+            size=2048,
             distance=Distance.COSINE
         )
     )

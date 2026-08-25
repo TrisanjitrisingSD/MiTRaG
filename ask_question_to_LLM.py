@@ -90,7 +90,7 @@ def ask_llm(question):
         "model": "System"
         }
     prompt=prompt_create(question)
-    prompt = prompt_create(question)
+    # prompt = prompt_create(question)
 
     if prompt is None:
         return {

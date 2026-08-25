@@ -38,7 +38,7 @@ def create_embedding(text_list):
 
             input=text,
 
-            model="nvidia/nv-embed-v1",
+            model="nvidia/nemotron-3-embed-1b",
 
             encoding_format="float",
 
@@ -67,7 +67,7 @@ for json_file in jsons:
     with open(f"transcripts/newjsons/{json_file}", "r") as f:
         data = json.load(f)
     fileName=f"lecture_{json_file.split('_')[0]}.json"    
-    if(os.path.exists(f"transcripts/New_Embedded_jsons/{fileName}")):
+    if(os.path.exists(f"transcripts/Nemotron_New_Embedded_jsons/{fileName}")):
         print(f"File {fileName} already exists with {len(data['chunks'])} chunks. Skipping.")
         chunk_id += len(data['chunks'])
         continue
@@ -76,6 +76,10 @@ for json_file in jsons:
     # embeddings = create_embedding([chunk['text'] for chunk in data['chunks']])   
     texts=[chunk['text'] for chunk in data['chunks']]
     embeddings = create_embedding(texts) 
+    print("Embedding dimension:", len(embeddings[0]))
+    assert len(embeddings[0]) == 2048, (
+        f"Expected 2048 dimensions, got {len(embeddings[0])}"
+    )
     assert len(embeddings) == len(texts), (
     f"Expected {len(texts)} embeddings, got {len(embeddings)}"
     )
@@ -85,15 +89,15 @@ for json_file in jsons:
         my_dict.append(chunk)
         chunk_id += 1  
     print(f"Processed {len(data['chunks'])} chunks from {json_file}") 
-    with open(f"transcripts/New_Embedded_jsons/{fileName}", "w") as f:
+    with open(f"transcripts/Nemotron_New_Embedded_jsons/{fileName}", "w") as f:
         json.dump(my_dict, f)
     print("completed") 
-if processed:
-    with open(f"transcripts/New_Embedded_jsons/{fileName}", "w") as f:
-        json.dump(my_dict, f)
-    print("completed")
-else:
-    print("No new files to process.All Lectures have been processed and embedded. Please check the New_Embedded_jsons folder for the output files.")  
+# if processed:
+#     with open(f"transcripts/Nemotron_New_Embedded_jsons/{fileName}", "w") as f:
+#         json.dump(my_dict, f)
+#     print("completed")
+# else:
+#     print("No new files to process.All Lectures have been processed and embedded. Please check the Nemotron_New_Embedded_jsons folder for the output files.")  
 
 # total chunks processed= 25702(previously)
 #total chunks processed=5152(after merging chunks)
